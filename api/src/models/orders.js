@@ -2,10 +2,25 @@ const { DataTypes } = require('sequelize');
 
 module.exports = function (sequelize) {
     return sequelize.define('order', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
+        client: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        cellphone: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        subtotal: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     })
 }

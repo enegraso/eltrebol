@@ -2,11 +2,6 @@ const { DataTypes } = require('sequelize');
 
 module.exports = function (sequelize) {
     return sequelize.define('product', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -14,7 +9,7 @@ module.exports = function (sequelize) {
         description: {
             type: DataTypes.STRING
         },
-        Exist: {
+        exist: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
@@ -22,11 +17,12 @@ module.exports = function (sequelize) {
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        categoryid: {
-            type: DataTypes.INTEGER,
-        },
         isOfert: {
             type: DataTypes.BOOLEAN
+        },
+        image: {
+            type: DataTypes.TEXT,
+            allowNull: false
         }
     })
 }

@@ -9,6 +9,8 @@ const userModel = require("./users.js");
 const categoryModel = require("./categories.js");
 const orderModel = require("./orders");
 const productModel = require("./products");
+const orderLineModel = require("./orderline");
+
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 let sequelize =
@@ -44,9 +46,15 @@ const User = userModel(sequelize);
 const Product = productModel(sequelize);
 const Category = categoryModel(sequelize);
 const Order = orderModel(sequelize);
+const OrderLine = orderLineModel(sequelize);
 
 // Será necesario definir las relaciones
 
+Product.belongsToMany(Category, {through: 'prod_cat'});
+Category.belongsToMany(Product, {through: 'prod_cat'});
+
+Product.hasMany(OrderLine);
+OrderLine.belongsTo(Product);
 
 // Exports models
 
@@ -56,10 +64,8 @@ module.exports = {
   Product,
   Category,
   Order,
+  OrderLine
 };
 
-/* Activity.belongsTo(User)
-User.hasMany(Activity)
 
-Activity.belongsToMany(User, { through: 'favorite' });
-User.belongsToMany(Activity, { through: 'favorite' }) */
+

@@ -6,36 +6,16 @@ const { User } = require('../models/index')
 var router = express.Router();
 
 
-// var bcryptjs = require ('bcryptjs')
-// var bcryptjs = require ('bcryptjs')
-// var bcryptjs = require ('bcryptjs')
-
-/* router.post ('/login', async (req, res) =>{
-  const username = req.body.email;
-  const password = req.body.password;
-  if(username == "mati" && password == '12345'){ // para prueba en postman
-    var passwordHash = await bcryptjs.hash(password, 8)
-    res.json({
-      message:'Se autentico adecuadamente'
-    })
-  }else {
-    res.json({
-      message:'Email o contraseña equivocada'
-    })
-  }
-}) */
-
-
-// aquí voy a obtener el usuario en caso de que ya esté registrado
+// Login del usuario admin
 router.get('/login', async (req, res) => {
-    // tomo del form de login el mail y la contraseña (aquí en query pero probaremos por body)
+    // tomo del form de login el username y la contraseña (aquí por body)
     const {username, password} = req.body
     // reviso que lleguen bien
     if (!username || username === "") {
-      return res.status(400).json({"error":"el mail no existe"})
+      return res.status(400).json({"error":"Por favor, ingrese username"})
     }
     if (!password || password === "") {
-      return res.status(400).json({"error":"la clave no existe"})
+      return res.status(400).json({"error":"Por favor, ingrese la contraseña"})
     }
     await User.findAll({
       where: {
@@ -52,32 +32,33 @@ router.get('/login', async (req, res) => {
     // res.send("get user")
 })
 
-router.post('/users', async (req, res) => {
+router.put('/update', async (req, res) => {
     // tomo todos los campos del form de registro de usuario
-    const {email, password, dni, name, lastname, birthdate} = req.body
+    const {id, name, username, password } = req.body
     // chequeo que estén completos los 3 campos requeridos
-    if (!email || email === "") {
-      return res.status(400).json({'error':'Falta ingresar e-mail correspondiente'})
+    if (!name || name === "") {
+      return res.status(400).json({'error':'Falta ingresar nombre correspondiente'})
+    }
+    if (!username || username === "") {
+      return res.status(400).json({'error':'Falta ingresar username correspondiente'})
     }
     if (!password || password === "") {
       return res.status(400).json({'error':'Falta ingresar password correspondiente'})
     }
-    if (!name || name === "") {
-      return res.status(400).json({'error':'Falta ingresar name correspondiente'})
-    }
-    console.log("Objeto de usuario creado")
+    console.log("Objeto user modificar usuario creado")
     // armo el objeto
     const objUser = {
-      email,
-      password,
-      dni,
       name,
-      lastname,
-      birthdate
-    }
+      username,
+      password,
+      isAdmin: true
+        }
     try {
       // envio los datos al modelo sequelize para que los guarde en la database
-      let newUser = await User.create(objUser);
+      let newUser = await User.update(objUser, {  where: {
+        id: id,
+      }
+    });
       // si todo sale bien devuelvo el objeto agregado
       console.log("Objeto de usuario guardado")
       res.send(objUser)
