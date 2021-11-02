@@ -1,7 +1,7 @@
 var express = require("express");
 
 // Defino el modelo user para utilizarlo en las rutas correspondientes
-const { Product, Category} = require("../models/index");
+const { Product, Category } = require("../models/index");
 
 var router = express.Router();
 
@@ -25,9 +25,10 @@ router.get("/:id", (req, res) => {
 
 //producto por categoria
 
-router.get('/bycat/:category', (req, res) => {
+router.get("/bycat/:category", (req, res) => {
   let { category } = req.params;
-  if (!category) return res.status(400).send('Se necesita categoría');
+  if (!category || category === "")
+    return res.status(400).send("Por favor, ingrese categoría");
   Category.findAll({
     where: { category: category },
     include: { model: Product },
