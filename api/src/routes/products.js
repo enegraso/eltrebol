@@ -1,7 +1,7 @@
 var express = require("express");
 
 // Defino el modelo user para utilizarlo en las rutas correspondientes
-const { Product} = require("../models/index");
+const { Product, Category} = require("../models/index");
 
 var router = express.Router();
 
@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 //producto por id
 router.get("/:id", (req, res) => {
   let { id } = req.params;
-  if (!id) return res.status(404).send("Este producto no existe");
+  if (!id) return res.status(400).send("Este producto no existe");
   Product.findByPk(id).then((product) => {
     return res.status(200).send(product);
   });
@@ -25,6 +25,16 @@ router.get("/:id", (req, res) => {
 
 //producto por categoria
 
+router.get('/bycat/:category', (req, res) => {
+  let { category } = req.params;
+  if (!category) return res.status(400).send('Se necesita categoría');
+  Category.findAll({
+    where: { category: category },
+    include: { model: Product },
+  }).then((s) => {
+    res.json(s);
+  });
+});
 
 // Agregar producto
 router.post("/add", async (req, res) => {
