@@ -39,7 +39,7 @@ router.get("/bycat/:category", (req, res) => {
 
 // Agregar producto
 router.post("/add", async (req, res) => {
-  const { name, description, exist, price, image, isOfert, category } =
+  const { name, description, exist, price, image, isOfert, category, units, minunit, stepunit } =
     req.body;
   if (!name || name === "") {
     return res
@@ -63,6 +63,9 @@ router.post("/add", async (req, res) => {
     price,
     image,
     isOfert,
+    units,
+    minunit,
+    stepunit
   };
   const existProd = await Product.findOne({
     where: {

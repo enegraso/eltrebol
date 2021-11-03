@@ -23,6 +23,18 @@ module.exports = function (sequelize) {
         image: {
             type: DataTypes.TEXT,
             allowNull: false
+        },
+        units: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        minunit: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        stepunit: {
+            type: DataTypes.FLOAT,
+            allowNull: false
         }
     })
 }

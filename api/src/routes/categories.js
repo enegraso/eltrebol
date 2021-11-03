@@ -34,7 +34,9 @@ router.post("/add", async (req, res) => {
 router.put("/update", async (req, res) => {
   const { id, category, description } = req.body;
   if (!category || category === "") {
-    return res.status(400).json({'error':'Falta ingresar categoría correspondiente'})
+    return res
+      .status(400)
+      .json({ error: "Falta ingresar categoría correspondiente" });
   }
   const objCatUpd = {
     id,
@@ -43,29 +45,59 @@ router.put("/update", async (req, res) => {
   };
   try {
     // envio los datos al modelo sequelize para que los guarde en la database
-    let updCat = await Category.update(objCatUpd, {  where: {
-      id: id,
-    }
-  });
+    let updCat = await Category.update(objCatUpd, {
+      where: {
+        id: id,
+      },
+    });
     // si todo sale bien devuelvo el objeto agregado
-    console.log("Categoria modificada")
-    res.send(objCatUpd)
+    console.log("Categoria modificada");
+    res.send(objCatUpd);
   } catch (err) {
     // en caso de error lo devuelvo al frontend
-    console.log(err)
-    res.status(500).json({ "error" : err});
-  } 
+    console.log(err);
+    res.status(500).json({ error: err });
+  }
 });
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
+  try {
+    let getAllCategories = await Category.findAll();
+    return res.send(getAllCategories);
+  } catch (err) {
+    return res.send({
+      message: "No se pudieron obtener las categorías" + err,
+    });
+  }
+});
+
+router.delete("/delete", async (req, res) => {
+  const { category } = req.body;
+  console.log(category);
+  if (!category || category === "")
+    return res.status(400).send({ message: "Debe ingresar categoría" });
+  const existCat = await Category.findOne({
+    where: {
+      category: category,
+    },
+  });
+  if (existCat) {
     try {
-        let getAllCategories = await Category.findAll();
-        return res.send(getAllCategories);
-      } catch (err) {
-        return res.send({
-          message: "No se pudieron obtener las categorías" + err,
-        });
-      }
-})
+      let delCategory = await Category.destroy({
+        where: {
+          category: category,
+        },
+      });
+      console.log(delCategory);
+      return res.status(200).json({message:"Categoria " + category + " eliminada correctamente"});
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ message: "No se pudo eliminar la categoría" + err });
+    }
+  } else {
+    return res.status(400).json({ message: "Categoría inexistente" });
+  }
+});
 
 module.exports = router;
