@@ -34,16 +34,18 @@ router.get('/login', async (req, res) => {
 
 router.put('/update', async (req, res) => {
     // tomo todos los campos del form de registro de usuario
-    const {id, name, username, password } = req.body
+    const {id, name, username, newpass, oldpass } = req.body
     // chequeo que estén completos los 3 campos requeridos
     if (!name || name === "") {
-      return res.status(400).json({'error':'Falta ingresar nombre correspondiente'})
+      return res.status(400).json({message:'Falta ingresar nombre correspondiente'})
     }
     if (!username || username === "") {
-      return res.status(400).json({'error':'Falta ingresar username correspondiente'})
+      return res.status(400).json({message:'Falta ingresar username correspondiente'})
     }
-    if (!password || password === "") {
-      return res.status(400).json({'error':'Falta ingresar password correspondiente'})
+    if (newpass) {
+      if (!oldpass || oldpass === "") {
+        return res.status(400).json({message:'Falta ingresar password anterior'})
+      }
     }
     console.log("Objeto user modificar usuario creado")
     // armo el objeto
@@ -65,7 +67,7 @@ router.put('/update', async (req, res) => {
     } catch (error) {
       // en caso de error lo devuelvo al frontend
       console.log(error)
-      res.status(500).json({ "error" : error});
+      res.status(500).json({ message: "No se pudo actualizar usuario"+error});
     } 
 })
 
