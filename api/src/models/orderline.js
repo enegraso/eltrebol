@@ -7,12 +7,16 @@ module.exports = function (sequelize) {
       allowNull: false,
     },
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     subtotal: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
+    ordercart: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
 };

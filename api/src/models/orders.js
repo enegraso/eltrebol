@@ -21,6 +21,18 @@ module.exports = function (sequelize) {
         status: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        delivery: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        payd: {
+            type: DataTypes.BOOLEAN,
+            allownull: false
+        },
+        ordercart: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     })
 }

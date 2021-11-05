@@ -56,6 +56,7 @@ Category.belongsToMany(Product, {through: 'prod_cat'});
 Product.hasMany(OrderLine);
 OrderLine.belongsTo(Product);
 
+
 // Exports models
 
 module.exports = {
