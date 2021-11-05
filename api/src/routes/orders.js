@@ -6,12 +6,14 @@ const { Order, OrderLine, Product } = require("../models/index");
 var router = express.Router();
 
 //listar todas las ordenes/pedidos
-router.get("/", (req, res, next) => {
-  Order.findAll()
-    .then((orders) => {
-      res.send(orders);
-    })
-    .catch(next);
+router.get("/", async (req, res, next) => {
+  try {
+    let getAllOrders = await Order.findAll()
+    return res.status(200).json(getAllOrders)
+  } catch (err) {
+    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"})
+  }
+
 });
 
 
