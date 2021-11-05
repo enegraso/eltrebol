@@ -100,7 +100,7 @@ router.post("/add", async (req, res) => {
     await newOrderLine.setOrder(idpedido)
   });
 
-  return res.status(200).json({ message: "Pedido guardado exitosamente " });
+  return res.status(200).json({ message: "Pedido guardado exitosamente ", order: objPedidoAdd });
 
 });
 
