@@ -13,7 +13,20 @@ router.get("/", async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
   }
+});
 
+//listar pedido por id
+router.get("/:id", async (req, res, next) => {
+  const  { id } = req.params
+  try {
+    let getAllOrdersbyId = await Order.findAll({
+      where: { id },
+      include: { model: OrderLine, include: { model : Product} }
+    })
+    return res.status(200).json(getAllOrdersbyId)
+  } catch (err) {
+    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
+  }
 });
 
 
@@ -42,7 +55,7 @@ router.post("/add", async (req, res) => {
     return res
       .status(400)
       .json({ message: "Por favor, ingrese direccion para su compra" });
-
+  let idpedido
   let objPedidoAdd = {
     client,
     cellphone,
@@ -54,6 +67,25 @@ router.post("/add", async (req, res) => {
     delivery,
     payd,
   };
+
+  try {
+    let newPedido = await Order.create(objPedidoAdd);
+    
+    let findPedido = await Order.findOne({
+      where: { ordercart }
+    })
+
+    idpedido = findPedido.id 
+    console.log(idpedido)
+
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "No se pudo guardar el pedido " + err });
+  }
+
+
+
   products.map(async (product) => {
     let objOrderLine = {
       quantity: product.cantidad,
@@ -65,16 +97,11 @@ router.post("/add", async (req, res) => {
     /* console.log("trae esto", findProduct); */
     let newOrderLine = await OrderLine.create(objOrderLine);
     await newOrderLine.setProduct(findProduct);
+    await newOrderLine.setOrder(idpedido)
   });
-  try {
-    let newPedido = await Order.create(objPedidoAdd);
 
-    return res.status(200).json({ message: "Pedido guardado exitosamente " });
-  } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "No se pudo guardar el pedido " + err });
-  }
+  return res.status(200).json({ message: "Pedido guardado exitosamente " });
+
 });
 
 module.exports = router;

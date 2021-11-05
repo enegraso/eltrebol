@@ -56,6 +56,8 @@ Category.belongsToMany(Product, {through: 'prod_cat'});
 Product.hasMany(OrderLine);
 OrderLine.belongsTo(Product);
 
+Order.hasMany(OrderLine)
+OrderLine.belongsTo(Order)
 
 // Exports models
 

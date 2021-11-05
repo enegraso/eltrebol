@@ -15,7 +15,7 @@ module.exports = function (sequelize) {
       allowNull: false,
     },
     ordercart: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false
     }
   });
