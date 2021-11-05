@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
     let getAllOrders = await Order.findAll()
     return res.status(200).json(getAllOrders)
   } catch (err) {
-    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"})
+    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
   }
 
 });
