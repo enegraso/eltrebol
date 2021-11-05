@@ -11,4 +11,8 @@ router.use('/categories', categoriesRoutes)
 router.use('/products', productsRoutes)
 router.use('/orders',ordersRoutes)
 
+router.get("/", (req,res) => {
+    res.status(200).json({message:"backend - Chacinados El Trebol"})
+})
+
 module.exports = router;
