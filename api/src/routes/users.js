@@ -12,10 +12,10 @@ router.get('/login', async (req, res) => {
     const {username, password} = req.body
     // reviso que lleguen bien
     if (!username || username === "") {
-      return res.status(400).json({"error":"Por favor, ingrese username"})
+      return res.status(400).json({message:"Por favor, ingrese username"})
     }
     if (!password || password === "") {
-      return res.status(400).json({"error":"Por favor, ingrese la contraseña"})
+      return res.status(400).json({message:"Por favor, ingrese la contraseña"})
     }
     await User.findAll({
       where: {
@@ -25,45 +25,55 @@ router.get('/login', async (req, res) => {
     })
     .then(result => {
      if (result.length === 0) {
-        return res.status(400).json({"error":"usuario y claves no enontrados"})
+        return res.status(400).json({message:"usuario y claves no enontrados"})
       } 
-      res.status(200).json({ message: "Usuario logueado con éxito"})
+      return res.status(200).json({ message: "Usuario logueado con éxito"})
     })
     // res.send("get user")
 })
 
 router.put('/update', async (req, res) => {
     // tomo todos los campos del form de registro de usuario
-    const {id, name, username, newpass, oldpass } = req.body
+    const {id, name, newpass, olduser, oldpass, email } = req.body
     // chequeo que estén completos los 3 campos requeridos
+    if (!olduser || olduser === "") {
+      return res.status(400).json({message:'Falta ingresar nombre usuario'})
+    }
+    if (!oldpass || oldpass === "") {
+      return res.status(400).json({message:'Falta ingresar contraseña actual'})
+    }
     if (!name || name === "") {
       return res.status(400).json({message:'Falta ingresar nombre correspondiente'})
     }
-    if (!username || username === "") {
-      return res.status(400).json({message:'Falta ingresar username correspondiente'})
-    }
     if (newpass) {
-      if (!oldpass || oldpass === "") {
-        return res.status(400).json({message:'Falta ingresar password anterior'})
-      }
+      if (!oldpass || oldpass === "") 
+        return res.status(400).json({message:'Falta ingresar password anterior'}) 
     }
-    console.log("Objeto user modificar usuario creado")
+    let existUser = await User.findOne({
+      where: {
+        username: olduser,
+        password: oldpass
+      }
+    })
+    if (!existUser) 
+      return res.status(400).json({message:'No tiene permisos para actualizar usuario'}) 
+    // console.log("Objeto user modificar usuario creado")
     // armo el objeto
     const objUser = {
       name,
-      username,
-      password,
-      isAdmin: true
+      password: newpass,
+      email
         }
     try {
       // envio los datos al modelo sequelize para que los guarde en la database
       let newUser = await User.update(objUser, {  where: {
-        id: id,
+        username: olduser,
+        password: oldpass
       }
     });
       // si todo sale bien devuelvo el objeto agregado
       console.log("Objeto de usuario guardado")
-      res.send(objUser)
+      res.status(200).json({ message: "usuario modificado con éxito"})
     } catch (error) {
       // en caso de error lo devuelvo al frontend
       console.log(error)
