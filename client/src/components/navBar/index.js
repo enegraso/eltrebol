@@ -5,14 +5,15 @@ import {GiShamrock} from 'react-icons/gi'
 import {FaUserCircle, FaHome} from 'react-icons/fa'
 import {BiShoppingBag} from 'react-icons/bi'
 
-export default function NavBar(){
+
+const NavBar=()=>{
 
     return(
         <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#"><GiShamrock style={{'color':'#4AA96C'}}/> El Trebol </a>
-          <button className='btn btn-light icon'><FaHome/></button>
-          <button className='btn btn-light icon'><FaUserCircle/></button>
+          <Link to='/' className='btn btn-light icon'><FaHome/></Link>
+          <Link to='login' className='btn btn-light icon'><FaUserCircle/></Link>
           <button className='btn btn-outline-success position-relative icon'>
             <BiShoppingBag/>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{'font-size':'0.4em'}}>
@@ -43,7 +44,8 @@ export default function NavBar(){
             </form>
           </div>
         </div>
-      </nav>  
+      </nav>
     )
-
 }
+
+export default NavBar;
