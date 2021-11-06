@@ -27,7 +27,7 @@ router.get('/login', async (req, res) => {
      if (result.length === 0) {
         return res.status(400).json({message:"usuario y claves no enontrados"})
       } 
-      return res.status(200).json({ message: "Usuario logueado con éxito"})
+      return res.status(200).json({ message: "Usuario logueado con éxito", login: result})
     })
     // res.send("get user")
 })
@@ -72,11 +72,11 @@ router.put('/update', async (req, res) => {
       }
     });
       // si todo sale bien devuelvo el objeto agregado
-      console.log("Objeto de usuario guardado")
-      res.status(200).json({ message: "usuario modificado con éxito"})
+      // console.log("Objeto de usuario guardado")
+      res.status(200).json({ message: "usuario modificado con éxito", user: objUser })
     } catch (error) {
       // en caso de error lo devuelvo al frontend
-      console.log(error)
+      // console.log(error)
       res.status(500).json({ message: "No se pudo actualizar usuario"+error});
     } 
 })
