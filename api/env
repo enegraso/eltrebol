@@ -1,7 +1,0 @@
-DB_USER=postgres
-DB_PASSWORD=uvita2020
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=eltrebol
-NODE_ENV=pruebas
-PORT=3001

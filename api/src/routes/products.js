@@ -19,7 +19,9 @@ router.get("/:id", (req, res) => {
   let { id } = req.params;
   if (!id) return res.status(400).send("Este producto no existe");
   Product.findByPk(id).then((product) => {
-    return res.status(200).send(product);
+    if (!product) 
+      return res.status(400).json({ message: "No se encontró producto con id: " + id}); 
+    return res.status(200).json(product);
   });
 });
 
@@ -33,6 +35,8 @@ router.get("/bycat/:category", (req, res) => {
     where: { category: category },
     include: { model: Product },
   }).then((s) => {
+    if (s.length === 0) 
+      return res.status(400).json({ message: "No se encontró producto con categoria: " + category}); 
     res.json(s);
   });
 });

@@ -108,7 +108,7 @@ router.post("/add", async (req,res) => {
         let newUser = await User.create(objUser);
         // si todo sale bien devuelvo el objeto agregado
         console.log("Objeto de usuario guardado")
-        res.status(200).json({message:"Usuario admin generado correctamente"})
+        res.status(200).json({message:"Usuario admin generado correctamente", user: objUser})
       } catch (error) {
         // en caso de error lo devuelvo al frontend
         console.log(error)
