@@ -1,7 +1,7 @@
 import React from 'react';
-import {Formik, Form} from 'formik'
-// import * as Yup from 'yup';
-
+import {Formik, Form} from 'formik';
+/* import * as Yup from 'yup';
+ */
 
 const LogIn=()=>{
 
@@ -44,9 +44,7 @@ const LogIn=()=>{
                               value={values.username}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              className={errors.username && touched.username && "error"}
                             />
-                            {errors.username && touched.username && (<div className='input-feedback'>{errors.username}</div>)}
                             <label className='form-label' htmlFor='password'>Password</label>
                             <input
                               className='form-control'
@@ -57,9 +55,7 @@ const LogIn=()=>{
                               value={values.password}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              className={errors.password && touched.password && 'error'}
                             />
-                            {errors.password && touched.password && (<div className='input-feedback'>{errors.password}</div>)}
                             <button type='sumit' disabled={isSubmitting}>LogIn</button>
                         </Form>
                     );
