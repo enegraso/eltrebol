@@ -10,11 +10,11 @@ export default function ProductCard({name, img, price, exists, id, oferta}){
                 <p className="card-text">
                     Price: $ {price}
                     <br/>
-                    Condition: {condition}
+                    Existe: {exists}
                     <br/>
-                    Stock: {stock}
+                    Oferta: {oferta}
                 </p>
-                <a href={buy} target='_blank' className="btn btn-warning btn-lg" style={{width:'200px'}}>Buy Now!</a>
+                <button className="btn btn-warning btn-lg" style={{width:'200px'}}>Buy Now!</button>
             </div>
         </div>
         </div>
