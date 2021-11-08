@@ -21,7 +21,7 @@
     display: flex;
     top: 0em;
     height: 2em;
-    background-color: rgb(43, 11, 160);
+    background-color: rgb(0, 114, 38);
     align-items: center;
     justify-content: center;
     color: white;
@@ -35,4 +35,22 @@
     font-weight: bold;
     margin: 1em;
     background-color: rgb(241, 238, 255);
+}
+
+.cajaform {
+    display: flex;
+    flex-direction:row;
+    width: 280px;
+    border: 2px solid black;
+    border-radius:  20px;
+    background-color:rgba(20, 20, 20, 0.6);
+    color: honeydew;
+    background-position: center center;
+    padding: 1rem;
+    margin: 17rem;
+}
+
+.danger {
+    color: orangered;
+    font-weight: bold;
 }

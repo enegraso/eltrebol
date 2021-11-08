@@ -1,6 +1,21 @@
 import Axios from 'axios';
 import {productsEndpoint, productByCatEndpoint, productByIdEndpoint, addProductEndpoint, modifyProductEndpoint} from "../consts/consts";
 
+export const getAllProducts = () => async (dispatch) => {
+    /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
+    try {
+      // console.log(username,password)
+      const { data } = await Axios.get(`${productsEndpoint}`);
+      dispatch({ type: "GET_ALL_PRODUCTS", payload: data });
+      // localStorage.setItem("userInfo", JSON.stringify(data.login));
+    } catch (err) {
+      alert(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+      );
+    }
+  };
 
 export function addProduct(product) {
     return (dispatch) => {
@@ -71,4 +86,4 @@ export function selectProductEdit(id){
             payload: id
         })
     }
-}
+    

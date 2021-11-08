@@ -1,6 +1,5 @@
 const initialState = {
     userDetail: {},
-    gameProde: 0
   };
   
   export default function userReducer(state = initialState, action){
@@ -15,14 +14,9 @@ const initialState = {
       case "LOGOUT_USER":
       return{
         ...state,
-        userDetail: state.userDetail.filter(user => user.idusuario !== action.payload)
+        userDetail: {}
       }
 
-      case "ADD_PRODE":
-      return{
-        ...state,
-        gameProde: action.payload,
-      }
       default: return state;
     }
   }

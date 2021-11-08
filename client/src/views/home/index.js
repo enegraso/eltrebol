@@ -11,9 +11,15 @@ export default function Home(){
     console.log(productos)
 
     return(
+<<<<<<< HEAD
         <div className='container'>
         <SearchBar/>
         {/* { productos.length ? <ProductGrid loading={loading} items={productos}/> : <p>no products</p>} */}
         </div>
+=======
+    <div className='container'>
+{/*         <ProductGrid/>
+ */}    </div>
+>>>>>>> cb33a3daf9018453dcb0bcb00abe5821628bdd92
     )
 }

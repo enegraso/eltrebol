@@ -1,15 +1,15 @@
 const initialState = {
-    products: [],
+    allProducts: [],
     product: [],
     searchProduct: [],    
 }
 
 export default function productReducer(state = initialState, action){
     switch (action.type) {
-        case "GET_PRODUCTS":
+        case "GET_ALL_PRODUCTS":
             return {
                 ...state,
-                products: action.payload.data
+                products: action.payload
             }
 
         case "ADD_PRODUCTS":
