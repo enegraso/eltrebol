@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductGrid from '../../components/productGrid'
-
+/* import ProductGrid from '../../components/productGrid'
+ */
 const Home=()=>{
     return(
     <div class='container'>
-        <ProductGrid/>
+{/*         <ProductGrid/> */}
     </div>
     )
 }

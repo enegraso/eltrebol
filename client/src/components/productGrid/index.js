@@ -1,6 +1,6 @@
-import React from 'react';
-import ProductCard from './productCard';
-import Spinner from './spinner'
+/* import React from 'react';
+import ProductCard from '../productCard';
+import Spinner from '../spinner'
 
 export default function ProductGrid({items, loading}){
     return loading ? (<Spinner/>)
@@ -18,4 +18,4 @@ export default function ProductGrid({items, loading}){
         ))}
         </div>
     </section>
-}
+} */

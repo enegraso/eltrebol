@@ -1,19 +1,8 @@
 import React from 'react';
 import {Formik, Form} from 'formik'
-import * as Yup from 'yup';
-
 
 const LogIn=()=>{
 
-    const validationSchema={Yup.object().shape({
-        username: Yup.string()
-        .username()
-        .required('Required'),
-        password: Yup.string()
-        .required('Required')
-        .min(8, "La contraseña es muy corta - minimo 8 caracteres")
-        .matches(/(?=.*[0-9])/, "La contraseña debe contener un numero")
-    })}
 
     return (
         <div className='container sm'>
@@ -49,9 +38,7 @@ const LogIn=()=>{
                               value={values.username}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              className={errors.username && touched.username && "error"}
                             />
-                            {errors.username && touched.username && (<div className='input-feedback'>{errors.username}</div>)}
                             <label className='form-label' htmlFor='password'>Password</label>
                             <input
                               className='form-control'
@@ -62,9 +49,7 @@ const LogIn=()=>{
                               value={values.password}
                               onChange={handleChange}
                               onBlur={handleBlur}
-                              className={errors.password && touched.password && 'error'}
                             />
-                            {errors.password && touched.password && (<div className='input-feedback'>{errors.password}</div>)}
                             <button type='sumit' disabled={isSubmitting}>LogIn</button>
                         </Form>
                     );

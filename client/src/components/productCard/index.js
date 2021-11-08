@@ -6,15 +6,15 @@ export default function ProductCard({name, img, price, exists, id, oferta}){
         <div class="card text-center" style={{width: '18rem'}}>
             <img src={img} class="card-img-top" alt="product"/>
             <div class="card-body">
-                <p class="card-title"><strong>{title}</strong></p>
+                <p class="card-title"><strong>{name}</strong></p>
                 <p class="card-text">
                     Price: $ {price}
                     <br/>
-                    Condition: {condition}
+                    Existe: {exists}
                     <br/>
-                    Stock: {stock}
+                    Oferta: {oferta}
                 </p>
-                <a href={buy} target='_blank' class="btn btn-warning btn-lg" style={{width:'200px'}}>Buy Now!</a>
+                <button className="btn btn-warning btn-lg" style={{width:'200px'}}>Buy Now!</button>
             </div>
         </div>
         </div>
