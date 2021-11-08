@@ -3,6 +3,8 @@ var express = require('express');
 // Defino el modelo user para utilizarlo en las rutas correspondientes
 const { User } = require('../models/index')
 
+const generateToken = require('../utils/token')
+
 var router = express.Router();
 
 
@@ -27,7 +29,16 @@ router.get('/login', async (req, res) => {
      if (result.length === 0) {
         return res.status(400).json({message:"usuario y claves no enontrados"})
       } 
-      return res.status(200).json({ message: "Usuario logueado con éxito", login: result})
+      console.log(result)
+      let objLogin = {
+        id: result[0].id,
+        name: result[0].name,
+        email: result[0].email,
+        isAdmin: result[0].isAdmin,
+        token: generateToken(result[0])
+      }
+      // token: generateToken(user)
+      return res.status(200).json({ message: "Usuario logueado con éxito", login: objLogin})
     })
     // res.send("get user")
 })
