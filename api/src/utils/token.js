@@ -8,7 +8,7 @@ generateToken = (user) => {
         name: user.name, 
         password: user.password, 
     }, SALT || 'somethingsecret', {
-        expiresIn: '30s', 
+        expiresIn: '30d', 
     })
 }
 
