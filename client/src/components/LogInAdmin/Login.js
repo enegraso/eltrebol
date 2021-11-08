@@ -3,20 +3,22 @@ import { connect } from "react-redux";
 import { getUser } from "../../store/actions/users";
 import { Link } from "react-router-dom";
 import "./login.css";
+import Dashboard from '../../views/admin/dashboard'
+import {FaUserCircle} from 'react-icons/fa'
 
 export function validate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
 
   let errors = {};
   if (!input.username) {
-    errors.username = "Username is required";
+    errors.username = "Ingrese nombre de usuario";
   } /* else if (!emailPattern.test(input.username)) {
     errors.username = "Username is invalid";
   } */
   if (!input.password) {
-    errors.password = "Password is required";
+    errors.password = "Ingresar contraseña";
   } else if (input.password.length < 4) {
-    errors.password = "Password must have 6 characters";
+    errors.password = "Al menos 4 caracteres";
   } /* else if (!/(?=.*[0-9])/.test(input.password)) {
     errors.password = "Password is invalid";
   } */
@@ -49,23 +51,29 @@ function LoginAdmin(props) {
     // funcion que debe solicitar usuario logueado 
     e.preventDefault();
     props.getUser(input.username, input.password);
+    // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
+
+  if (props.userDetail.token)
+      return <Dashboard /> 
+
   var texto, linkto
-  if (props.register) {
+  if (props.login) {
     texto = "Registro OK y ACTIVO. Ahora debes loguearte!"
     linkto = ""
   } else {
     texto = "Registrate! Es fácil y gratis"
     linkto = "/register" 
-  }
+  } 
+
 
   return (
  
     // formulario para loguearse al sistema
     <div className="boxcontainer">
       <div className="boxteam">
-        <div className="titteam">Ingrese user y pass</div>
+      <div className="titteam"><FaUserCircle/>Login</div>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Usuario</label>

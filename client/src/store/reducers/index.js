@@ -1,6 +1,8 @@
 const initialState = {
     userDetail: {},
-    gameProde: 0
+    allOrders: [],
+    allProducts: [],
+    allCategories: []
   };
   
   function rootReducer(state = initialState, action) {
@@ -15,17 +17,31 @@ const initialState = {
       console.log("action.payload")
       return {
         ...state,
-        userDetail: state.userDetail.filter(user => user.idusuario !== action.payload),
+        userDetail: {},
       };
     }
   
-    if (action.type === "ADD_PRODE") {
+    if (action.type === "GET_ALL_ORDERS") {
       return {
         ...state,
-        gameProde: action.payload,
+        allOrders: action.payload,
       };
     }
-  
+
+    if (action.type === "GET_ALL_PRODUCTS") {
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+    }
+
+    if (action.type === "GET_ALL_CATEGORIES") {
+      return {
+        ...state,
+        allCategories: action.payload,
+      };
+    }
+
     return state;
   }
   
