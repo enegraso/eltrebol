@@ -1,20 +1,15 @@
 import React from 'react';
 import {Formik, Form} from 'formik'
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 
 
 const LogIn=()=>{
 
-    const validationSchema={Yup.object().shape({
-        username: Yup.string()
-        .username()
-        .required('Required'),
-        password: Yup.string()
-        .required('Required')
-        .min(8, "La contraseña es muy corta - minimo 8 caracteres")
-        .matches(/(?=.*[0-9])/, "La contraseña debe contener un numero")
-    })}
-
+/*       const validationSchema={Yup.object().shape({
+        username: Yup.string().required('Required'),
+        password: Yup.string().required('Required').min(8, "La contraseña es muy corta - minimo 8 caracteres").matches(/(?=.*[0-9])/, "La contraseña debe contener un numero") 
+    })}   */
+    
     return (
         <div className='container sm'>
         <Formik
