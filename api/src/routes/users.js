@@ -9,9 +9,10 @@ var router = express.Router();
 
 
 // Login del usuario admin
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     // tomo del form de login el username y la contraseña (aquí por body)
     const {username, password} = req.body
+    console.log(username,password)
     // reviso que lleguen bien
     if (!username || username === "") {
       return res.status(400).json({message:"Por favor, ingrese username"})

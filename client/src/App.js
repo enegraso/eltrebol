@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import LoginAdmin from "../src/components/LogInAdmin/Login"
 
 
 import NavBar from "./components/navBar";
@@ -16,6 +17,7 @@ function App() {
        <Routes>
          <Route path='/' element={<Home/>}/>
          <Route path='/login' element={<LogIn/>}/>
+         <Route path='/loginadmin' element={<LoginAdmin/>}/>
        </Routes>
     </div>
   );

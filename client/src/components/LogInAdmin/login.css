@@ -1,0 +1,38 @@
+.boxcontainer {
+    position: relative;
+    top: 4em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.boxteam {
+    width: 320px;
+    height: auto;
+    border: 1px solid rgb(82, 76, 76);
+    border-radius: 1em;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+}
+
+.titteam {
+    display: flex;
+    top: 0em;
+    height: 2em;
+    background-color: rgb(43, 11, 160);
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.logsub {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin: 1em;
+    background-color: rgb(241, 238, 255);
+}
