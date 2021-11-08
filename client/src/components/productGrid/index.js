@@ -1,10 +1,10 @@
 import React from 'react';
-// import ProductCard from './productCard';
-// import Spinner from './spinner'
+import ProductCard from '../productCard';
+import Spinner from '../spinner';
 
 export default function ProductGrid({items, loading}){
-     return <></>
-      /* loading ? (<Spinner/>)
+     return <>
+    loading ? (<Spinner/>)
     : <section class='container'>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {items.map(e =>(
@@ -18,5 +18,6 @@ export default function ProductGrid({items, loading}){
                 />)
         ))}
         </div>
-    </section> */
+    </section>
+    </>
 }

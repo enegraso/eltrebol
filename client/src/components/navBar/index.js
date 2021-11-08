@@ -1,12 +1,59 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './navBar.css'
 import {GiShamrock} from 'react-icons/gi'
-import {FaUserCircle, FaHome} from 'react-icons/fa'
+import {FaUserCircle, FaHome, FaTimesCircle, FaBars} from 'react-icons/fa'
 import {BiShoppingBag} from 'react-icons/bi'
 
 
-const NavBar=()=>{
+
+export default function NavBar(){
+    
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = ()=>setClick(false);
+
+  return(
+      <>
+      <nav className='navbar'>
+          <Link to='/' className='navbar-logo'>
+          <GiShamrock style={{'color':'#4AA96C'}}/> El Trebol
+          </Link>
+          <div className='menu-icon' onClick={handleClick}>
+              <i className={click? <FaTimesCircle/> : <FaBars/> }/>
+          </div>
+          <ul className={click ? 'nav-menu active': 'nav-menu'}>
+              <li className='nav-item'>
+                  <Link to='/' 
+                  className='nav-links' 
+                  onClick={closeMobileMenu}>
+                    <FaHome/> Home
+                  </Link>
+              </li>
+              <li className='nav-item'>
+                  <Link to='/cart' 
+                  className='nav-links' 
+                  onClick={closeMobileMenu}>
+                   <BiShoppingBag/> Orden
+                  </Link>
+              </li>
+              <li className='nav-item'>
+                <Link to='/login'
+                className='nav-links'
+                onClick={closeMobileMenu}
+                >
+                <FaUserCircle/>
+                </Link>
+              </li>
+          </ul>
+      </nav>
+      </>
+  )
+}
+
+
+/* const NavBar=()=>{
 
     return(
         <nav className="navbar navbar-expand-lg navbar-light">
@@ -25,27 +72,10 @@ const NavBar=()=>{
            <span class="visually-hidden">orders</span>
           </span>
           </button>
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categorias
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><hr className="dropdown-divider"/></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
           </div>
         </div>
       </nav>
     )
 }
 
-export default NavBar;
+export default NavBar; */
