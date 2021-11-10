@@ -4,17 +4,18 @@ import {
   Route,
 } from "react-router-dom";
 import LoginAdmin from "../src/components/LogInAdmin/Login"
-
-
 import NavBar from "./components/navBar";
 import Home from "./views/home";
+
 import Category from "./views/category";
 import Cart from './views/carrito'
 import ProductsAdmin from "./components/ProductsAdmin/ProductsAdmin";
+import LogIn from "./views/login";
+import ProductsAdmin from "./components/productsAdmin/productsAdmin";
 import CategoriesAdmin from "./components/CategoriesAdmin/CategoriesAdmin";
-import ProductForm from "./components/ProductsAdmin/ProductForm";
+import ProductForm from "./components/productsAdmin/ProductForm";
 import CategoryForm from "./components/CategoriesAdmin/CategoryForm";
-import ProductFormMod from "./components/ProductsAdmin/ProductFormMod";
+import ProductFormMod from "./components/productsAdmin/ProductFormMod";
 import OrderAdmin from "./components/OrdersAdmin/OrderAdmin";
 
 function App() {
