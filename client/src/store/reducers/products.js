@@ -1,8 +1,11 @@
 const initialState = {
     allProducts: [],
     product: [],
-    searchProduct: [],    
+    searchProduct: [],
+    productsAdmin: [],
+    prductAdminGet: {}, 
 }
+
 
 export default function productReducer(state = initialState, action){
     switch (action.type) {
@@ -12,16 +15,28 @@ export default function productReducer(state = initialState, action){
                 allProducts: action.payload.data
             }
 
-        case "ADD_PRODUCTS":
+     /*    case "ADD_PRODUCTS":
             return {
                 ...state,
-                allProducts: [...state.products]
+                allProducts: [...state.allProducts]
+            } */
+        
+        case "PROD_ADMIN_ADD":
+            return{
+                ...state,
+                productsAdmin: state.productsAdmin.concat(action.payload)
+            }
+
+        case "PROD_ADMIN_GET":
+            return{
+                ...state,
+                productAdmin: action.payload
             }
         
         case "EDIT_PRODUCT":
             return {
                 ...state,             
-                allProducts:  [...state.products, action.payload    ]    
+                allProducts:  [...state.allProducts, action.payload    ]    
             }
 
         case "SEARCH_PRODUCTS":

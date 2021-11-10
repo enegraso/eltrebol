@@ -11,3 +11,4 @@ export const modifyProductEndpoint = productsEndpoint + 'update/:id';
 //carrito
 
 export const productId = REACT_APP_API + 'product/'
+

@@ -50,7 +50,7 @@ router.post("/add", async (req, res) => {
     price,
     image,
     isOfert,
-    category,
+    categories,
     units,
     minunit,
     stepunit,
@@ -65,7 +65,7 @@ router.post("/add", async (req, res) => {
       .status(400)
       .send({ message: "Por favor, ingrese precio de producto" });
   }
-  if (!category || category === "") {
+  if (!categories) {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese categoria/s del producto" });
@@ -107,7 +107,7 @@ router.post("/add", async (req, res) => {
     try {
       let newProduct = await Product.create(objProdAdd); // envio los datos al modelo sequelize para que los guarde en la database
 
-      await newProduct.setCategories(category); // seteo el/los temperamentos para sincronizarlos en la tabla relacionada
+      await newProduct.setCategories(categories); // seteo el/los temperamentos para sincronizarlos en la tabla relacionada
 
       return res.send(newProduct);
     } catch (err) {
@@ -130,7 +130,7 @@ router.put("/update/:id", async (req, res) => {
     price,
     image,
     isOfert,
-    category,
+    categories,
     units,
     minunit,
     stepunit,
@@ -146,7 +146,7 @@ router.put("/update/:id", async (req, res) => {
       .status(400)
       .send({ message: "Por favor, ingrese precio de producto" });
   }
-  if (!category || category === "") {
+  if (!categories) {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese categoria/s del producto" });

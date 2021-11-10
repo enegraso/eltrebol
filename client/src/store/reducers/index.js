@@ -12,6 +12,5 @@ export default combineReducers({
     Order: orderReducer
   });
 
-
-
- 
+  
+  export default rootReducer;

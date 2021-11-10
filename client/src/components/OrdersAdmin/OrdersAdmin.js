@@ -1,6 +1,7 @@
 import React, { useEffect} from 'react'
 import { connect } from 'react-redux'
 import { getAllOrders } from '../../store/actions/orders'
+import { Link } from "react-router-dom"
 
 const OrdersAdmin = (props) => {
 
@@ -13,7 +14,8 @@ const OrdersAdmin = (props) => {
     return <>
          {props.allOrders.map(order => {
             if (order.status === props.status)
-            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} <button> Pedido </button> </div>
+            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} 
+            <Link to={`/admin/order/${order.id}`}><button> Pedido </button> </Link></div>
          })}
     </>
 }

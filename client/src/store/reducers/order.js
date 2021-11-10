@@ -1,5 +1,7 @@
 const initialState = {
     allOrders:[],
+    orderAdmin: {},
+    orderLineAdmin: [],
 };
 
 export default function orderReducer(state = initialState, action){
@@ -8,6 +10,11 @@ export default function orderReducer(state = initialState, action){
             return{
                 ...state,
                 allOrders: action.payload,
+            }
+        case 'GET_ORDER_ADMIN':
+            return{
+                ...state,
+                orderAdmin: action.payload
             }
         default: return state;
     }

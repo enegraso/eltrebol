@@ -6,14 +6,15 @@ const { Category } = require("../models/index");
 var router = express.Router();
 
 router.post("/add", async (req, res) => {
-  const { category, description } = req.body;
+  const { name, description } = req.body;
+  console.log(req.body)
   const objCatAdd = {
-    category,
+    category: name,
     description,
   };
   const existCat = await Category.findOne({
     where: {
-      category: category,
+      category: name,
     },
   });
   if (!existCat) {
