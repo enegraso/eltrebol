@@ -9,9 +9,9 @@ import Home from "./views/home";
 import LogIn from "./views/login";
 import ProductsAdmin from "./components/productsAdmin/productsAdmin";
 import CategoriesAdmin from "./components/CategoriesAdmin/CategoriesAdmin";
-import ProductForm from "./components/ProductsAdmin/ProductForm";
+import ProductForm from "./components/productsAdmin/ProductForm";
 import CategoryForm from "./components/CategoriesAdmin/CategoryForm";
-import ProductFormMod from "./components/ProductsAdmin/ProductFormMod";
+import ProductFormMod from "./components/productsAdmin/ProductFormMod";
 import OrderAdmin from "./components/OrdersAdmin/OrderAdmin";
 
 function App() {
