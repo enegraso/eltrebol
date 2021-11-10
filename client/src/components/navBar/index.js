@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import './navBar.css'
-import {GiShamrock} from 'react-icons/gi'
-import {FaHome} from 'react-icons/fa'
-import {BiShoppingBag, BiCategory} from 'react-icons/bi'
+import './navBar.css';
+import {GiShamrock} from 'react-icons/gi';
+import {FaHome} from 'react-icons/fa';
+import {BiCategory} from 'react-icons/bi';
+import {MdShoppingCart} from 'react-icons/md';
 
 
 
@@ -32,13 +33,6 @@ export default function NavBar(){
                   </Link>
               </li>
               <li className='nav-item'>
-                  <Link to='/cart' 
-                  className='nav-links btn-outline-success' 
-                  onClick={closeMobileMenu}>
-                   <BiShoppingBag/> Orden
-                  </Link>
-              </li>
-              <li className='nav-item'>
                 <Link to='/category'
                 className='nav-links btn-outline-success'
                 onClick={closeMobileMenu}
@@ -46,6 +40,13 @@ export default function NavBar(){
                 <BiCategory/>
                 Categorias
                 </Link>
+              <li className='nav-item'>
+                  <Link to='/cart' 
+                  className='nav-links btn-outline-success' 
+                  onClick={closeMobileMenu}>
+                   <MdShoppingCart/> Carrito
+                  </Link>
+              </li>
               </li>
           </ul>
       </nav>
