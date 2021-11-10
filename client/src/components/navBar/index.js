@@ -29,7 +29,7 @@ export default function NavBar(){
                   <Link to='/' 
                   className='nav-links btn-outline-success' 
                   onClick={closeMobileMenu}>
-                    <FaHome/> Home
+                    <FaHome/>
                   </Link>
               </li>
               <li className='nav-item'>
@@ -38,15 +38,15 @@ export default function NavBar(){
                 onClick={closeMobileMenu}
                 >
                 <BiCategory/>
-                Categorias
                 </Link>
+              </li>
               <li className='nav-item'>
-                  <Link to='/cart' 
+                  <Link to='/carrito' 
                   className='nav-links btn-outline-success' 
                   onClick={closeMobileMenu}>
-                   <MdShoppingCart/> Carrito
+                   <MdShoppingCart/>
+                   <span class="badge bg-danger">4</span>
                   </Link>
-              </li>
               </li>
           </ul>
       </nav>
