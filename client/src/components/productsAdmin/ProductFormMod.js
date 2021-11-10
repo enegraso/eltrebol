@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
 import { getProdAdmin } from "../../store/actions/products";
+import { useParams } from "react-router-dom";
 
 export function validateprod(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -23,25 +24,35 @@ export function validateprod(input) {
 }
 
 const ProductFormMod = () => {
+  const dispatch = useDispatch();
+  const productoAdmin = useSelector((state) => state.productAdmin);
+  const params = useParams();
 
-  const dispatch = useDispatch()
-  const productoAdmin = useSelector(state => state.productAdmin)
+  const obtenProducto = () => {
+    if (!productoAdmin)
+    dispatch(getProdAdmin(params.id))
+  }
 
+  useEffect(() => {
+    obtenProducto(params.id)
+  },[params.id])
   
-
   const [input, setInput] = React.useState({
-    name: productoAdmin.name,
-    description: productoAdmin.description,
-    exist: productoAdmin.exist,
-    price: productoAdmin.price,
-    isOfert: productoAdmin.isofert,
-    image: productoAdmin.image,
-    units: productoAdmin.units,
-    minunit: productoAdmin.minunit,
-    stepunit: productoAdmin.stepunit,
+    name: "",
+    description: "",
+    exist: true,
+    price: 0,
+    isOfert: false,
+    image: "",
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+    categories: [],
   });
 
   const [errors, setErrors] = React.useState({});
+
+
 
   const handleInputChange = function (e) {
     // validate(e.target.name,e.target.value)
@@ -63,6 +74,22 @@ const ProductFormMod = () => {
     // props.prodAdd(input);
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
+
+
+
+  if (!productoAdmin) return <> Loading... </>;
+  else
+    setInput({
+      name: productoAdmin.name,
+      description: productoAdmin.description,
+      exist: productoAdmin.exist,
+      price: productoAdmin.price,
+      isOfert: productoAdmin.isofert,
+      image: productoAdmin.image,
+      units: productoAdmin.units,
+      minunit: productoAdmin.minunit,
+      stepunit: productoAdmin.stepunit,
+    });
 
   return (
     // formulario para agregar producto a la tienda

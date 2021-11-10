@@ -51,10 +51,9 @@ export const prodMod = (producto) => async (dispatch) => {
 export const getProdAdmin = (id) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
-    // console.log(username,password)
+    console.log(`${REACT_APP_API}/products/`+id)
     const { data } = await axios.get(`${REACT_APP_API}/products/`+id);
     dispatch({ type: "PROD_ADMIN_GET", payload: data });
-    // localStorage.setItem("userInfo", JSON.stringify(data.login));
   } catch (err) {
     alert(
       err.response && err.response.data.message

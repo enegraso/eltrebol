@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProducts, getProdAdmin } from "../../store/actions/products";
+import { getAllProducts } from "../../store/actions/products";
 
 const ProductsAdmin = (props) => {
   
@@ -24,8 +24,8 @@ const ProductsAdmin = (props) => {
           <div key={product.id}>
             {product.id} - {product.name} - $ {product.price} -{" "}
             {product.exist === true ? "hay" : "no hay"}
-            <Link to="/admin/modproduct">
-              <button onClick={ () => props.getProdAdmin(product.id) } > Editar </button>
+            <Link to={`/admin/modproduct/${product.id}`}>
+              <button> Editar </button>
             </Link>
             <Link to="/admin/delproduct">
               <button> Eliminar </button>
@@ -51,8 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllProducts: () => dispatch(getAllProducts()),
-    getProdAdmin: (prod) => dispatch(getProdAdmin(prod))
+    getAllProducts: () => dispatch(getAllProducts())
   };
 };
 

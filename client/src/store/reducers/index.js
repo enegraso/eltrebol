@@ -1,13 +1,14 @@
 const initialState = {
     userDetail: {},
-    allOrders: [],
     // State para admins
+    allOrders: [],
+    orderAdmin: {},
+    orderLineAdmin: [],
     allProducts: [],
     productsAdmin: [],
     prductAdminGet: {},
     categoriesAdmin: [],
-    allCategories: [],
-    prductAdminGet: {}
+    allCategories: []
     // States para admins
   };
   
@@ -54,17 +55,17 @@ const initialState = {
       };
     }
 
-    if (action.type === "PROD_ADMIN_MOD") {
+    if (action.type === "PROD_ADMIN_GET") {
       return {
         ...state,
         productAdmin: action.payload
       };
     }
 
-    if (action.type === "PROD_ADMIN_GET") {
+    if (action.type === "GET_ORDER_ADMIN") {
       return {
         ...state,
-        productAdmin: action.payload
+        orderAdmin: action.payload
       };
     }
 

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { getUser } from "../../store/actions/users";
 import { Link } from "react-router-dom";
 import "./login.css";
-import Dashboard from '../../views/admin/dashboard'
-import {FaUserCircle} from 'react-icons/fa'
+import Dashboard from "../../views/admin/dashboard";
+import { FaUserCircle } from "react-icons/fa";
 
 export function validate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -48,35 +48,36 @@ function LoginAdmin(props) {
   };
 
   function handleSubmit(e) {
-    // funcion que debe solicitar usuario logueado 
+    // funcion que debe solicitar usuario logueado
     e.preventDefault();
     props.getUser(input.username, input.password);
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
+  if (props.userDetail.token) return <Dashboard />;
 
-  if (props.userDetail.token)
-      return <Dashboard /> 
-
-  var texto, linkto
+  var texto, linkto;
   if (props.login) {
-    texto = "Registro OK y ACTIVO. Ahora debes loguearte!"
-    linkto = ""
+    texto = "Registro OK y ACTIVO. Ahora debes loguearte!";
+    linkto = "";
   } else {
-    texto = "Registrate! Es fácil y gratis"
-    linkto = "/register" 
-  } 
-
+    texto = "Registrate! Es fácil y gratis";
+    linkto = "/register";
+  }
 
   return (
- 
     // formulario para loguearse al sistema
     <div className="boxcontainer">
       <div className="boxteam">
-      <div className="titteam"><FaUserCircle/>Login</div>
+        <div className="titteam">
+          <FaUserCircle />
+          Login
+        </div>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Usuario</label>
+          </div>
+          <div>
             <input
               className={errors.username && "danger"}
               type="text"
@@ -89,6 +90,8 @@ function LoginAdmin(props) {
           </div>
           <div>
             <label>Clave</label>
+          </div>
+          <div>
             <input
               className={errors.password && "danger"}
               type="password"
@@ -103,7 +106,7 @@ function LoginAdmin(props) {
           </div>
         </form>
         <div id="regis" className="logsub">
-       {/*  <Link to={linkto}>{texto}</Link> */}
+          {/*  <Link to={linkto}>{texto}</Link> */}
         </div>
       </div>
     </div>
@@ -120,6 +123,6 @@ function mapDispatchToProps(dispatch) {
   return {
     getUser: (name, clave) => dispatch(getUser(name, clave)),
   };
-} 
+}
 
-export default connect(mapStateToProps, mapDispatchToProps) (LoginAdmin);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginAdmin);
