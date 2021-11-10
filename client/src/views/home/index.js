@@ -2,24 +2,25 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
-import {getProducts} from '../../store/actions/products';
+import {getAllProducts} from '../../store/actions/products';
 
 export default function Home(){
 
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        console.log('entrando al home')
+        dispatch(getAllProducts())
+    },[])
+
     const [loading] = useState(false);
-    const productos = useSelector(state => state.products);
+    const productos = useSelector(state => state.Product.allProducts);
     console.log(productos)
 
     return(
-<<<<<<< HEAD
         <div className='container'>
         <SearchBar/>
-        {/* { productos.length ? <ProductGrid loading={loading} items={productos}/> : <p>no products</p>} */}
+        { productos.length ? <ProductGrid loading={loading} items={productos}/> : <p>no products</p>}
         </div>
-=======
-    <div className='container'>
-{/*         <ProductGrid/>
- */}    </div>
->>>>>>> cb33a3daf9018453dcb0bcb00abe5821628bdd92
     )
 }

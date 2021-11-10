@@ -9,19 +9,19 @@ export default function productReducer(state = initialState, action){
         case "GET_ALL_PRODUCTS":
             return {
                 ...state,
-                products: action.payload
+                allProducts: action.payload.data
             }
 
         case "ADD_PRODUCTS":
             return {
                 ...state,
-                products: [...state.products]
+                allProducts: [...state.products]
             }
         
         case "EDIT_PRODUCT":
             return {
                 ...state,             
-                products:  [...state.products, action.payload    ]    
+                allProducts:  [...state.products, action.payload    ]    
             }
 
         case "SEARCH_PRODUCTS":
@@ -39,7 +39,7 @@ export default function productReducer(state = initialState, action){
         case "DELETE_PRODUCT":
             return {
                 ...state,
-                products: state.products.filter((p) => p.id !== action.payload)
+                allProducts: state.products.filter((p) => p.id !== action.payload)
             }
 
         

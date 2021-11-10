@@ -3,10 +3,11 @@ import ProductCard from '../productCard';
 import Spinner from '../spinner';
 
 export default function ProductGrid({items, loading}){
-     return <>
+    
+     return (
     loading ? (<Spinner/>)
     : <section class='container'>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div className="row justify-content-center row-cols-md-4 row-cols-sm-1">
         {items.map(e =>(
             (<ProductCard 
                 id={e.id} 
@@ -19,5 +20,5 @@ export default function ProductGrid({items, loading}){
         ))}
         </div>
     </section>
-    </>
+     )
 }

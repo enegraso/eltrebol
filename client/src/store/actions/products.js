@@ -1,22 +1,35 @@
 import Axios from 'axios';
 import {productsEndpoint, productByCatEndpoint, productByIdEndpoint, addProductEndpoint, modifyProductEndpoint} from "../consts/consts";
 
+/*
 export const getAllProducts = () => async (dispatch) => {
-    /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
+    //dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } })
     try {
-      // console.log(username,password)
-      const { data } = await Axios.get(`${productsEndpoint}`);
-      dispatch({ type: "GET_ALL_PRODUCTS", payload: data });
-      // localStorage.setItem("userInfo", JSON.stringify(data.login));
+        // console.log(username,password)
+        const { data } = await Axios.get(`${productsEndpoint}`);
+        console.log(productsEndpoint)
+        dispatch({ type: "GET_ALL_PRODUCTS", payload: data });
+        // localStorage.setItem("userInfo", JSON.stringify(data.login));
     } catch (err) {
-      alert(
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message
-      );
-    }
-  };
+        alert(
+            err.response && err.response.data.message
+            ? err.response.data.message
+            : err.message
+            );
+        }
+    };
+    */
 
+export function getAllProducts() {
+    console.log('hola estoy en products')
+       return (dispatch) => {
+           return Axios(`${productsEndpoint}`)
+           .then(json => {
+               dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
+           })
+       }    
+   }
+   
 export function addProduct(product) {
     return (dispatch) => {
         return Axios.post(`${addProductEndpoint}`, product)
@@ -49,15 +62,6 @@ export function editProduct(id, newProduct) {
     }    
 } */
 
-export function getProducts() {
-    return (dispatch) => {
-        return Axios(`${productsEndpoint}`)
-        .then(products => console.log(products))
-        .then(json => {
-            dispatch({ type: "GET_PRODUCTS", payload: json });
-        })
-    }    
-}
 
 export function getProductId(id) {
     return (dispatch) => {
@@ -79,11 +83,11 @@ export function deleteProduct(id) {
 }
 
 
-export function selectProductEdit(id){
+/* export function selectProductEdit(id){
     return(dispacth) => {
         dispacth({
             type: "SELECT_PRODUCT_ID",
             payload: id
         })
     }
-    
+     */
