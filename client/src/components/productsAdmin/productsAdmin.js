@@ -1,33 +1,59 @@
-import React, { useEffect} from 'react'
-import { connect } from 'react-redux'
-import { getAllProducts } from '../../store/actions/products'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { getAllProducts, getProdAdmin } from "../../store/actions/products";
 
 const ProductsAdmin = (props) => {
+  
+  useEffect(() => {
+    props.getAllProducts();
+  }, []);
 
-     useEffect(() => {
-        props.getAllProducts()
-    },[]) 
+  if (!props.allProducts) return <> Cargando... </>;
 
-    if (!props.getAllProducts) 
-        return <> Cargando... </>
- 
-    return <>
-         {props.allProducts.map(product => {
-            return <div key={ product.id }>{ product.id } - {product.name} - $ {product.price} - { product.exist === true ? "hay" : "no hay" } <button> Editar </button> <button> Eliminar </button> </div>
-         })}
+  return (
+    <>
+      <Link to="/admin/addproduct">
+        <button> Agregar </button>
+      </Link>
+      <Link to="/loginadmin">
+        <button> Volver </button>
+      </Link>
+      {props.allProducts.map((product) => {
+        return (
+          <div key={product.id}>
+            {product.id} - {product.name} - $ {product.price} -{" "}
+            {product.exist === true ? "hay" : "no hay"}
+            <Link to="/admin/modproduct">
+              <button onClick={ () => props.getProdAdmin(product.id) } > Editar </button>
+            </Link>
+            <Link to="/admin/delproduct">
+              <button> Eliminar </button>
+            </Link>
+          </div>
+        );
+      })}
+      <Link to="/admin/addproduct">
+        <button> Agregar </button>
+      </Link>
+      <Link to="/loginadmin">
+        <button> Volver </button>
+      </Link>
     </>
-}
+  );
+};
 
 const mapStateToProps = (state) => {
-    return {
-        allProducts: state.allProducts
-    }
-} 
+  return {
+    allProducts: state.allProducts,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        getAllProducts: () => dispatch(getAllProducts())
-    }
-}
+  return {
+    getAllProducts: () => dispatch(getAllProducts()),
+    getProdAdmin: (prod) => dispatch(getProdAdmin(prod))
+  };
+};
 
-export default connect (mapStateToProps, mapDispatchToProps)(ProductsAdmin)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsAdmin);

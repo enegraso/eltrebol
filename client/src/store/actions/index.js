@@ -54,13 +54,6 @@ const initialState = {
       };
     }
 
-    if (action.type === "PROD_ADMIN_MOD") {
-      return {
-        ...state,
-        productAdmin: action.payload
-      };
-    }
-
     if (action.type === "PROD_ADMIN_GET") {
       return {
         ...state,

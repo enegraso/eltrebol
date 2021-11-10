@@ -16,3 +16,17 @@ export const getAllCategories = () => async (dispatch) => {
       );
     }
   };
+
+  export const cateAdd = (category) => async (dispatch) => {
+    console.log("agregando",category);
+    try {
+      const { data } = await axios.post(`${REACT_APP_API}/categories/add`, category);
+      dispatch({ type: "CATE_ADMIN_ADD", payload: data });
+    } catch (err) {
+      alert(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+      );
+    }
+  };
