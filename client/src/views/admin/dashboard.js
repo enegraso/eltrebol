@@ -11,7 +11,7 @@ const Dashboard = (props) => {
     <>
       <h4>
         Hola {props.userDetail.name}{" "}
-        <button onClick={() => props.logOut(props.userDetail.id)}>
+        <button className='btn btn-light' onClick={() => props.logOut(props.userDetail.id)}>
           <BiLogOut />
         </button>
       </h4>

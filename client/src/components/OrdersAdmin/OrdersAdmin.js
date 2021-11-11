@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import { connect } from 'react-redux'
-import { getAllOrders } from '../../store/actions/orders'
+import { getAllOrders, getOrder } from '../../store/actions/orders'
 import { Link } from "react-router-dom"
 
 const OrdersAdmin = (props) => {
@@ -15,7 +15,7 @@ const OrdersAdmin = (props) => {
          {props.allOrders.map(order => {
             if (order.status === props.status)
             return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} 
-            <Link to={`/admin/order/${order.id}`}><button> Pedido </button> </Link></div>
+            <Link to={`/admin/order/${order.id}`}><button onClick={ () => props.getOrder(order.id) }> Pedido </button> </Link></div>
          })}
     </>
 }
@@ -28,7 +28,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllOrders: () => dispatch(getAllOrders())
+        getAllOrders: () => dispatch(getAllOrders()),
+        getOrder: (id) => dispatch(getOrder(id))
     }
 }
 

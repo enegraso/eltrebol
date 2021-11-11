@@ -92,7 +92,7 @@ function LoginAdmin(props) {
             {errors.password && <p className="danger">{errors.password}</p>}
           </div>
            <div>
-          <button type="submit"> Entrar </button>
+          <button className='btn btn-light' type="submit"> Entrar </button>
           </div>
         </form>
 {/*         <div id="regis" className="logsub">

@@ -236,10 +236,10 @@ const ProductForm = (props) => {
             </label>
           </div>
           <div>
-            <button type="submit">Agregar</button>
+            <button className='btn btn-light' type="submit">Agregar</button>
           </div>
         </form>
-        <button
+        <button className='btn btn-light' 
           onClick={() => {
             goBack();
           }}
