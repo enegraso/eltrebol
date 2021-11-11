@@ -1,36 +1,44 @@
-import Axios from 'axios';
-import {productsEndpoint, productByCatEndpoint, productByIdEndpoint, addProductEndpoint, modifyProductEndpoint} from "../consts/consts";
-
+import Axios from "axios";
+import {
+  productsEndpoint,
+  productByCatEndpoint,
+  productByIdEndpoint,
+  addProductEndpoint,
+  modifyProductEndpoint,
+} from "../consts/consts";
 
 export function getAllProducts() {
-    console.log('hola estoy en products')
-       return (dispatch) => {
-           return Axios(`${productsEndpoint}`)
-           .then(json => {
-               dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
-           })
-       }    
-   }
-   
+  console.log("hola estoy en products - "+`${productsEndpoint}`);
+  return (dispatch) => {
+    return Axios(`${productsEndpoint}`).then((json) => {
+      dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
+    });
+  };
+}
+
 export function addProduct(product) {
-    return (dispatch) => {
-        return Axios.post(`${addProductEndpoint}`, product)
+  return (dispatch) => {
+    return (
+      Axios.post(`${addProductEndpoint}`, product)
         // .then(product => product.json())
-        .then(json => {
-            dispatch({ type: "ADD_PRODUCTS", payload: json });
-        });
-    }    
+        .then((json) => {
+          dispatch({ type: "ADD_PRODUCTS", payload: json });
+        })
+    );
+  };
 }
 
 export function editProduct(id, newProduct) {
-   return (dispatch) => {
-    return Axios.put(`${productByIdEndpoint}`, newProduct)
+  return (dispatch) => {
+    return (
+      Axios.put(`${productByIdEndpoint}`, newProduct)
         // .then(product => product.json())
-        .then(json => {
-            dispatch({ type: "EDIT_PRODUCT", payload: json });
+        .then((json) => {
+          dispatch({ type: "EDIT_PRODUCT", payload: json });
         })
-        .catch(err =>  console.log(err))
-   }    
+        .catch((err) => console.log(err))
+    );
+  };
 }
 
 //hay q hacer ruta search-------------
@@ -44,26 +52,25 @@ export function editProduct(id, newProduct) {
     }    
 } */
 
-
 export function getProductId(id) {
-    return (dispatch) => {
-        return Axios(`${productsEndpoint}${id}`)
+  return (dispatch) => {
+    return (
+      Axios(`${productsEndpoint}${id}`)
         // .then(products => products.json())
-        .then(json => {
-            dispatch({ type: "GET_PRODUCTID", payload: json });
+        .then((json) => {
+          dispatch({ type: "GET_PRODUCTID", payload: json });
         })
-    }    
+    );
+  };
 }
 
 export function deleteProduct(id) {
-    return (dispatch) => {
-        return Axios.delete(`${productsEndpoint}${id}`)
-        .then(json => {
-            dispatch({ type: "DELETE_PRODUCT", payload: id });
-        })
-    }    
+  return (dispatch) => {
+    return Axios.delete(`${productsEndpoint}${id}`).then((json) => {
+      dispatch({ type: "DELETE_PRODUCT", payload: id });
+    });
+  };
 }
-
 
 /* export function selectProductEdit(id){
     return(dispacth) => {
@@ -73,16 +80,14 @@ export function deleteProduct(id) {
         })
     }
      */
-  /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
+/* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
 
 export const prodAdd = (producto) => async (dispatch) => {
   console.log("agregando");
   try {
-    const { data } = await axios.post(`${REACT_APP_API}/products/add`, producto);
+    const { data } = await Axios.post(`${addProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_ADD", payload: data });
-    alert (
-      "Producto agregado exitosamente"
-    )
+    alert("Producto agregado exitosamente");
   } catch (err) {
     alert(
       err.response && err.response.data.message
@@ -95,7 +100,7 @@ export const prodAdd = (producto) => async (dispatch) => {
 export const prodMod = (producto) => async (dispatch) => {
   console.log("modificando");
   try {
-    const { data } = await axios.post(`${REACT_APP_API}/products/update`, producto);
+    const { data } = await Axios.post(`${modifyProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_MOD", payload: data });
   } catch (err) {
     alert(
@@ -109,8 +114,8 @@ export const prodMod = (producto) => async (dispatch) => {
 export const getProdAdmin = (id) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
-    console.log(`${REACT_APP_API}/products/`+id)
-    const { data } = await axios.get(`${REACT_APP_API}/products/`+id);
+/*     console.log(`${REACT_APP_API}/products/` + id); */
+    const { data } = await Axios.get(`${productByIdEndpoint}` + id);
     dispatch({ type: "PROD_ADMIN_GET", payload: data });
   } catch (err) {
     alert(

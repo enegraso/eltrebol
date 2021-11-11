@@ -8,6 +8,7 @@ export const productByCatEndpoint = productsEndpoint + 'bycat/:category';
 export const addProductEndpoint = productsEndpoint + 'add';
 export const modifyProductEndpoint = productsEndpoint + 'update/:id';
 
+
 //carrito
 
 export const productId = REACT_APP_API + 'product/'

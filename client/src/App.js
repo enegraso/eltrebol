@@ -9,7 +9,7 @@ import Home from "./views/home";
 
 import Category from "./views/category";
 import Cart from './views/carrito'
-import ProductsAdmin from "./components/ProductsAdmin/ProductsAdmin";
+/* import ProductsAdmin from "./components/ProductsAdmin/ProductsAdmin"; */
 import LogIn from "./views/login";
 import ProductsAdmin from "./components/productsAdmin/productsAdmin";
 import CategoriesAdmin from "./components/CategoriesAdmin/CategoriesAdmin";
