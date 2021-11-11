@@ -5,7 +5,7 @@ export const getUser = (username, password) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
     // console.log(username,password)
-    const { data } = await axios.post(`${REACT_APP_API}/users/login`, {
+    const { data } = await axios.post(`${REACT_APP_API}users/login`, {
       username,
       password,
     });

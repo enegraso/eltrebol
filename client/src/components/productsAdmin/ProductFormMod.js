@@ -25,7 +25,7 @@ export function validateprod(input) {
 
 const ProductFormMod = () => {
   const dispatch = useDispatch();
-  const productoAdmin = useSelector((state) => state.productAdmin);
+  const productoAdmin = useSelector((state) => state.Product.productAdmin);
   const params = useParams();
 
   const obtenProducto = () => {

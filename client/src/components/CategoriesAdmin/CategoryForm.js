@@ -94,7 +94,7 @@ const CategoryForm = (props) => {
 
 function mapStateToProps(state) {
   return {
-    category: state.categoriessadmin,
+    category: state.category.categoriesadmin,
   };
 }
 

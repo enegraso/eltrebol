@@ -5,7 +5,7 @@ export const getAllOrders = () => async (dispatch) => {
     /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
     try {
       // console.log(username,password)
-      const { data } = await axios.get(`${REACT_APP_API}/orders`);
+      const { data } = await axios.get(`${REACT_APP_API}orders`);
       dispatch({ type: "GET_ALL_ORDERS", payload: data });
       // localStorage.setItem("userInfo", JSON.stringify(data.login));
     } catch (err) {
@@ -21,7 +21,7 @@ export const getAllOrders = () => async (dispatch) => {
     /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
     try {
       // console.log(username,password)
-      const { data } = await axios.get(`${REACT_APP_API}/orders/`+id);
+      const { data } = await axios.get(`${REACT_APP_API}orders/`+id);
       dispatch({ type: "GET_ORDER_ADMIN", payload: data });
       console.log(`${REACT_APP_API}/orders/`+id)
       // localStorage.setItem("userInfo", JSON.stringify(data.login));

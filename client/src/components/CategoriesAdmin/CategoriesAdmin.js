@@ -39,7 +39,7 @@ const CategoriesAdmin = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    allCategories: state.allCategories,
+    allCategories: state.Category.allCategories,
   };
 };
 

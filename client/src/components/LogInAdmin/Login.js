@@ -51,19 +51,9 @@ function LoginAdmin(props) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     props.getUser(input.username, input.password);
-    // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
-  if (props.userDetail.token) return <Dashboard />;
-
-  var texto, linkto;
-  if (props.login) {
-    texto = "Registro OK y ACTIVO. Ahora debes loguearte!";
-    linkto = "";
-  } else {
-    texto = "Registrate! Es fácil y gratis";
-    linkto = "/register";
-  }
+  if (props.userDetail.token) return <Dashboard />
 
   return (
     // formulario para loguearse al sistema
@@ -101,13 +91,13 @@ function LoginAdmin(props) {
             ></input>
             {errors.password && <p className="danger">{errors.password}</p>}
           </div>
-          <div>
-            <button type="submit">Entrar</button>
+           <div>
+          <button type="submit"> Entrar </button>
           </div>
         </form>
-        <div id="regis" className="logsub">
-          {/*  <Link to={linkto}>{texto}</Link> */}
-        </div>
+{/*         <div id="regis" className="logsub">
+          <Link to={linkto}>{texto}</Link> 
+        </div> */}
       </div>
     </div>
   );
@@ -115,7 +105,7 @@ function LoginAdmin(props) {
 
 function mapStateToProps(state) {
   return {
-    userDetail: state.userDetail,
+    userDetail: state.User.userDetail,
   };
 }
 

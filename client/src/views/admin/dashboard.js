@@ -32,7 +32,7 @@ const Dashboard = (props) => {
 
 function mapStateToProps(state) {
   return {
-    userDetail: state.userDetail,
+    userDetail: state.User.userDetail,
   };
 }
 

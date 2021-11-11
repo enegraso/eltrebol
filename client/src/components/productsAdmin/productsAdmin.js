@@ -45,7 +45,7 @@ const ProductsAdmin = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    allProducts: state.allProducts,
+    allProducts: state.Product.allProducts,
   };
 };
 

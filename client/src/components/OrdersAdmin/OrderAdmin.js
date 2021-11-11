@@ -5,7 +5,7 @@ import { getOrder } from '../../store/actions/orders'
 
 const OrderAdmin = () => {
     const dispatch = useDispatch()
-    const pedidoAdmin = useSelector(state => state.orderAdmin)
+    const pedidoAdmin = useSelector(state => state.Category.orderAdmin)
     // const lineasAdmin = useSelector(state => state.lineasAdmin)
     const params = useParams()
 

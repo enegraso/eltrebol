@@ -31,7 +31,7 @@ function goBack() {
 const ProductForm = (props) => {
 
   const dispatch = useDispatch();
-  const categoriasAdmin = useSelector((state) => state.allCategories);
+  const categoriasAdmin = useSelector((state) => state.Category.allCategories);
 
   if (categoriasAdmin.length === 0) dispatch(getAllCategories())
 

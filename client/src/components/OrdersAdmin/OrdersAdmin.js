@@ -22,7 +22,7 @@ const OrdersAdmin = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        allOrders: state.allOrders
+        allOrders: state.Order.allOrders
     }
 } 
 
