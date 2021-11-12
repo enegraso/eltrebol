@@ -1,8 +1,11 @@
 import React from 'react';
-import './carrito.css'
+import './carrito.css';
+import {RiDeleteBin5Fill} from 'react-icons/ri'
 
 export default function Cart(){
 
+    //map ---> GET --> guestCart.
+    //remove orderLine.
 
     return(
         <>
@@ -14,6 +17,7 @@ export default function Cart(){
                 <th>Subtotal</th>
             </tr>
             <tr>
+               {/*  HACER MAP ACA CON INFO CART */}
                 <td>
                     <div className='cart-info'>
                         <img src='' alt='product'/>
@@ -43,8 +47,10 @@ export default function Cart(){
                     <td>Total</td>
                     <td>$150.00</td>
                 </tr>
+        <button className='btn btn-success'>Continuar</button>
+        <button className='btn btn-danger'><RiDeleteBin5Fill/></button>
             </table>
-        </div> 
+        </div>
         </div>    
         </>
     )
