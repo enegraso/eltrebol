@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 import './carrito.css';
 import {RiDeleteBin5Fill} from 'react-icons/ri'
+
+//importar actions
+//decreaseGuestline, removeGuestline, getGuestCart
 
 export default function Cart(){
 
