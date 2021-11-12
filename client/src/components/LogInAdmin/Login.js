@@ -57,19 +57,19 @@ function LoginAdmin(props) {
 
   return (
     // formulario para loguearse al sistema
-    <div className="boxcontainer">
-      <div className="boxteam">
+    <div className="container-sm" style={{'width':'30vw'}}>
+
+     {/*  <div className="boxteam"> */}
         <div className="titteam">
           <FaUserCircle />
           Login
         </div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Usuario</label>
-          </div>
-          <div>
+          <div className='mb-3'>
+            <label className='form-label'>Usuario</label>
             <input
               className={errors.username && "danger"}
+              class='form-control'
               type="text"
               placeholder="usuario"
               name="username"
@@ -78,12 +78,11 @@ function LoginAdmin(props) {
             ></input>
             {errors.username && <p className="danger">{errors.username}</p>}
           </div>
-          <div>
-            <label>Clave</label>
-          </div>
-          <div>
-            <input
+          <div className='mb-3'>
+            <label className='form-label'>Clave</label>
+            <input            
               className={errors.password && "danger"}
+              class='form-control'
               type="password"
               name="password"
               onChange={handleInputChange}
@@ -91,14 +90,14 @@ function LoginAdmin(props) {
             ></input>
             {errors.password && <p className="danger">{errors.password}</p>}
           </div>
-           <div>
-          <button className='btn btn-light' type="submit"> Entrar </button>
+           <div className="d-grid gap-2 col-6 mx-auto">
+          <button className='btn btn-outline-success' type="submit"> Entrar </button>
           </div>
         </form>
 {/*         <div id="regis" className="logsub">
           <Link to={linkto}>{texto}</Link> 
         </div> */}
-      </div>
+ {/*      </div> */}
     </div>
   );
 }
