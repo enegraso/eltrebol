@@ -1,4 +1,5 @@
 import React from 'react';
+import {BsFillCartPlusFill} from 'react-icons/bs'
 
 export default function ProductCard({name, img, price, exists, id, oferta}){
     return(
@@ -8,13 +9,13 @@ export default function ProductCard({name, img, price, exists, id, oferta}){
             <div className="card-body">
                 <p className="card-title"><strong>{name}</strong></p>
                 <p className="card-text">
-                    Price: $ {price}
+                    Precio: $ {price}
                    {/*  <br/>
                     Existe: {exists}
                     <br/>
                     Oferta: {oferta} */}
                 </p>
-                <button className="btn btn-warning btn-lg" style={{width:'200px'}}>Buy Now!</button>
+                <button className="btn btn-warning btn-lg" style={{width:'200px'}}>Agregar <BsFillCartPlusFill/></button>
             </div>
         </div>
         </div>
