@@ -17,6 +17,7 @@ router.get("/", (req, res, next) => {
 //producto por id
 router.get("/:id", (req, res) => {
   let { id } = req.params;
+  console.log(id)
   if (!id) return res.status(400).send("Este producto no existe");
   Product.findByPk(id).then((product) => {
     if (!product) 
@@ -206,25 +207,25 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
-router.delete('/delete', async (req,res) => {
-  const { name } = req.body;
-  console.log(name);
-  if (!name || name === "")
+router.delete('/delete/:id', async (req,res) => {
+  const { id } = req.params;
+  /* console.log(name); */
+  if (!id)
     return res.status(400).send({ message: "Debe ingresar producto" });
   const existProd = await Product.findOne({
     where: {
-      name,
+      id,
     },
   });
   if (existProd) {
     try {
       let delProduct = await Product.destroy({
         where: {
-          name,
+          id,
         },
       });
       console.log(delProduct);
-      return res.status(200).json({message:"Producto " + name + " eliminado correctamente"});
+      return res.status(200).json({message:"Producto eliminado correctamente"});
     } catch (err) {
       return res
         .status(500)

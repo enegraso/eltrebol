@@ -1,0 +1,17 @@
+.listproducts {
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.addback {
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+span {
+    font-weight: 500;
+}

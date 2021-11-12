@@ -15,6 +15,7 @@ import CategoryForm from "./components/CategoriesAdmin/CategoryForm"
 import ProductFormMod from "./components/productsAdmin/ProductFormMod"
 import OrderAdmin from "./components/OrdersAdmin/OrderAdmin"
 import LoginAdmin from './components/LogInAdmin/Login'
+import DeleteProduct from "./components/productsAdmin/DeleteProduct"
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
          <Route path='/admin/categories' element={<CategoriesAdmin/>} />
          <Route path='/admin/addproduct' element={<ProductForm />} />
          <Route path='/admin/modproduct/:id' element={ <ProductFormMod />} />
+         <Route path='/admin/delproduct' element={<DeleteProduct />} />
          <Route path='/admin/addcategory' element={<CategoryForm />}/>
          <Route path='/admin/order/:id' element={<OrderAdmin />}/>
          <Route path='/loginadmin' element={<LoginAdmin />} />
