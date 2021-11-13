@@ -3,14 +3,31 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './carrito.css';
 import {RiDeleteBin5Fill} from 'react-icons/ri'
+import { getGuestCart, removeGuestLine, DecreaseGuestLine, saveToGuestCart } from '../../store/actions/carrito';
+import {orderline} from '../../components/utils';
 
-//importar actions
-//decreaseGuestline, removeGuestline, getGuestCart
 
 export default function Cart(){
 
-    //map ---> GET --> guestCart.
-    //remove orderLine.
+    const dispatch = useDispatch();
+    const orden = useSelector(state => state.Carrito.guestCart)
+
+    console.log(orden)
+    const guestOrderlines = orderline(orden);
+
+    useEffect(()=>{
+        dispatch(getGuestCart())
+    },[])
+
+    const orderlines = guestOrderlines.sort(function(a,b){
+        if(a.id>b.id){
+            return 1
+        }
+        if (a.id<b.id){
+            return -1
+        }
+        return 0
+    });
 
     return(
         <>
@@ -21,15 +38,15 @@ export default function Cart(){
                 <th>Cantidad</th>
                 <th>Subtotal</th>
             </tr>
-            <tr>
-               {/*  HACER MAP ACA CON INFO CART */}
+               {!guestOrderlines? <p>Cargando orden...</p> : guestOrderlines.map(i=>(
+                   <tr>
                 <td>
                     <div className='cart-info'>
                         <img src='' alt='product'/>
                         <div>
-                            <p>Product Name</p>
-                            <small> Price: $150.00</small>
-                            <a href=''>Remove</a>
+                            <p>{i.name}</p>
+                            <small> Precio: {i.price}</small>
+                            <a onclick={() => i.quantity === 1 ? dispatch(removeGuestLine(i.id)) : dispatch(DecreaseGuestLine(i))}>Remove</a>
                         </div>
                     </div>
                 </td>
@@ -41,6 +58,7 @@ export default function Cart(){
                 </td>
                 <td>$150.00</td>
             </tr>
+            ))}
         </table>
         <div className='total-price'>
             <table>
