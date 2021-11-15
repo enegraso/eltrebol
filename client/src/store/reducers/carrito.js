@@ -1,3 +1,6 @@
+import { loadState } from "../localStorage";
+import {orderline, decrease} from '../../components/utils'
+
 const initialState = {
     guestOrder: [],
     guestCart: loadState() === undefined ? []: loadState(),
@@ -19,7 +22,7 @@ export default function cartReducer(state = initialState, action){
                 ...state,
                 guestCartProd: [...state.guestCartProd, action.payload],
                 guestCart: [...state.guestCartProd, action.payload],
-                guestOrder: orderlines([...state.guestCart])
+                guestOrder: orderline([...state.guestCart])
                 /* cart: action.payload.cart,
                 cartProd: action.payload */
             }

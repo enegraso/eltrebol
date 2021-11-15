@@ -6,7 +6,7 @@ import {loadState, saveState} from './localStorage'
 function saveToLocalStorage(state){
   try{
     const serializeState= JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
+    localStorage.setItem('state', serializeState)
   }
   catch(e){
     console.log(e)

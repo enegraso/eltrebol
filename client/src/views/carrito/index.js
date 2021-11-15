@@ -56,7 +56,7 @@ export default function Cart(){
                     value='1'
                     />
                 </td>
-                <td>$150.00</td>
+                <td>${i.quantity * i.price}</td>
             </tr>
             ))}
         </table>

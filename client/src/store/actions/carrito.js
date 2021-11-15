@@ -8,7 +8,7 @@ export function getGuestCart() {
     }
 }
 
-export function saveToGuestCart(prod) {
+export default function saveToGuestCart(prod) {
    // var ol = orderlines(prod)
     return (dispatch) => {
         saveState(prod)
