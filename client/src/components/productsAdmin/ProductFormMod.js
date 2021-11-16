@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
-import { getProdAdmin } from "../../store/actions/products";
+/* import { getProdAdmin } from "../../store/actions/products"; */
 import { useParams } from "react-router-dom";
 
 export function validateprod(input) {
@@ -25,36 +25,28 @@ export function validateprod(input) {
 
 const ProductFormMod = () => {
   const dispatch = useDispatch();
-  const productoAdmin = useSelector((state) => state.Product.productAdmin);
-  const params = useParams();
+  const productoAdmin = useSelector((state) => state.Product.productAdminGet);
+  const [errors, setErrors] = React.useState({});
 
-  const obtenProducto = () => {
-    if (!productoAdmin)
-    dispatch(getProdAdmin(params.id))
-  }
+   const [input, setInput] = React.useState({ 
+     /*
+    name: productoAdmin.name,
+    description: productoAdmin.description,
+    exist: productoAdmin.exist,
+    price: productoAdmin.price,
+    isOfert: productoAdmin.isOfert,
 
-  useEffect(() => {
-    obtenProducto(params.id)
-  },[params.id])
-  
-  const [input, setInput] = React.useState({
-    name: "",
-    description: "",
-    exist: true,
-    price: 0,
-    isOfert: false,
-    image: "",
+    image: ,
     units: "unidad",
     minunit: 1,
     stepunit: 1,
     categories: [],
-  });
+     */
+   });
 
-  const [errors, setErrors] = React.useState({});
+  
 
-
-
-  const handleInputChange = function (e) {
+   const handleInputChange = function (e) {
     // validate(e.target.name,e.target.value)
     setInput({
       ...input,
@@ -74,22 +66,10 @@ const ProductFormMod = () => {
     // props.prodAdd(input);
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
+    
+  if (!productoAdmin) return <> Loading... </>; 
 
 
-
-  if (!productoAdmin) return <> Loading... </>;
-  else
-    setInput({
-      name: productoAdmin.name,
-      description: productoAdmin.description,
-      exist: productoAdmin.exist,
-      price: productoAdmin.price,
-      isOfert: productoAdmin.isofert,
-      image: productoAdmin.image,
-      units: productoAdmin.units,
-      minunit: productoAdmin.minunit,
-      stepunit: productoAdmin.stepunit,
-    });
 
   return (
     // formulario para agregar producto a la tienda
@@ -108,8 +88,10 @@ const ProductFormMod = () => {
                 type="text"
                 placeholder="producto"
                 name="name"
+                id="product"
                 onChange={handleInputChange}
                 value={input.name}
+                
               ></input>
             </label>
             {errors.name && <p className="danger">{errors.name}</p>}
@@ -150,16 +132,16 @@ const ProductFormMod = () => {
             </label>
             {errors.price && <p className="danger">{errors.price}</p>}
           </div>
-          <div>
+          <div className="renglon">
             <label>
-              Es Oferta
+              Es Oferta             </label>
               <input
                 type="checkbox"
                 name="isofert"
                 onChange={handleInputChange}
                 value={input.isofert}
               ></input>
-            </label>
+
           </div>
           <div>
             <label>

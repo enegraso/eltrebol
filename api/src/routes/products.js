@@ -5,6 +5,7 @@ const { Product, Category } = require("../models/index");
 
 var router = express.Router();
 
+
 //todos los productos
 router.get("/", (req, res, next) => {
   Product.findAll()
@@ -121,6 +122,8 @@ router.post("/add", async (req, res) => {
   }
 });
 
+
+
 //modificar producto
 router.put("/update/:id", async (req, res) => {
   const {
@@ -206,25 +209,25 @@ router.put("/update/:id", async (req, res) => {
   }
 });
 
-router.delete('/delete', async (req,res) => {
-  const { name } = req.body;
-  console.log(name);
-  if (!name || name === "")
+router.delete('/delete/:id', async (req,res) => {
+  const { id } = req.params;
+  console.log(id);
+  if (!id)
     return res.status(400).send({ message: "Debe ingresar producto" });
   const existProd = await Product.findOne({
     where: {
-      name,
+      id,
     },
   });
   if (existProd) {
     try {
       let delProduct = await Product.destroy({
         where: {
-          name,
+          id,
         },
       });
       console.log(delProduct);
-      return res.status(200).json({message:"Producto " + name + " eliminado correctamente"});
+      return res.status(200).json({message:"Producto eliminado correctamente"});
     } catch (err) {
       return res
         .status(500)

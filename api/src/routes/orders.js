@@ -29,6 +29,20 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+//borrar pedido por id
+/* router.delete("/:id", async (req, res, next) => {
+  const  { id } = req.params
+  try {
+    let getAllOrdersbyId = await Order.findAll({
+      where: { id },
+      include: { model: OrderLine, include: { model : Product} }
+    })
+    return res.status(200).json(getAllOrdersbyId)
+  } catch (err) {
+    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
+  }
+}); */
+
 
 // Agregar pedidos y lineas de pedidos
 router.post("/add", async (req, res) => {

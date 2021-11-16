@@ -13,9 +13,22 @@ const OrdersAdmin = (props) => {
  
     return <>
          {props.allOrders.map(order => {
-            if (order.status === props.status)
+            if (order.status === props.status) {
+            if (props.status === "pending")
             return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} 
-            <Link to={`/admin/order/${order.id}`}><button onClick={ () => props.getOrder(order.id) }> Pedido </button> </Link></div>
+            <Link to={`/admin/order/${order.id}`}><button onClick={ () => props.getOrder(order.id) }> Procesar Pedido </button> </Link></div>
+            if (props.status === "processing")
+            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} 
+            <Link to={`/admin/orderprocess/${order.id}`}><button onClick={ () => props.getOrder(order.id) }> Enviar Pedido </button> </Link></div>
+            if (props.status === "delivered")
+            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} 
+            <Link to={`/admin/orderdelivered/${order.id}`}><button onClick={ () => props.getOrder(order.id) }> Terminar Pedido </button> </Link></div>
+            if (props.status === "done")
+            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} 
+            <Link to={`/admin/order/${order.id}`}><button onClick={ () => props.getOrder(order.id) }> Ver Pedido </button> </Link></div>
+            }
+
+
          })}
     </>
 }

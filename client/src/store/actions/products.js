@@ -1,5 +1,6 @@
 import Axios from "axios";
 import {
+  REACT_APP_API,
   productsEndpoint,
   productByCatEndpoint,
   productByIdEndpoint,
@@ -66,8 +67,9 @@ export function getProductId(id) {
 
 export function deleteProduct(id) {
   return (dispatch) => {
-    return Axios.delete(`${productsEndpoint}${id}`).then((json) => {
+    return Axios.delete(`${productsEndpoint}delete/${id}`).then((json) => {
       dispatch({ type: "DELETE_PRODUCT", payload: id });
+      alert(json.data.message)
     });
   };
 }
@@ -115,7 +117,8 @@ export const getProdAdmin = (id) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
 /*     console.log(`${REACT_APP_API}/products/` + id); */
-    const { data } = await Axios.get(`${productByIdEndpoint}` + id);
+    const { data } = await Axios.get(`${REACT_APP_API}products/` + id);
+    console.log(data)
     dispatch({ type: "PROD_ADMIN_GET", payload: data });
   } catch (err) {
     alert(
@@ -126,11 +129,18 @@ export const getProdAdmin = (id) => async (dispatch) => {
   }
 };
 
-/* export const prodRemove = (idsched) => async (dispatch) => {
+export const urlPost = (url) => {
+  return function (dispatch) {
+    dispatch({ type: "URL_INFO", payload: url });
+    localStorage.setItem("urlImage", JSON.stringify(url));
+  };
+};
+
+/*
+ export const prodRemove = (idsched) => async (dispatch) => {
   console.log("borrando");
   try {
-    const { data } = await axios.delete(
-      `${REACT_APP_API}/scheduler/${idsched}`
+    const { data } = await axios.delete(`${REACT_APP_API}/scheduler/${idsched}`
     );
     dispatch({ type: SCHED_REMOVE, payload: idsched });
   } catch (err) {
@@ -142,4 +152,5 @@ export const getProdAdmin = (id) => async (dispatch) => {
           : err.message,
     });
   }
-}; */
+};
+ */

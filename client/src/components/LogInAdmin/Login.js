@@ -53,11 +53,12 @@ function LoginAdmin(props) {
     props.getUser(input.username, input.password);
   }
 
-  if (props.userDetail.token) return <Dashboard />
+  if (props.userDetail.token) return <Dashboard /> 
+/*   if (localStorage.getItem("userInfo"),JSON.stringify("token")) return <Dashboard /> */
 
   return (
     // formulario para loguearse al sistema
-    <div className="container-sm" style={{'width':'30vw'}}>
+    <div className="container-sm" style={{'width':'70vw'}}>
 
      {/*  <div className="boxteam"> */}
         <div className="titteam">

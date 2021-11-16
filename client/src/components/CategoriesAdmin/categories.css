@@ -1,0 +1,34 @@
+.listcategories {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.addback {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+span {
+    font-weight: 500;
+}
+
+.imageup {
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.renglon {
+    display: flex;
+    border: 1px solid green;
+    width: auto;
+    align-content: center;
+    justify-content: space-between;
+}

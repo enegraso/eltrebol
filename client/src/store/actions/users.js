@@ -21,7 +21,10 @@ export const getUser = (username, password) => async (dispatch) => {
 };
 
 export function logOut(arg) {
-    return { type: "LOGOUT_USER", payload: arg };
+  return function (dispatch) {
+    dispatch({ type: "LOGOUT_USER", payload: arg });
+    localStorage.removeItem("userInfo");
+  };
 }
 
 export function prode(arg) {
