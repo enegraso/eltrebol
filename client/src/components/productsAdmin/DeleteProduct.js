@@ -13,7 +13,8 @@ const DeleteProduct = () => {
     <div className='listproducts'>
         <div>Eliminar producto</div>
         <div>Desea eliminar el producto <span>{prodtodelete.name}</span>?</div>
-        <div><button class="btn btn-danger" onClick={ () => dispatch(deleteProduct(prodtodelete.id)) }> SI </button><button class="btn btn-link"> NO </button></div>
+        <div className="renglon">
+            <button class="btn btn-danger" onClick={ () => dispatch(deleteProduct(prodtodelete.id)) }> SI </button><button class="btn btn-link"> NO </button></div>
         </div>
     </>
 

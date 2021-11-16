@@ -61,6 +61,7 @@ router.put("/update", async (req, res) => {
   }
 });
 
+//Obtener todas las categorías
 router.get("/", async (req, res) => {
   try {
     let getAllCategories = await Category.findAll();
@@ -72,25 +73,43 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.delete("/delete", async (req, res) => {
-  const { category } = req.body;
-  console.log(category);
-  if (!category || category === "")
+//Obtener categoría por id
+router.get("/:id", async (req, res) => {
+  const { id } = req.params
+  try {
+    let getCategory = await Category.findOne({
+      where: {
+        id,
+      },
+    });
+    return res.send(getCategory);
+  } catch (err) {
+    return res.send({
+      message: "No se pudo obtener la categoría" + err,
+    });
+  }
+});
+
+
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  if (!id)
     return res.status(400).send({ message: "Debe ingresar categoría" });
   const existCat = await Category.findOne({
     where: {
-      category: category,
+      id,
     },
   });
   if (existCat) {
     try {
       let delCategory = await Category.destroy({
         where: {
-          category: category,
+          id,
         },
       });
       console.log(delCategory);
-      return res.status(200).json({message:"Categoria " + category + " eliminada correctamente"});
+      return res.status(200).json({message:"Categoria eliminada correctamente"});
     } catch (err) {
       return res
         .status(500)

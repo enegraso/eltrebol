@@ -50,6 +50,7 @@ const ImageProduct = () => {
 
             <form action="/pedidos" method="post" encType="multipart/form-data">
                 <h4>Paso 1 - Imagen de producto </h4>
+                
                 <br />
 
                 {/* <input name="image" placeholder="Upload a photo" className="container" type="file" /> */}
@@ -57,8 +58,8 @@ const ImageProduct = () => {
                 <br />
                 <div> {loading && <i> Cargando... </i>}</div>
                 <br />
-
-                <button class="btn btn-outline-success" disabled={loading} type="submit" value="Create" onClick={uploadImage} > Cargar Imagen </button>
+                <div>Luego de elegir archivo, presione 
+                <button class="btn btn-outline-success" disabled={loading} type="submit" value="Create" onClick={uploadImage} > Cargar Imagen </button></div>
                 <br />
                 <Image cloudName='dyejl1qrj' publicId={photoData} ></Image>
                 <div> {photoData && <Link to="/admin/addproduct" ><button class="btn btn-success"> Continuar alta </button></Link> }</div>

@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getAllCategories } from "../../store/actions/categories";
+import { getAllCategories, getCateAdmin } from "../../store/actions/categories";
 import { Link } from "react-router-dom";
+import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
+import "./categories.css";
 
 const CategoriesAdmin = (props) => {
   useEffect(() => {
@@ -12,27 +14,51 @@ const CategoriesAdmin = (props) => {
 
   return (
     <>
-      <Link to="/admin/addcategory">
-        <button> Agregar </button>
-      </Link>
-      <Link to="/loginadmin">
-        <button> Volver </button>
-      </Link>
-      {props.allCategories.map((category) => {
-        return (
-          <div key={category.id}>
-            {category.id} - {category.category} 
-            <Link to="/admin/modcategory"><button> Editar </button>{" "}</Link>
-            <Link to="/admin/delcategory"><button> Eliminar </button>{" "}</Link>
-          </div>
-        );
-      })}
-      <Link to="/admin/addcategory">
-        <button> Agregar </button>
-      </Link>
-      <Link to="/loginadmin">
-        <button> Volver </button>
-      </Link>
+      <div className="listproducts">
+        <div className="addback">
+          <Link to="/admin/addcategory">
+            <button class="btn btn-success">
+              {" "}
+              <MdAddCircle />{" "}
+            </button>
+          </Link>
+          Listado de categorías
+          <Link to="/loginadmin">
+            <button class="btn btn-dark">
+              <MdArrowBack />
+            </button>
+          </Link>
+        </div>
+        {props.allCategories.map((category) => {
+          return (
+            <div key={category.id} className="renglon">
+              {category.category}
+              <div>
+              <Link to="/admin/modcategory">
+              <button class="btn btn-success" onClick={ () => props.getCateAdmin(category.id) }><MdEdit /> </button>
+              </Link>
+              <Link to="/admin/delcategory">
+              <button class="btn btn-danger" onClick={ () => props.getCateAdmin(category.id) }><MdDelete /> </button>
+              </Link>
+              </div>
+            </div>
+          );
+        })}
+        <div className="addback">
+          <Link to="/admin/addcategory">
+            <button class="btn btn-success">
+              {" "}
+              <MdAddCircle />{" "}
+            </button>
+          </Link>
+          Listado de categorías
+          <Link to="/loginadmin">
+            <button class="btn btn-dark">
+              <MdArrowBack />
+            </button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 };
@@ -46,6 +72,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllCategories: () => dispatch(getAllCategories()),
+    getCateAdmin: (id) => dispatch(getCateAdmin(id))
   };
 };
 

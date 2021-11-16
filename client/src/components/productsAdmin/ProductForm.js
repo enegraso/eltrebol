@@ -38,7 +38,7 @@ const ProductForm = (props) => {
   const [input, setInput] = React.useState({
     name: "",
     description: "",
-    exist: true,
+    exist: false,
     price: 0,
     isOfert: false,
     image: localStorage.getItem("urlImage").replaceAll('"',''),

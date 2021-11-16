@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProducts, getProdAdmin } from "../../store/actions/products";
 import "./products.css";
-import { BiEdit } from "react-icons/bi";
 import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md"
 
 const ProductsAdmin = (props) => {
@@ -20,6 +19,7 @@ const ProductsAdmin = (props) => {
           <Link to="/admin/addimageprod">
             <button class="btn btn-success"> <MdAddCircle /> </button>
           </Link>
+          Listado de productos
           <Link to="/loginadmin">
             <button class="btn btn-dark"><MdArrowBack /></button>
           </Link>
@@ -48,6 +48,7 @@ const ProductsAdmin = (props) => {
           <Link to="/admin/addimageprod">
             <button class="btn btn-success"><MdAddCircle /> </button>
           </Link>
+          Listado de productos
           <Link to="/loginadmin">
             <button class="btn btn-dark"><MdArrowBack /></button>
           </Link>

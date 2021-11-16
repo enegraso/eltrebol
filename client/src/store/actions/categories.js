@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REACT_APP_API } from "../consts/consts";
+import { REACT_APP_API, categoriesEndpoint } from "../consts/consts";
 
 export const getAllCategories = () => async (dispatch) => {
     /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
@@ -30,3 +30,28 @@ export const getAllCategories = () => async (dispatch) => {
       );
     }
   };
+
+  export const getCateAdmin = (id) => async (dispatch) => {
+    /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
+    try {
+  /*     console.log(`${REACT_APP_API}/products/` + id); */
+      const { data } = await axios.get(`${REACT_APP_API}categories/` + id);
+      console.log(data)
+      dispatch({ type: "CATE_ADMIN_GET", payload: data });
+    } catch (err) {
+      alert(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+      );
+    }
+  };
+
+  export function deleteCategory(id) {
+    return (dispatch) => {
+      return axios.delete(`${categoriesEndpoint}delete/${id}`).then((json) => {
+        dispatch({ type: "DELETE_CATEGORY", payload: id });
+        alert(json.data.message)
+      });
+    };
+  }
