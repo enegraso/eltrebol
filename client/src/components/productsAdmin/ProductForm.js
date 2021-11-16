@@ -2,11 +2,8 @@ import React from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { prodAdd } from "../../store/actions/products";
 import { getAllCategories } from "../../store/actions/categories";
-
-// import { Link } from "react-router-dom";
-// import "./login.css";
-// import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
+import './products.css'
 
 export function validateprod(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -67,11 +64,11 @@ const ProductForm = (props) => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     dispatch(prodAdd(input));
-    document.getElementById("form").reset();
+/*     document.getElementById("form").reset();
     setInput({
       name: "",
       description: "",
-      exist: true,
+      exist: false,
       price: 0,
       isOfert: false,
       image: "",
@@ -80,7 +77,7 @@ const ProductForm = (props) => {
       stepunit: 1,
       categories: [],
     });
-    // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
+ */    // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
   function handleChangeSelect(e) {
@@ -101,14 +98,15 @@ const ProductForm = (props) => {
 
   return (
     // formulario para agregar producto a la tienda
-    <div className="boxcontainer">
-      <div className="boxteam">
+    <div className="boxform">
+      <div>
         <div className="titteam">
           <FaUserCircle />
           Agregar producto
         </div>
         <form onSubmit={handleSubmit} id="form">
-          <div>
+          <div className="renglonform">
+            <label>Seleccione categoría/s</label>
             <select
               name="categories"
               value={input.categories}
@@ -127,12 +125,13 @@ const ProductForm = (props) => {
                 ))}
             </select>
           </div>
-          <div align="center">
+          <div className="renglonform">
+            <label>Categorías seleccionadas:</label>
             <textarea id="areatempe" readOnly rows="1" cols="35" />
           </div>
-          <div>
+          <div className="renglonform">
             <label>
-              Producto
+              Producto            </label>
               <input
                 className={errors.name && "danger"}
                 type="text"
@@ -141,12 +140,12 @@ const ProductForm = (props) => {
                 onChange={handleInputChange}
                 value={input.name}
               ></input>
-            </label>
+
             {errors.name && <p className="danger">{errors.name}</p>}
           </div>
-          <div>
+          <div className="renglonform">
             <label>
-              Descripción
+              Descripción            </label>
               <input
                 type="text"
                 placeholder="Descripcion"
@@ -154,22 +153,21 @@ const ProductForm = (props) => {
                 onChange={handleInputChange}
                 value={input.description}
               ></input>
-            </label>
+
           </div>
-          <div>
+          <div className="renglonform">
             <label>
-              Hay stock
+              Hay stock             </label>
               <input
                 type="checkbox"
                 name="exist"
                 onChange={handleInputChange}
                 value={input.exist}
               ></input>
-            </label>
           </div>
-          <div>
+          <div className="renglonform">
             <label>
-              Precio
+              Precio             </label>
               <input
                 className={errors.price && "danger"}
                 type="numbre"
@@ -177,43 +175,40 @@ const ProductForm = (props) => {
                 onChange={handleInputChange}
                 value={input.price}
               ></input>
-            </label>
             {errors.price && <p className="danger">{errors.price}</p>}
           </div>
-          <div>
+          <div className="renglonform">
             <label>
-              Es Oferta
+              Es Oferta            </label>
               <input
                 type="checkbox"
                 name="isofert"
                 onChange={handleInputChange}
                 value={input.isofert}
               ></input>
-            </label>
-          </div>
-          <div>
+           </div>
+          <div className="renglonform">
             <label>
-              Url Image
+              Url Image             </label>
               <input
                 type="text"
                 name="image"
                 onChange={handleInputChange}
                 value={input.image}
+                readonly
               ></input>
-            </label>
           </div>
-          <div>
+          <div className="renglonform">
             <label>
-              Tipo de unidad
+              Tipo de unidad             </label>
               <input
                 type="text"
                 name="units"
                 onChange={handleInputChange}
                 value={input.units}
               ></input>
-            </label>
           </div>
-          <div>
+{/*           <div>
             <label>
               Minimo de compra
               <input
@@ -235,17 +230,18 @@ const ProductForm = (props) => {
               ></input>
             </label>
           </div>
-          <div>
-            <button className='btn btn-light' type="submit">Agregar</button>
-          </div>
-        </form>
-        <button className='btn btn-light' 
+ */}          <div className="addback">
+            <button className='btn btn-success' type="submit">Agregar</button>
+            <button className='btn btn-secondary' type="reset"
           onClick={() => {
             goBack();
           }}
         >
           Volver
         </button>
+          </div>
+        </form>
+
         <div id="regis" className="logsub">
           {/*  <Link to={linkto}>{texto}</Link> */}
         </div>

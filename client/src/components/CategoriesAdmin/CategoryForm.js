@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { cateAdd } from "../../store/actions/categories";
-// import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
@@ -14,6 +14,10 @@ export function validatecate(input) {
     errors.name = "Por favor, Ingrese nombre de categoría";
   } 
   return errors;
+}
+
+function goBack() {
+  window.history.go(-1);
 }
 
 const CategoryForm = (props) => {
@@ -42,6 +46,7 @@ const CategoryForm = (props) => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     props.cateAdd(input);
+    
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
@@ -81,7 +86,14 @@ const CategoryForm = (props) => {
             </label>
           </div>
           <div>
-            <button type="submit">Agregar</button>
+          <button className='btn btn-success' type="submit">Agregar</button>
+            <button className='btn btn-secondary' type="reset"
+          onClick={() => {
+            goBack();
+          }}
+        >
+          Volver
+        </button>
           </div>
         </form>
         <div id="regis" className="logsub">
@@ -94,7 +106,7 @@ const CategoryForm = (props) => {
 
 function mapStateToProps(state) {
   return {
-    category: state.category.categoriesadmin,
+    category: state.Category.categoriesAdmin,
   };
 }
 

@@ -132,16 +132,16 @@ const ProductFormMod = () => {
             </label>
             {errors.price && <p className="danger">{errors.price}</p>}
           </div>
-          <div>
+          <div className="renglon">
             <label>
-              Es Oferta
+              Es Oferta             </label>
               <input
                 type="checkbox"
                 name="isofert"
                 onChange={handleInputChange}
                 value={input.isofert}
               ></input>
-            </label>
+
           </div>
           <div>
             <label>

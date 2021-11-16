@@ -17,8 +17,8 @@ const Dashboard = (props) => {
         </button>
       </h4>
       <div className="menuitems">
-        <Link to="/admin/products">Productos</Link>
         <Link to="/admin/categories">Categorías</Link>
+        <Link to="/admin/products">Productos</Link>
         <Link to="/admin/user">User</Link>
       </div>
       <div className="boxorders">

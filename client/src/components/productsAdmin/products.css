@@ -32,3 +32,18 @@ span {
     align-content: center;
     justify-content: space-between;
 }
+
+.renglonform {
+    display: flex;
+    width: auto;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.boxform {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+}
