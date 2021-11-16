@@ -23,6 +23,7 @@ export function DecreaseGuestLine(prod) {
         dispatch({ type: 'DECREASE_GUEST_LINE', payload: prod });
     }
 }
+
 export function removeGuestLine(prod) {
     //prod.quantity -= 1;
     return (dispatch) => {

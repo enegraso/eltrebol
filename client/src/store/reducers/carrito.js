@@ -35,13 +35,21 @@ export default function cartReducer(state = initialState, action){
             case "DECREASE_GUEST_LINE":
                 return {
                     ...state,
-                    guestCart: decrease([...state.guestCart], action.payload.id)
+                    guestCartProd: decrease([...state.guestCart], action.payload.id),
+                    guestCart:[...state.guestCartProd, action.payload],
+                    guestOrder: orderline([...state.guestCart])
                 }
                 
             case "REMOVE_GUEST_LINE":
                 return {
                     ...state,
-                    guestCart: state.guestCart.filter((i) => i.id !== action.payload)
+                    guestCartProd: state.guestCartProd.filter((i) => i.id !== action.payload)
+                }
+
+            case "DELETE_GUEST_CART":
+                return{
+                    ...state,
+                    guestCart:[]
                 }
 
             default: return state;
