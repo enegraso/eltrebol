@@ -15,7 +15,7 @@ const ProductsAdmin = (props) => {
     <>
       <div className="listproducts">
         <div className="addback">
-          <Link to="/admin/addproduct">
+          <Link to="/admin/addimageprod">
             <button> Agregar </button>
           </Link>
           <Link to="/loginadmin">
@@ -37,7 +37,7 @@ const ProductsAdmin = (props) => {
           );
         })}
         <div className="addback">
-          <Link to="/admin/addproduct">
+          <Link to="/admin/addimageprod">
             <button> Agregar </button>
           </Link>
           <Link to="/loginadmin">

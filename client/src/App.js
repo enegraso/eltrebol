@@ -16,6 +16,7 @@ import ProductFormMod from "./components/productsAdmin/ProductFormMod"
 import OrderAdmin from "./components/OrdersAdmin/OrderAdmin"
 import LoginAdmin from './components/LogInAdmin/Login'
 import DeleteProduct from "./components/productsAdmin/DeleteProduct"
+import ImageProduct from "./components/productsAdmin/ImageProduct"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
          <Route path='/carrito' element={<Cart/>}/>
          <Route path='/admin/products' element={<ProductsAdmin/>} />
          <Route path='/admin/categories' element={<CategoriesAdmin/>} />
+         <Route path='/admin/addimageprod' element={<ImageProduct />} />
          <Route path='/admin/addproduct' element={<ProductForm />} />
          <Route path='/admin/modproduct/:id' element={ <ProductFormMod />} />
          <Route path='/admin/delproduct' element={<DeleteProduct />} />

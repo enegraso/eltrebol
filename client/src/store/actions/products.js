@@ -129,6 +129,13 @@ export const getProdAdmin = (id) => async (dispatch) => {
   }
 };
 
+export const urlPost = (url) => {
+  return function (dispatch) {
+    dispatch({ type: "URL_INFO", payload: url });
+    localStorage.setItem("urlImage", JSON.stringify(url));
+  };
+};
+
 /*
  export const prodRemove = (idsched) => async (dispatch) => {
   console.log("borrando");

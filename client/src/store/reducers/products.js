@@ -4,6 +4,7 @@ const initialState = {
   searchProduct: [],
   productsAdmin: [],
   prductAdminGet: {},
+  url: []
 };
 
 export default function productReducer(state = initialState, action) {
@@ -55,6 +56,12 @@ export default function productReducer(state = initialState, action) {
         ...state,
         allProducts: state.allProducts.filter((p) => p.id !== action.payload),
       };
+
+      case "URL_INFO":
+        return {
+            ...state,
+            url: action.payload
+        }
 
     default:
       return state;

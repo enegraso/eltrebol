@@ -41,7 +41,7 @@ const ProductForm = (props) => {
     exist: true,
     price: 0,
     isOfert: false,
-    image: "",
+    image: localStorage.getItem("urlImage").replaceAll('"',''),
     units: "unidad",
     minunit: 1,
     stepunit: 1,

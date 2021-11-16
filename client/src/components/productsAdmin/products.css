@@ -15,3 +15,10 @@
 span {
     font-weight: 500;
 }
+
+.imageup {
+    width: 500px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}

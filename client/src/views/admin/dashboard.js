@@ -12,7 +12,7 @@ const Dashboard = (props) => {
     <div className="boxdash">
       <h4>
         Hola {props.userDetail.name}{" "}
-        <button className='btn btn-light' onClick={() => props.logOut(props.userDetail.id)}>
+        <button className='btn btn-light' onClick={() => props.logOut(localStorage.getItem("userInfo",JSON.stringify("id")))}>
           <BiLogOut />
         </button>
       </h4>
