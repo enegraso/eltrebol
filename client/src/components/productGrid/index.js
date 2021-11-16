@@ -16,6 +16,7 @@ export default function ProductGrid({items, loading}){
                 price={e.price}
                 exist={e.exist}
                 oferta={e.isOffert}
+                prod = {e}
                 />)
         ))}
         </div>
