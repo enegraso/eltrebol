@@ -1,5 +1,5 @@
 import { loadState } from "../localStorage";
-import {orderline, decrease} from '../../components'
+import {orderline, decrease} from '../../components/utils'
 
 const initialState = {
     guestOrder: [],
@@ -35,7 +35,9 @@ export default function cartReducer(state = initialState, action){
             case "DECREASE_GUEST_LINE":
                 return {
                     ...state,
-                    guestCart: decrease([...state.guestCart], action.payload.id)
+                    guestCart: decrease([...state.guestCart], action.payload.id),
+                    guestCartProd: decrease([...state.guestCartProd], action.payload.id)
+                    /* guestOrder: orderline([...state.guestCart]) */
                 }
                 
             case "REMOVE_GUEST_LINE":
