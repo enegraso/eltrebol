@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { deleteProduct } from "../../store/actions/products"
+import './products.css'
 
 
 const DeleteProduct = () => {
@@ -9,9 +10,11 @@ const DeleteProduct = () => {
     if (!prodtodelete) return <> Cargando... </>
 
     return <>
+    <div className='listproducts'>
         <div>Eliminar producto</div>
         <div>Desea eliminar el producto <span>{prodtodelete.name}</span>?</div>
-        <div><button onClick={ () => dispatch(deleteProduct(prodtodelete.id)) }> SI </button><button> NO </button></div>
+        <div><button class="btn btn-danger" onClick={ () => dispatch(deleteProduct(prodtodelete.id)) }> SI </button><button class="btn btn-link"> NO </button></div>
+        </div>
     </>
 
 }

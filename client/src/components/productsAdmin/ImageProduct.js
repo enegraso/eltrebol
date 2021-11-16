@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { Image } from 'cloudinary-react'
+import { Image, Transformation } from 'cloudinary-react'
 import "./products.css"
 import { urlPost } from '../../store/actions/products'
 import { useDispatch } from "react-redux"
@@ -49,7 +49,7 @@ const ImageProduct = () => {
         <div className="imageup">
 
             <form action="/pedidos" method="post" encType="multipart/form-data">
-                <h2>Comienza cargando una imagen </h2>
+                <h4>Paso 1 - Imagen de producto </h4>
                 <br />
 
                 {/* <input name="image" placeholder="Upload a photo" className="container" type="file" /> */}
@@ -58,10 +58,10 @@ const ImageProduct = () => {
                 <div> {loading && <i> Cargando... </i>}</div>
                 <br />
 
-                <button disabled={loading} type="submit" value="Create" onClick={uploadImage} >  Upload  </button>
+                <button class="btn btn-outline-success" disabled={loading} type="submit" value="Create" onClick={uploadImage} > Cargar Imagen </button>
                 <br />
-                <Image cloudName='dyejl1qrj' publicId={photoData} />
-                <div> {photoData && <Link to="/admin/addproduct" ><button> Continuar </button> </Link>}</div>
+                <Image cloudName='dyejl1qrj' publicId={photoData} ></Image>
+                <div> {photoData && <Link to="/admin/addproduct" ><button class="btn btn-success"> Continuar alta </button></Link> }</div>
             </form>
         </div >
     )
