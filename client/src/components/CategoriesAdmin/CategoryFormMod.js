@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
-import { cateAdd } from "../../store/actions/categories";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCategory } from "../../store/actions/categories";
 import swal from "sweetalert2"
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
@@ -20,11 +20,12 @@ function goBack() {
   window.history.go(-1);
 }
 
-const CategoryForm = (props) => {
-  const [input, setInput] = React.useState({
-    name: "",
-    description: "",
-  });
+const CategoryFormMod = () => {
+
+  const dispatch = useDispatch()
+  const cateAdmin = useSelector((state) => state.Category.categoryAdminGet)
+
+
   const [errors, setErrors] = React.useState({});
 
   const handleInputChange = function (e) {
@@ -44,9 +45,14 @@ const CategoryForm = (props) => {
   async function handleSubmit(e) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
-    await props
-      .cateAdd(input)
-     if (localStorage.getItem("categoryAdded") === "true") 
+    const updCate = {
+      id: cateAdmin.id,
+      category: cateAdmin.category,
+      description: cateAdmin.description
+    }
+
+    await dispatch(updateCategory(updCate))
+     if (localStorage.getItem("categoryUpdated") === "true") 
      {
        swal.fire({
         title: 'Genial! La categoría ha sido cargada. Deseas cargar otra?',
@@ -67,7 +73,7 @@ const CategoryForm = (props) => {
     } else 
     {
        swal.fire({
-          title: 'Ops! No se pudo agregar la categoría',
+          title: 'Ops! No se pudo modificar la categoría',
           confirmButtonText: `Ok`,
           icon: 'error'
           // denyButtonText: `Cancelar`,
@@ -75,13 +81,21 @@ const CategoryForm = (props) => {
     }
   }
 
+  console.log(cateAdmin)
+  const [input, setInput] = React.useState({
+    name: cateAdmin.category,
+    description: cateAdmin.description
+  });
+
+  if (!cateAdmin) return <> Cargando... </>
+
   return (
     // formulario para agregar producto a la tienda
     <div className="boxcontainer">
       <div className="boxteam">
         <div className="titteam">
           <FaUserCircle />
-          Agregar categoría
+          Modificar categoría
         </div>
         <form onSubmit={handleSubmit}>
           <div>
@@ -112,7 +126,7 @@ const CategoryForm = (props) => {
           </div>
           <div>
             <button className="btn btn-success" type="submit">
-              Agregar
+              Modificar
             </button>
             <button
               className="btn btn-secondary"
@@ -133,16 +147,4 @@ const CategoryForm = (props) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    category: state.Category.categoriesAdmin,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    cateAdd: (category) => dispatch(cateAdd(category)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm);
+export default CategoryFormMod;

@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.post("/add", async (req, res) => {
   const { name, description } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   const objCatAdd = {
     category: name,
     description,
@@ -33,7 +33,8 @@ router.post("/add", async (req, res) => {
 });
 
 router.put("/update", async (req, res) => {
-  const { id, category, description } = req.body;
+  const { id, category, description } = req.body.cate;
+  console.log(req.body.cate)
   if (!category || category === "") {
     return res
       .status(400)
@@ -48,7 +49,7 @@ router.put("/update", async (req, res) => {
     // envio los datos al modelo sequelize para que los guarde en la database
     let updCat = await Category.update(objCatUpd, {
       where: {
-        id: id,
+        id,
       },
     });
     // si todo sale bien devuelvo el objeto agregado
@@ -57,7 +58,7 @@ router.put("/update", async (req, res) => {
   } catch (err) {
     // en caso de error lo devuelvo al frontend
     console.log(err);
-    res.status(500).json({ error: err });
+    res.status(400).json({ error: err });
   }
 });
 
@@ -75,7 +76,7 @@ router.get("/", async (req, res) => {
 
 //Obtener categoría por id
 router.get("/:id", async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
   try {
     let getCategory = await Category.findOne({
       where: {
@@ -90,12 +91,11 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
+// Borrar categoria
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
-  if (!id)
-    return res.status(400).send({ message: "Debe ingresar categoría" });
+  if (!id) return res.status(400).send({ message: "Debe ingresar categoría" });
   const existCat = await Category.findOne({
     where: {
       id,
@@ -109,7 +109,9 @@ router.delete("/delete/:id", async (req, res) => {
         },
       });
       console.log(delCategory);
-      return res.status(200).json({message:"Categoria eliminada correctamente"});
+      return res
+        .status(200)
+        .json({ message: "Categoria eliminada correctamente" });
     } catch (err) {
       return res
         .status(500)
@@ -119,5 +121,6 @@ router.delete("/delete/:id", async (req, res) => {
     return res.status(400).json({ message: "Categoría inexistente" });
   }
 });
+
 
 module.exports = router;

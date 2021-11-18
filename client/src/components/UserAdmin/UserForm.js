@@ -59,7 +59,7 @@ const UserForm = () => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     const objUserUpd = {
-            olduser:userAdmin.username,
+            olduser: userAdmin.username,
             oldpass:input.oldpassw,
             name:input.name,
             newpass: input.password,

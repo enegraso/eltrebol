@@ -93,7 +93,7 @@ router.put('/update', async (req, res) => {
     } catch (error) {
       // en caso de error lo devuelvo al frontend
       // console.log(error)
-      res.status(500).json({ message: "No se pudo actualizar usuario"+error});
+      res.status(400).json({ message: "No se pudo actualizar usuario"+error});
     } 
 })
 

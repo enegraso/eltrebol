@@ -43,5 +43,9 @@ export function logOut(arg) {
     dispatch({ type: "LOGOUT_USER", payload: arg });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("userUpdated")
+    // Carteles de categoria admin
+    localStorage.removeItem("categoryDeleted")
+    localStorage.removeItem("categoryAdded")
+    localStorage.removeItem("categoryUpdated")
   };
 }

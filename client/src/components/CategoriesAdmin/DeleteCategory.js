@@ -1,10 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCategory } from "../../store/actions/categories";
 import './categories.css'
+import swal from 'sweetalert2'
 
 const DeleteCategory = () => {
   const dispatch = useDispatch();
   const cattodelete = useSelector((state) => state.Category.categoryAdminGet);
+
+  const handleClick = async () => {
+    await dispatch(deleteCategory(cattodelete.id))
+    if (localStorage.getItem("categoryDeleted") === "true") 
+    {
+      swal.fire({
+       title: 'Se ha borrado exitosamente la categoría',
+       confirmButtonText: `Ok`,
+       icon: 'success'
+       // denyButtonText: `Cancelar`,
+     }).then((result) => {
+       /* Read more about isConfirmed, isDenied below */
+       if (result.isConfirmed) {
+        window.location.href='/admin/categories'
+       } 
+     }) 
+   } else 
+   {
+      swal.fire({
+         title: 'Ops! No se pudo borrar la categoría',
+         confirmButtonText: `Ok`,
+         icon: 'error'
+         // denyButtonText: `Cancelar`,
+       })
+   }
+  }
 
   if (!cattodelete) return <> Cargando... </>;
 
@@ -16,7 +43,7 @@ const DeleteCategory = () => {
         Desea eliminar la categoría <span>{cattodelete.category}</span>?
       </div>
       <div className="renglon">
-        <button class="btn btn-danger" onClick={() => dispatch(deleteCategory(cattodelete.id))}>
+        <button class="btn btn-danger" onClick={handleClick}>
           {" "}
           SI{" "}
         </button>

@@ -22,8 +22,10 @@ export const getAllCategories = () => async (dispatch) => {
     try {
       const { data } = await axios.post(`${REACT_APP_API}categories/add`, category);
       dispatch({ type: "CATE_ADMIN_ADD", payload: data });
+      localStorage.setItem("categoryAdded",true)
     } catch (err) {
-      alert(
+      localStorage.setItem("categoryAdded",false)
+      console.log(
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message
@@ -39,7 +41,7 @@ export const getAllCategories = () => async (dispatch) => {
       console.log(data)
       dispatch({ type: "CATE_ADMIN_GET", payload: data });
     } catch (err) {
-      alert(
+      console.log(
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message
@@ -51,7 +53,32 @@ export const getAllCategories = () => async (dispatch) => {
     return (dispatch) => {
       return axios.delete(`${categoriesEndpoint}delete/${id}`).then((json) => {
         dispatch({ type: "DELETE_CATEGORY", payload: id });
-        alert(json.data.message)
+        localStorage.setItem("categoryDeleted",true)
+      }).catch(err => {
+        localStorage.setItem("categoryDeleted",false)
+        console.log(
+          err.response && err.response.data.message
+            ? err.response.data.message
+            : err.message
+        )        
       });
+    };
+  }
+
+  export const updateCategory = (cate) => async (dispatch) => {
+    console.log(cate)
+    try {
+
+        const { data } = await axios.put(`${categoriesEndpoint}update`, {cate});
+        dispatch({ type: "UPDATE_CATEGORY", payload: data });
+        localStorage.setItem("categoryUpdated",true)
+      }
+      catch(err) {
+        localStorage.setItem("categoryUpdated",false)
+        console.log(
+          err.response && err.response.data.message
+            ? err.response.data.message
+            : err.message
+        )        
     };
   }
