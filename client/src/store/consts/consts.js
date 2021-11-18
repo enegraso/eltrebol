@@ -16,3 +16,7 @@ export const categoriesEndpoint= REACT_APP_API + 'categories/';
 
 export const productId = REACT_APP_API + 'product/'
 
+// variables para usar con alerts
+
+export let UPD_USER_SUCCESS = false
+

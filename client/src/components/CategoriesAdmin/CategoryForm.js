@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { cateAdd } from "../../store/actions/categories";
-import { Navigate } from "react-router-dom";
+import swal from "sweetalert2"
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
+import { Route, Navigate } from "react-router";
 
 export function validatecate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -12,7 +13,7 @@ export function validatecate(input) {
   let errors = {};
   if (!input.name) {
     errors.name = "Por favor, Ingrese nombre de categoría";
-  } 
+  }
   return errors;
 }
 
@@ -21,7 +22,6 @@ function goBack() {
 }
 
 const CategoryForm = (props) => {
-    
   const [input, setInput] = React.useState({
     name: "",
     description: "",
@@ -42,11 +42,29 @@ const CategoryForm = (props) => {
     );
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
-    props.cateAdd(input);
-    
+    await props
+      .cateAdd(input)
+      swal.fire({
+        title: 'Genial! La categoría ha sido cargada. Deseas cargar otra?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: `Sí`,
+        icon: 'success'
+        // denyButtonText: `Cancelar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          swal.fire('Perfecto!')
+          .then(() => {setInput({name: "",
+          description: "",})})
+        } else if (result.isDenied) {
+          swal.fire('OK, aquí podras ver la categoría cargada:')
+          .then(window.location.href='/admin/categories')
+        }
+      })
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
@@ -86,14 +104,18 @@ const CategoryForm = (props) => {
             </label>
           </div>
           <div>
-          <button className='btn btn-success' type="submit">Agregar</button>
-            <button className='btn btn-secondary' type="reset"
-          onClick={() => {
-            goBack();
-          }}
-        >
-          Volver
-        </button>
+            <button className="btn btn-success" type="submit">
+              Agregar
+            </button>
+            <button
+              className="btn btn-secondary"
+              type="reset"
+              onClick={() => {
+                goBack();
+              }}
+            >
+              Volver
+            </button>
           </div>
         </form>
         <div id="regis" className="logsub">

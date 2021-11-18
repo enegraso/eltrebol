@@ -20,7 +20,7 @@ router.post("/add", async (req, res) => {
   if (!existCat) {
     try {
       let newCategory = await Category.create(objCatAdd); // envio los datos al modelo sequelize para que los guarde en la database
-      return res.send(newCategory);
+      return res.status(200).json(newCategory);
     } catch (err) {
       // en caso de error lo devuelvo al frontend
       return res.send({

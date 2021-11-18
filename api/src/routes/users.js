@@ -32,6 +32,7 @@ router.post('/login', async (req, res) => {
       } 
       console.log(result)
       let objLogin = {
+        username: result[0].username,
         id: result[0].id,
         name: result[0].name,
         email: result[0].email,
@@ -46,7 +47,8 @@ router.post('/login', async (req, res) => {
 
 router.put('/update', async (req, res) => {
     // tomo todos los campos del form de registro de usuario
-    const {id, name, newpass, olduser, oldpass, email } = req.body
+    const {id, name, newpass, olduser, oldpass, email, token } = req.body.user
+    console.log(req.body.user)
     // chequeo que estén completos los 3 campos requeridos
     if (!olduser || olduser === "") {
       return res.status(400).json({message:'Falta ingresar nombre usuario'})
@@ -72,9 +74,11 @@ router.put('/update', async (req, res) => {
     // console.log("Objeto user modificar usuario creado")
     // armo el objeto
     const objUser = {
+      username: existUser.username,
       name,
-      password: newpass,
-      email
+      password: newpass ? newpass : existUser.password,
+      email,
+      token
         }
     try {
       // envio los datos al modelo sequelize para que los guarde en la database

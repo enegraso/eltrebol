@@ -3,7 +3,9 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { prodAdd } from "../../store/actions/products";
 import { getAllCategories } from "../../store/actions/categories";
 import { FaUserCircle } from "react-icons/fa";
+import { Navigate } from 'react-router-dom'
 import './products.css'
+import swal from 'sweetalert2'
 
 export function validateprod(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -64,20 +66,23 @@ const ProductForm = (props) => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     dispatch(prodAdd(input));
-/*     document.getElementById("form").reset();
-    setInput({
-      name: "",
-      description: "",
-      exist: false,
-      price: 0,
-      isOfert: false,
-      image: "",
-      units: "unidad",
-      minunit: 1,
-      stepunit: 1,
-      categories: [],
-    });
- */    // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
+    swal.fire({
+      title: 'Producto ha sido cargado. Deseas cargar otro?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Sí`,
+      icon: 'success'
+      // denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        swal.fire('Perfecto!')
+        .then(<Navigate to='/admin/addimageprod' />)
+      } else if (result.isDenied) {
+        swal.fire('OK, aquí podras ver producto cargada')
+        .then(window.location.href='/admin/products')
+      }
+    })
   }
 
   function handleChangeSelect(e) {

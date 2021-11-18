@@ -20,3 +20,15 @@ export const saveState = (prod) => {
         console.log('No se pudo guardar en el localstorage')
     }
 }
+
+export const loadStateAdmin = () => {
+    try {
+        const serializeUser = localStorage.getItem('userInfo');
+        if (serializeUser === null){
+            return undefined;
+        }
+        return JSON.parse(serializeUser);
+    } catch(error){
+        return undefined;
+    }
+};
