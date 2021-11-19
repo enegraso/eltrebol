@@ -19,7 +19,7 @@ const DeleteCategory = () => {
      }).then((result) => {
        /* Read more about isConfirmed, isDenied below */
        if (result.isConfirmed) {
-        window.location.href='/admin/categories'
+        window.history.go(-1);
        } 
      }) 
    } else 
@@ -47,7 +47,7 @@ const DeleteCategory = () => {
           {" "}
           SI{" "}
         </button>
-        <button class="btn btn-link"> NO </button>
+        <button class="btn btn-link" onClick={ () => { window.history.go(-1); }}> NO </button>
       </div>
       </div>
     </>

@@ -15,7 +15,7 @@ const ProductsAdmin = (props) => {
   return (
     <>
       <div className="listproducts">
-        <div className="addback">
+        <div className="addbackhead">
           <Link to="/admin/addimageprod">
             <button class="btn btn-success"> <MdAddCircle /> </button>
           </Link>
@@ -26,14 +26,16 @@ const ProductsAdmin = (props) => {
         </div>
         {props.allProducts.map((product) => {
           return (
-            <div key={product.id} className="renglon">
-              <div>
-              <img src={product.image} width='64px' height='64px' />
+            <div key={product.id} className="mb-3 renglon">
+              <div class="form-control">
+              <img src={product.image} width='80px' height='80px' />
+              </div>
+              <div class="form-control textlist">
               {product.name} - $ {product.price} -{" "}
               {product.exist === true ? "hay" : "no hay"}
               </div>
-              <div>
-              <Link to={`/admin/modproduct/${product.id}`}>
+              <div class="form-label addback">
+              <Link to={`/admin/modproduct`}>
                 <button class="btn btn-success" onClick={ () => props.getProdAdmin(product.id) }><MdEdit /> </button>
               </Link>
               <Link to="/admin/delproduct">
@@ -44,7 +46,7 @@ const ProductsAdmin = (props) => {
             </div>
           );
         })}
-        <div className="addback">
+        <div className="addbackhead">
           <Link to="/admin/addimageprod">
             <button class="btn btn-success"><MdAddCircle /> </button>
           </Link>

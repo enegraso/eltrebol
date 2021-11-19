@@ -56,6 +56,7 @@ router.post("/add", async (req, res) => {
     minunit,
     stepunit,
   } = req.body;
+  console.log(req.body)
   if (!name || name === "") {
     return res
       .status(400)
@@ -87,13 +88,15 @@ router.post("/add", async (req, res) => {
         "Por favor, ingrese de a cuanto incrementar la cantidad a vender, del producto",
     });
   }
+  const existencia = exist === "false" ? true : false
+  const esoferta = isOfert === "false" ? true : false
   const objProdAdd = {
     name,
     description,
-    exist,
+    exist: existencia,
     price,
     image,
-    isOfert,
+    isOfert: esoferta,
     units,
     minunit,
     stepunit,
@@ -125,8 +128,9 @@ router.post("/add", async (req, res) => {
 
 
 //modificar producto
-router.put("/update/:id", async (req, res) => {
+router.put("/update", async (req, res) => {
   const {
+    id,
     name,
     description,
     exist,
@@ -138,8 +142,9 @@ router.put("/update/:id", async (req, res) => {
     minunit,
     stepunit,
   } = req.body;
-  const { id } = req.params;
-  if (!name || name === "") {
+  console.log(req.body)
+/*   const { id } = req.params;
+ */  if (!name || name === "") {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese nombre de producto" });
@@ -149,34 +154,21 @@ router.put("/update/:id", async (req, res) => {
       .status(400)
       .send({ message: "Por favor, ingrese precio de producto" });
   }
-  if (!categories) {
-    return res
-      .status(400)
-      .send({ message: "Por favor, ingrese categoria/s del producto" });
-  }
   if (!units || units === "") {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese nombre de cantidad del producto" });
   }
-  if (!minunit || minunit === 0) {
-    return res.status(400).send({
-      message: "Por favor, ingrese cantidad minima, a vender, del producto",
-    });
-  }
-  if (!stepunit || stepunit === 0) {
-    return res.status(400).send({
-      message:
-        "Por favor, ingrese de a cuanto incrementar la cantidad a vender, del producto",
-    });
-  }
+
+  const existencia = exist === "false" ? true : false
+  const esoferta = isOfert === "false" ? true : false
   const objProdUpd = {
     name,
     description,
-    exist,
+    exist: existencia,
     price,
     image,
-    isOfert,
+    isOfert: esoferta,
     units,
     minunit,
     stepunit,

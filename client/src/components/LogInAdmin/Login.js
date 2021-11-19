@@ -59,7 +59,7 @@ function LoginAdmin(props) {
 
   return (
     // formulario para loguearse al sistema
-    <div className="container-sm" style={{'width':'70vw'}}>
+    <div className="container-sm">
 
      {/*  <div className="boxteam"> */}
         <div className="titteam">

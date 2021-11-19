@@ -2,7 +2,6 @@ import Axios from "axios";
 import {
   REACT_APP_API,
   productsEndpoint,
-  productByCatEndpoint,
   productByIdEndpoint,
   addProductEndpoint,
   modifyProductEndpoint,
@@ -29,7 +28,7 @@ export function addProduct(product) {
   };
 }
 
-export function editProduct(id, newProduct) {
+export function editProduct(newProduct) {
   return (dispatch) => {
     return (
       Axios.put(`${productByIdEndpoint}`, newProduct)
@@ -69,8 +68,9 @@ export function deleteProduct(id) {
   return (dispatch) => {
     return Axios.delete(`${productsEndpoint}delete/${id}`).then((json) => {
       dispatch({ type: "DELETE_PRODUCT", payload: id });
-      alert(json.data.message)
-    });
+      localStorage.setItem("productDeleted",true)
+    }).catch((err) => { localStorage.setItem("productDeleted",false)
+  });
   };
 }
 
@@ -89,9 +89,10 @@ export const prodAdd = (producto) => async (dispatch) => {
   try {
     const { data } = await Axios.post(`${addProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_ADD", payload: data });
-    alert("Producto agregado exitosamente");
+    localStorage.setItem("productAdded",true)
   } catch (err) {
-    alert(
+    localStorage.setItem("productAdded",false)
+    console.log(
       err.response && err.response.data.message
         ? err.response.data.message
         : err.message
@@ -102,10 +103,12 @@ export const prodAdd = (producto) => async (dispatch) => {
 export const prodMod = (producto) => async (dispatch) => {
   console.log("modificando");
   try {
-    const { data } = await Axios.post(`${modifyProductEndpoint}`, producto);
+    const { data } = await Axios.put(`${modifyProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_MOD", payload: data });
+    localStorage.setItem("productUpdated",true)   
   } catch (err) {
-    alert(
+    localStorage.setItem("productUpdated",false)   
+    console.log(
       err.response && err.response.data.message
         ? err.response.data.message
         : err.message

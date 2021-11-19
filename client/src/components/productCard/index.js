@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import saveToGuesCart from "../../store/actions/carrito";
+import './ProductCard.css'
 
 export default function ProductCard({
   name,
@@ -41,6 +42,7 @@ export default function ProductCard({
             }}
           >
             Agregar <BsFillCartPlusFill />
+          <span className='cartItem'></span>
           </button>
         </div>
       </div>

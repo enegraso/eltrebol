@@ -59,7 +59,11 @@ export default function Cart(){
                             <p>{i.name}</p>
                             <small> Precio: {i.price}</small>
                             <br/>
+<<<<<<< HEAD
                             <button onClick={() => dispatch(removeGuestLine(i))}>Remove</button>
+=======
+                            <button className='buttonQuant' onclick={() => dispatch(removeGuestLine(i.id))}>Remove</button>
+>>>>>>> 10358e2ab50de0132481575e83f17e7b7345506d
                         </div>
                     </div>
                 </td>

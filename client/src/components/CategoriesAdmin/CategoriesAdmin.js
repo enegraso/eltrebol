@@ -6,6 +6,7 @@ import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
 import "./categories.css";
 
 const CategoriesAdmin = (props) => {
+
   useEffect(() => {
     props.getAllCategories();
   }, []);
@@ -15,7 +16,7 @@ const CategoriesAdmin = (props) => {
   return (
     <>
       <div className="listproducts">
-        <div className="addback">
+        <div className="addbackhead">
           <Link to="/admin/addcategory">
             <button class="btn btn-success">
               {" "}
@@ -31,11 +32,13 @@ const CategoriesAdmin = (props) => {
         </div>
         {props.allCategories.map((category) => {
           return (
-            <div key={category.id} className="renglon">
+            <div key={category.id} class="mb-3 renglon">
+              <div class="form-control">
               {category.category}
-              <div>
+              </div>
+              <div class="form-label addback">
               <Link to="/admin/modcategory">
-              <button class="btn btn-success" onClick={ () => props.getCateAdmin(category.id) }><MdEdit /> </button>
+              <button class="btn btn-success" onClick={ () => { props.getCateAdmin(category.id) } }><MdEdit /> </button>
               </Link>
               <Link to="/admin/delcategory">
               <button class="btn btn-danger" onClick={ () => props.getCateAdmin(category.id) }><MdDelete /> </button>
@@ -44,7 +47,7 @@ const CategoriesAdmin = (props) => {
             </div>
           );
         })}
-        <div className="addback">
+        <div className="addbackhead">
           <Link to="/admin/addcategory">
             <button class="btn btn-success">
               {" "}
@@ -66,6 +69,7 @@ const CategoriesAdmin = (props) => {
 const mapStateToProps = (state) => {
   return {
     allCategories: state.Category.allCategories,
+    categoryAdminGet: state.Category.categoryAdminGet
   };
 };
 

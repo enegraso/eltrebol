@@ -3,7 +3,7 @@ const initialState = {
   product: [],
   searchProduct: [],
   productsAdmin: [],
-  prductAdminGet: {},
+  productAdminGet: {},
   url: []
 };
 

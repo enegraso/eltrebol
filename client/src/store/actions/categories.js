@@ -38,7 +38,7 @@ export const getAllCategories = () => async (dispatch) => {
     try {
   /*     console.log(`${REACT_APP_API}/products/` + id); */
       const { data } = await axios.get(`${REACT_APP_API}categories/` + id);
-      console.log(data)
+/*       console.log(data) */
       dispatch({ type: "CATE_ADMIN_GET", payload: data });
     } catch (err) {
       console.log(
@@ -66,7 +66,7 @@ export const getAllCategories = () => async (dispatch) => {
   }
 
   export const updateCategory = (cate) => async (dispatch) => {
-    console.log(cate)
+    /* console.log(cate) */
     try {
 
         const { data } = await axios.put(`${categoriesEndpoint}update`, {cate});

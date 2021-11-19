@@ -27,7 +27,7 @@ export const orderline = function(array){
 export const decrease = (array, idProd) => {
     for(let i=0; i < array.length; i++){
         if (array[i].id === idProd){
-            array.splice(i, 1)
+            array.splice(i, 1) 
             return array
         }
     }
