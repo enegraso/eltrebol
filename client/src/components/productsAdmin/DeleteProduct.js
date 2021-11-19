@@ -41,7 +41,7 @@ const DeleteProduct = () => {
         <div>Eliminar producto</div>
         <div>Desea eliminar el producto <span>{prodtodelete.name}</span>?</div>
         <div className="renglon">
-            <button class="btn btn-danger" onClick={handleClick}> SI </button><button class="btn btn-link"> NO </button></div>
+            <button class="btn btn-danger" onClick={handleClick}> SI </button><button class="btn btn-link" onClick={ () => { window.history.go(-1); }}> NO </button></div>
         </div>
     </>
 

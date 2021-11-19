@@ -83,6 +83,28 @@ const ProductFormMod = () => {
     }
     console.log(updProd)
     dispatch(prodMod(updProd));
+    if (localStorage.getItem("productUpdated") === "true") {
+      swal
+        .fire({
+          title: "Producto momdificado",
+          confirmButtonText: `Aceptar`,
+          icon: "success",
+          // denyButtonText: `Cancelar`,
+        })      .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            window.history.go(-1);
+          }
+        })
+      } else {
+          swal
+          .fire({
+            title: "No se pudo modificar el producto",
+            confirmButtonText: `Ok`,
+            icon: "error",
+            // denyButtonText: `Cancelar`,
+          })
+      }
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 

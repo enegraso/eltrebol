@@ -47,7 +47,7 @@ const DeleteCategory = () => {
           {" "}
           SI{" "}
         </button>
-        <button class="btn btn-link"> NO </button>
+        <button class="btn btn-link" onClick={ () => { window.history.go(-1); }}> NO </button>
       </div>
       </div>
     </>

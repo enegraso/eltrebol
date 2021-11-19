@@ -174,7 +174,7 @@ const UserForm = () => {
             {" "}
             Modificar{" "}
           </button>
-          <button className="btn btn-outline-success" type="reset">
+          <button className="btn btn-outline-success" type="reset"  onClick={ () => { window.history.go(-1); }}>
             {" "}
             Volver{" "}
           </button>
