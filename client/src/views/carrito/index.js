@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './carrito.css';
 import {RiDeleteBin5Fill} from 'react-icons/ri'
-import { getGuestCart, removeGuestLine, DecreaseGuestLine } from '../../store/actions/carrito';
+import {getGuestCart, DecreaseGuestLine, removeGuestLine} from '../../store/actions/carrito';
 import saveToGuestCart from '../../store/actions/carrito';
 import {orderline} from '../../components/utils';
 
@@ -59,14 +59,18 @@ export default function Cart(){
                             <p>{i.name}</p>
                             <small> Precio: {i.price}</small>
                             <br/>
+<<<<<<< HEAD
+                            <button onClick={() => dispatch(removeGuestLine(i))}>Remove</button>
+=======
                             <button className='buttonQuant' onclick={() => dispatch(removeGuestLine(i.id))}>Remove</button>
+>>>>>>> 10358e2ab50de0132481575e83f17e7b7345506d
                         </div>
                     </div>
                 </td>
                 <td>
                     <div className='quantity' style={{'display':'flex', 'align-items':'row'}}>
                     <button className='buttonQuant' style={{}} 
-                    onClick={()=>i.quantity === 1 ? removeGuestLine(i.id) : dispatch(DecreaseGuestLine(i))}>-</button>
+                    onClick={()=>i.quantity === 1 ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
                     <p className='pQuant'>{i.quantity}</p>
                     <button className='buttonQuant' style={{}}
                     onClick={()=>dispatch(saveToGuestCart(i))}
