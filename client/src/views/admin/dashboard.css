@@ -9,7 +9,7 @@
 .boxdash {
     display: flex;
     flex-direction: column;
-    width: 750px;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }

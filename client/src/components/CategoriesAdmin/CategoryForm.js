@@ -61,7 +61,7 @@ const CategoryForm = (props) => {
           setInput({name: "",
           description: ""})
         } else if (result.isDenied) {
-         window.location.href='/admin/categories'
+          window.history.go(-1);
         }
       }) 
     } else 

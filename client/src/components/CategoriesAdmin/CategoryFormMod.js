@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCategory } from "../../store/actions/categories";
-import swal from "sweetalert2"
+import swal from "sweetalert2";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
@@ -16,12 +16,23 @@ export function validatecate(input) {
   return errors;
 }
 
-
 const CategoryFormMod = () => {
-  const dispatch = useDispatch()
-  const cateAdmin = useSelector((state) => state.Category.categoryAdminGet)
-
+  const dispatch = useDispatch();
+  const cateAdmin = useSelector((state) => state.Category.categoryAdminGet);
   const [errors, setErrors] = React.useState({});
+
+  const [input, setInput] = React.useState({
+    name: "",
+    description: "",
+  });
+
+  useEffect(() => {
+    setInput({
+      name: cateAdmin.category,
+      description: cateAdmin.description,
+    });
+    console.log("CATEADMIN", cateAdmin);
+  }, [cateAdmin]);
 
   const handleInputChange = function (e) {
     // validate(e.target.name,e.target.value)
@@ -43,54 +54,46 @@ const CategoryFormMod = () => {
     const updCate = {
       id: cateAdmin.id,
       category: input.name,
-      description: input.description
-    }
+      description: input.description,
+    };
 
-    await dispatch(updateCategory(updCate))
-     if (localStorage.getItem("categoryUpdated") === "true") 
-     {
-       swal.fire({
-        title: 'Categoría modificada',
-        confirmButtonText: `Ok`,
-        icon: 'success'
-        // denyButtonText: `Cancelar`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          setInput({
-            name:"",
-            description:""
-          })
-          window.location.href='/admin/categories'
-        }
-      }) 
-    } else 
-    {
-       swal.fire({
-          title: 'Ops! No se pudo modificar la categoría',
+    await dispatch(updateCategory(updCate));
+    if (localStorage.getItem("categoryUpdated") === "true") {
+      swal
+        .fire({
+          title: "Categoría modificada",
           confirmButtonText: `Ok`,
-          icon: 'error'
+          icon: "success",
           // denyButtonText: `Cancelar`,
         })
+        .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            setInput({
+              name: "",
+              description: "",
+            });
+            window.history.go(-1);
+          }
+        });
+    } else {
+      swal.fire({
+        title: "Ops! No se pudo modificar la categoría",
+        confirmButtonText: `Ok`,
+        icon: "error",
+        // denyButtonText: `Cancelar`,
+      });
     }
   }
 
-  const [input, setInput] = React.useState({
-    name: cateAdmin.category,
-    description: cateAdmin.description,
-  });
-  console.log("CATEADMIN",cateAdmin)
+    if (!cateAdmin) return <> Cargando... </> 
 
-/* 
-  if (!cateAdmin) return <> Cargando... </> */
-  
   return (
-
     // formulario para agregar producto a la tienda
     <div className="boxcontainer">
-       <div className="boxteam">
+      <div className="boxteam">
         <div className="titteam">
-           <FaUserCircle /> 
+          <FaUserCircle />
           Modificar categoría
         </div>
         <form onSubmit={handleSubmit}>
@@ -135,9 +138,7 @@ const CategoryFormMod = () => {
             </button>
           </div>
         </form>
-        <div id="regis" className="logsub">
-       
-        </div>
+        <div id="regis" className="logsub"></div>
       </div>
     </div>
   );

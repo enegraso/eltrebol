@@ -26,13 +26,13 @@ const ProductsAdmin = (props) => {
         </div>
         {props.allProducts.map((product) => {
           return (
-            <div key={product.id} className="renglon">
-              <div>
-              <img src={product.image} width='64px' height='64px' />
+            <div key={product.id} className="mb-2 renglon">
+              <div class="form-control">
+              <img src={product.image} width='80px' height='80px' />
               {product.name} - $ {product.price} -{" "}
               {product.exist === true ? "hay" : "no hay"}
               </div>
-              <div>
+              <div class="form-label addback">
               <Link to={`/admin/modproduct/${product.id}`}>
                 <button class="btn btn-success" onClick={ () => props.getProdAdmin(product.id) }><MdEdit /> </button>
               </Link>

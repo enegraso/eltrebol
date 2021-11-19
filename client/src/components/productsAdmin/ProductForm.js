@@ -23,10 +23,6 @@ export function validateprod(input) {
   return errors;
 }
 
-function goBack() {
-  window.history.go(-1);
-}
-
 const ProductForm = (props) => {
 
   const dispatch = useDispatch();
@@ -110,9 +106,10 @@ const ProductForm = (props) => {
           Agregar producto
         </div>
         <form onSubmit={handleSubmit} id="form">
-          <div className="renglonform">
-            <label>Seleccione categoría/s</label>
+          <div class="mb-3">
+            <label class="form-label">Seleccione categoría/s</label>
             <select
+            class="form-select"
               name="categories"
               value={input.categories}
               onChange={handleChangeSelect}
@@ -130,14 +127,15 @@ const ProductForm = (props) => {
                 ))}
             </select>
           </div>
-          <div className="renglonform">
-            <label>Categorías seleccionadas:</label>
-            <textarea id="areatempe" readOnly rows="1" cols="35" />
+          <div class="mb-3">
+            <label class="mb-3">Categorías seleccionadas:</label>
+            <textarea class="form-control" id="areatempe" readOnly rows="1" cols="35" />
           </div>
-          <div className="renglonform">
-            <label>
+          <div className="mb-3">
+            <label class='form-label'>
               Producto            </label>
               <input
+                class="form-control"
                 className={errors.name && "danger"}
                 type="text"
                 placeholder="producto"
@@ -145,35 +143,36 @@ const ProductForm = (props) => {
                 onChange={handleInputChange}
                 value={input.name}
               ></input>
-
             {errors.name && <p className="danger">{errors.name}</p>}
           </div>
-          <div className="renglonform">
-            <label>
+          <div className="mb-3">
+            <label class="form-label">
               Descripción            </label>
               <input
+              class="form-control"
                 type="text"
                 placeholder="Descripcion"
                 name="description"
                 onChange={handleInputChange}
                 value={input.description}
               ></input>
-
           </div>
-          <div className="renglonform">
-            <label>
-              Hay stock             </label>
+          <div className="mb-3">
               <input
+              class="form-check-input"
                 type="checkbox"
                 name="exist"
                 onChange={handleInputChange}
                 value={input.exist}
               ></input>
+            <label class="form-check-label">
+              Hay stock</label>
           </div>
-          <div className="renglonform">
-            <label>
+          <div className="mb-3">
+            <label class="form-label">
               Precio             </label>
               <input
+              class="form-control"
                 className={errors.price && "danger"}
                 type="numbre"
                 name="price"
@@ -182,20 +181,21 @@ const ProductForm = (props) => {
               ></input>
             {errors.price && <p className="danger">{errors.price}</p>}
           </div>
-          <div className="renglonform">
-            <label>
-              Es Oferta            </label>
+          <div className="mb-3">
               <input
+              class="form-check-input"
                 type="checkbox"
                 name="isofert"
                 onChange={handleInputChange}
                 value={input.isofert}
               ></input>
-           </div>
-          <div className="renglonform">
-            <label>
+            <label class="form-check-label">
+              Es Oferta            </label>           </div>
+          <div className="mb-3">
+            <label class="form-label">
               Url Image             </label>
               <input
+                class="form-control"
                 type="text"
                 name="image"
                 onChange={handleInputChange}
@@ -203,10 +203,11 @@ const ProductForm = (props) => {
                 readonly
               ></input>
           </div>
-          <div className="renglonform">
-            <label>
+          <div className="mb-3">
+            <label class="form-label">
               Tipo de unidad             </label>
               <input
+              class="form-control"
                 type="text"
                 name="units"
                 onChange={handleInputChange}
@@ -239,7 +240,7 @@ const ProductForm = (props) => {
             <button className='btn btn-success' type="submit">Agregar</button>
             <button className='btn btn-secondary' type="reset"
           onClick={() => {
-            goBack();
+            window.history.go(-2);
           }}
         >
           Volver

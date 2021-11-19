@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
 /* import { getProdAdmin } from "../../store/actions/products"; */
-import { useParams } from "react-router-dom";
+import swal from "sweetalert2";
 
 export function validateprod(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -28,25 +28,36 @@ const ProductFormMod = () => {
   const productoAdmin = useSelector((state) => state.Product.productAdminGet);
   const [errors, setErrors] = React.useState({});
 
-   const [input, setInput] = React.useState({ 
-     /*
-    name: productoAdmin.name,
-    description: productoAdmin.description,
-    exist: productoAdmin.exist,
-    price: productoAdmin.price,
-    isOfert: productoAdmin.isOfert,
-
-    image: ,
+  const [input, setInput] = React.useState({
+    name: "",
+    description: "",
+    exist: "",
+    price: "",
+    isOfert: "",
+    image: "",
     units: "unidad",
     minunit: 1,
     stepunit: 1,
     categories: [],
-     */
-   });
+  });
 
-  
+  useEffect(() => {
+    setInput({
+      name: productoAdmin.name,
+      description: productoAdmin.description,
+      exist: productoAdmin.exist,
+      price: productoAdmin.price,
+      isOfert: productoAdmin.isOfert,
+      image: productoAdmin.image,
+      units: productoAdmin.unit,
+      minunit: 1,
+      stepunit: 1,
+      categories: [],
+    });
+    console.log("PRODUCTOADMIN", productoAdmin);
+  }, [productoAdmin]);
 
-   const handleInputChange = function (e) {
+  const handleInputChange = function (e) {
     // validate(e.target.name,e.target.value)
     setInput({
       ...input,
@@ -66,10 +77,8 @@ const ProductFormMod = () => {
     // props.prodAdd(input);
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
-    
+
   if (!productoAdmin) return <> Loading... </>; 
-
-
 
   return (
     // formulario para agregar producto a la tienda
@@ -80,7 +89,7 @@ const ProductFormMod = () => {
           Modificar producto
         </div>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div class="mb-3">
             <label>
               Producto
               <input
@@ -91,12 +100,11 @@ const ProductFormMod = () => {
                 id="product"
                 onChange={handleInputChange}
                 value={input.name}
-                
               ></input>
             </label>
             {errors.name && <p className="danger">{errors.name}</p>}
           </div>
-          <div>
+          <div class="mb-3">
             <label>
               Descripción
               <input
@@ -108,7 +116,7 @@ const ProductFormMod = () => {
               ></input>
             </label>
           </div>
-          <div>
+          <div class="mb-3">
             <label>
               Hay stock
               <input
@@ -119,7 +127,7 @@ const ProductFormMod = () => {
               ></input>
             </label>
           </div>
-          <div>
+          <div class="mb-3">
             <label>
               Precio
               <input
@@ -132,18 +140,16 @@ const ProductFormMod = () => {
             </label>
             {errors.price && <p className="danger">{errors.price}</p>}
           </div>
-          <div className="renglon">
-            <label>
-              Es Oferta             </label>
-              <input
-                type="checkbox"
-                name="isofert"
-                onChange={handleInputChange}
-                value={input.isofert}
-              ></input>
-
+          <div class="mb-3">
+            <label>Es Oferta </label>
+            <input
+              type="checkbox"
+              name="isofert"
+              onChange={handleInputChange}
+              value={input.isofert}
+            ></input>
           </div>
-          <div>
+          <div class="mb-3">
             <label>
               Url Image
               <input
@@ -151,10 +157,11 @@ const ProductFormMod = () => {
                 name="image"
                 onChange={handleInputChange}
                 value={input.image}
+                readOnly
               ></input>
             </label>
           </div>
-          <div>
+          <div class="mb-3">
             <label>
               Tipo de unidad
               <input
@@ -165,7 +172,7 @@ const ProductFormMod = () => {
               ></input>
             </label>
           </div>
-          <div>
+          {/*           <div>
             <label>
               Minimo de compra
               <input
@@ -187,8 +194,10 @@ const ProductFormMod = () => {
               ></input>
             </label>
           </div>
-          <div>
-            <button type="submit">Agregar</button>
+ */}{" "}
+          <div class='addback'>
+            <button type="submit" class="btn btn-primary">Modificar</button>
+            <button type="reset" class="btn btn-secundary" onClick={() => { window.history.go(-1) }}>Volver</button>
           </div>
         </form>
         <div id="regis" className="logsub">

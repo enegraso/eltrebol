@@ -6,14 +6,10 @@ import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
 import "./categories.css";
 
 const CategoriesAdmin = (props) => {
+
   useEffect(() => {
     props.getAllCategories();
   }, []);
-
-  async function handleClick(idcate) {
-    
-     await props.getCateAdmin(idcate)
-  }
 
   if (!props.allCategories) return <> Cargando... </>;
 
