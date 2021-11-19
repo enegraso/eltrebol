@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from '../../store/actions/users'
-import swal from 'sweetalert2'
+import { updateUser } from "../../store/actions/users";
+import swal from "sweetalert2";
 
 export function validate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -10,7 +10,7 @@ export function validate(input) {
   if (!input.name) {
     errors.name = "Ingrese nombre de usuario";
   }
-   if (input.email.length > 0 && !emailPattern.test(input.email)) {
+  if (input.email.length > 0 && !emailPattern.test(input.email)) {
     errors.email = "Direccion de correo invalido";
   }
   if (!input.oldpassw) {
@@ -56,42 +56,43 @@ const UserForm = () => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     const objUserUpd = {
-            olduser: userAdmin.username,
-            oldpass:input.oldpassw,
-            name:input.name,
-            newpass: input.password,
-            email: input.email,
-            token: userAdmin.token
-    }
-    await dispatch(updateUser(objUserUpd)); 
-    console.log(localStorage.getItem("userUpdated"))    
+      olduser: userAdmin.username,
+      oldpass: input.oldpassw,
+      name: input.name,
+      newpass: input.password,
+      email: input.email,
+      token: userAdmin.token,
+    };
+    await dispatch(updateUser(objUserUpd));
+    console.log(localStorage.getItem("userUpdated"));
     if (localStorage.getItem("userUpdated") === "true") {
-     swal.fire({
-            title: 'Usuario modificado con éxito',
-            showDenyButton: false,
-            showCancelButton: false,
-            confirmButtonText: `Aceptar`,
-            icon: 'success'
-          }).then((respu) => {
-            if (respu.isConfirmed) {
-                window.location.href='/loginadmin'
-                localStorage.setItem("userUpdated",false)
-            }  
-            })
+      swal
+        .fire({
+          title: "Usuario modificado con éxito",
+          showDenyButton: false,
+          showCancelButton: false,
+          confirmButtonText: `Aceptar`,
+          icon: "success",
+        })
+        .then((respu) => {
+          if (respu.isConfirmed) {
+            window.location.href = "/loginadmin";
+            localStorage.setItem("userUpdated", false);
+          }
+        });
     } else {
-        swal.fire({
-            title: 'No se pudo modificar el usuario',
-            showDenyButton: false,
-            showCancelButton: false,
-            confirmButtonText: `Aceptar`,
-            icon: 'error'
-            // denyButtonText: `Cancelar`,
-          })         
+      swal.fire({
+        title: "No se pudo modificar el usuario",
+        showDenyButton: false,
+        showCancelButton: false,
+        confirmButtonText: `Aceptar`,
+        icon: "error",
+        // denyButtonText: `Cancelar`,
+      });
     }
-
   }
 
-  console.log("USERADMIN",userAdmin)
+  console.log("USERADMIN", userAdmin);
   const [input, setInput] = React.useState({
     oldpassw: "",
     username: "",
@@ -105,81 +106,90 @@ const UserForm = () => {
 
   return (
     <>
-      <h4>Modificar dadtos de usuario: {userAdmin.username}</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nombre</label>
-          <input
-            className={errors.name && "danger"}
-            class="form-control"
-            type="text"
-            placeholder="nombre"
-            name="name"
-            onChange={handleInputChange}
-            value={input.name}
-          ></input>
-          {errors.name && <p className="danger">{errors.name}</p>}
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            className={errors.email && "danger"}
-            class="form-control"
-            type="text"
-            placeholder="email (si desea)"
-            name="email"
-            onChange={handleInputChange}
-            value={input.email}
-          ></input>
-          {errors.email && <p className="danger">{errors.email}</p>}
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Clave Actual</label>
-          <input
-            className={errors.oldpassw && "danger"}
-            class="form-control"
-            type="password"
-            name="oldpassw"
-            onChange={handleInputChange}
-            value={input.oldpassw}
-          ></input>Necesaria para modificar
-          {errors.oldpassw && <p className="danger">{errors.oldpassw}</p>}
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Clave nueva</label>
-          <input
-            className={errors.password && "danger"}
-            class="form-control"
-            type="password"
-            name="password"
-            onChange={handleInputChange}
-            value={input.password}
-          ></input>
-          {errors.password && <p className="danger">{errors.password}</p>}
-        </div>{" "}
-        <div className="mb-3">
-          <label className="form-label">Reingrese clave</label>
-          <input
-            className={errors.repasswo && "danger"}
-            class="form-control"
-            type="password"
-            name="repasswo"
-            onChange={handleInputChange}
-            value={input.repasswo}
-          ></input>
-          {errors.repasswo && <p className="danger">{errors.repasswo}</p>}
-        </div>
-        <div className="d-grid gap-1 col-6 mx-auto">
-          <button className="btn btn-outline-success" type="submit">
-            {" "}
-            Modificar{" "}
-          </button>
-          <button className="btn btn-outline-success" type="reset"  onClick={ () => { window.history.go(-1); }}>
-            {" "}
-            Volver{" "}
-          </button>
-        </div>
-      </form>
+      <div className="boxform">
+        <h4>Modificar datos de usuario: {userAdmin.username}</h4>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Nombre</label>
+            <input
+              className={errors.name && "danger"}
+              class="form-control"
+              type="text"
+              placeholder="nombre"
+              name="name"
+              onChange={handleInputChange}
+              value={input.name}
+            ></input>
+            {errors.name && <p className="danger">{errors.name}</p>}
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input
+              className={errors.email && "danger"}
+              class="form-control"
+              type="text"
+              placeholder="email (si desea)"
+              name="email"
+              onChange={handleInputChange}
+              value={input.email}
+            ></input>
+            {errors.email && <p className="danger">{errors.email}</p>}
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Clave Actual</label>
+            <input
+              className={errors.oldpassw && "danger"}
+              class="form-control"
+              type="password"
+              name="oldpassw"
+              onChange={handleInputChange}
+              value={input.oldpassw}
+            ></input>
+            Necesaria para modificar
+            {errors.oldpassw && <p className="danger">{errors.oldpassw}</p>}
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Clave nueva</label>
+            <input
+              className={errors.password && "danger"}
+              class="form-control"
+              type="password"
+              name="password"
+              onChange={handleInputChange}
+              value={input.password}
+            ></input>
+            {errors.password && <p className="danger">{errors.password}</p>}
+          </div>{" "}
+          <div className="mb-3">
+            <label className="form-label">Reingrese clave</label>
+            <input
+              className={errors.repasswo && "danger"}
+              class="form-control"
+              type="password"
+              name="repasswo"
+              onChange={handleInputChange}
+              value={input.repasswo}
+            ></input>
+            {errors.repasswo && <p className="danger">{errors.repasswo}</p>}
+          </div>
+          <div className="d-grid gap-1 col-6 mx-auto">
+            <button className="btn btn-outline-success" type="submit">
+              {" "}
+              Modificar{" "}
+            </button>
+            <button
+              className="btn btn-outline-success"
+              type="reset"
+              onClick={() => {
+                window.history.go(-1);
+              }}
+            >
+              {" "}
+              Volver{" "}
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };
