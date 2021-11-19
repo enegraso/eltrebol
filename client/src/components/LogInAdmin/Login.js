@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./login.css";
 import Dashboard from "../../views/admin/dashboard";
 import { FaUserCircle } from "react-icons/fa";
+import swal from 'sweetalert2'
 
 export function validate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -47,10 +48,20 @@ function LoginAdmin(props) {
     );
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
-    props.getUser(input.username, input.password);
+    await props.getUser(input.username, input.password);
+    if (!localStorage.getItem("userInfo")) {
+      swal.fire({
+        title: "No se puede acceder con ese usuario/contraseña",
+        showDenyButton: false,
+        showCancelButton: false,
+        confirmButtonText: `Aceptar`,
+        icon: "error",
+        // denyButtonText: `Cancelar`,
+      })
+    }
     
   }
 
