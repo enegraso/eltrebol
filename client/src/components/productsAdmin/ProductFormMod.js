@@ -42,18 +42,15 @@ const ProductFormMod = () => {
   });
 
   useEffect(() => {
-    setInput({
-      name: productoAdmin.name,
+     setInput({
+      name: productoAdmin.name ,
       description: productoAdmin.description,
       exist: productoAdmin.exist,
       price: productoAdmin.price,
       isOfert: productoAdmin.isOfert,
       image: productoAdmin.image,
       units: productoAdmin.unit,
-      minunit: 1,
-      stepunit: 1,
-      categories: [],
-    });
+    }); 
     console.log("PRODUCTOADMIN", productoAdmin);
   }, [productoAdmin]);
 
@@ -78,71 +75,69 @@ const ProductFormMod = () => {
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
-  if (!productoAdmin) return <> Loading... </>; 
+  if (!productoAdmin) return <> Loading... </>;
 
   return (
     // formulario para agregar producto a la tienda
-    <div className="boxcontainer">
-      <div className="boxteam">
+    <div className="boxform">
+      <div>
         <div className="titteam">
           <FaUserCircle />
           Modificar producto
         </div>
         <form onSubmit={handleSubmit}>
           <div class="mb-3">
-            <label>
-              Producto
-              <input
-                className={errors.name && "danger"}
-                type="text"
-                placeholder="producto"
-                name="name"
-                id="product"
-                onChange={handleInputChange}
-                value={input.name}
-              ></input>
-            </label>
+            <label class="form-label">Producto </label>
+            <input
+              class="form-control"
+              className={errors.name && "danger"}
+              type="text"
+              placeholder="producto"
+              name="name"
+              id="product"
+              onChange={handleInputChange}
+              value={input.name}
+            ></input>
+
             {errors.name && <p className="danger">{errors.name}</p>}
           </div>
           <div class="mb-3">
-            <label>
-              Descripción
-              <input
-                type="text"
-                placeholder="Descripcion"
-                name="description"
-                onChange={handleInputChange}
-                value={input.description}
-              ></input>
-            </label>
+            <label class="form-label">Descripción </label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Descripcion"
+              name="description"
+              onChange={handleInputChange}
+              value={input.description}
+            ></input>
           </div>
           <div class="mb-3">
-            <label>
-              Hay stock
-              <input
-                type="checkbox"
-                name="exist"
-                onChange={handleInputChange}
-                value={input.exist}
-              ></input>
-            </label>
+            <label class="form-check-label">Hay stock </label>
+            <input
+              lass="form-check-input"
+              type="checkbox"
+              name="exist"
+              onChange={handleInputChange}
+              value={input.exist}
+            ></input>
           </div>
           <div class="mb-3">
-            <label>
-              Precio
-              <input
-                className={errors.price && "danger"}
-                type="numbre"
-                name="price"
-                onChange={handleInputChange}
-                value={input.price}
-              ></input>
-            </label>
+            <label class="form-label">Precio</label>
+            <input
+              class="form-control"
+              className={errors.price && "danger"}
+              type="numbre"
+              name="price"
+              onChange={handleInputChange}
+              value={input.price}
+            ></input>
             {errors.price && <p className="danger">{errors.price}</p>}
           </div>
           <div class="mb-3">
-            <label>Es Oferta </label>
+            <label class="form-check-label">Es Oferta </label>
             <input
+              lass="form-check-input"
               type="checkbox"
               name="isofert"
               onChange={handleInputChange}
@@ -150,27 +145,26 @@ const ProductFormMod = () => {
             ></input>
           </div>
           <div class="mb-3">
-            <label>
-              Url Image
-              <input
-                type="text"
-                name="image"
-                onChange={handleInputChange}
-                value={input.image}
-                readOnly
-              ></input>
-            </label>
+            <label class="form-label">Imagen</label>
+            <img class="form-control" src={productoAdmin.image} alt={productoAdmin.name} />
+{/*             <input
+              class="form-control"
+              type="text"
+              name="image"
+              onChange={handleInputChange}
+              value={input.image}
+              readOnly
+            ></input> */}
           </div>
           <div class="mb-3">
-            <label>
-              Tipo de unidad
-              <input
-                type="text"
-                name="units"
-                onChange={handleInputChange}
-                value={input.units}
-              ></input>
-            </label>
+            <label class="form-label">Tipo de unidad </label>
+            <input
+              class="form-control"
+              type="text"
+              name="units"
+              onChange={handleInputChange}
+              value={input.units}
+            ></input>
           </div>
           {/*           <div>
             <label>
@@ -195,9 +189,19 @@ const ProductFormMod = () => {
             </label>
           </div>
  */}{" "}
-          <div class='addback'>
-            <button type="submit" class="btn btn-primary">Modificar</button>
-            <button type="reset" class="btn btn-secundary" onClick={() => { window.history.go(-1) }}>Volver</button>
+          <div class="addback">
+            <button type="submit" class="btn btn-primary">
+              Modificar
+            </button>
+            <button
+              type="reset"
+              class="btn btn-secundary"
+              onClick={() => {
+                window.history.go(-1);
+              }}
+            >
+              Volver
+            </button>
           </div>
         </form>
         <div id="regis" className="logsub">

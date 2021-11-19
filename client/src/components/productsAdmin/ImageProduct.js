@@ -42,10 +42,10 @@ const ImageProduct = () => {
           Imagen del producto
         </div>
         <div class="mb-3">
-          <label class="form-label">Seleccione imagen para producto</label>
+          <label class="form-label">Elegir archivo de imagen para producto</label>
           {/* <input name="image" placeholder="Upload a photo" className="container" type="file" /> */}
           <input
-            class="form-control"
+            class="form-control btn btn-outline-success"
             type="file"
             name="foto"
             onChange={(event) => {

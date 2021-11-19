@@ -33,7 +33,7 @@ function App() {
          <Route path='/admin/categories' element={<CategoriesAdmin/>} />
          <Route path='/admin/addimageprod' element={<ImageProduct />} />
          <Route path='/admin/addproduct' element={<ProductForm />} />
-         <Route path='/admin/modproduct/:id' element={ <ProductFormMod />} />
+         <Route path='/admin/modproduct' element={ <ProductFormMod />} />
          <Route path='/admin/delproduct' element={<DeleteProduct />} />
          <Route path='/admin/addcategory' element={<CategoryForm />}/>
          <Route path='/admin/modcategory' element={<CategoryFormMod />}/>

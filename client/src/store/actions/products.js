@@ -2,7 +2,6 @@ import Axios from "axios";
 import {
   REACT_APP_API,
   productsEndpoint,
-  productByCatEndpoint,
   productByIdEndpoint,
   addProductEndpoint,
   modifyProductEndpoint,
@@ -90,9 +89,10 @@ export const prodAdd = (producto) => async (dispatch) => {
   try {
     const { data } = await Axios.post(`${addProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_ADD", payload: data });
-    alert("Producto agregado exitosamente");
+    localStorage.setItem("productAdded",true)
   } catch (err) {
-    alert(
+    localStorage.setItem("productAdded",false)
+    console.log(
       err.response && err.response.data.message
         ? err.response.data.message
         : err.message
