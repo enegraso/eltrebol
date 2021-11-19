@@ -1,9 +1,8 @@
 import React from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { prodAdd } from "../../store/actions/products";
 import { getAllCategories } from "../../store/actions/categories";
 import { FaUserCircle } from "react-icons/fa";
-import { Navigate } from "react-router-dom";
 import "./products.css";
 import swal from "sweetalert2";
 
@@ -57,11 +56,11 @@ const ProductForm = (props) => {
     );
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     console.log(input);
-    dispatch(prodAdd(input));
+    await dispatch(prodAdd(input));
     if (localStorage.getItem("productAdded") === "true") {
       swal
         .fire({

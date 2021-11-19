@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
-/* import { getProdAdmin } from "../../store/actions/products"; */
+import { prodMod } from "../../store/actions/products"
 import swal from "sweetalert2";
 
 export function validateprod(input) {
@@ -49,7 +49,7 @@ const ProductFormMod = () => {
       price: productoAdmin.price,
       isOfert: productoAdmin.isOfert,
       image: productoAdmin.image,
-      units: productoAdmin.unit,
+      units: productoAdmin.units,
     }); 
     console.log("PRODUCTOADMIN", productoAdmin);
   }, [productoAdmin]);
@@ -71,7 +71,18 @@ const ProductFormMod = () => {
   function handleSubmit(e) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
-    // props.prodAdd(input);
+    const updProd = {
+      id: productoAdmin.id,
+      name: input.name ,
+      description: input.description,
+      exist: input.exist,
+      price: input.price,
+      isOfert: input.isOfert,
+      image: input.image,
+      units: input.units,
+    }
+    console.log(updProd)
+    dispatch(prodMod(updProd));
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 

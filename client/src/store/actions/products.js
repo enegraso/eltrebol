@@ -28,7 +28,7 @@ export function addProduct(product) {
   };
 }
 
-export function editProduct(id, newProduct) {
+export function editProduct(newProduct) {
   return (dispatch) => {
     return (
       Axios.put(`${productByIdEndpoint}`, newProduct)
@@ -103,10 +103,12 @@ export const prodAdd = (producto) => async (dispatch) => {
 export const prodMod = (producto) => async (dispatch) => {
   console.log("modificando");
   try {
-    const { data } = await Axios.post(`${modifyProductEndpoint}`, producto);
+    const { data } = await Axios.put(`${modifyProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_MOD", payload: data });
+    localStorage.setItem("productUpdated",true)   
   } catch (err) {
-    alert(
+    localStorage.setItem("productUpdated",false)   
+    console.log(
       err.response && err.response.data.message
         ? err.response.data.message
         : err.message
