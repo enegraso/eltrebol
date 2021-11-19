@@ -14,7 +14,7 @@ export const orderline = function(array){
             let pushOrderLine = {
                 id: array[i].id,
                 name: array[i].name,
-                imagen: array[i].image,
+                image: array[i].image,
                 price: array[i].price,
                 quantity: 1
             }
