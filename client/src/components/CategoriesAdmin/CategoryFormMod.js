@@ -16,15 +16,10 @@ export function validatecate(input) {
   return errors;
 }
 
-function goBack() {
-  window.history.go(-1);
-}
 
 const CategoryFormMod = () => {
-
   const dispatch = useDispatch()
   const cateAdmin = useSelector((state) => state.Category.categoryAdminGet)
-
 
   const [errors, setErrors] = React.useState({});
 
@@ -47,27 +42,26 @@ const CategoryFormMod = () => {
     e.preventDefault();
     const updCate = {
       id: cateAdmin.id,
-      category: cateAdmin.category,
-      description: cateAdmin.description
+      category: input.name,
+      description: input.description
     }
 
     await dispatch(updateCategory(updCate))
      if (localStorage.getItem("categoryUpdated") === "true") 
      {
        swal.fire({
-        title: 'Genial! La categoría ha sido cargada. Deseas cargar otra?',
-        showDenyButton: true,
-        showCancelButton: false,
-        confirmButtonText: `Sí`,
+        title: 'Categoría modificada',
+        confirmButtonText: `Ok`,
         icon: 'success'
         // denyButtonText: `Cancelar`,
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          setInput({name: "",
-          description: ""})
-        } else if (result.isDenied) {
-         window.location.href='/admin/categories'
+          setInput({
+            name:"",
+            description:""
+          })
+          window.location.href='/admin/categories'
         }
       }) 
     } else 
@@ -81,20 +75,22 @@ const CategoryFormMod = () => {
     }
   }
 
-  console.log(cateAdmin)
   const [input, setInput] = React.useState({
     name: cateAdmin.category,
-    description: cateAdmin.description
+    description: cateAdmin.description,
   });
+  console.log("CATEADMIN",cateAdmin)
 
-  if (!cateAdmin) return <> Cargando... </>
-
+/* 
+  if (!cateAdmin) return <> Cargando... </> */
+  
   return (
+
     // formulario para agregar producto a la tienda
     <div className="boxcontainer">
-      <div className="boxteam">
+       <div className="boxteam">
         <div className="titteam">
-          <FaUserCircle />
+           <FaUserCircle /> 
           Modificar categoría
         </div>
         <form onSubmit={handleSubmit}>
@@ -132,7 +128,7 @@ const CategoryFormMod = () => {
               className="btn btn-secondary"
               type="reset"
               onClick={() => {
-                goBack();
+                window.history.go(-1);
               }}
             >
               Volver
@@ -140,7 +136,7 @@ const CategoryFormMod = () => {
           </div>
         </form>
         <div id="regis" className="logsub">
-          {/*  <Link to={linkto}>{texto}</Link> */}
+       
         </div>
       </div>
     </div>

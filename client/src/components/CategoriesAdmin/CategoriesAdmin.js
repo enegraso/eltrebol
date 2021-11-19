@@ -10,6 +10,11 @@ const CategoriesAdmin = (props) => {
     props.getAllCategories();
   }, []);
 
+  async function handleClick(idcate) {
+    
+     await props.getCateAdmin(idcate)
+  }
+
   if (!props.allCategories) return <> Cargando... </>;
 
   return (
@@ -35,7 +40,7 @@ const CategoriesAdmin = (props) => {
               {category.category}
               <div>
               <Link to="/admin/modcategory">
-              <button class="btn btn-success" onClick={ () => props.getCateAdmin(category.id) }><MdEdit /> </button>
+              <button class="btn btn-success" onClick={ () => { props.getCateAdmin(category.id) } }><MdEdit /> </button>
               </Link>
               <Link to="/admin/delcategory">
               <button class="btn btn-danger" onClick={ () => props.getCateAdmin(category.id) }><MdDelete /> </button>
@@ -66,6 +71,7 @@ const CategoriesAdmin = (props) => {
 const mapStateToProps = (state) => {
   return {
     allCategories: state.Category.allCategories,
+    categoryAdminGet: state.Category.categoryAdminGet
   };
 };
 

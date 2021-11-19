@@ -77,10 +77,10 @@ const ProductForm = (props) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         swal.fire('Perfecto!')
-        .then(<Navigate to='/admin/addimageprod' />)
+        .then(window.history.go(-1))
       } else if (result.isDenied) {
         swal.fire('OK, aquí podras ver producto cargada')
-        .then(window.location.href='/admin/products')
+        .then(window.history.go(-2))
       }
     })
   }

@@ -69,8 +69,9 @@ export function deleteProduct(id) {
   return (dispatch) => {
     return Axios.delete(`${productsEndpoint}delete/${id}`).then((json) => {
       dispatch({ type: "DELETE_PRODUCT", payload: id });
-      alert(json.data.message)
-    });
+      localStorage.setItem("productDeleted",true)
+    }).catch((err) => { localStorage.setItem("productDeleted",false)
+  });
   };
 }
 

@@ -47,5 +47,7 @@ export function logOut(arg) {
     localStorage.removeItem("categoryDeleted")
     localStorage.removeItem("categoryAdded")
     localStorage.removeItem("categoryUpdated")
+    localStorage.removeItem("productDeleted")
+
   };
 }

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from '../../store/actions/users'
-import { UPD_USER_SUCCESS } from '../../store/consts/consts'
 import swal from 'sweetalert2'
 
 export function validate(input) {
@@ -37,9 +36,7 @@ const UserForm = () => {
   const dispatch = useDispatch();
   const userAdmin = useSelector((state) => state.User.userDetail);
 
-
   const [errors, setErrors] = React.useState({});
-
 
   const handleInputChange = function (e) {
     // validate(e.target.name,e.target.value)
@@ -94,6 +91,7 @@ const UserForm = () => {
 
   }
 
+  console.log("USERADMIN",userAdmin)
   const [input, setInput] = React.useState({
     oldpassw: "",
     username: "",

@@ -58,3 +58,8 @@ td:last-child{
 th:last-child{
     text-align:right;
 }
+
+.buttonQuant {
+    display: flex;
+    border-radius: 1em;    
+}

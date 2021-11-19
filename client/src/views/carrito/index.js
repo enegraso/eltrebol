@@ -54,12 +54,12 @@ export default function Cart(){
                    <tr>
                 <td>
                     <div className='cart-info'>
-                        <img src={i.imagen} alt='product'/>
+                        <img src={i.image} alt='product'/>
                         <div>
                             <p>{i.name}</p>
                             <small> Precio: {i.price}</small>
                             <br/>
-                            <button onclick={() => dispatch(removeGuestLine(i.id))}>Remove</button>
+                            <button className='buttonQuant' onclick={() => dispatch(removeGuestLine(i.id))}>Remove</button>
                         </div>
                     </div>
                 </td>

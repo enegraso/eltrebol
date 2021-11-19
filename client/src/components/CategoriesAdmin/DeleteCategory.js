@@ -19,7 +19,7 @@ const DeleteCategory = () => {
      }).then((result) => {
        /* Read more about isConfirmed, isDenied below */
        if (result.isConfirmed) {
-        window.location.href='/admin/categories'
+        window.history.go(-1);
        } 
      }) 
    } else 
