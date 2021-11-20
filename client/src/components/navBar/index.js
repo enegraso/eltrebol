@@ -1,15 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import './navBar.css';
 import {GiShamrock} from 'react-icons/gi';
 import {FaHome} from 'react-icons/fa';
 import {BiCategory} from 'react-icons/bi';
 import {MdShoppingCart} from 'react-icons/md';
-
+import { useSelector } from 'react-redux'
 
 
 export default function NavBar(){
-    
+  const elementCart = useSelector((state) => state.Carrito.guestCart)
+  const [items, setItems] = useState(0)
+
+  useEffect(() => {
+    setItems(elementCart.length)
+    console.log(items)
+  },[elementCart])
+
+
+  
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -45,7 +54,7 @@ export default function NavBar(){
                   className='nav-links btn-outline-success' 
                   onClick={closeMobileMenu}>
                    <MdShoppingCart/>
-                   <span class="badge bg-danger">4</span>
+                   <span class="badge bg-danger">{ items > 0 ? items : "" }</span>
                   </Link>
               </li>
           </ul>
