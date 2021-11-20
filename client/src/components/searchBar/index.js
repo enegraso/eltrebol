@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchProducts, getAllProducts } from "../../store/actions/products";
 import { BiSearchAlt } from "react-icons/bi";
+import './searchBar.css'
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
@@ -12,7 +13,7 @@ export default function SearchBar() {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (query.query === "") {
@@ -25,7 +26,7 @@ export default function SearchBar() {
 
   return (
     <section>
-      <form className="d-flex" style={{ margin: "50px" }}>
+      <form className="d-flex barraBuscar" >
         <input
           class="form-control me-2"
           placeholder="Buscar..."

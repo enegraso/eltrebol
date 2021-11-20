@@ -1,0 +1,10 @@
+.barraBuscar {
+  margin: 50px;
+}
+
+/* pensada en mi celu de 5" */
+@media screen and (max-width: 360px) {
+  .barraBuscar {
+    margin: 5px;
+  }
+}
