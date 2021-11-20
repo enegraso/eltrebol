@@ -8,7 +8,7 @@ import {
 } from "../consts/consts";
 
 export function getAllProducts() {
-  console.log("hola estoy en products - "+`${productsEndpoint}`);
+  console.log("hola estoy en products - " + `${productsEndpoint}`);
   return (dispatch) => {
     return Axios(`${productsEndpoint}`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
@@ -66,32 +66,26 @@ export function getProductId(id) {
 
 export function deleteProduct(id) {
   return (dispatch) => {
-    return Axios.delete(`${productsEndpoint}delete/${id}`).then((json) => {
-      dispatch({ type: "DELETE_PRODUCT", payload: id });
-      localStorage.setItem("productDeleted",true)
-    }).catch((err) => { localStorage.setItem("productDeleted",false)
-  });
+    return Axios.delete(`${productsEndpoint}delete/${id}`)
+      .then((json) => {
+        dispatch({ type: "DELETE_PRODUCT", payload: id });
+        localStorage.setItem("productDeleted", true);
+      })
+      .catch((err) => {
+        localStorage.setItem("productDeleted", false);
+      });
   };
 }
 
-/* export function selectProductEdit(id){
-    return(dispacth) => {
-        dispacth({
-            type: "SELECT_PRODUCT_ID",
-            payload: id
-        })
-    }
-     */
-/* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
 
 export const prodAdd = (producto) => async (dispatch) => {
   console.log("agregando");
   try {
     const { data } = await Axios.post(`${addProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_ADD", payload: data });
-    localStorage.setItem("productAdded",true)
+    localStorage.setItem("productAdded", true);
   } catch (err) {
-    localStorage.setItem("productAdded",false)
+    localStorage.setItem("productAdded", false);
     console.log(
       err.response && err.response.data.message
         ? err.response.data.message
@@ -105,9 +99,9 @@ export const prodMod = (producto) => async (dispatch) => {
   try {
     const { data } = await Axios.put(`${modifyProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_MOD", payload: data });
-    localStorage.setItem("productUpdated",true)   
+    localStorage.setItem("productUpdated", true);
   } catch (err) {
-    localStorage.setItem("productUpdated",false)   
+    localStorage.setItem("productUpdated", false);
     console.log(
       err.response && err.response.data.message
         ? err.response.data.message
@@ -119,9 +113,9 @@ export const prodMod = (producto) => async (dispatch) => {
 export const getProdAdmin = (id) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
-/*     console.log(`${REACT_APP_API}/products/` + id); */
+    /*     console.log(`${REACT_APP_API}/products/` + id); */
     const { data } = await Axios.get(`${REACT_APP_API}products/` + id);
-    console.log(data)
+    console.log(data);
     dispatch({ type: "PROD_ADMIN_GET", payload: data });
   } catch (err) {
     alert(
@@ -139,21 +133,20 @@ export const urlPost = (url) => {
   };
 };
 
-/*
- export const prodRemove = (idsched) => async (dispatch) => {
-  console.log("borrando");
+
+ export const searchProducts = (buscar) => async (dispatch) => {
+  console.log("buscando");
   try {
-    const { data } = await axios.delete(`${REACT_APP_API}/scheduler/${idsched}`
+    const { data } = await Axios.get(`${REACT_APP_API}products/search/${buscar}`
     );
-    dispatch({ type: SCHED_REMOVE, payload: idsched });
+    dispatch({ type: "PRODS_FOUNDED", payload: data });
+    console.log(data)
   } catch (err) {
-    dispatch({
-      type: SCHED_FAIL,
-      payload:
+    alert(
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message,
-    });
+    );
   }
 };
- */
+

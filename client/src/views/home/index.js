@@ -20,7 +20,7 @@ export default function Home(){
     return(
         <div className='container'>
         <SearchBar/>
-        { productos.length ? <ProductGrid loading={loading} items={productos}/> : <p>no products</p>}
+        { productos.length ? <ProductGrid loading={loading} items={productos}/> : <p>No se encontraron productos</p>}
         </div>
     )
 }

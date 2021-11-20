@@ -10,11 +10,11 @@ import { useSelector } from 'react-redux'
 
 export default function NavBar(){
   const elementCart = useSelector((state) => state.Carrito.guestCart)
-  const [items, setItems] = useState(0)
+  const [itemsCart, setItemsCart] = useState(0)
 
   useEffect(() => {
-    setItems(elementCart.length)
-    console.log(items)
+    setItemsCart(elementCart.length)
+    // Preparo items 
   },[elementCart])
 
 
@@ -28,7 +28,7 @@ export default function NavBar(){
       <>
       <nav className='navbar'>
           <Link to='/' className='navbar-logo'>
-          <GiShamrock style={{'color':'#4AA96C'}}/> El Trebol
+          <GiShamrock style={{'color':'#4AA96C'}}/> Chacinados El Trebol
           </Link>
           <div className='menu-icon' onClick={handleClick}>
               <i className={click? 'fas fa-times': 'fas fa-bars'}/>
@@ -54,7 +54,7 @@ export default function NavBar(){
                   className='nav-links btn-outline-success' 
                   onClick={closeMobileMenu}>
                    <MdShoppingCart/>
-                   <span class="badge bg-danger">{ items > 0 ? items : "" }</span>
+                   <span class="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
                   </Link>
               </li>
           </ul>

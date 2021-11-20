@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import saveToGuesCart from "../../store/actions/carrito";
-/* import './ProductCard.css' */
+import './productCard.css'
 
 export default function ProductCard({
   name,
@@ -21,8 +21,8 @@ export default function ProductCard({
 
   return (
     <div className="col">
-      <div className="card text-center" style={{ width: "18rem" }}>
-        <img src={img} className="card-img-top" alt="product" />
+      <div className="card text-center" /* style={{ width: "18rem" }} */>
+        <img src={img} className="card-img-top imageItem" alt={name} title={name} />
         <div className="card-body">
           <p className="card-title">
             <strong>{name}</strong>
@@ -36,7 +36,7 @@ export default function ProductCard({
           </p>
           <button
             className="btn btn-warning btn-lg"
-            style={{ width: "200px" }}
+            style={{ width: "95%" }}
             onClick={() => {
               setToLocalStorage(prod);
             }}

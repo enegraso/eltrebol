@@ -1,9 +1,9 @@
-var express = require("express");
-
+const express = require("express");
+const { Op } = require("sequelize");
 // Defino el modelo user para utilizarlo en las rutas correspondientes
 const { Product, Category } = require("../models/index");
 
-var router = express.Router();
+const router = express.Router();
 
 
 //todos los productos
@@ -27,7 +27,6 @@ router.get("/:id", (req, res) => {
 });
 
 //producto por categoria
-
 router.get("/bycat/:category", (req, res) => {
   let { category } = req.params;
   if (!category || category === "")
@@ -41,6 +40,28 @@ router.get("/bycat/:category", (req, res) => {
     res.json(s);
   });
 });
+
+// Obtener product por nombre aproximado
+router.get("/search/:search", async (req,res) => {
+  const { search } = req.params
+  try {
+    const getProdSearch = await Product.findAll({
+      where: {
+        name: {
+          [Op.iLike]: "%"+[search]+"%"
+        },
+      }
+    });
+    return res.send(getProdSearch);
+  } catch (err) {
+    return res.status(400).send({
+      message:
+        "No se pudo obtener producto"+err,
+    });
+  }
+  
+
+})
 
 // Agregar producto
 router.post("/add", async (req, res) => {
