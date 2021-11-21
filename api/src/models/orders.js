@@ -30,9 +30,22 @@ module.exports = function (sequelize) {
             type: DataTypes.BOOLEAN,
             allownull: false
         },
+        payd_idml: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        payd_mlstatus: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        merchant_order_idml: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         ordercart: {
             type: DataTypes.STRING,
             allowNull: false
         }
+
     })
 }
