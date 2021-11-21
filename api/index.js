@@ -1,6 +1,5 @@
 const express = require("express");
 const morgan = require("morgan");
-const multer = require("multer")
 // const cors = require("cors"); // para poder hacer peticiones desde cualquier punto (tambien se puede configurar de donde recibir las peticiones)
 const { conn } = require("./src/models/index.js");
 const routes = require("./src/routes/index");
@@ -14,7 +13,6 @@ const setHeaders = require("./src/utils/middlewares/setHeaders.js");
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));
 app.use(morgan("dev"));
-app.use(multer({ dest: './public/uploads'}).single('image'))
 
 app.use(errorHandler);
 app.use(setHeaders);

@@ -1,14 +1,12 @@
-const { Order } = require("../models/index");
 const router = require("express").Router();
 
+//
+const { Order } = require("../models/index");
 
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
 
 const { ACCESS_TOKEN, URL_CLIENT } = process.env;
-
-
-
 
 //Agrega credenciales
 mercadopago.configure({

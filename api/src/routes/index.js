@@ -10,8 +10,8 @@ const router = Router();
 router.use('/users', usersRoutes)
 router.use('/categories', categoriesRoutes)
 router.use('/products', productsRoutes)
-router.use('/orders',ordersRoutes)
-router.use('/mp',mpagoRoutes)
+router.use('/orders', ordersRoutes)
+router.use('/mp', mpagoRoutes)
 
 router.get("/", (req,res) => {
     res.status(200).json({message:"backend - Chacinados El Trebol"})
