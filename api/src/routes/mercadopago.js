@@ -22,6 +22,10 @@ router.post("/checkout", (req, res, next) => {
   // Verificar en caso de que no funcione de pasar los datos por req.body
   // const { id, carrito } = req.body;
 
+  if (!id) return res.status(400).json({ message: "No se ha ingresado id de orden"})
+  if (!carrito) return res.status(400).json({ message: "Falta el detalle de la orden"})
+
+
   const items_ml = carrito.map((i) => ({
     title: i.title,
     unit_price: i.price,

@@ -13,8 +13,8 @@ router.use('/products', productsRoutes)
 router.use('/orders', ordersRoutes)
 router.use('/mp', mpagoRoutes)
 
-/* router.get("/", (req,res) => {
+router.get("/", (req,res) => {
     res.status(200).json({message:"backend - Chacinados El Trebol"})
-}) */
+})
 
 module.exports = router;
