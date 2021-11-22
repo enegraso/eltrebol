@@ -34,6 +34,8 @@ const ImageProduct = () => {
   };
   const formulario = async (e) => {};
 
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
+
   return (
     <div className="imageup">
       <form action="/pedidos" method="post" encType="multipart/form-data">

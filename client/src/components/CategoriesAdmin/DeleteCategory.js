@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteCategory } from "../../store/actions/categories";
 import './categories.css'
 import swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 const DeleteCategory = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const DeleteCategory = () => {
    }
   }
 
+  if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
   if (!cattodelete) return <> Cargando... </>;
 
   return (

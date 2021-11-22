@@ -9,6 +9,8 @@ const OrdersAdmin = (props) => {
         props.getAllOrders()
     },[]) 
 
+    if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
+    
     if (!props.allOrders) return <> Cargando...</>
  
     return <>

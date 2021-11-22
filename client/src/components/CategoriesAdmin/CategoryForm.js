@@ -5,6 +5,7 @@ import swal from "sweetalert2"
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from 'react-router-dom'
 
 export function validatecate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -74,6 +75,8 @@ const CategoryForm = (props) => {
         })
     }
   }
+
+  if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
 
   return (
     // formulario para agregar producto a la tienda

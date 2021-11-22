@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
@@ -107,6 +107,8 @@ const ProductFormMod = () => {
       }
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
+
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
 
   if (!productoAdmin) return <> Loading... </>;
 

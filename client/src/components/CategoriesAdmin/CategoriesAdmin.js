@@ -11,6 +11,8 @@ const CategoriesAdmin = (props) => {
     props.getAllCategories();
   }, []);
 
+  if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
+  
   if (!props.allCategories) return <> Cargando... </>;
 
   return (

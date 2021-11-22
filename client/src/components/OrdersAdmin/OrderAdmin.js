@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./orderAdmin.css";
+import { Link } from 'react-router-dom'
 
 const OrderAdmin = () => {
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
+
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
 
   if (!pedidoAdmin[0]) return <> Cargando... </>;
 

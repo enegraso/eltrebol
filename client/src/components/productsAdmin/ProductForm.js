@@ -5,6 +5,7 @@ import { getAllCategories } from "../../store/actions/categories";
 import { FaUserCircle } from "react-icons/fa";
 import "./products.css";
 import swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export function validateprod(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -105,6 +106,8 @@ const ProductForm = (props) => {
       console.log("estas seleccionando:" + data);
     } else alert("La categoría ya fue agregada");
   }
+
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
 
   return (
     // formulario para agregar producto a la tienda
