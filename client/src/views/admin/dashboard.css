@@ -19,3 +19,20 @@
     align-items: center;
     justify-content: center;
 }
+
+.contentOrders {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    border: 2px dashed greenyellow;
+    margin:auto
+}
+
+.boxOrder {
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px;
+    margin: auto;
+    height: 250px;
+    overflow: auto;
+}

@@ -36,7 +36,7 @@ const OrderAdminProcess = () => {
             ? "Sin dirección"
             : "Dirección: " + pedidoAdmin[0].cellphone}
         </div>
-        <table border="1">
+        <table border="1" width="84vw">
           <tr>
             <td className="titleLines">Cantidad</td>
             <td className="titleLines">Producto</td>
@@ -47,8 +47,8 @@ const OrderAdminProcess = () => {
           {pedidoAdmin[0].orderlines.map((line) => {
             return (
               <tr bgcolor="lightgreen" key={line.id}>
-                <td>{line.quantity}</td>
-                <td>{line.product.name}</td>
+                <td>{line.quantity} - {line.units} </td>
+                <td><img src={line.image} height="48px" width="48px" />{line.product.name}</td>
                 <td>{line.product.price}</td>
                 <td>{line.subtotal}</td>
                 <td>
@@ -73,7 +73,7 @@ const OrderAdminProcess = () => {
         </div>{" "}
         <div>
           <button> Enviar </button>
-          <button> Volver </button>
+          <button onClick={ () => { window.history.go(-1); }}> Volver </button>
         </div>
       </div>
     </>

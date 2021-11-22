@@ -1,12 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./orderAdmin.css";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const OrderAdmin = () => {
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
 
-  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
+  if (!localStorage.getItem("userInfo"))
+    return (
+      <>
+        <Link to="/loginadmin">
+          <h5>Debe estar logueado</h5>
+        </Link>
+      </>
+    );
+
+    const handleClick =() => {
+      window.print()
+    }
 
   if (!pedidoAdmin[0]) return <> Cargando... </>;
 
@@ -14,12 +25,12 @@ const OrderAdmin = () => {
     <>
       <div className="contenOrder">
         <div className="titleOrder">
-        <h2>
-          Pedido{" "}
-          {!pedidoAdmin[0].ordercart
-            ? "Tomando pedido..."
-            : pedidoAdmin[0].ordercart}{" "}
-        </h2>
+          <h2>
+            Pedido{" "}
+            {!pedidoAdmin[0].ordercart
+              ? "Tomando pedido..."
+              : pedidoAdmin[0].ordercart}{" "}
+          </h2>
         </div>
         <div>
           {!pedidoAdmin[0].client
@@ -38,28 +49,37 @@ const OrderAdmin = () => {
         </div>
         <table border="1">
           <tr>
-            <td className="titleLines">Cantidad</td>
-            <td className="titleLines">Producto</td>
-            <td className="titleLines">PU</td>
-            <td className="titleLines">Importe</td>
-            <td className="titleLines">Acción</td>
+            <td className="titleLines" width="15%">
+              Cantidad
+            </td>
+            <td className="titleLines" width="55%">
+              Producto
+            </td>
+            <td className="titleLines" width="15%">
+              PU
+            </td>
+            <td className="titleLines" width="25%">
+              Importe
+            </td>
           </tr>
           {pedidoAdmin[0].orderlines.map((line) => {
             return (
               <tr bgcolor="lightgreen" key={line.id}>
-                <td>{line.quantity}</td>
-                <td>{line.product.name}</td>
-                <td>{line.product.price}</td>
-                <td>{line.subtotal}</td>
                 <td>
-                  <button> MODIFICAR </button>
+                  {line.quantity} - {line.product.units}{" "}
                 </td>
+                <td className="orderLineProduct">
+                  <img className="imageProduct" src={line.product.image} />
+                  {line.product.name}
+                </td>
+                <td>{Number(line.product.price).toFixed(2)}</td>
+                <td>{Number(line.subtotal).toFixed(2)}</td>
               </tr>
             );
           })}
         </table>
         <div>
-          {!pedidoAdmin[0].subtotal ? 0 : "Importe: " + pedidoAdmin[0].subtotal}
+          {!pedidoAdmin[0].subtotal ? 0 : "Importe AR$: " + Number(pedidoAdmin[0].subtotal).toFixed(2)}
         </div>
         <div>
           {pedidoAdmin[0].delivery === true
@@ -72,9 +92,17 @@ const OrderAdmin = () => {
             : "Paga al recibir pedido"}
         </div>{" "}
         <div>
-          <button> Procesar </button>
-          <button> Rechazar </button>
-          <button> Volver </button>
+          <button className="btn btn-primary" onClick={handleClick}> Preparar </button>
+          <button className="btn btn-secondary"> Rechazar </button>
+          <button
+            className="btn btn-link"
+            onClick={() => {
+              window.history.go(-1);
+            }}
+          >
+            {" "}
+            Volver{" "}
+          </button>
         </div>
       </div>
     </>

@@ -30,3 +30,17 @@ export const getAllOrders = () => async (dispatch) => {
       );
     }
   };
+
+  export const prepOrder = (order) => async (dispatch) => {
+    try {
+      console.log("trying")
+      const { data } = await axios.pus(`${REACT_APP_API}orders/update`,{order});
+      dispatch({ type: "PREP_ORDER_ADMIN", payload: data });
+    } catch (err) {
+      alert(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+      );
+    }
+  };

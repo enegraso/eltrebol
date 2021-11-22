@@ -118,4 +118,31 @@ router.post("/add", async (req, res) => {
 
 });
 
+
+router.put("/updstatus", (req,res) => {
+  const { id, stutus } = req.body 
+  Order.findByPk(id)
+  .then((order) => {
+    order.status = "preparing";
+    console.info("Salvando order");
+    order
+      .save()
+      .then((_) => {
+        console.info("redirect success");
+          return res.status(200).json({message:"Pedido en preparacion"});
+      })
+      .catch((err) => {
+        console.error("error al salvar", err);
+             return res.status(400).json({message:"No se pudo cambiar el estado"});
+        );
+      });
+  })
+  .catch((err) => {
+    console.error("error al buscar", err);
+    return res.status(400).json({message:"No se encontró el pedido"});
+
+  });
+
+})
+
 module.exports = router;
