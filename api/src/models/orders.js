@@ -14,6 +14,10 @@ module.exports = function (sequelize) {
             type: DataTypes.STRING,
             allowNull: false
         },
+        noteclient: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
         subtotal: {
             type: DataTypes.FLOAT,
             allowNull: false
@@ -23,6 +27,14 @@ module.exports = function (sequelize) {
             allowNull: false
         },
         delivery: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        sended: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        delivered: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
@@ -45,7 +57,10 @@ module.exports = function (sequelize) {
         ordercart: {
             type: DataTypes.STRING,
             allowNull: false
-        }
-
+        },
+        noteadmin: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
     })
 }
