@@ -1,47 +1,38 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./orderAdmin.css";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import { prepOrder } from "../../store/actions/orders";
-import swal from "sweetalert2";
 
-const OrderAdminProcess = () => {
-  const dispatch = useDispatch();
+const OrderAdminFinish
+ = () => {
+  const dispatch = useDispatch()
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
 
-  const handleClickPrep = async (e) => {
-    e.preventDefault();
+  const handleClick = (e) => {
+    e.preventDefault()
     const objStatus = {
       id: pedidoAdmin[0].id,
-      status: "prepared",
-    };
+      status: "done"
+    }
+    dispatch(prepOrder(objStatus))
+    window.print()
+  }
 
-    window.print();
-
-    await dispatch(prepOrder(objStatus));
-    window.history.go(-1);
-  };
-
-  if (!localStorage.getItem("userInfo"))
-    return (
-      <Link to="/loginadmin">
-        <h5>Debe estar logueado</h5>
-      </Link>
-    );
-
+  if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
+  
   if (!pedidoAdmin[0]) return <> Cargando... </>;
 
   return (
     <>
       <div className="contenOrder">
         <div className="titleOrder">
-          <h2>
-            Pedido{" "}
-            {!pedidoAdmin[0].ordercart
-              ? "Tomando pedido..."
-              : pedidoAdmin[0].ordercart}
-            {" - Enviar/Retira"}
-          </h2>
+        <h2>
+          Pedido{" "}
+          {!pedidoAdmin[0].ordercart
+            ? "Tomando pedido..."
+            : pedidoAdmin[0].ordercart}{" - Entregado"}
+        </h2>
         </div>
         <div>
           {!pedidoAdmin[0].client
@@ -95,23 +86,12 @@ const OrderAdminProcess = () => {
             : "Paga al recibir pedido"}
         </div>{" "}
         <div>
-          <button className="btn btn-primary" onClick={handleClickPrep}>
-            {" "}
-            Enviar/Retira{" "}
-          </button>
-          <button
-            className="btn btn-link"
-            onClick={() => {
-              window.history.go(-1);
-            }}
-          >
-            {" "}
-            Volver{" "}
-          </button>
+          <button className="btn btn-primary"  onClick={handleClick}> Pedido completado </button>
+          <button className="btn btn-link" onClick={ () => { window.history.go(-1); }}> Volver </button>
         </div>
       </div>
     </>
   );
 };
 
-export default OrderAdminProcess;
+export default OrderAdminFinish;

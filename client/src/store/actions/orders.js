@@ -33,8 +33,7 @@ export const getAllOrders = () => async (dispatch) => {
 
   export const prepOrder = (order) => async (dispatch) => {
     try {
-      console.log("trying")
-      const { data } = await axios.pus(`${REACT_APP_API}orders/update`,{order});
+      const { data } = await axios.put(`${REACT_APP_API}orders/updstatus`,{order});
       dispatch({ type: "PREP_ORDER_ADMIN", payload: data });
     } catch (err) {
       alert(

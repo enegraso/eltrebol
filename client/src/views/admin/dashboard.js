@@ -5,8 +5,28 @@ import { Link } from "react-router-dom";
 import "./dashboard.css";
 import { BiLogOut } from "react-icons/bi";
 import OrdersAdmin from "../../components/OrdersAdmin/OrdersAdmin";
+import swal from 'sweetalert2'
 
 const Dashboard = (props) => {
+
+  const handleClick = (e) => {
+      swal
+        .fire({
+          title: "Realmente desea salir?",
+          showDenyButton: true,
+          showCancelButton: false,
+          confirmButtonText: `Sí`,
+          icon: "question",
+          // denyButtonText: `Cancelar`,
+        })
+        .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            props.logOut(localStorage.getItem("userInfo", JSON.stringify("id")))
+          } 
+        });
+  }
+
   return (
     <>
       <div className="boxdash">
@@ -14,11 +34,7 @@ const Dashboard = (props) => {
           Hola {props.userDetail.name}{" "}
           <button
             className="btn btn-light"
-            onClick={() =>
-              props.logOut(
-                localStorage.getItem("userInfo", JSON.stringify("id"))
-              )
-            }
+            onClick={handleClick}
           >
             <BiLogOut />
           </button>
@@ -35,11 +51,11 @@ const Dashboard = (props) => {
           </div>
           <div className="boxOrder" style={ {"border": "1px solid green"}}>
             <h5>Pedidos en proceso/armando</h5>
-            <OrdersAdmin status="processing" />
+            <OrdersAdmin status="preparing" />
           </div>
           <div className="boxOrder" style={ {"border": "1px solid blue"}}>
             <h5>Pedidos enviados/en espera</h5>
-            <OrdersAdmin status="delivery" />
+            <OrdersAdmin status="prepared" />
           </div>
           <div className="boxOrder" style={ {"border": "1px solid greenyellow"}}>
             <h5>Pedidos terminados y entregados</h5>

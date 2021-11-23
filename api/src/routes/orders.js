@@ -120,10 +120,11 @@ router.post("/add", async (req, res) => {
 
 
 router.put("/updstatus", (req,res) => {
-  const { id, stutus } = req.body 
+  const { id, status } = req.body.order 
+  console.log(req.body)
   Order.findByPk(id)
   .then((order) => {
-    order.status = "preparing";
+    order.status = status;
     console.info("Salvando order");
     order
       .save()
@@ -134,7 +135,6 @@ router.put("/updstatus", (req,res) => {
       .catch((err) => {
         console.error("error al salvar", err);
              return res.status(400).json({message:"No se pudo cambiar el estado"});
-        );
       });
   })
   .catch((err) => {
