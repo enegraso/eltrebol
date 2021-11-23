@@ -27,7 +27,7 @@ const DeleteProduct = () => {
        } else 
        {
           swal.fire({
-             title: 'Ops! No se pudo borrar el producto',
+             title: localStorage.getItem("productDeleted"),
              confirmButtonText: `Ok`,
              icon: 'error'
              // denyButtonText: `Cancelar`,

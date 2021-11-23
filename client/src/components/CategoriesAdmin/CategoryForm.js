@@ -68,7 +68,7 @@ const CategoryForm = (props) => {
     } else 
     {
        swal.fire({
-          title: 'Ops! No se pudo agregar la categoría',
+          title: localStorage.getItem("categoryAdded"),
           confirmButtonText: `Ok`,
           icon: 'error'
           // denyButtonText: `Cancelar`,

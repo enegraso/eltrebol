@@ -1,7 +1,7 @@
 var express = require("express");
 
 // Defino el modelo user para utilizarlo en las rutas correspondientes
-const { Category } = require("../models/index");
+const { Category, Product } = require("../models/index");
 
 var router = express.Router();
 
@@ -34,7 +34,7 @@ router.post("/add", async (req, res) => {
 
 router.put("/update", async (req, res) => {
   const { id, category, description } = req.body.cate;
-  console.log(req.body.cate)
+  console.log(req.body.cate);
   if (!category || category === "") {
     return res
       .status(400)
@@ -96,11 +96,25 @@ router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
   if (!id) return res.status(400).send({ message: "Debe ingresar categoría" });
+
+  let producSocios = await Category.findAll({
+    where: { id: id },
+    include: { model: Product },
+  }).then((s) => {
+    if (s[0] && s[0].products.length > 0) {
+      return s[0].products.length
+    } else return 0
+  });
+ 
   const existCat = await Category.findOne({
     where: {
       id,
     },
   });
+
+  if (producSocios > 0) {
+    return res.status(400).json({message:"No se puede eliminar, productos asociados"})
+  } else {
   if (existCat) {
     try {
       let delCategory = await Category.destroy({
@@ -119,8 +133,8 @@ router.delete("/delete/:id", async (req, res) => {
     }
   } else {
     return res.status(400).json({ message: "Categoría inexistente" });
-  }
-});
-
+  } 
+}
+ });
 
 module.exports = router;

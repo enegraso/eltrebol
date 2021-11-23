@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../store/actions/users";
 import swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export function validate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -101,6 +102,8 @@ const UserForm = () => {
     name: userAdmin.name,
     email: userAdmin.email ? userAdmin.email : "",
   });
+
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
 
   if (!userAdmin) return <> Cargando... </>;
 

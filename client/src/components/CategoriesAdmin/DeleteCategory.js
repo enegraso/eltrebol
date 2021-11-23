@@ -26,7 +26,7 @@ const DeleteCategory = () => {
    } else 
    {
       swal.fire({
-         title: 'Ops! No se pudo borrar la categoría',
+         title: localStorage.getItem("categoryDeleted"),
          confirmButtonText: `Ok`,
          icon: 'error'
          // denyButtonText: `Cancelar`,

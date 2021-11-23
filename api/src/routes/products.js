@@ -1,7 +1,7 @@
 const express = require("express");
 const { Op } = require("sequelize");
 // Defino el modelo user para utilizarlo en las rutas correspondientes
-const { Product, Category } = require("../models/index");
+const { Product, Category, OrderLine } = require("../models/index");
 
 const router = express.Router();
 
@@ -27,12 +27,12 @@ router.get("/:id", (req, res) => {
 });
 
 //producto por categoria
-router.get("/bycat/:category", (req, res) => {
+router.get("/bycat/:category", async (req, res) => {
   let { category } = req.params;
   if (!category || category === "")
     return res.status(400).send("Por favor, ingrese categoría");
-  Category.findAll({
-    where: { category: category },
+  await Category.findAll({
+    where: {  category: category },
     include: { model: Product },
   }).then((s) => {
     if (s.length === 0) 
@@ -109,8 +109,8 @@ router.post("/add", async (req, res) => {
         "Por favor, ingrese de a cuanto incrementar la cantidad a vender, del producto",
     });
   }
-  const existencia = exist === "false" ? true : false
-  const esoferta = isOfert === "false" ? true : false
+  const existencia = exist === "false" || exist === true ? true : false
+  const esoferta = isOfert === "false" || isOfert === true ? true : false
   const objProdAdd = {
     name,
     description,
@@ -145,7 +145,6 @@ router.post("/add", async (req, res) => {
     return res.status(400).send({ message: "Producto existente" });
   }
 });
-
 
 
 //modificar producto
@@ -227,11 +226,24 @@ router.delete('/delete/:id', async (req,res) => {
   console.log(id);
   if (!id)
     return res.status(400).send({ message: "Debe ingresar producto" });
+
+    let orderLineSocias = await Product.findAll({
+      where: { id: id },
+      include: { model: OrderLine },
+    }).then((s) => {
+       if (s[0] && s[0].orderlines.length > 0) {
+        return s[0].orderlines.length
+      } else return 0
+    });
   const existProd = await Product.findOne({
     where: {
       id,
     },
   });
+
+  if (orderLineSocias > 0) {
+    return res.status(400).json({message:"No se puede eliminar, pedidos asociados"})
+  } else {
   if (existProd) {
     try {
       let delProduct = await Product.destroy({
@@ -248,7 +260,7 @@ router.delete('/delete/:id', async (req,res) => {
     }
   } else {
     return res.status(400).json({ message: "Producto inexistente" });
-  }
+  } }
 })
 
 module.exports = router;

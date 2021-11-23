@@ -79,7 +79,7 @@ const CategoryFormMod = () => {
         });
     } else {
       swal.fire({
-        title: "Ops! No se pudo modificar la categoría",
+        title: localStorage.getItem("categoryUpdated"),
         confirmButtonText: `Ok`,
         icon: "error",
         // denyButtonText: `Cancelar`,

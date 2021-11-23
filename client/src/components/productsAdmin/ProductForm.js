@@ -83,7 +83,7 @@ const ProductForm = (props) => {
     } else {
       swal
       .fire({
-        title: "No se pudo cargar el producto",
+        title: localStorage.getItem("productAdded"),
         confirmButtonText: `Aceptar`,
         icon: "error",
         // denyButtonText: `Cancelar`,

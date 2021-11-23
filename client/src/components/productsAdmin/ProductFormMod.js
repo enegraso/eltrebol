@@ -101,7 +101,7 @@ const ProductFormMod = () => {
       } else {
           swal
           .fire({
-            title: "No se pudo modificar el producto",
+            title: localStorage.getItem("productUpdated"),
             confirmButtonText: `Ok`,
             icon: "error",
             // denyButtonText: `Cancelar`,
