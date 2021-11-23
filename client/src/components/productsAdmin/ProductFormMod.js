@@ -31,9 +31,9 @@ const ProductFormMod = () => {
   const [input, setInput] = React.useState({
     name: "",
     description: "",
-    exist: "",
+    exist: false,
     price: "",
-    isOfert: "",
+    isofert: false,
     image: "",
     units: "unidad",
     minunit: 1,
@@ -47,11 +47,13 @@ const ProductFormMod = () => {
       description: productoAdmin.description,
       exist: productoAdmin.exist,
       price: productoAdmin.price,
-      isOfert: productoAdmin.isOfert,
+      isofert: productoAdmin.isOfert,
       image: productoAdmin.image,
       units: productoAdmin.units,
     }); 
-    console.log("PRODUCTOADMIN", productoAdmin);
+    document.getElementById('exist').checked = productoAdmin.exist
+    document.getElementById('isofert').checked = productoAdmin.isOfert
+    console.log("PRODUCTOADMIN", productoAdmin.isOfert);
   }, [productoAdmin]);
 
   const handleInputChange = function (e) {
@@ -77,7 +79,7 @@ const ProductFormMod = () => {
       description: input.description,
       exist: input.exist,
       price: input.price,
-      isOfert: input.isOfert,
+      isOfert: input.isofert,
       image: input.image,
       units: input.units,
     }
@@ -86,7 +88,7 @@ const ProductFormMod = () => {
     if (localStorage.getItem("productUpdated") === "true") {
       swal
         .fire({
-          title: "Producto momdificado",
+          title: "Producto modificado",
           confirmButtonText: `Aceptar`,
           icon: "success",
           // denyButtonText: `Cancelar`,
@@ -150,7 +152,8 @@ const ProductFormMod = () => {
           <div class="mb-3">
             <label class="form-check-label">Hay stock </label>
             <input
-              lass="form-check-input"
+              id="exist"
+              class="form-check-input"
               type="checkbox"
               name="exist"
               onChange={handleInputChange}
@@ -172,10 +175,12 @@ const ProductFormMod = () => {
           <div class="mb-3">
             <label class="form-check-label">Es Oferta </label>
             <input
-              lass="form-check-input"
+              id="isofert"
+              class="form-check-input"
               type="checkbox"
               name="isofert"
               onChange={handleInputChange}
+
               value={input.isofert}
             ></input>
           </div>

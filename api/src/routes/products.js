@@ -181,8 +181,8 @@ router.put("/update", async (req, res) => {
       .send({ message: "Por favor, ingrese nombre de cantidad del producto" });
   }
 
-  const existencia = exist === "false" ? true : false
-  const esoferta = isOfert === "false" ? true : false
+  const existencia = exist === "false" || exist === true ? true : false
+  const esoferta = isOfert === "false" || isOfert === true ? true : false
   const objProdUpd = {
     name,
     description,

@@ -19,16 +19,16 @@ const OrdersAdmin = (props) => {
          {props.allOrders.map(order => {
             if (order.status === props.status) {
             if (props.status === "pending")
-            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
+            return <div key={ order.id }>{order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
             <Link to={`/admin/order/${order.id}`}><button className="btn btn-primary" onClick={ () => props.getOrder(order.id) }> Preparar Pedido </button> </Link></div>
             if (props.status === "preparing")
-            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
+            return <div key={ order.id }>{order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
             <Link to={`/admin/orderprocess/${order.id}`}><button className="btn btn-primary" onClick={ () => props.getOrder(order.id) }> Enviar/Retira Pedido </button> </Link></div>
             if (props.status === "prepared")
-            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
+            return <div key={ order.id }>{order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
             <Link to={`/admin/orderdelivered/${order.id}`}><button className="btn btn-primary" onClick={ () => props.getOrder(order.id) }> Terminar Pedido </button> </Link></div>
             if (props.status === "done")
-            return <div key={ order.id }>{ order.id } - {order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
+            return <div key={ order.id }>{order.client} ({order.cellphone}) - $ {order.subtotal} { order.delivery === true ? <MdDeliveryDining /> : <HiLocationMarker /> }{ order.payd === true ? <MdAttachMoney /> : <MdMoneyOff /> }
             <Link to={`/admin/order/${order.id}`}><button  className="btn btn-primary" onClick={ () => props.getOrder(order.id) }> Ver Pedido </button> </Link></div>
             }
          })}
