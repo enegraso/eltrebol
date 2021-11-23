@@ -46,19 +46,19 @@ const Dashboard = (props) => {
         </div>
         <div className="contentOrders">
           <div className="boxOrder" style={ {"border": "1px solid forestgreen"}}>
-            <h5>Pedidos pendientes</h5>
+            <div className="boxTitleOrder"><h5>Pedidos pendientes</h5></div>
             <OrdersAdmin status="pending" />
           </div>
           <div className="boxOrder" style={ {"border": "1px solid green"}}>
-            <h5>Pedidos en proceso/armando</h5>
+          <div className="boxTitleOrder"><h5>Pedidos en proceso/armando</h5></div>
             <OrdersAdmin status="preparing" />
           </div>
           <div className="boxOrder" style={ {"border": "1px solid blue"}}>
-            <h5>Pedidos enviados/en espera</h5>
+          <div className="boxTitleOrder"><h5>Pedidos enviados/en espera</h5></div>
             <OrdersAdmin status="prepared" />
           </div>
           <div className="boxOrder" style={ {"border": "1px solid greenyellow"}}>
-            <h5>Pedidos terminados y entregados</h5>
+          <div className="boxTitleOrder"><h5>Pedidos terminados y entregados</h5></div>
             <OrdersAdmin status="done" />
           </div>
         </div>

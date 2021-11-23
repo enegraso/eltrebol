@@ -20,7 +20,7 @@ const OrderAdmin = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    window.print();
+    /* window.print(); */
     const objStatus = {
       id: pedidoAdmin[0].id,
       status: "preparing",
@@ -138,6 +138,10 @@ const OrderAdmin = () => {
           ) : (
             ""
           )}
+              <button className="btn btn-primary" onClick={() => window.print() }>
+              {" "}
+              Imprimir{" "}
+            </button>
           {pedidoAdmin[0].status === "pending" ? (
             <button className="btn btn-secondary" onClick={handleClickRej}>
               {" "}

@@ -80,7 +80,13 @@ const ImageProduct = () => {
           >
             {" "}
             Cargar Imagen{" "}
-          </button>{" "}
+          </button>
+          {photoData && (
+            <Link to="/admin/addproduct">
+              <button class="btn btn-success"> Continuar alta </button>
+            </Link>
+          )}
+          {" "}
           o seguir{" "}
           <Link to="/admin/addproduct">
             <button className="btn btn-secondary" onClick={sinImagen}>
@@ -88,11 +94,12 @@ const ImageProduct = () => {
               sin magen{" "}
             </button>
           </Link>{" "}
-          {photoData && (
-            <Link to="/admin/addproduct">
-              <button class="btn btn-success"> Continuar alta </button>
-            </Link>
-          )}
+          <Link to="/admin/addproduct">
+            <button className="btn btn-link" onClick={() => window.history.go(-1)}>
+              {" "}
+              Volver{" "}
+            </button>
+          </Link>{" "}
         </div>
         <div class="mb-3">
           <Image cloudName="dyejl1qrj" publicId={photoData}></Image>
