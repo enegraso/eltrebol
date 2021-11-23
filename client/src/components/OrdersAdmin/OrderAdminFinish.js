@@ -16,7 +16,7 @@ const OrderAdminFinish
       status: "done"
     }
     dispatch(prepOrder(objStatus))
-    window.print()
+/*     window.print() */
   }
 
   if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
@@ -87,6 +87,10 @@ const OrderAdminFinish
         </div>{" "}
         <div>
           <button className="btn btn-primary"  onClick={handleClick}> Pedido completado </button>
+          <button className="btn btn-primary" onClick={() => window.print() }>
+              {" "}
+              Imprimir{" "}
+            </button>
           <button className="btn btn-link" onClick={ () => { window.history.go(-1); }}> Volver </button>
         </div>
       </div>

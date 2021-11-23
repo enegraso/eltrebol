@@ -16,7 +16,7 @@ const OrderAdminProcess = () => {
       status: "prepared",
     };
 
-    window.print();
+/*     window.print(); */
 
     await dispatch(prepOrder(objStatus));
     window.history.go(-1);
@@ -99,6 +99,10 @@ const OrderAdminProcess = () => {
             {" "}
             Enviar/Retira{" "}
           </button>
+          <button className="btn btn-primary" onClick={() => window.print() }>
+              {" "}
+              Imprimir{" "}
+            </button>
           <button
             className="btn btn-link"
             onClick={() => {
