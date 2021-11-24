@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
@@ -31,9 +31,9 @@ const ProductFormMod = () => {
   const [input, setInput] = React.useState({
     name: "",
     description: "",
-    exist: "",
+    exist: false,
     price: "",
-    isOfert: "",
+    isofert: false,
     image: "",
     units: "unidad",
     minunit: 1,
@@ -47,11 +47,13 @@ const ProductFormMod = () => {
       description: productoAdmin.description,
       exist: productoAdmin.exist,
       price: productoAdmin.price,
-      isOfert: productoAdmin.isOfert,
+      isofert: productoAdmin.isOfert,
       image: productoAdmin.image,
       units: productoAdmin.units,
     }); 
-    console.log("PRODUCTOADMIN", productoAdmin);
+    document.getElementById('exist').checked = productoAdmin.exist
+    document.getElementById('isofert').checked = productoAdmin.isOfert
+    console.log("PRODUCTOADMIN", productoAdmin.isOfert);
   }, [productoAdmin]);
 
   const handleInputChange = function (e) {
@@ -77,7 +79,7 @@ const ProductFormMod = () => {
       description: input.description,
       exist: input.exist,
       price: input.price,
-      isOfert: input.isOfert,
+      isOfert: input.isofert,
       image: input.image,
       units: input.units,
     }
@@ -86,7 +88,7 @@ const ProductFormMod = () => {
     if (localStorage.getItem("productUpdated") === "true") {
       swal
         .fire({
-          title: "Producto momdificado",
+          title: "Producto modificado",
           confirmButtonText: `Aceptar`,
           icon: "success",
           // denyButtonText: `Cancelar`,
@@ -99,7 +101,7 @@ const ProductFormMod = () => {
       } else {
           swal
           .fire({
-            title: "No se pudo modificar el producto",
+            title: localStorage.getItem("productUpdated"),
             confirmButtonText: `Ok`,
             icon: "error",
             // denyButtonText: `Cancelar`,
@@ -107,6 +109,8 @@ const ProductFormMod = () => {
       }
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
+
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
 
   if (!productoAdmin) return <> Loading... </>;
 
@@ -148,7 +152,8 @@ const ProductFormMod = () => {
           <div class="mb-3">
             <label class="form-check-label">Hay stock </label>
             <input
-              lass="form-check-input"
+              id="exist"
+              class="form-check-input"
               type="checkbox"
               name="exist"
               onChange={handleInputChange}
@@ -170,10 +175,12 @@ const ProductFormMod = () => {
           <div class="mb-3">
             <label class="form-check-label">Es Oferta </label>
             <input
-              lass="form-check-input"
+              id="isofert"
+              class="form-check-input"
               type="checkbox"
               name="isofert"
               onChange={handleInputChange}
+
               value={input.isofert}
             ></input>
           </div>

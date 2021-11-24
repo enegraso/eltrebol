@@ -19,3 +19,30 @@
     align-items: center;
     justify-content: center;
 }
+
+.contentOrders {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    border: 2px dashed greenyellow;
+    margin:auto
+}
+
+.boxOrder {
+    display: flex;
+    flex-wrap: wrap;
+    width: 370px;
+    margin: auto;
+    height: 425px;
+    overflow: auto;
+}
+
+.boxTitleOrder {
+    display: flex;
+    height: 2em;
+    width: 100%;
+    background-color: forestgreen;
+    color: ghostwhite;
+    align-items: center;
+    justify-content: center;
+}

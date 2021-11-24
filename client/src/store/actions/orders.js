@@ -53,3 +53,16 @@ export const getOrderGuest = (id) => async (dispatch) => {
     );
   }
 };
+
+  export const prepOrder = (order) => async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${REACT_APP_API}orders/updstatus`,{order});
+      dispatch({ type: "PREP_ORDER_ADMIN", payload: data });
+    } catch (err) {
+      alert(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message
+      );
+    }
+  };

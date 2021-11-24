@@ -32,7 +32,20 @@ const ImageProduct = () => {
         console.log(error);
       });
   };
-  const formulario = async (e) => {};
+
+  const sinImagen = async (e) => {
+    setLoading(false);
+    await dispatch(urlPost(""));
+  };
+
+  if (!localStorage.getItem("userInfo"))
+    return (
+      <>
+        <Link to="/loginadmin">
+          <h5>Debe estar logueado</h5>
+        </Link>
+      </>
+    );
 
   return (
     <div className="imageup">
@@ -42,7 +55,9 @@ const ImageProduct = () => {
           Imagen del producto
         </div>
         <div class="mb-3">
-          <label class="form-label">Elegir archivo de imagen para producto</label>
+          <label class="form-label">
+            Elegir archivo de imagen para producto
+          </label>
           {/* <input name="image" placeholder="Upload a photo" className="container" type="file" /> */}
           <input
             class="form-control btn btn-outline-success"
@@ -66,18 +81,31 @@ const ImageProduct = () => {
             {" "}
             Cargar Imagen{" "}
           </button>
-          {" "}
           {photoData && (
             <Link to="/admin/addproduct">
               <button class="btn btn-success"> Continuar alta </button>
             </Link>
           )}
+          {" "}
+          o seguir{" "}
+          <Link to="/admin/addproduct">
+            <button className="btn btn-secondary" onClick={sinImagen}>
+              {" "}
+              sin magen{" "}
+            </button>
+          </Link>{" "}
+          <Link to="/admin/addproduct">
+            <button className="btn btn-link" onClick={() => window.history.go(-1)}>
+              {" "}
+              Volver{" "}
+            </button>
+          </Link>{" "}
         </div>
         <div class="mb-3">
-        <Image cloudName="dyejl1qrj" publicId={photoData}></Image>
+          <Image cloudName="dyejl1qrj" publicId={photoData}></Image>
         </div>
         <div class="mb-3">
-{/*           {" "}
+          {/*           {" "}
           {photoData && (
             <Link to="/admin/addproduct">
               <button class="btn btn-success"> Continuar alta </button>

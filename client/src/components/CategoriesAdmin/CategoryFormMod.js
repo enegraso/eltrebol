@@ -5,6 +5,7 @@ import swal from "sweetalert2";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export function validatecate(input) {
   var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
@@ -78,7 +79,7 @@ const CategoryFormMod = () => {
         });
     } else {
       swal.fire({
-        title: "Ops! No se pudo modificar la categoría",
+        title: localStorage.getItem("categoryUpdated"),
         confirmButtonText: `Ok`,
         icon: "error",
         // denyButtonText: `Cancelar`,
@@ -86,6 +87,7 @@ const CategoryFormMod = () => {
     }
   }
 
+  if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
     if (!cateAdmin) return <> Cargando... </> 
 
   return (

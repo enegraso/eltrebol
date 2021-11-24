@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { deleteProduct } from "../../store/actions/products"
 import './products.css'
 import swal from 'sweetalert2'
+import { Link } from "react-router-dom"
 
 
 const DeleteProduct = () => {
@@ -26,13 +27,16 @@ const DeleteProduct = () => {
        } else 
        {
           swal.fire({
-             title: 'Ops! No se pudo borrar el producto',
+             title: localStorage.getItem("productDeleted"),
              confirmButtonText: `Ok`,
              icon: 'error'
              // denyButtonText: `Cancelar`,
            })
        }
       }
+
+    if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
+
 
     if (!prodtodelete) return <> Cargando... </>
 

@@ -72,7 +72,7 @@ export function deleteProduct(id) {
         localStorage.setItem("productDeleted", true);
       })
       .catch((err) => {
-        localStorage.setItem("productDeleted", false);
+        localStorage.setItem("productDeleted", err.response.data.message);
       });
   };
 }
@@ -85,7 +85,7 @@ export const prodAdd = (producto) => async (dispatch) => {
     dispatch({ type: "PROD_ADMIN_ADD", payload: data });
     localStorage.setItem("productAdded", true);
   } catch (err) {
-    localStorage.setItem("productAdded", false);
+    localStorage.setItem("productAdded", err.response.data.message);
     console.log(
       err.response && err.response.data.message
         ? err.response.data.message
@@ -101,7 +101,7 @@ export const prodMod = (producto) => async (dispatch) => {
     dispatch({ type: "PROD_ADMIN_MOD", payload: data });
     localStorage.setItem("productUpdated", true);
   } catch (err) {
-    localStorage.setItem("productUpdated", false);
+    localStorage.setItem("productUpdated", err.response.data.message);
     console.log(
       err.response && err.response.data.message
         ? err.response.data.message

@@ -20,6 +20,8 @@ import CategoryFormMod from "./components/CategoriesAdmin/CategoryFormMod";
 import ProbarPago from "./components/pruebaCheckout";
 import Paso1 from "./components/checkout/paso1";
 /* import Paso2 from "./components/checkout/paso2"; */
+import OrderAdminProcess from "./components/OrdersAdmin/OrderAdminProcess";
+import OrderAdminFinish from "./components/OrdersAdmin/OrderAdminFinish";
 
 function App() {
   return (
@@ -41,6 +43,8 @@ function App() {
         <Route path="/admin/modcategory" element={<CategoryFormMod />} />
         <Route path="/admin/delcategory" element={<DeleteCategory />} />
         <Route path="/admin/order/:id" element={<OrderAdmin />} />
+        <Route path="/admin/orderprocess/:id" element={<OrderAdminProcess />} />
+        <Route path="/admin/orderdelivered/:id" element={<OrderAdminFinish />} />
         <Route path="/loginadmin" element={<LoginAdmin />} />
         <Route path="/admin/user" element={<UserForm />} />
         {/* Solo para aprender a implementar el checout con MP */}

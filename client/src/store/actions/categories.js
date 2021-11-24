@@ -24,7 +24,7 @@ export const getAllCategories = () => async (dispatch) => {
       dispatch({ type: "CATE_ADMIN_ADD", payload: data });
       localStorage.setItem("categoryAdded",true)
     } catch (err) {
-      localStorage.setItem("categoryAdded",false)
+      localStorage.setItem("categoryAdded",err.response.data.message)
       console.log(
         err.response && err.response.data.message
           ? err.response.data.message
@@ -55,7 +55,7 @@ export const getAllCategories = () => async (dispatch) => {
         dispatch({ type: "DELETE_CATEGORY", payload: id });
         localStorage.setItem("categoryDeleted",true)
       }).catch(err => {
-        localStorage.setItem("categoryDeleted",false)
+        localStorage.setItem("categoryDeleted",err.response.data.message)
         console.log(
           err.response && err.response.data.message
             ? err.response.data.message
@@ -74,7 +74,7 @@ export const getAllCategories = () => async (dispatch) => {
         localStorage.setItem("categoryUpdated",true)
       }
       catch(err) {
-        localStorage.setItem("categoryUpdated",false)
+        localStorage.setItem("categoryUpdated",err.response.data.message)
         console.log(
           err.response && err.response.data.message
             ? err.response.data.message

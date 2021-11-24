@@ -10,6 +10,8 @@ const ProductsAdmin = (props) => {
     props.getAllProducts();
   }, []);
 
+  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
+  
   if (!props.allProducts) return <> Cargando... </>;
 
   return (

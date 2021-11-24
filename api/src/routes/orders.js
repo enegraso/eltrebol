@@ -85,9 +85,10 @@ router.post("/add", async (req, res) => {
   try {
     let newPedido = await Order.create(objPedidoAdd);
     
+    console.log(newPedido.id)
     let findPedido = await Order.findOne({
-      where: { ordercart }
-    })
+      where: { id: newPedido.id }
+    }) 
 
     idpedido = findPedido.id 
     console.log(idpedido)
@@ -97,8 +98,6 @@ router.post("/add", async (req, res) => {
       .status(500)
       .json({ message: "No se pudo guardar el pedido " + err });
   }
-
-
 
   products.map(async (product) => {
     let objOrderLine = {
@@ -117,5 +116,32 @@ router.post("/add", async (req, res) => {
   return res.status(200).json({ message: "Pedido guardado exitosamente ", order: objPedidoAdd });
 
 });
+
+
+router.put("/updstatus", (req,res) => {
+  const { id, status } = req.body.order 
+  console.log(req.body)
+  Order.findByPk(id)
+  .then((order) => {
+    order.status = status;
+    console.info("Salvando order");
+    order
+      .save()
+      .then((_) => {
+        console.info("redirect success");
+          return res.status(200).json({message:"Pedido en preparacion"});
+      })
+      .catch((err) => {
+        console.error("error al salvar", err);
+             return res.status(400).json({message:"No se pudo cambiar el estado"});
+      });
+  })
+  .catch((err) => {
+    console.error("error al buscar", err);
+    return res.status(400).json({message:"No se encontró el pedido"});
+
+  });
+
+})
 
 module.exports = router;

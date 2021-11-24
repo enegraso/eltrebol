@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 // const cors = require("cors"); // para poder hacer peticiones desde cualquier punto (tambien se puede configurar de donde recibir las peticiones)
-const { conn } = require("./src/models/index.js");
+const { conn, User, Product, Order, Category, OrderLine } = require("./src/models/index.js");
 const routes = require("./src/routes/index");
 
 const app = express();
@@ -19,9 +19,28 @@ app.use(setHeaders);
 
 app.use("/", routes);
 
-conn.sync({ force: false }).then(() => {
+const {
+  initialCategories,
+  initialProducts,
+  initialUsers,
+  initialOrders,
+  initialOrderlines
+} = require("./src/seed.js");
+
+
+conn.sync({ force: true }).then(() => {
   console.log("Connect");
   app.listen(PORT, () => {
     console.log(`Listen on port ${PORT}`);
   }); /*  */
-});
+}).then(() => {
+  User.bulkCreate(initialUsers)
+}).then(() => {
+  Category.bulkCreate(initialCategories)
+}).then(() => {
+  Product.bulkCreate(initialProducts)
+}).then(() => {
+  Order.bulkCreate(initialOrders)
+}).then(() => {
+  OrderLine.bulkCreate(initialOrderlines)
+}).catch((error) => console.log('Error al bulkcreate', error))
