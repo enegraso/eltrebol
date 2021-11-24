@@ -2,6 +2,7 @@ const initialState = {
     allOrders:[],
     orderAdmin: {},
     orderLineAdmin: [],
+    orderGuest: {},
 };
 
 export default function orderReducer(state = initialState, action){
@@ -16,6 +17,12 @@ export default function orderReducer(state = initialState, action){
                 ...state,
                 orderAdmin: action.payload
             }
+        case 'GET_ORDER':
+            return{
+                ...state,
+                orderGuest: action.payload
+            }
+
         default: return state;
     }
 }

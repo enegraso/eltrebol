@@ -18,6 +18,8 @@ import DeleteCategory from "./components/CategoriesAdmin/DeleteCategory";
 import UserForm from "./components/UserAdmin/UserForm";
 import CategoryFormMod from "./components/CategoriesAdmin/CategoryFormMod";
 import ProbarPago from "./components/pruebaCheckout";
+import Paso1 from "./components/checkout/paso1";
+/* import Paso2 from "./components/checkout/paso2"; */
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/category" element={<Category />} />
         <Route path="/carrito" element={<Cart />} />
+        <Route path="/paso1" element={<Paso1/>}/>
+        {/* <Route path="/paso2" element={<Paso2/>}/> */}
         <Route path="/admin/products" element={<ProductsAdmin />} />
         <Route path="/admin/categories" element={<CategoriesAdmin />} />
         <Route path="/admin/addimageprod" element={<ImageProduct />} />
