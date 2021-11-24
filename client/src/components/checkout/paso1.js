@@ -40,14 +40,14 @@ export default function Paso1(){
         console.log(guestOrder, precioTotal)
 
         dispatch(addOrder({
-        client:data.client,
-        address:data.address,
-        cellphone:data.cellphone,
-        subtotal:precioTotal,
-        products:guestOrder,
-        status:'pending',
-        delivery:false,
-        payd:false
+        'client':data.client,
+        'address':data.address,
+        'cellphone':data.cellphone,
+        'subtotal':precioTotal,
+        'products':guestOrder,
+        'status':'pending',
+        'delivery':false,
+        'payd':false
         }))
         e.target.reset();
     }

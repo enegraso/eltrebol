@@ -57,6 +57,9 @@ router.post("/add", async (req, res) => {
     delivery,
     payd,
   } = req.body;
+  
+  console.log(req.body);
+  
   if (!client || client === "")
     return res
       .status(400)
@@ -64,7 +67,7 @@ router.post("/add", async (req, res) => {
   if (!cellphone || cellphone.length !== 10)
     return res
       .status(400)
-      .json({ message: "Por favor, ingrese nombre su numero de telefono" });
+      .json({ message: "Por favor, ingrese su numero de telefono" });
   if (!address || address === "")
     return res
       .status(400)
@@ -101,10 +104,11 @@ router.post("/add", async (req, res) => {
 
   products.map(async (product) => {
     let objOrderLine = {
-      quantity: product.cantidad,
+      quantity: product.quantity,
       price: product.price,
-      subtotal: product.subtotal,
-      ordercart: product.ordercart,
+      image: product.image,
+      //subtotal: product.subtotal,
+      //ordercart: product.ordercart,
     };
     let findProduct = await Product.findOne({ where: { id: product.id } });
     /* console.log("trae esto", findProduct); */

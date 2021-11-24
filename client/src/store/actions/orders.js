@@ -33,7 +33,8 @@ export const getAllOrders = () => async (dispatch) => {
 
   export function addOrder(data) {
     return (dispatch) => {
-        return axios(`${REACT_APP_API}orders/add`, data)
+        console.log(data);
+        return axios.post(`${REACT_APP_API}orders/add`, data)
             .then(json => {
                 dispatch({ type: 'ADD_ORDER', payload: json });
             })
