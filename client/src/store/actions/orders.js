@@ -31,6 +31,30 @@ export const getAllOrders = () => async (dispatch) => {
     }
   };
 
+  export function addOrder(data) {
+    return (dispatch) => {
+        console.log(data);
+        return axios.post(`${REACT_APP_API}orders/add`, data)
+            .then(json => {
+                dispatch({ type: 'ADD_ORDER', payload: json });
+            })
+    }
+}
+
+export const getOrderGuest = (id) => async (dispatch) => {
+  try {
+    console.log("trying")
+    const { data } = await axios.get(`${REACT_APP_API}orders/`+id);
+    dispatch({ type: "GET_ORDER", payload: data });
+  } catch (err) {
+    alert(
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
+    );
+  }
+};
+
   export const prepOrder = (order) => async (dispatch) => {
     try {
       const { data } = await axios.put(`${REACT_APP_API}orders/updstatus`,{order});

@@ -5,7 +5,7 @@ import './carrito.css';
 import {RiDeleteBin5Fill} from 'react-icons/ri'
 import {getGuestCart, DecreaseGuestLine, removeGuestLine} from '../../store/actions/carrito';
 import saveToGuestCart from '../../store/actions/carrito';
-import {orderline} from '../../components/utils';
+import {orderline, total} from '../../components/utils';
 
 
 export default function Cart(){
@@ -30,16 +30,6 @@ export default function Cart(){
         return 0
     });
 
-    const total = (arr) => {
-        let t = 0;
-    
-      for (let i = 0; i < arr.length; i++) {
-    
-        t += arr[i].quantity*arr[i].price
-      }
-      return t;
-    }
-    
 
     return(
         <>
@@ -87,7 +77,9 @@ export default function Cart(){
                     <td>Total</td>
                     <td>${total(guestOrderlines)}</td>
                 </tr>
+        <Link to='/paso1'>
         <button className='btn btn-success'>Continuar</button>
+        </Link>
      {/*    <button className='btn btn-danger'><RiDeleteBin5Fill/></button> */}
             </table>
         </div>

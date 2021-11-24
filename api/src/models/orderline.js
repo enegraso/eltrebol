@@ -12,7 +12,11 @@ module.exports = function (sequelize) {
     },
     subtotal: {
       type: DataTypes.FLOAT,
-      allowNull: false,
+      allowNull: true,
+    },
+    image:{
+      type: DataTypes.STRING,
+      allowNull:true,
     },
     ordercart: {
       type: DataTypes.STRING,
