@@ -107,7 +107,7 @@ router.post("/add", async (req, res) => {
       quantity: product.quantity,
       price: product.price,
       image: product.image,
-      //subtotal: product.subtotal,
+      subtotal: product.price * product.quantity,
       //ordercart: product.ordercart,
     };
     let findProduct = await Product.findOne({ where: { id: product.id } });
