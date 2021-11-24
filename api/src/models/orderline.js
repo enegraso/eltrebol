@@ -16,7 +16,7 @@ module.exports = function (sequelize) {
     },
     ordercart: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   });
 };

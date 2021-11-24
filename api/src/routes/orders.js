@@ -85,9 +85,10 @@ router.post("/add", async (req, res) => {
   try {
     let newPedido = await Order.create(objPedidoAdd);
     
+    console.log(newPedido.id)
     let findPedido = await Order.findOne({
-      where: { ordercart }
-    })
+      where: { id: newPedido.id }
+    }) 
 
     idpedido = findPedido.id 
     console.log(idpedido)
@@ -97,8 +98,6 @@ router.post("/add", async (req, res) => {
       .status(500)
       .json({ message: "No se pudo guardar el pedido " + err });
   }
-
-
 
   products.map(async (product) => {
     let objOrderLine = {
