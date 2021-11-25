@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
 import {getAllProducts} from '../../store/actions/products';
+import Cart from '../carrito';
 
 export default function Home(){
 
@@ -21,6 +22,7 @@ export default function Home(){
         <div className='container'>
         <SearchBar/>
         { productos.length ? <ProductGrid loading={loading} items={productos}/> : <p>No se encontraron productos</p>}
+        <Cart />
         </div>
     )
 }
