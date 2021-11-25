@@ -6,6 +6,7 @@ export const productsEndpoint= REACT_APP_API + 'products/';
 export const productByIdEndpoint = productsEndpoint + ':id';
 export const productByCatEndpoint = productsEndpoint + 'bycat/:category';
 export const addProductEndpoint = productsEndpoint + 'add';
+export const stockProductEndpoint = productsEndpoint + 'stock'
 export const modifyProductEndpoint = productsEndpoint + 'update';
 
 // categories

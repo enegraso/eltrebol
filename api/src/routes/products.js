@@ -5,7 +5,6 @@ const { Product, Category, OrderLine } = require("../models/index");
 
 const router = express.Router();
 
-
 //todos los productos
 router.get("/", (req, res, next) => {
   Product.findAll()
@@ -15,13 +14,25 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
+//todos los productos para admin
+router.get("/admin", (req, res, next) => {
+  Product.findAll({ order: [['exist' , 'DESC']] })
+    .then((products) => {
+      res.send(products);
+    })
+    .catch(next);
+});
+
+
 //producto por id
 router.get("/:id", (req, res) => {
   let { id } = req.params;
   if (!id) return res.status(400).send("Este producto no existe");
   Product.findByPk(id).then((product) => {
-    if (!product) 
-      return res.status(400).json({ message: "No se encontró producto con id: " + id}); 
+    if (!product)
+      return res
+        .status(400)
+        .json({ message: "No se encontró producto con id: " + id });
     return res.status(200).json(product);
   });
 });
@@ -32,36 +43,35 @@ router.get("/bycat/:category", async (req, res) => {
   if (!category || category === "")
     return res.status(400).send("Por favor, ingrese categoría");
   await Category.findAll({
-    where: {  category: category },
+    where: { category: category },
     include: { model: Product },
   }).then((s) => {
-    if (s.length === 0) 
-      return res.status(400).json({ message: "No se encontró producto con categoria: " + category}); 
+    if (s.length === 0)
+      return res.status(400).json({
+        message: "No se encontró producto con categoria: " + category,
+      });
     res.json(s);
   });
 });
 
 // Obtener product por nombre aproximado
-router.get("/search/:search", async (req,res) => {
-  const { search } = req.params
+router.get("/search/:search", async (req, res) => {
+  const { search } = req.params;
   try {
     const getProdSearch = await Product.findAll({
       where: {
         name: {
-          [Op.iLike]: "%"+[search]+"%"
+          [Op.iLike]: "%" + [search] + "%",
         },
-      }
+      },
     });
     return res.send(getProdSearch);
   } catch (err) {
     return res.status(400).send({
-      message:
-        "No se pudo obtener producto"+err,
+      message: "No se pudo obtener producto" + err,
     });
   }
-  
-
-})
+});
 
 // Agregar producto
 router.post("/add", async (req, res) => {
@@ -77,7 +87,7 @@ router.post("/add", async (req, res) => {
     minunit,
     stepunit,
   } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   if (!name || name === "") {
     return res
       .status(400)
@@ -109,8 +119,8 @@ router.post("/add", async (req, res) => {
         "Por favor, ingrese de a cuanto incrementar la cantidad a vender, del producto",
     });
   }
-  const existencia = exist === "false" || exist === true ? true : false
-  const esoferta = isOfert === "false" || isOfert === true ? true : false
+  const existencia = exist === "false" || exist === true ? true : false;
+  const esoferta = isOfert === "false" || isOfert === true ? true : false;
   const objProdAdd = {
     name,
     description,
@@ -146,7 +156,6 @@ router.post("/add", async (req, res) => {
   }
 });
 
-
 //modificar producto
 router.put("/update", async (req, res) => {
   const {
@@ -162,9 +171,9 @@ router.put("/update", async (req, res) => {
     minunit,
     stepunit,
   } = req.body;
-  console.log(req.body)
-/*   const { id } = req.params;
- */  if (!name || name === "") {
+  console.log(req.body);
+  /*   const { id } = req.params;
+   */ if (!name || name === "") {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese nombre de producto" });
@@ -180,8 +189,8 @@ router.put("/update", async (req, res) => {
       .send({ message: "Por favor, ingrese nombre de cantidad del producto" });
   }
 
-  const existencia = exist === "false" || exist === true ? true : false
-  const esoferta = isOfert === "false" || isOfert === true ? true : false
+  const existencia = exist === "false" || exist === true ? true : false;
+  const esoferta = isOfert === "false" || isOfert === true ? true : false;
   const objProdUpd = {
     name,
     description,
@@ -221,20 +230,19 @@ router.put("/update", async (req, res) => {
   }
 });
 
-router.delete('/delete/:id', async (req,res) => {
+router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
-  if (!id)
-    return res.status(400).send({ message: "Debe ingresar producto" });
+  if (!id) return res.status(400).send({ message: "Debe ingresar producto" });
 
-    let orderLineSocias = await Product.findAll({
-      where: { id: id },
-      include: { model: OrderLine },
-    }).then((s) => {
-       if (s[0] && s[0].orderlines.length > 0) {
-        return s[0].orderlines.length
-      } else return 0
-    });
+  let orderLineSocias = await Product.findAll({
+    where: { id: id },
+    include: { model: OrderLine },
+  }).then((s) => {
+    if (s[0] && s[0].orderlines.length > 0) {
+      return s[0].orderlines.length;
+    } else return 0;
+  });
   const existProd = await Product.findOne({
     where: {
       id,
@@ -242,25 +250,54 @@ router.delete('/delete/:id', async (req,res) => {
   });
 
   if (orderLineSocias > 0) {
-    return res.status(400).json({message:"No se puede eliminar, pedidos asociados"})
+    return res
+      .status(400)
+      .json({ message: "No se puede eliminar, pedidos asociados" });
   } else {
-  if (existProd) {
-    try {
-      let delProduct = await Product.destroy({
-        where: {
-          id,
-        },
-      });
-      console.log(delProduct);
-      return res.status(200).json({message:"Producto eliminado correctamente"});
-    } catch (err) {
-      return res
-        .status(500)
-        .json({ message: "No se pudo eliminar el producto" + err });
+    if (existProd) {
+      try {
+        let delProduct = await Product.destroy({
+          where: {
+            id,
+          },
+        });
+        console.log(delProduct);
+        return res
+          .status(200)
+          .json({ message: "Producto eliminado correctamente" });
+      } catch (err) {
+        return res
+          .status(500)
+          .json({ message: "No se pudo eliminar el producto" + err });
+      }
+    } else {
+      return res.status(400).json({ message: "Producto inexistente" });
     }
-  } else {
-    return res.status(400).json({ message: "Producto inexistente" });
-  } }
-})
+  }
+});
+
+router.post("/stock", (req, res) => {
+  const { id } = req.body;
+  console.log("BODY "+req.body);
+  Product.findByPk(id)
+    .then((product) => {
+      (product.exist = !product.exist),
+        product
+          .save()
+          .then((_) => {
+            return res
+              .status(200)
+              .json({ message: "Stock cambiado exitosamente", product });
+          })
+          .catch((err) => {
+            console.error("error al salvar", err);
+            return res.status(400).json({ message: "No se pudo grabar" });
+          });
+    })
+    .catch((err) => {
+      console.error("error al buscar", err, req.body);
+      return res.status(400).json({ message: "No se encontró producto" });
+    });
+});
 
 module.exports = router;

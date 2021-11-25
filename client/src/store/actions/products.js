@@ -5,6 +5,7 @@ import {
   productByIdEndpoint,
   addProductEndpoint,
   modifyProductEndpoint,
+  stockProductEndpoint
 } from "../consts/consts";
 
 export function getAllProducts() {
@@ -12,6 +13,15 @@ export function getAllProducts() {
   return (dispatch) => {
     return Axios(`${productsEndpoint}`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
+    });
+  };
+}
+
+export function getAllProductsAdmin() {
+  console.log("hola estoy en products - " + `${productsEndpoint}admin`);
+  return (dispatch) => {
+    return Axios(`${productsEndpoint}admin`).then((json) => {
+      dispatch({ type: "GET_ALL_PRODUCTS_ADMIN", payload: json });
     });
   };
 }
@@ -93,6 +103,23 @@ export const prodAdd = (producto) => async (dispatch) => {
     );
   }
 };
+
+export const prodStock = (id) => async (dispatch) => {
+  console.log("stock: "+id);
+  try {
+    const { data } = await Axios.post(`${stockProductEndpoint}`, {id:id});
+    dispatch({ type: "PROD_STOCK_MOD", payload: data.product });
+    localStorage.setItem("stockModified", true);
+  } catch (err) {
+    localStorage.setItem("stockModified", err.response.data.message);
+    console.log(
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
+    );
+  }
+};
+
 
 export const prodMod = (producto) => async (dispatch) => {
   console.log("modificando");
