@@ -4,6 +4,7 @@ import { getAllCategories, getCateAdmin } from "../../store/actions/categories";
 import { Link } from "react-router-dom";
 import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
 import "./categories.css";
+import Spinner from "../spinner";
 
 const CategoriesAdmin = (props) => {
 
@@ -13,7 +14,7 @@ const CategoriesAdmin = (props) => {
 
   if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
   
-  if (!props.allCategories) return <> Cargando... </>;
+  if (!props.allCategories) return <><Spinner /></>;
 
   return (
     <>

@@ -4,6 +4,7 @@ import { getAllOrders, getOrder } from '../../store/actions/orders'
 import { Link } from "react-router-dom"
 import { MdAttachMoney, MdDeliveryDining, MdMoneyOff } from 'react-icons/md'
 import { HiLocationMarker } from "react-icons/hi"
+import Spinner from '../spinner'
 
 const OrdersAdmin = (props) => {
 
@@ -13,7 +14,7 @@ const OrdersAdmin = (props) => {
 
     if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
     
-    if (!props.allOrders) return <> Cargando...</>
+    if (!props.allOrders) return <><Spinner /> </>
  
     return <>
          {props.allOrders.map(order => {

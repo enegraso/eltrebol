@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getAllProducts, getProdAdmin } from "../../store/actions/products";
 import "./products.css";
 import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md"
+import Spinner from "../spinner";
 
 const ProductsAdmin = (props) => {
   useEffect(() => {
@@ -12,7 +13,7 @@ const ProductsAdmin = (props) => {
 
   if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
   
-  if (!props.allProducts) return <> Cargando... </>;
+  if (!props.allProducts) return <> <Spinner /> </>;
 
   return (
     <>
