@@ -10,6 +10,7 @@ const categoryModel = require("./categories.js");
 const orderModel = require("./orders");
 const productModel = require("./products");
 const orderLineModel = require("./orderline");
+const configsModel = require("./configs")
 
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
@@ -47,6 +48,7 @@ const Product = productModel(sequelize);
 const Category = categoryModel(sequelize);
 const Order = orderModel(sequelize);
 const OrderLine = orderLineModel(sequelize);
+const Configs = configsModel(sequelize)
 
 // Será necesario definir las relaciones
 
@@ -67,8 +69,6 @@ module.exports = {
   Product,
   Category,
   Order,
-  OrderLine
+  OrderLine,
+  Configs
 };
-
-
-

@@ -36,13 +36,14 @@ const Dashboard = (props) => {
             className="btn btn-light"
             onClick={handleClick}
           >
-            <BiLogOut />
+            <BiLogOut style={ {"border": "2px dash forestgreen", width: "32px", height: "32px"}}/>
           </button>
         </h4>
         <div className="menuitems">
           <Link to="/admin/categories">Categorías</Link>
           <Link to="/admin/products">Productos</Link>
           <Link to="/admin/user">User</Link>
+          <Link to="/admin/configs">Configs</Link>
         </div>
         <div className="contentOrders">
           <div className="boxOrder" style={ {"border": "1px solid forestgreen"}}>
@@ -70,6 +71,7 @@ const Dashboard = (props) => {
 function mapStateToProps(state) {
   return {
     userDetail: state.User.userDetail,
+    configsAdmin: state.User.configsAdmin
   };
 }
 

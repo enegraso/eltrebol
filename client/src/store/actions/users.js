@@ -1,5 +1,5 @@
 import axios from "axios";
-import { REACT_APP_API, UPD_USER_SUCCESS } from "../consts/consts";
+import { REACT_APP_API, configByIdEndpoint} from "../consts/consts";
 
 export const getUser = (username, password) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
@@ -29,7 +29,44 @@ export const updateUser = (user) => async (dispatch) => {
     localStorage.setItem("userInfo", JSON.stringify(data.user));
     localStorage.setItem("userUpdated",true)
   } catch (err) {
-    localStorage.setItem("userUpdated",false)
+    localStorage.setItem("userUpdated",err.response.data.message)
+    console.log(
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
+    );
+  }
+};
+
+export const updateConfigs = (config) => async (dispatch) => {
+  /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
+  try {
+    // console.log(username,password)
+    const { data } = await axios.put(`${REACT_APP_API}users/configs`, config);
+    dispatch({ type: "PUT_CONFIG_DETAIL", payload: data.config });
+    localStorage.setItem("appConfig", JSON.stringify(data.config));
+    localStorage.setItem("configUpdated",true)
+  } catch (err) {
+    localStorage.setItem("configUpdated",err.response.data.message)
+    console.log(
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
+    );
+  }
+};
+
+export const getConfig = (id) => async (dispatch) => {
+  /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
+  try {
+    // console.log(username,password)
+    console.log(`${configByIdEndpoint}${id}`)
+    const { data } = await axios.get(`${configByIdEndpoint}${id}`);
+    dispatch({ type: "GET_CONFIG_DETAIL", payload: data.config });
+    localStorage.setItem("appConfig", JSON.stringify(data.config));
+    localStorage.setItem("userConfig",true);
+  } catch (err) {
+    localStorage.setItem("userConfig",err.response.data.message);
     console.log(
       err.response && err.response.data.message
         ? err.response.data.message
@@ -51,5 +88,9 @@ export function logOut(arg) {
     localStorage.removeItem("productDeleted")
     localStorage.removeItem("productAdded")
     localStorage.removeItem("productUpdated")
+    // Configuración 
+    localStorage.removeItem("configUpdated")
+    localStorage.removeItem("userConfig")
+    localStorage.removeItem("appConfig")
   };
 }

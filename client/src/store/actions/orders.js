@@ -59,8 +59,10 @@ export const getOrderGuest = (id) => async (dispatch) => {
     try {
       const { data } = await axios.put(`${REACT_APP_API}orders/updstatus`,{order});
       dispatch({ type: "PREP_ORDER_ADMIN", payload: data });
+      localStorage.setItem("orderPrepared",true)
     } catch (err) {
-      alert(
+      localStorage.setItem("orderPrepared", err.response.data.message)
+      console.log(
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message

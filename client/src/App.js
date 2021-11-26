@@ -22,6 +22,7 @@ import Paso1 from "./components/checkout/paso1";
 /* import Paso2 from "./components/checkout/paso2"; */
 import OrderAdminProcess from "./components/OrdersAdmin/OrderAdminProcess";
 import OrderAdminFinish from "./components/OrdersAdmin/OrderAdminFinish";
+import Configs from "./components/Configs/Configs";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         {/* Solo para aprender a implementar el checout con MP */}
         <Route path="probarpago" element={<ProbarPago />} />
         {/* Solo para aprender a implementar el checout con MP */}
+        <Route path="/admin/configs" element={<Configs /> } />
       </Routes>
     </div>
   );

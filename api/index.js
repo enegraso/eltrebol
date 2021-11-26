@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 // const cors = require("cors"); // para poder hacer peticiones desde cualquier punto (tambien se puede configurar de donde recibir las peticiones)
-const { conn, User, Product, Order, Category, OrderLine } = require("./src/models/index.js");
+const { conn, User, Product, Order, Category, OrderLine, Configs } = require("./src/models/index.js");
 const routes = require("./src/routes/index");
 
 const app = express();
@@ -24,7 +24,8 @@ const {
   initialProducts,
   initialUsers,
   initialOrders,
-  initialOrderlines
+  initialOrderlines,
+  initialConfigs
 } = require("./src/seed.js");
 
 
@@ -43,4 +44,6 @@ conn.sync({ force: true }).then(() => {
   Order.bulkCreate(initialOrders)
 }).then(() => {
   OrderLine.bulkCreate(initialOrderlines)
+}).then(() => {
+Configs.bulkCreate(initialConfigs)
 }).catch((error) => console.log('Error al bulkcreate', error))

@@ -83,7 +83,7 @@ const UserForm = () => {
         });
     } else {
       swal.fire({
-        title: "No se pudo modificar el usuario",
+        title: localStorage.getItem("userUpdated"),
         showDenyButton: false,
         showCancelButton: false,
         confirmButtonText: `Aceptar`,

@@ -8,6 +8,7 @@ import swal from "sweetalert2";
 const OrderAdminProcess = () => {
   const dispatch = useDispatch();
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
+  const configsAdmin = useSelector((state) => state.User.configsAdmin)
 
   const handleClickPrep = async (e) => {
     e.preventDefault();
@@ -16,10 +17,34 @@ const OrderAdminProcess = () => {
       status: "prepared",
     };
 
-/*     window.print(); */
-
     await dispatch(prepOrder(objStatus));
-    window.history.go(-1);
+    console.log(localStorage.getItem("orderPrepared"));
+    if (localStorage.getItem("orderPrepared") === "true") {
+      swal
+        .fire({
+          title: "Pedido en proceso de envio/Espera retiro",
+          showDenyButton: false,
+          showCancelButton: false,
+          confirmButtonText: `Aceptar`,
+          icon: "success",
+        })
+        .then((respu) => {
+          if (respu.isConfirmed) {
+            window.open('https://api.whatsapp.com/send?phone='+ pedidoAdmin[0].cellphone +'&text='+configsAdmin.messagewaenvio)
+            window.history.go(-1);
+          }
+        });
+    } else {
+      swal.fire({
+        title: localStorage.getItem("orderPrepared"),
+        showDenyButton: false,
+        showCancelButton: false,
+        confirmButtonText: `Aceptar`,
+        icon: "error",
+        // denyButtonText: `Cancelar`,
+      });
+    }
+
   };
 
   if (!localStorage.getItem("userInfo"))
@@ -96,8 +121,7 @@ const OrderAdminProcess = () => {
         </div>{" "}
         <div>
           <button className="btn btn-primary" onClick={handleClickPrep}>
-            {" "}
-            Enviar/Retira{" "}
+            { pedidoAdmin[0].delivery === true ? "Enviar" : "Retira" }
           </button>
           <button className="btn btn-primary" onClick={() => window.print() }>
               {" "}

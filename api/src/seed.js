@@ -227,6 +227,17 @@ const initialOrderlines = [
         "orderId":4
     }
 ]
+const initialConfigs = [
+  {
+    "business":"Chacinados El Trebol",
+    "slogan":"Tu mejor compra online",
+    "horario":"Lunes a Sábados de 9 a 13 y 17 a 20, Domingos solo app",
+    "messagewaenvio":"Su pedido a sido enviado",
+    "messagewaretira":"Su producto está listo para retirarlo",
+    "messagewareject":"Su producto ha sido rechazado",
+    "deliveryprice":150
+  }
+]
 
 module.exports = {
   initialCategories,
@@ -235,4 +246,5 @@ module.exports = {
   initialUsers,
   initialOrders,
   initialOrderlines,
+  initialConfigs
 };

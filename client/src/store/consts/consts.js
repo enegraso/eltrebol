@@ -17,3 +17,9 @@ export const categoriesEndpoint= REACT_APP_API + 'categories/';
 
 export const productId = REACT_APP_API + 'product/'
 
+// configs y users
+
+export const usersEndpoint= REACT_APP_API + 'users/';
+
+export const configByIdEndpoint = usersEndpoint+ 'configs/';
+
