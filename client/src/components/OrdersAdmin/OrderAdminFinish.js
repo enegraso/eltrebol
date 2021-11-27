@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./orderAdmin.css";
 import { Link } from 'react-router-dom'
 import { prepOrder } from "../../store/actions/orders";
+import swal from 'sweetalert2'
+
 
 const OrderAdminFinish
  = () => {
@@ -16,7 +18,32 @@ const OrderAdminFinish
       status: "done"
     }
     dispatch(prepOrder(objStatus))
-/*     window.print() */
+    console.log(localStorage.getItem("orderPrepared"));
+    if (localStorage.getItem("orderPrepared") === "true") {
+      swal
+        .fire({
+          title: "El pedido se ha completado",
+          showDenyButton: false,
+          showCancelButton: false,
+          confirmButtonText: `Aceptar`,
+          icon: "success",
+        })
+        .then((respu) => {
+          if (respu.isConfirmed) {
+            window.open('https://api.whatsapp.com/send?phone=54'+ pedidoAdmin[0].cellphone +'&text=Pedido completado')
+            window.history.go(-1);
+          }
+        });
+    } else {
+      swal.fire({
+        title: localStorage.getItem("orderPrepared"),
+        showDenyButton: false,
+        showCancelButton: false,
+        confirmButtonText: `Aceptar`,
+        icon: "error",
+        // denyButtonText: `Cancelar`,
+      });
+    }
   }
 
   if (!localStorage.getItem("userInfo")) return <Link to='/loginadmin'><h5>Debe estar logueado</h5></Link>
@@ -29,9 +56,9 @@ const OrderAdminFinish
         <div className="titleOrder">
         <h2>
           Pedido{" "}
-          {!pedidoAdmin[0].ordercart
+          {!pedidoAdmin[0].id
             ? "Tomando pedido..."
-            : pedidoAdmin[0].ordercart}{" - Entregado"}
+            : pedidoAdmin[0].id}{" - Entregado"}
         </h2>
         </div>
         <div>

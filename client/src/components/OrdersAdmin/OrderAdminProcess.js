@@ -30,7 +30,7 @@ const OrderAdminProcess = () => {
         })
         .then((respu) => {
           if (respu.isConfirmed) {
-            window.open('https://api.whatsapp.com/send?phone='+ pedidoAdmin[0].cellphone +'&text='+configsAdmin.messagewaenvio)
+            window.open('https://api.whatsapp.com/send?phone=54'+ pedidoAdmin[0].cellphone +'&text='+configsAdmin.messagewaenvio)
             window.history.go(-1);
           }
         });
@@ -62,9 +62,9 @@ const OrderAdminProcess = () => {
         <div className="titleOrder">
           <h2>
             Pedido{" "}
-            {!pedidoAdmin[0].ordercart
+            {!pedidoAdmin[0].id
               ? "Tomando pedido..."
-              : pedidoAdmin[0].ordercart}
+              : pedidoAdmin[0].id }
             {" - Enviar/Retira"}
           </h2>
         </div>

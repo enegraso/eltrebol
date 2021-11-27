@@ -8,6 +8,8 @@ import swal from "sweetalert2";
 const OrderAdmin = () => {
   const dispatch = useDispatch();
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
+  const configsAdmin = useSelector((state) => state.User.configsAdmin)
+
 
   if (!localStorage.getItem("userInfo"))
     return (
@@ -48,7 +50,31 @@ const OrderAdmin = () => {
             status: "rejected",
           };
           dispatch(prepOrder(objStatus));
-          window.history.go(-1);
+          if (localStorage.getItem("orderPrepared") === "true") {
+            swal
+              .fire({
+                title: "El pedido ha sido rechazado",
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: `Aceptar`,
+                icon: "success",
+              })
+              .then((respu) => {
+                if (respu.isConfirmed) {
+                  window.open('https://api.whatsapp.com/send?phone=54'+ pedidoAdmin[0].cellphone +'&text='+configsAdmin.messagewareject)
+                  window.history.go(-1);
+                }
+              });
+          } else {
+            swal.fire({
+              title: localStorage.getItem("orderPrepared"),
+              showDenyButton: false,
+              showCancelButton: false,
+              confirmButtonText: `Aceptar`,
+              icon: "error",
+              // denyButtonText: `Cancelar`,
+            });
+          }
         }
       });
   };
@@ -61,9 +87,9 @@ const OrderAdmin = () => {
         <div className="titleOrder">
           <h2>
             Pedido{" "}
-            {!pedidoAdmin[0].ordercart
+            {!pedidoAdmin[0].id
               ? "Tomando pedido..."
-              : pedidoAdmin[0].ordercart}
+              : pedidoAdmin[0].id }
             {" - "}
             {pedidoAdmin[0].status === "pending" ? "Pendiente" : "Completado"}
           </h2>
