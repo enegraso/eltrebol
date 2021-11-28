@@ -5,6 +5,12 @@ import {
   getAllProductsAdmin,
   getProdAdmin,
   prodStock,
+  sort,
+  sortweight,
+  ASC,
+  DES,
+  PASC,
+  PDES,
 } from "../../store/actions/products";
 import "./products.css";
 import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
@@ -16,6 +22,17 @@ const ProductsAdmin = (props) => {
   useEffect(() => {
     props.getAllProductsAdmin();
   }, []);
+
+      /*  Handle para Ordenar las razas */
+      function handleDispatchOrder(event) {
+        console.log(event, props.allProducts);
+        if (event.target.value === ASC || event.target.value === DES) {
+          props.sort(event.target.value, props.allProducts);
+        }
+        if (event.target.value === PASC || event.target.value === PDES) {
+          props.sortweight(event.target.value, props.allProducts);
+        }
+      }
 
 
   if (!localStorage.getItem("userInfo"))
@@ -51,7 +68,16 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          <SearchBarAdmin />
+          <SearchBarAdmin />       
+
+          <select onChange={handleDispatchOrder}>
+          <option>Ordenar</option>
+          <option value={ASC}>Producto ASC</option>
+          <option value={DES}>Producto DESC</option>
+          <option value={PASC}>Precio ASC</option>
+          <option value={PDES}>Precio DESC</option>
+        </select>
+
           <Link to="/loginadmin">
             <button class="btn btn-dark">
               <MdArrowBack />
@@ -110,6 +136,13 @@ const ProductsAdmin = (props) => {
             </button>
           </Link>
           <SearchBarAdmin />
+          <select onChange={handleDispatchOrder}>
+          <option>Ordenar</option>
+          <option value={ASC}>Producto ASC</option>
+          <option value={DES}>Producto DESC</option>
+          <option value={PASC}>Precio ASC</option>
+          <option value={PDES}>Precio DESC</option>
+        </select>
           <Link to="/loginadmin">
             <button class="btn btn-dark">
               <MdArrowBack />
@@ -132,6 +165,8 @@ const mapDispatchToProps = (dispatch) => {
     getAllProductsAdmin: () => dispatch(getAllProductsAdmin()),
     getProdAdmin: (id) => dispatch(getProdAdmin(id)),
     prodStock: (prod) => dispatch(prodStock(prod)),
+    sort: (elem1, elem2) => dispatch(sort(elem1, elem2)),
+    sortweight: (elem1, elem2) => dispatch(sortweight(elem1, elem2)),
   };
 };
 

@@ -8,6 +8,11 @@ import {
   stockProductEndpoint
 } from "../consts/consts";
 
+export const ASC = 'Breeds-A-Z';
+export const DES = 'Breeds-Z-A';
+export const PASC = 'Weight-A-Z';
+export const PDES = 'Weight-Z-A';
+
 export function getAllProducts() {
   console.log("hola estoy en products - " + `${productsEndpoint}`);
   return (dispatch) => {
@@ -192,4 +197,71 @@ export const searchProductsAdmin = (buscar) => async (dispatch) => {
     );
   }
 };
+
+// Ordeno por nombre de producto
+export function sort(order, breeds){
+  console.log("PRODUCTOS",breeds)
+  let sortBreed = [...breeds]
+
+  sortBreed.sort(function(a,b){
+      var nombreA = a.name.toUpperCase();
+      var nombreB = b.name.toUpperCase();
+
+      if(order === ASC){
+          if(nombreA < nombreB){
+              return -1;
+          }
+          if(nombreA > nombreB){
+              return 1
+          }
+          return 0
+      }
+      if(order === DES){
+          if(nombreA < nombreB){
+              return 1;
+          }
+          if(nombreA > nombreB){
+              return -1
+          }
+          return 0
+      }
+  })
+  console.log("PRODUCTOS ORDENADOS",sortBreed)
+  return function(dispatch){
+      dispatch({type: "SORT_PROD_ADMIN", payload: sortBreed})
+  }
+}
+
+// Ordeno por precio
+export function sortweight(order, breeds){
+  let sortWeight = [...breeds]
+
+  sortWeight.sort(function(a,b){
+      var pesoA = a.price;
+      var pesoB = b.price;
+
+      if(order === PASC){
+          if(pesoA < pesoB){
+              return -1;
+          }
+          if(pesoA > pesoB){
+              return 1
+          }
+          return 0
+      }
+      if(order === PDES){
+          if(pesoA < pesoB){
+              return 1;
+          }
+          if(pesoA > pesoB){
+              return -1
+          }
+          return 0
+      }
+  })
+
+  return function(dispatch){
+      dispatch({type: "SORT_PRICE_ADMIN", payload: sortWeight})
+  }
+}
 

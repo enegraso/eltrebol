@@ -15,11 +15,11 @@ export default function productReducer(state = initialState, action) {
         allProducts: action.payload.data,
       };
 
-      case "GET_ALL_PRODUCTS_ADMIN":
-        return {
-          ...state,
-          productsAdmin: action.payload.data,
-        };
+    case "GET_ALL_PRODUCTS_ADMIN":
+      return {
+        ...state,
+        productsAdmin: action.payload.data,
+      };
 
     /*    case "ADD_PRODUCTS":
             return {
@@ -45,11 +45,13 @@ export default function productReducer(state = initialState, action) {
         allProducts: [...state.allProducts, action.payload],
       };
 
-      case "PROD_STOCK_MOD":  //Modificar stock en boton ojo del admin
-        return {
-          ...state,
-          allProducts: state.allProducts.filter((p) => p.id !== action.payload.id),         
-        };
+    case "PROD_STOCK_MOD": //Modificar stock en boton ojo del admin
+      return {
+        ...state,
+        allProducts: state.allProducts.filter(
+          (p) => p.id !== action.payload.id
+        ),
+      };
     case "SEARCH_PRODUCTS":
       return {
         ...state,
@@ -80,14 +82,25 @@ export default function productReducer(state = initialState, action) {
         allProducts: action.payload,
       };
 
-      case "PRODS_FOUNDED_ADMIN":
-        return {
-          ...state,
-          productsAdmin: action.payload,
-        };
-  
+    case "PRODS_FOUNDED_ADMIN":
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
 
-      default:
+    case "SORT_PROD_ADMIN":
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
+
+    case "SORT_PRICE_ADMIN":
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
+
+    default:
       return state;
   }
 }
