@@ -12,25 +12,10 @@ export function validate(input) {
     if (!input.business) {
       errors.business = "Ingrese nombre de empresa";
     }
-/*     if (input.email.length > 0 && !emailPattern.test(input.email)) {
-      errors.email = "Direccion de correo invalido";
+    if (!input.pricedelivery) {
+      errors.business = "Ingrese nombre de empresa";
     }
-    if (!input.oldpassw) {
-      errors.oldpassw = "Ingrese contraseña actual";
-    } else if (input.oldpassw.length > 0 && input.oldpassw.length < 4) {
-      errors.oldpassw = "Mínimo 4 caracteres";
-    }
-    if (input.password.length > 0 && input.password.length < 4) {
-      errors.password = "Contraseña de al menos 4 caracteres";
-    } /* else if (!/(?=.*[0-9])/.test(input.password)) {
-        errors.password = "Password is invalid";
-      } */
-/*    if (input.repasswo.length > 0 && input.password.length === 0) {
-      errors.repasswo = "Ingresar contraseña nueva";
-    } else if (input.repasswo !== input.password) {
-      errors.oldpassw = "Las contraseñas no coinciden";
-    }
- */  
+
     return errors;
   }
 

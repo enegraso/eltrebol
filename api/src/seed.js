@@ -38,28 +38,28 @@ const initialProducts = [
     stepunit: 1,
   },
   {
-    name: "pure de tomates",
+    name: "pure de tomates Arcor",
     description: "",
     price: 45,
     exist: true,
     image:
-      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637339985/wplz2sayxw2qnwzsvvl1.jpg",
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638126205/Pure-de-Tomate-Arcor-520-Gr_udawl2.png",
     categories: 1,
     units: "paquete",
     minunit: 1,
     stepunit: 1,
   },
   {
-    name: "Asado",
+    name: "Asado de tira",
     description: "",
     price: 500.0,
     exist: true,
     image:
-      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637331021/mwuj9qi0uwmpqvviayku.jpg",
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638127386/tira-de-asado_z0zi47.jpg",
     categories: 6,
     units: "Kilos",
-    minunit: 1,
-    stepunit: 1,
+    minunit: .25,
+    stepunit: .25,
   },
   {
     name: "Leche entera",
@@ -108,7 +108,131 @@ const initialProducts = [
     units: "unidad",
     minunit: 1,
     stepunit: 1,
+  },  {
+    name: "Agua mineral",
+    description: "",
+    price: 70.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637120621/xgfeltjoukvrcnbxdq7i.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },  {
+    name: "Harina Blancaflor",
+    description: "",
+    price: 100.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637080234/jabzrqpaidjo0bcr6ac0.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },  {
+    name: "Aceite Cañuelas 900ml",
+    description: "",
+    price: 180.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637080148/jgtaq59rgpv68vkkcn6t.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },  {
+    name: "Lomos de atun en aceite",
+    description: "",
+    price: 230.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637035857/slj5oyvuhntprojoqvks.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },  {
+    name: "Puré de tomates Salsati",
+    description: "",
+    price: 180.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638126205/Pure-de-Tomate-Salsatti-520-Gr_qeqebl.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  }, {
+    name: "Espirales anti mosquitos Raid",
+    description: "",
+    price: 230.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637706340/rsdfzz9lfo0habc1atol.png",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },  {
+    name: "Espirales MosquiTrap",
+    description: "",
+    price: 200.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637686052/rykmz2f3kuu3cjywvb8h.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },   {
+    name: "Prepizza casera",
+    description: "",
+    price: 100.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1637364091/hzmrva921m0gntuhfic7.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  },  {
+    name: "Puré de tomates Campagnola",
+    description: "",
+    price: 250.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638126205/Pure-De-Tomate-La-Campagnola-520-Gr_ju2ehr.jpg",
+    categories: 1,
+    units: "unidad",
+    minunit: 1,
+    stepunit: 1,
+  }, {
+    name: "Vacio",
+    description: "",
+    price: 600.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638127279/vacio01_qckkes.jpg",
+    categories: 6,
+    units: "Kilos",
+    minunit: .25,
+    stepunit: .25,
   },
+  {
+    name: "Matambre",
+    description: "",
+    price: 450.0,
+    exist: true,
+    image:
+      "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638127280/matambre_gka2jb.png",
+    categories: 6,
+    units: "Kilos",
+    minunit: .25,
+    stepunit: .25,
+  }
+ 
+
 ];
 const initialUsers = [
   {
