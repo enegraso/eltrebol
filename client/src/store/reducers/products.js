@@ -80,7 +80,14 @@ export default function productReducer(state = initialState, action) {
         allProducts: action.payload,
       };
 
-    default:
+      case "PRODS_FOUNDED_ADMIN":
+        return {
+          ...state,
+          productsAdmin: action.payload,
+        };
+  
+
+      default:
       return state;
   }
 }

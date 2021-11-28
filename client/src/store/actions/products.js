@@ -177,3 +177,19 @@ export const urlPost = (url) => {
   }
 };
 
+export const searchProductsAdmin = (buscar) => async (dispatch) => {
+  console.log("buscando");
+  try {
+    const { data } = await Axios.get(`${REACT_APP_API}products/search/${buscar}`
+    );
+    dispatch({ type: "PRODS_FOUNDED_ADMIN", payload: data });
+    console.log(data)
+  } catch (err) {
+    alert(
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    );
+  }
+};
+

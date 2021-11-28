@@ -10,6 +10,7 @@ import "./products.css";
 import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Spinner from "../spinner";
+import SearchBarAdmin from "../searchBarAdmin";
 
 const ProductsAdmin = (props) => {
   useEffect(() => {
@@ -50,7 +51,7 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          Listado de productos
+          <SearchBarAdmin />
           <Link to="/loginadmin">
             <button class="btn btn-dark">
               <MdArrowBack />
@@ -108,7 +109,7 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          Listado de productos
+          <SearchBarAdmin />
           <Link to="/loginadmin">
             <button class="btn btn-dark">
               <MdArrowBack />
