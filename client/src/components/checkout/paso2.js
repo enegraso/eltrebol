@@ -1,60 +1,43 @@
-/*
-import React from "react";
-import { useForm } from "react-hook-form";
-import { MainContainer } from "../reutilizables/MainContainer";
-import { Form } from "../reutilizables/Form";
-import { Input } from "../reutilizables/Input";
-import { ButtonOne } from "../reutilizables/Button";
-import { Checkbox, FormControlLabel } from "@mui/material";
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {MainContainer} from '../reutilizables/MainContainer'
+import {ButtonOne} from '../reutilizables/Button'
+import { REACT_APP_API } from "../../store/consts/consts";
 
-//forma de pago.
+import axios from 'axios';
 
-export default function Paso2() {
-  //userData. setUserData
-  //pagoEfectivo true.
+export default function Paso2(){
 
-  //const history = useHistory(); 
-const { register, handleSubmit, watch, errors } = useForm({
-    defaultValues: {
-      pagoEfectivo: data.pagoEfectivo,
-      pagoTarjeta: data.pagoTarjeta,
-    },
-    mode: "onBlur",
-  });
+  const dispatch = useDispatch();
+  const [datos, setDatos] = React.useState("")
+  const order = useSelector(state=> state.Order.orderGuest)
+  //console.log(order)
 
-  const onSubmit =(data)=>{
-    
-    console.log(data)}
+ // useEffect(()=>{
+    axios
+    .post(`${REACT_APP_API}mp/checkout`, order)
+    .then((data)=>{
+      setDatos(data.data)
+      console.info('Contenido de data:', data)
+    })
+    .catch(err => console.error(err)) 
 
-  const pagoTarjeta = watch("pagoTarjeta");
+ //   },[])
+  
+
 
   return (
     <MainContainer>
-      <h1>Elija su forma de pago</h1>
-      <Form>
-        <FormControlLabel
-          control={
-            <Checkbox checked={data.pagoEfectivo} 
-              onChange={handleChange}
-              name="pagoEfectivo" 
-            />
-          }
-          label="Pago en Efectivo"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              defaultValue={data.pagoTarjeta}
-              defaultChecked={data.pagoTarjeta}
-              color="success"
-              inputRef={register}
-              name="pagoTarjeta"
-            />
-          }
-          label="Pago con Tarjeta: Mercado Pago"
-        />
-      </Form>
+      <table>
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+      <ButtonOne>Pago</ButtonOne>
     </MainContainer>
-  );
+  )
 }
-*/
+
+
+
+
