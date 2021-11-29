@@ -36,7 +36,8 @@ export const getAllOrders = () => async (dispatch) => {
         console.log(data);
         return axios.post(`${REACT_APP_API}orders/add`, data)
             .then(json => {
-                dispatch({ type: 'ADD_ORDER', payload: json });
+                dispatch({ type: 'ADD_ORDER', payload: json.data.order.id});
+                localStorage.setItem('orderId', json.data.order.id)
             })
     }
 }
