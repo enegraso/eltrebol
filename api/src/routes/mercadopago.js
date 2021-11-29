@@ -16,8 +16,9 @@ mercadopago.configure({
 //Ruta que genera la URL de MercadoPago incial para checkout que devuelve id para iniciar el pago
 router.post("/checkout", (req, res, next) => {
 
+  console.log(req.body)
   //Para la prueba recibo los parametros del index js dentro de req.body.order 
-  const { id, carrito } = req.body.order;
+  const { id, carrito } = req.body;
 
   // Verificar en caso de que no funcione de pasar los datos por req.body
   // const { id, carrito } = req.body;
@@ -27,7 +28,7 @@ router.post("/checkout", (req, res, next) => {
 
 
   const items_ml = carrito.map((i) => ({
-    title: i.title,
+    title: i.name,
     unit_price: i.price,
     quantity: i.quantity,
   }));

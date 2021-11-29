@@ -29,7 +29,7 @@ const PruebaCheckout = ({ productos, data }) => {
 
       <form id='form1'>
 
-        <h4>Checkout</h4>
+        <h4>Productos a pagar</h4>
         <div className={s.gridContainer} >  
         {productos.map((producto, i) => {
             return(

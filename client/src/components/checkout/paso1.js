@@ -15,7 +15,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {getOrderGuest} from '../../store/actions/orders'
-import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 //get from localStorage
 
@@ -33,6 +33,7 @@ const schema = yup.object().shape({
 
 export default function Paso1() {
 
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const orden = useSelector(state => state.Carrito.guestCart);
 
@@ -53,12 +54,13 @@ export default function Paso1() {
     }
     
     console.log(pago)
-    const onSubmit = (data, e) => {
+    
+    const onSubmit = async (data, e) => {
         const guestOrder = orderline(orden);
         const precioTotal = total(guestOrder);
         console.log(guestOrder, precioTotal)
 
-        dispatch(addOrder({
+        await dispatch(addOrder({
             'client': data.client,
             'address': data.address,
             'cellphone': data.cellphone,
@@ -69,13 +71,23 @@ export default function Paso1() {
             'payd': false
         }))
 
-        let orderId = localStorage.getItem('orderId')
-        dispatch(getOrderGuest(orderId))
-        e.target.reset();
+        if (localStorage.getItem('orderId') > 0) {
+            let orderId = localStorage.getItem('orderId')
+            dispatch(getOrderGuest(orderId))
+            e.target.reset();
+
+            localStorage.setItem("order", JSON.stringify(guestOrder));
+            console.log("ORDEN:",localStorage.getItem("order"))
+            
+            navigate('/paso2')
+     } 
+
 
     }
     //{...register('test', { required: true })}
 
+/*     if (verPaso2 === true) return <><Paso2 /></>
+ */
     return (
         <MainContainer>
             <h1>Datos de Compra</h1>
@@ -135,11 +147,12 @@ export default function Paso1() {
                         <FormControlLabel value="meLi" control={<Radio />} label="Pago con Mercado Pago" />
                     </RadioGroup>
                 </FormControl>
-                <Link to='/paso2' type='submit'>
-                <ButtonOne>Siguiente</ButtonOne>
-                </Link>
+                {/* <Link to='/paso2'> */}
+                  <ButtonOne /* type='submit' */>Siguiente</ButtonOne>
+                 {/* </Link> */}
             </Form>
         </MainContainer>
+        
     )
 }
 
