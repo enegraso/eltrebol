@@ -34,6 +34,7 @@ const schema = yup.object().shape({
 export default function Paso1() {
 
     const navigate = useNavigate()
+
     const dispatch = useDispatch();
     const orden = useSelector(state => state.Carrito.guestCart);
 
@@ -42,7 +43,7 @@ export default function Paso1() {
         resolver: yupResolver(schema)
     })
 
-    const [value, setValue] = React.useState('takeAway');
+    const [value, setValue] = React.useState(true);
     const [pago, setPago] = React.useState('meLi')
 
     const handleChange = (event) => {
@@ -78,16 +79,13 @@ export default function Paso1() {
 
             localStorage.setItem("order", JSON.stringify(guestOrder));
             console.log("ORDEN:",localStorage.getItem("order"))
-            
+            // gracias a useNavigate puedo avanzar al próximo paso
             navigate('/paso2')
      } 
 
 
     }
-    //{...register('test', { required: true })}
 
-/*     if (verPaso2 === true) return <><Paso2 /></>
- */
     return (
         <MainContainer>
             <h1>Datos de Compra</h1>
