@@ -2,7 +2,7 @@
     border-radius: 5px;
     border: 1px solid rgb(44, 126, 3);
     height: 130px;
-    width: 500px;
+    width: auto;
     background-color: rgb(189, 255, 136);
     margin: 25px;
     display: inline-block;
@@ -10,6 +10,7 @@
 
 .gridContainer{
     text-align: center; 
+    width: 80vw;
 }
 
 .ul{
@@ -17,6 +18,8 @@
     padding-right: 50px;
 } 
 
-.button {
-    border-radius: 1em;
-}
+button.mercadopago-button {
+    display: flex;
+    border-radius: 1em;   
+    margin:auto;
+  }

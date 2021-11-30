@@ -5,11 +5,13 @@ import {ButtonOne} from '../reutilizables/Button'
 import { REACT_APP_API } from "../../store/consts/consts";
 import axios from 'axios';
 import PruebaCheckout from '../pruebaCheckout/pruebaCheckout';
+import { useNavigate } from 'react-router-dom'
 
 
 
 export default function Paso2(){
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [datos, setDatos] = React.useState("")
   const order = JSON.parse(localStorage.getItem("order"));
@@ -38,10 +40,10 @@ export default function Paso2(){
     <div>
       { !datos
         ? <p>Aguarde un momento....</p> 
-        : <PruebaCheckout productos={order} data={datos}/>
+        : <PruebaCheckout productos={order} data={datos}/> /* PruebaCheckout se debe cambiar (copiar/cambiar nombre) en componente propio */
       }
     </div>
-    <button onClick={() => window.history.go(-1) }> Volver </button>
+    <button onClick={() => navigate('/') }> Volver </button>
    {/*    <ButtonOne>Pago</ButtonOne> */}
     </MainContainer>
   )

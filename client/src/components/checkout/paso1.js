@@ -79,8 +79,11 @@ export default function Paso1() {
 
             localStorage.setItem("order", JSON.stringify(guestOrder));
             console.log("ORDEN:",localStorage.getItem("order"))
+            
             // gracias a useNavigate puedo avanzar al próximo paso
+            // aquí debería ir un if mercadopago ? que valla a paso2
             navigate('/paso2')
+            // else: que vaya a un componente que muestre el pedido listo
      } 
 
 
