@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { FaUserCircle } from "react-icons/fa";
-import { prodMod } from "../../store/actions/products"
+import { prodMod } from "../../store/actions/products";
 import swal from "sweetalert2";
 
 export function validateprod(input) {
@@ -42,17 +42,19 @@ const ProductFormMod = () => {
   });
 
   useEffect(() => {
-     setInput({
-      name: productoAdmin.name ,
+    setInput({
+      name: productoAdmin.name,
       description: productoAdmin.description,
       exist: productoAdmin.exist,
       price: productoAdmin.price,
       isofert: productoAdmin.isOfert,
       image: productoAdmin.image,
       units: productoAdmin.units,
-    }); 
-    document.getElementById('exist').checked = productoAdmin.exist
-    document.getElementById('isofert').checked = productoAdmin.isOfert
+      minunit: productoAdmin.minunit,
+      stepunit: productoAdmin.stepunit,      
+    });
+    document.getElementById("exist").checked = productoAdmin.exist;
+    document.getElementById("isofert").checked = productoAdmin.isOfert;
     console.log("PRODUCTOADMIN", productoAdmin.isOfert);
   }, [productoAdmin]);
 
@@ -75,15 +77,17 @@ const ProductFormMod = () => {
     e.preventDefault();
     const updProd = {
       id: productoAdmin.id,
-      name: input.name ,
+      name: input.name,
       description: input.description,
       exist: input.exist,
       price: input.price,
       isOfert: input.isofert,
       image: input.image,
       units: input.units,
-    }
-    console.log(updProd)
+      minunit: input.minunit,
+      stepunit: input.stepunit,      
+    };
+    console.log(updProd);
     dispatch(prodMod(updProd));
     if (localStorage.getItem("productUpdated") === "true") {
       swal
@@ -92,25 +96,32 @@ const ProductFormMod = () => {
           confirmButtonText: `Aceptar`,
           icon: "success",
           // denyButtonText: `Cancelar`,
-        })      .then((result) => {
+        })
+        .then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             window.history.go(-1);
           }
-        })
-      } else {
-          swal
-          .fire({
-            title: localStorage.getItem("productUpdated"),
-            confirmButtonText: `Ok`,
-            icon: "error",
-            // denyButtonText: `Cancelar`,
-          })
-      }
+        });
+    } else {
+      swal.fire({
+        title: localStorage.getItem("productUpdated"),
+        confirmButtonText: `Ok`,
+        icon: "error",
+        // denyButtonText: `Cancelar`,
+      });
+    }
     // console.log(props.userDetail+"     "+localStorage.getItem("userInfo"))
   }
 
-  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
+  if (!localStorage.getItem("userInfo"))
+    return (
+      <>
+        <Link to="/loginadmin">
+          <h5>Debe estar logueado</h5>
+        </Link>
+      </>
+    );
 
   if (!productoAdmin) return <> Loading... </>;
 
@@ -180,14 +191,17 @@ const ProductFormMod = () => {
               type="checkbox"
               name="isofert"
               onChange={handleInputChange}
-
               value={input.isofert}
             ></input>
           </div>
           <div class="mb-3">
             <label class="form-label">Imagen</label>
-            <img class="form-control" src={productoAdmin.image} alt={productoAdmin.name} />
-{/*             <input
+            <img
+              class="form-control"
+              src={productoAdmin.image}
+              alt={productoAdmin.name}
+            />
+            {/*             <input
               class="form-control"
               type="text"
               name="image"
@@ -206,29 +220,32 @@ const ProductFormMod = () => {
               value={input.units}
             ></input>
           </div>
-          {/*           <div>
-            <label>
-              Minimo de compra
-              <input
-                type="number"
-                name="minunits"
-                onChange={handleInputChange}
-                value={input.minunit}
-              ></input>
-            </label>
+          <div>
+            <label class="form-label">Minimo de compra </label>
+            <input
+              class="form-control"
+              type="number"
+              name="minunit"
+              onChange={handleInputChange}
+              value={input.minunit}
+              step={0.25}
+              min={0.25}
+             /*  max={100} */
+            ></input>
           </div>
           <div>
-            <label>
-              Salto de compra
-              <input
-                type="number"
-                name="stepunits"
-                onChange={handleInputChange}
-                value={input.stepunit}
-              ></input>
-            </label>
-          </div>
- */}{" "}
+            <label class="form-label">Salto de compra</label>
+            <input
+              class="form-control"
+              type="number"
+              name="stepunit"
+              /* max={1} */
+              step={0.25}
+              min={0.25}
+              onChange={handleInputChange}
+              value={input.stepunit}
+            ></input>
+          </div>{" "}
           <div class="addback">
             <button type="submit" class="btn btn-primary">
               Modificar

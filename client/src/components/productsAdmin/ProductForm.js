@@ -38,7 +38,7 @@ const ProductForm = (props) => {
     image: localStorage.getItem("urlImage").replaceAll('"', ""),
     units: "unidad",
     minunit: 1,
-    stepunit: 1,
+    stepunit: 0.25,
     categories: [],
   });
   const [errors, setErrors] = React.useState({});
@@ -81,13 +81,12 @@ const ProductForm = (props) => {
           }
         });
     } else {
-      swal
-      .fire({
+      swal.fire({
         title: localStorage.getItem("productAdded"),
         confirmButtonText: `Aceptar`,
         icon: "error",
         // denyButtonText: `Cancelar`,
-      })
+      });
     }
   }
 
@@ -107,7 +106,14 @@ const ProductForm = (props) => {
     } else alert("La categoría ya fue agregada");
   }
 
-  if (!localStorage.getItem("userInfo")) return <><Link to='/loginadmin'><h5>Debe estar logueado</h5></Link></>
+  if (!localStorage.getItem("userInfo"))
+    return (
+      <>
+        <Link to="/loginadmin">
+          <h5>Debe estar logueado</h5>
+        </Link>
+      </>
+    );
 
   return (
     // formulario para agregar producto a la tienda
@@ -231,29 +237,32 @@ const ProductForm = (props) => {
               value={input.units}
             ></input>
           </div>
-          {/*           <div>
-            <label>
-              Minimo de compra
-              <input
-                type="number"
-                name="minunits"
-                onChange={handleInputChange}
-                value={input.minunit}
-              ></input>
-            </label>
+          <div>
+            <label class="form-label">Minimo de compra </label>
+            <input
+              class="form-control"
+              type="number"
+              name="minunit"
+              onChange={handleInputChange}
+              value={input.minunit}
+              step={0.25}
+              min={0.25}
+              max={100}
+            ></input>
           </div>
           <div>
-            <label>
-              Salto de compra
-              <input
-                type="number"
-                name="stepunits"
-                onChange={handleInputChange}
-                value={input.stepunit}
-              ></input>
-            </label>
-          </div>
- */}{" "}
+            <label class="form-label">Salto de compra</label>
+            <input
+              class="form-control"
+              type="number"
+              name="stepunit"
+              max={1}
+              step={0.25}
+              min={0.25}
+              onChange={handleInputChange}
+              value={input.stepunit}
+            ></input>
+          </div>{" "}
           <div className="addback">
             <button className="btn btn-success" type="submit">
               Agregar

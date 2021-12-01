@@ -20,6 +20,5 @@
 
 button.mercadopago-button {
     display: flex;
-    border-radius: 1em;   
-    margin:auto;
+    margin: 1em auto;
   }

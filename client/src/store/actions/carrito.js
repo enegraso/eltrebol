@@ -12,7 +12,6 @@ export default function saveToGuestCart(prod) {
    // var ol = orderlines(prod)
     return (dispatch) => {
         saveState(prod)
-        
         dispatch({ type: "UPDATE_GUEST_CART", payload: prod });
     }
 }

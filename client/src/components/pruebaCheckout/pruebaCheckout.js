@@ -17,54 +17,46 @@ const PruebaCheckout = ({ productos, data }) => {
 
     //Agrega el script como nodo hijo del elemento form
     document.getElementById("form1").appendChild(script);
-/*     return () => {
+    /*     return () => {
       //Elimina el script como nodo hijo del elemento form
       document.getElementById("form1").removeChild(script);
     }; */
   }, [data]);
 
   return (
-    <div>
+    <div className={s.gridContainer}>
       <form id="form1">
         <h4>Pagar por MercadoPago</h4>
         <div className={s.gridContainer}>
-        <table border="1">
-          <tr>
-            <td className="titleLines" width="15%">
-              Cantidad
-            </td>
-            <td className="titleLines" width="55%">
-              Producto
-            </td>
-            <td className="titleLines" width="15%">
-              PU
-            </td>
-            <td className="titleLines" width="25%">
-              Importe
-            </td>
-          </tr>
-          {productos.map((producto, i) => {
-            return (
-              <tr key={i}>
-                <td className={s.ul}>
-                    {producto.name} 
-                </td>
-                <td className={s.ul}>
-                {producto.quantity} 
-                </td>
-                <td className={s.ul}>
-                {producto.price}
-                </td>
-                <td className={s.ul}>
-                {producto.quantity * producto.price}
-                </td>
-              </tr>
-            );
-          })}
-        </table>
+          <table border="1">
+            <tr>
+              <td className="titleLines" width="15%">
+                Cantidad
+              </td>
+              <td className="titleLines" width="55%">
+                Producto
+              </td>
+              <td className="titleLines" width="15%">
+                PU
+              </td>
+              <td className="titleLines" width="25%">
+                Importe
+              </td>
+            </tr>
+            {productos.map((producto, i) => {
+              return (
+                <tr key={i}>
+                  <td className={s.ul}>{producto.quantity}</td>
+                  <td className={s.ul}>{producto.name}</td>
+                  <td className={s.ul}>{producto.price}</td>
+                  <td className={s.ul}>{producto.quantity * producto.price}</td>
+                </tr>
+              );
+            })}
+          </table>
         </div>
       </form>
-      Recuerde que al pagar por MercadoPago, su pedido quedará terminado
+      Al pagar, su pedido quedará completado
     </div>
   );
 };
