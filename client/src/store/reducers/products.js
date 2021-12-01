@@ -5,6 +5,7 @@ const initialState = {
   productsAdmin: [],
   productAdminGet: {},
   url: [],
+  auxProducts: []
 };
 
 export default function productReducer(state = initialState, action) {
@@ -19,6 +20,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productsAdmin: action.payload.data,
+        auxProducts: action.payload.data
       };
 
     /*    case "ADD_PRODUCTS":

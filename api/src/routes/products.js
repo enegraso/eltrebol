@@ -16,7 +16,12 @@ router.get("/", (req, res, next) => {
 
 //todos los productos para admin
 router.get("/admin", (req, res, next) => {
-  Product.findAll({ order: [['exist' , 'DESC']] })
+  Product.findAll({ 
+    include: [{
+      model: Category,
+      required: true,
+    }],
+    order: [['exist' , 'DESC']] })
     .then((products) => {
       res.send(products);
     })

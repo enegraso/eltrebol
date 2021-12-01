@@ -5,13 +5,13 @@ const {
   dbHost,
   dbName,
 } = require("../utils/config/index.js");
+
 const userModel = require("./users.js");
 const categoryModel = require("./categories.js");
 const orderModel = require("./orders");
 const productModel = require("./products");
 const orderLineModel = require("./orderline");
-const configsModel = require("./configs")
-
+const configsModel = require("./configs");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 let sequelize =
@@ -48,18 +48,18 @@ const Product = productModel(sequelize);
 const Category = categoryModel(sequelize);
 const Order = orderModel(sequelize);
 const OrderLine = orderLineModel(sequelize);
-const Configs = configsModel(sequelize)
+const Configs = configsModel(sequelize);
 
 // Será necesario definir las relaciones
 
-Product.belongsToMany(Category, {through: 'prod_cat'});
-Category.belongsToMany(Product, {through: 'prod_cat'});
+Product.belongsToMany(Category, { through: "prod_cat" });
+Category.belongsToMany(Product, { through: "prod_cat" });
 
 Product.hasMany(OrderLine);
 OrderLine.belongsTo(Product);
 
-Order.hasMany(OrderLine)
-OrderLine.belongsTo(Order)
+Order.hasMany(OrderLine);
+OrderLine.belongsTo(Order);
 
 // Exports models
 
@@ -70,5 +70,5 @@ module.exports = {
   Category,
   Order,
   OrderLine,
-  Configs
+  Configs,
 };

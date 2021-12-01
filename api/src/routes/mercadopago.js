@@ -87,7 +87,7 @@ router.get("/pagos", (req, res) => {
       order.payd_idml = payment_id;
       order.payd_mlstatus = payment_status;
       order.merchant_order_idml = merchant_order_id;
-      // order.status = "completed"
+      order.status = "pending"
       order.payd = true;
       console.info("Salvando order");
       order
@@ -119,7 +119,9 @@ router.get("/pagos/:id", (req, res) => {
   const mp = new mercadopago(ACCESS_TOKEN);
   const id = req.params.id;
   console.info("Buscando el id", id);
-  mp.get(`/v1/payments/search`, { status: "pending" }) //{"external_reference":id})
+/*   mp.get(`/v1/payments/${id}` )  */// { "external_reference":id } {"status": "pending"})
+  
+mp.get(`/v1/payments/search`)
     .then((resultado) => {
       console.info("resultado", resultado);
       res.json({ resultado: resultado });

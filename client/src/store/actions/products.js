@@ -265,3 +265,19 @@ export function sortweight(order, breeds){
   }
 }
 
+export const filtroCate = (actualBreed, temperament) => (dispatch) => {
+  let filtro = [...actualBreed];
+  console.log("CATEGORIA a Filtrar",filtro,"Filtar",temperament)
+  filtro = filtro.filter(actual => { 
+  
+       if(actual.categories[0].id == temperament){
+          let prodTemp = actual
+          /* console.log("PRODS",prodTemp) */
+          return prodTemp;
+      }else{
+          return false
+      }
+  })
+  dispatch({type:"SORT_PROD_ADMIN", payload: filtro})
+}
+

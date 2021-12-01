@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 // const cors = require("cors"); // para poder hacer peticiones desde cualquier punto (tambien se puede configurar de donde recibir las peticiones)
-const { conn, User, Product, Order, Category, OrderLine, Configs } = require("./src/models/index.js");
 const routes = require("./src/routes/index");
 
 const app = express();
@@ -20,30 +19,55 @@ app.use(setHeaders);
 app.use("/", routes);
 
 const {
+  conn,
+  User,
+  Product,
+  Order,
+  Category,
+  prod_cat,
+  OrderLine,
+  Configs,
+} = require("./src/models/index.js");
+
+
+const {
   initialCategories,
   initialProducts,
   initialUsers,
   initialOrders,
   initialOrderlines,
-  initialConfigs
+  initialConfigs,
+  categoryProducts
 } = require("./src/seed.js");
 
-
-conn.sync({ force: true }).then(() => {
-  console.log("Connect");
-  app.listen(PORT, () => {
-    console.log(`Listen on port ${PORT}`);
-  }); /*  */
-}).then(() => {
-  User.bulkCreate(initialUsers)
-}).then(() => {
-  Category.bulkCreate(initialCategories)
-}).then(() => {
-  Product.bulkCreate(initialProducts)
-}).then(() => {
-  Order.bulkCreate(initialOrders)
-}).then(() => {
-  OrderLine.bulkCreate(initialOrderlines)
-}).then(() => {
-Configs.bulkCreate(initialConfigs)
-}).catch((error) => console.log('Error al bulkcreate', error))
+const forzar = false 
+conn
+  .sync({ force: forzar })
+  .then(() => {
+    console.log("Connect");
+    app.listen(PORT, () => {
+      console.log(`Listen on port ${PORT}`);
+    });
+  })
+  .then(() => {
+    if (forzar === true) User.bulkCreate(initialUsers);
+  })
+  .then(() => {
+    if (forzar === true) Category.bulkCreate(initialCategories);
+  })
+  .then(() => {
+    if (forzar === true) Product.bulkCreate(initialProducts);
+  })
+/*    .then(() => {
+    prod_cat.bulkCreate(categoryProducts);
+  })  */
+  .then(() => {
+    if (forzar === true) Order.bulkCreate(initialOrders);
+  })
+  .then(() => {
+    if (forzar === true) OrderLine.bulkCreate(initialOrderlines);
+  })
+  .then(() => {
+    if (forzar === true) Configs.bulkCreate(initialConfigs);
+  })
+  .catch((error) => console.log("Error al bulkcreate", error));
