@@ -36,7 +36,7 @@ const Dashboard = (props) => {
             className="btn btn-light"
             onClick={handleClick}
           >
-            <BiLogOut style={ {"border": "2px dash forestgreen", width: "32px", height: "32px"}}/>
+            <BiLogOut style={ {border: "2px dash forestgreen", width: "32px", height: "32px"}}/>
           </button>
         </h4>
         <div className="menuitems">

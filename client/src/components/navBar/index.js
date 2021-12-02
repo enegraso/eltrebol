@@ -28,7 +28,7 @@ export default function NavBar(){
       <>
       <nav className='navbar'>
           <Link to='/' className='navbar-logo'>
-          <GiShamrock style={{'color':'#4AA96C'}}/> Chacinados El Trebol
+          <GiShamrock style={{'color':'#4AA96C'}}/> El Trebol
           </Link>
           <div className='menu-icon' onClick={handleClick}>
               <i className={click? 'fas fa-times': 'fas fa-bars'}/>

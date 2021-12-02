@@ -99,7 +99,7 @@ const OrderAdminFinish
             );
           })}
         </table>
-        <div>
+        <div className="importePedido">
           {!pedidoAdmin[0].subtotal ? 0 : "Importe: " + pedidoAdmin[0].subtotal}
         </div>
         <div>

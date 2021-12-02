@@ -140,10 +140,9 @@ const OrderAdmin = () => {
             );
           })}
         </table>
-        <div>
+        <div className="importePedido">
           {!pedidoAdmin[0].subtotal
-            ? 0
-            : "Importe AR$: " + Number(pedidoAdmin[0].subtotal).toFixed(2)}
+            ? 0 : "Importe AR$: " + (pedidoAdmin[0].subtotal).toFixed(2) }
         </div>
         <div>
           {pedidoAdmin[0].delivery === true
@@ -152,7 +151,7 @@ const OrderAdmin = () => {
         </div>
         <div>
           {pedidoAdmin[0].payd === true
-            ? "Pedido pagado"
+            ? "Pedido pagado" + pedidoAdmin[0].payd_idml
             : "Paga al recibir pedido"}
         </div>{" "}
         <div>
