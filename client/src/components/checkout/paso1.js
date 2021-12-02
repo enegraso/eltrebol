@@ -67,7 +67,7 @@ export default function Paso1() {
             'cellphone': data.cellphone,
             'subtotal': precioTotal,
             'products': guestOrder,
-            'status': 'pending',
+            'status': 'waiting',
             'delivery': false,
             'payd': false
         }))
@@ -79,14 +79,17 @@ export default function Paso1() {
 
             localStorage.setItem("order", JSON.stringify(guestOrder));
             console.log("ORDEN:",localStorage.getItem("order"))
+
+            if (pago === 'meLi'){ 
+
+                navigate('/paso2')
+            }
+            else{
             
-            // gracias a useNavigate puedo avanzar al próximo paso
-            // aquí debería ir un if mercadopago ? que valla a paso2
-            navigate('/paso2')
-            // else: que vaya a un componente que muestre el pedido listo
+            navigate('/checkout')
+            
+        }
      } 
-
-
     }
 
     return (
@@ -148,9 +151,8 @@ export default function Paso1() {
                         <FormControlLabel value="meLi" control={<Radio />} label="Pago con Mercado Pago" />
                     </RadioGroup>
                 </FormControl>
-                {/* <Link to='/paso2'> */}
+
                   <ButtonOne /* type='submit' */>Siguiente</ButtonOne>
-                 {/* </Link> */}
             </Form>
         </MainContainer>
         

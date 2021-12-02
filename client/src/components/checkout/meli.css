@@ -1,0 +1,24 @@
+.products{
+    border-radius: 5px;
+    border: 1px solid rgb(44, 126, 3);
+    height: 130px;
+    width: auto;
+    background-color: rgb(189, 255, 136);
+    margin: 25px;
+    display: inline-block;
+}
+
+.gridContainer{
+    text-align: center; 
+    width: 80vw;
+}
+
+.ul{
+    list-style-type: none;
+    padding-right: 50px;
+} 
+
+button.mercadopago-button {
+    display: flex;
+    margin: 1em auto;
+  }
