@@ -16,6 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {getOrderGuest} from '../../store/actions/orders'
 import { useNavigate } from 'react-router-dom';
+import {getConfig} from '../../store/actions/users'
 
 //get from localStorage
 
@@ -37,17 +38,27 @@ export default function Paso1() {
 
     const dispatch = useDispatch();
     const orden = useSelector(state => state.Carrito.guestCart);
+    const config = useSelector(state=>state.Users.configAdmin);
+    
+    useEffect(()=>{
+        dispatch(getConfig(1))
+        console.log('hola soy config',config)
+    },[])
 
     const { register, handleSubmit, errors } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema)
     })
 
-    const [value, setValue] = React.useState(true);
-    const [pago, setPago] = React.useState('meLi')
+    const [delivery, setDelivery] = useState('delivery');
+    const [pago, setPago] = useState('meLi')
 
-    const handleChange = (event) => {
-      setValue(event.target.value);
+    const handleDelivery = (event) => {
+      setDelivery(event.target.value);
+      if (delivery === 'delivery'){
+          dispatch()
+      }
+
     };
 
     const handlePago = (event) =>{
@@ -57,6 +68,7 @@ export default function Paso1() {
     console.log(pago)
     
     const onSubmit = async (data, e) => {
+
         const guestOrder = orderline(orden);
         const precioTotal = total(guestOrder);
         console.log(guestOrder, precioTotal)
@@ -67,7 +79,7 @@ export default function Paso1() {
             'cellphone': data.cellphone,
             'subtotal': precioTotal,
             'products': guestOrder,
-            'status': 'pending',
+            'status': 'waiting',
             'delivery': false,
             'payd': false
         }))
@@ -75,18 +87,20 @@ export default function Paso1() {
         if (localStorage.getItem('orderId') > 0) {
             let orderId = localStorage.getItem('orderId')
             dispatch(getOrderGuest(orderId))
-            e.target.reset();
 
             localStorage.setItem("order", JSON.stringify(guestOrder));
             console.log("ORDEN:",localStorage.getItem("order"))
+
+            if (pago === 'meLi'){ 
+
+                navigate('/paso2')
+            }
+            else{
             
-            // gracias a useNavigate puedo avanzar al próximo paso
-            // aquí debería ir un if mercadopago ? que valla a paso2
-            navigate('/paso2')
-            // else: que vaya a un componente que muestre el pedido listo
+            navigate('/checkout')
+            
+        }
      } 
-
-
     }
 
     return (
@@ -128,11 +142,11 @@ export default function Paso1() {
                     <RadioGroup
                         aria-label="delivery"
                         name="delivery"
-                        value= {value}
-                        onChange={handleChange}
+                        value= {delivery}
+                        onChange={handleDelivery}
                     >
-                        <FormControlLabel value={false} control={<Radio />} label="Retire de nuestro Local" />
-                        <FormControlLabel value={true} control={<Radio />} label="Envio a domicilio (delivery)" />
+                        <FormControlLabel value='local' control={<Radio />} label="Retire de nuestro Local" />
+                        <FormControlLabel value='delivery' control={<Radio />} label="Envio a domicilio (delivery)" />
                     </RadioGroup>
                 </FormControl>
 
@@ -148,9 +162,8 @@ export default function Paso1() {
                         <FormControlLabel value="meLi" control={<Radio />} label="Pago con Mercado Pago" />
                     </RadioGroup>
                 </FormControl>
-                {/* <Link to='/paso2'> */}
+
                   <ButtonOne /* type='submit' */>Siguiente</ButtonOne>
-                 {/* </Link> */}
             </Form>
         </MainContainer>
         

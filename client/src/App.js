@@ -23,6 +23,7 @@ import Paso2 from "./components/checkout/paso2";
 import OrderAdminProcess from "./components/OrdersAdmin/OrderAdminProcess";
 import OrderAdminFinish from "./components/OrdersAdmin/OrderAdminFinish";
 import Configs from "./components/Configs/Configs";
+import Efectivo from './components/checkout/efectivo';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/carrito" element={<Cart />} />
         <Route path="/paso1" element={<Paso1/>}/>
         <Route path="/paso2" element={<Paso2/>}/>
+        <Route path="/checkout" element={<Efectivo/>}/>
         <Route path="/admin/products" element={<ProductsAdmin />} />
         <Route path="/admin/categories" element={<CategoriesAdmin />} />
         <Route path="/admin/addimageprod" element={<ImageProduct />} />
