@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {ButtonOne} from '../reutilizables/Button';
 import { total, orderline } from '../utils';
-import {prepOrder} from '../../store/actions/orders';
+import {prepOrder, deleteOrder} from '../../store/actions/orders';
 import { useNavigate } from 'react-router-dom';
 
 
