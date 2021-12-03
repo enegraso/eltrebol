@@ -6,6 +6,7 @@ import { REACT_APP_API } from "../../store/consts/consts";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import MeLi from './meli'
+import {orderline} from '../utils'
 
 
 export default function Paso2(){
@@ -13,10 +14,11 @@ export default function Paso2(){
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [datos, setDatos] = React.useState("")
-/*   const order = JSON.parse(localStorage.getItem("order")); */
+  const order = JSON.parse(localStorage.getItem("order"))
   const orderid = localStorage.getItem("orderId");
-  const order = useSelector(state => state.Carrito.guestCart);
+  //const order = useSelector(state => state.Carrito.guestCart);
   //console.log(order)
+  //const orderlines = orderline(order);
 
   useEffect( ()=>{
   

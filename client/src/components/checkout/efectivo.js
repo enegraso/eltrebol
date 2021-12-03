@@ -34,7 +34,7 @@ export default function Efectivo(){
 
     return(
         <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Producto</TableCell>
@@ -47,9 +47,9 @@ export default function Efectivo(){
             {orderlines.map((row) => (
               <TableRow
                 key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell scope="row">
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.price}</TableCell>
@@ -58,14 +58,14 @@ export default function Efectivo(){
               </TableRow>
             ))}
             <TableRow>
-                <TableCell component='th' scope='row'>Total</TableCell>
+                <TableCell scope='row' span=''>Total</TableCell>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
                 <TableCell align='right'>${total(orderlines)}</TableCell>
             </TableRow>
           </TableBody>
-        <ButtonOne onClick={handleClick}>Comprar</ButtonOne>
-        <button className='btn btn-outline-danger' onClick={()=>navigate('/')}>Volver</button>
+        <button className='btn btn-success' onClick={handleClick}>Comprar</button>
+        <button className='btn btn-primary' onClick={()=>navigate('/')}>Volver</button>
         </Table>
       </TableContainer>
     )
