@@ -70,3 +70,16 @@ export const getOrderGuest = (id) => async (dispatch) => {
       );
     }
   };
+
+  export function deleteOrder(id) {
+    return (dispatch) => {
+      return axios.delete(`${REACT_APP_API}orders/delete/${id}`)
+        .then((json) => {
+          dispatch({ type: "DELETE_ORDER_GUEST", payload: id });
+          localStorage.setItem("orderDeleted", true);
+        })
+        .catch((err) => {
+          localStorage.setItem("orderDeleted", err.response);
+        });
+    };
+  }

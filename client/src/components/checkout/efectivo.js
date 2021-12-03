@@ -19,7 +19,8 @@ export default function Efectivo(){
     const order = useSelector(state => state.Carrito.guestCart);
     //const orderId = useSelector(state=>state.Order.orderId)
     const orderid = localStorage.getItem("orderId");
-    const orderlines = orderline(order)
+/*     const orderlines = orderline(order) */
+  const orderlines = JSON.parse(localStorage.getItem("order"))
 
     const handleClick = ()=>{
     console.log(orderid)
@@ -28,8 +29,17 @@ export default function Efectivo(){
         status:"pending",
       };
         dispatch(prepOrder(objStatus))
+        if (localStorage.getItem("orderPrepared") === true)
         alert('Tu pedido fue realizado con exito!')
-    
+        else
+        alert(localStorage.getItem("orderPrepared"))
+
+    }
+
+    const handleBack = () => {
+      dispatch(deleteOrder(orderid))
+      console.log(orderid)
+      navigate('/') 
     }
 
     return(
@@ -65,7 +75,7 @@ export default function Efectivo(){
             </TableRow>
           </TableBody>
         <button className='btn btn-success' onClick={handleClick}>Comprar</button>
-        <button className='btn btn-primary' onClick={()=>navigate('/')}>Volver</button>
+        <button className='btn btn-primary' onClick={handleBack}>Volver</button>
         </Table>
       </TableContainer>
     )

@@ -29,19 +29,25 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-//borrar pedido por id
-/* router.delete("/:id", async (req, res, next) => {
+// borrar orden por id
+router.delete("/delete/:id", async (req, res, next) => {
   const  { id } = req.params
   try {
-    let getAllOrdersbyId = await Order.findAll({
-      where: { id },
-      include: { model: OrderLine, include: { model : Product} }
-    })
-    return res.status(200).json(getAllOrdersbyId)
+    let delOrder = await Order.destroy({
+      where: {
+        id,
+      },
+    });
+    console.log(delOrder);
+    return res
+      .status(200)
+      .json({ message: "Pedido eliminada correctamente" });
   } catch (err) {
-    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
+    return res
+      .status(400)
+      .json({ message: "No se pudo eliminar el pedido" + err });
   }
-}); */
+});
 
 
 // Agregar pedidos y lineas de pedidos

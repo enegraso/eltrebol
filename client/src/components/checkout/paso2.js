@@ -6,6 +6,7 @@ import { REACT_APP_API } from "../../store/consts/consts";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import MeLi from './meli'
+import { deleteOrder } from '../../store/actions/orders'
 import {orderline} from '../utils'
 
 
@@ -36,6 +37,12 @@ export default function Paso2(){
     .catch(err => console.error(err))
   },[])
 
+  const handleBack = () => {
+    dispatch(deleteOrder(orderid))
+    console.log(orderid)
+    navigate('/') 
+  }
+
   return (
     <MainContainer>
     <div>
@@ -44,7 +51,7 @@ export default function Paso2(){
         : <MeLi productos={order} data={datos}/>
       }
     </div>
-    <ButtonOne onClick={() => navigate('/') }> Volver </ButtonOne>
+    <ButtonOne onClick={handleBack}> Volver </ButtonOne>
     </MainContainer>
   )
 }

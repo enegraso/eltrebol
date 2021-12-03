@@ -16,7 +16,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {getOrderGuest} from '../../store/actions/orders'
 import { useNavigate } from 'react-router-dom';
-import {getConfig} from '../../store/actions/users'
+
 
 //get from localStorage
 
@@ -38,13 +38,9 @@ export default function Paso1() {
 
     const dispatch = useDispatch();
     const orden = useSelector(state => state.Carrito.guestCart);
-    const config = useSelector(state=>state.Users.configAdmin);
-    
-    useEffect(()=>{
-        dispatch(getConfig(1))
-        console.log('hola soy config',config)
-    },[])
+    const config = useSelector(state => state.User.configsAdmin);
 
+    console.log(config)
     const { register, handleSubmit, errors } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema)
@@ -55,9 +51,6 @@ export default function Paso1() {
 
     const handleDelivery = (event) => {
       setDelivery(event.target.value);
-      if (delivery === 'delivery'){
-          dispatch()
-      }
 
     };
 
@@ -72,13 +65,24 @@ export default function Paso1() {
         const guestOrder = orderline(orden);
         const precioTotal = total(guestOrder);
         console.log(guestOrder, precioTotal)
+        let conEnvio = {}
+        if (delivery === 'delivery')
+        {
+            conEnvio =  [...guestOrder, {
+            id: -1,
+            name: "Envio a domicilio",
+            price: config.deliveryprice,
+            quantity: 1 
+            }] 
+        } 
 
+        console.log("Objeto enviado",conEnvio)
         await dispatch(addOrder({
             'client': data.client,
             'address': data.address,
             'cellphone': data.cellphone,
             'subtotal': precioTotal,
-            'products': guestOrder,
+            'products': delivery === 'delivery' ? conEnvio : guestOrder,
             'status': 'waiting',
             'delivery': false,
             'payd': false
@@ -88,8 +92,8 @@ export default function Paso1() {
             let orderId = localStorage.getItem('orderId')
             dispatch(getOrderGuest(orderId))
 
-            localStorage.setItem("order", JSON.stringify(guestOrder));
-            console.log("ORDEN:",localStorage.getItem("order"))
+            localStorage.setItem("order", JSON.stringify(delivery === 'delivery' ? conEnvio :  guestOrder /* guestOrder */));
+            console.log("ORDEN enviada:",localStorage.getItem("order"))
 
             if (pago === 'meLi'){ 
 

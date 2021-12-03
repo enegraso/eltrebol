@@ -6,14 +6,16 @@ import {getAllProducts} from '../../store/actions/products';
 import Cart from '../carrito';
 import Paso1 from '../../components/checkout/paso1'
 import Spinner from '../../components/spinner';
+import {getConfig} from '../../store/actions/users'
 
 export default function Home(){
 
     const dispatch = useDispatch();
  
-    useEffect(()=>{
+    useEffect(() => {
         console.log('entrando al home')
-        dispatch(getAllProducts())
+        dispatch(getAllProducts()) // Pido todos los productos
+        dispatch(getConfig(1)) // Pido los datos de configuración
     },[])
 
     const [loading] = useState(false);
