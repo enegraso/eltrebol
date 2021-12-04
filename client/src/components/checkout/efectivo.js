@@ -29,8 +29,9 @@ export default function Efectivo(){
         status:"pending",
       };
         dispatch(prepOrder(objStatus))
-        if (localStorage.getItem("orderPrepared") === true)
-        alert('Tu pedido fue realizado con exito!')
+        if (localStorage.getItem("orderPrepared") == "true")
+          navigate('/success')
+        // alert('Tu pedido fue realizado con exito!')
         else
         alert(localStorage.getItem("orderPrepared"))
 
@@ -39,7 +40,7 @@ export default function Efectivo(){
     const handleBack = () => {
       dispatch(deleteOrder(orderid))
       console.log(orderid)
-      navigate('/') 
+      navigate('/')  
     }
 
     return(

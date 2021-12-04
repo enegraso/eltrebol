@@ -94,7 +94,7 @@ router.get("/pagos", (req, res) => {
         .save()
         .then((_) => {
           console.info("redirect success");
-            return res.redirect(`${URL_CLIENT}`);
+            return res.redirect(`${URL_CLIENT}/success`);
         })
         .catch((err) => {
           console.error("error al salvar", err);

@@ -29,7 +29,7 @@ const schema = yup.object().shape({
         .required('Ingrese su direccion de envio'),
     cellphone: yup
         .string()
-        .required('No debe faltar su numero de contacto')
+        .required('No debe faltar su numero de celular')
 })
 
 export default function Paso1() {
@@ -46,7 +46,8 @@ export default function Paso1() {
         resolver: yupResolver(schema)
     })
 
-    const [delivery, setDelivery] = useState('delivery');
+
+    const [delivery, setDelivery] = useState( 'delivery');
     const [pago, setPago] = useState('meLi')
 
     const handleDelivery = (event) => {
@@ -125,8 +126,8 @@ export default function Paso1() {
                     {...register('cellphone', { required: true })}
                     name='cellphone'
                     type='text'
-                    placeholder='Numero de Contacto'
-                    label='Numero de Contacto'
+                    placeholder='Tu numero de celular'
+                    label='Tu numero de celular'
                     required
                 /*     error = {!!errors.cellphone}
                     helperText={errors?.cellphone?.message} */

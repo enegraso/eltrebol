@@ -29,3 +29,15 @@ export function removeGuestLine(prod) {
         dispatch({ type: 'REMOVE_GUEST_LINE', payload: prod });
     }
 }
+
+export function orderSuccess() {
+    return (dispatch) => {
+        try {
+            dispatch({ type: 'ORDER_SUCCESS', payload: [] });
+            console.log("borrar")
+        } catch (err) {
+            console.log(err)
+        }
+        
+    }  
+}

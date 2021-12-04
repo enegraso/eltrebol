@@ -3,7 +3,7 @@ import {orderline, decrease} from '../../components/utils'
 
 const initialState = {
     guestOrder: [],
-    guestCart: loadState() === undefined ? []: loadState(),
+    guestCart: loadState() === undefined ? [] : loadState(),
     guestCartProd: []
 };
 
@@ -46,7 +46,15 @@ export default function cartReducer(state = initialState, action){
                     guestCart: state.guestCart.filter(i => i.id !== action.payload.id),
                     guestCartProd: state.guestCartProd.filter(i => i.id !== action.payload.id)
                 }
+            
+            case "ORDER_SUCCESS":
+                return {
+                    ...state,
+                    guestCart: [],
+                    guestCartProd: []
+                }
 
-            default: return state;
+            default: 
+            return state;
     }
 }

@@ -49,7 +49,7 @@ export default function Cart(){
                             <p>{i.name}</p>
                             <small> Precio: {i.price}</small>
                             <br/>
-                            <button onClick={() => dispatch(removeGuestLine(i))}>Remove</button>
+                            <button className="btn btn-secondary" onClick={() => dispatch(removeGuestLine(i))}>Quitar</button>
                         </div>
                     </div>
                 </td>
@@ -76,10 +76,10 @@ export default function Cart(){
                 <tr>
                     <td>Total</td>
                     <td>${total(guestOrderlines)}</td>
-                </tr>
+                </tr>{/* 
         <Link to='/paso1'>
         <button className='btn btn-success'>Continuar</button>
-        </Link>
+        </Link> */}
      {/*    <button className='btn btn-danger'><RiDeleteBin5Fill/></button> */}
             </table>
         </div>
