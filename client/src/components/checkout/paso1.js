@@ -85,7 +85,7 @@ export default function Paso1() {
             'subtotal': precioTotal,
             'products': delivery === 'delivery' ? conEnvio : guestOrder,
             'status': 'waiting',
-            'delivery': false,
+            'delivery': delivery === 'delivery' ? true : false,
             'payd': false
         }))
 
