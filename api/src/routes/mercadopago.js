@@ -15,17 +15,17 @@ mercadopago.configure({
 
 //Ruta que genera la URL de MercadoPago incial para checkout que devuelve id para iniciar el pago
 router.post("/checkout", (req, res, next) => {
-
-  console.log(req.body)
-  //Para la prueba recibo los parametros del index js dentro de req.body.order 
+  console.log(req.body);
+  //Para la prueba recibo los parametros del index js dentro de req.body.order
   const { id, carrito } = req.body;
 
   // Verificar en caso de que no funcione de pasar los datos por req.body
   // const { id, carrito } = req.body;
 
-  if (!id) return res.status(400).json({ message: "No se ha ingresado id de orden"})
-  if (!carrito) return res.status(400).json({ message: "Falta el detalle de la orden"})
-
+  if (!id)
+    return res.status(400).json({ message: "No se ha ingresado id de orden" });
+  if (!carrito)
+    return res.status(400).json({ message: "Falta el detalle de la orden" });
 
   const items_ml = carrito.map((i) => ({
     title: i.name,
@@ -34,9 +34,9 @@ router.post("/checkout", (req, res, next) => {
   }));
 
   //Tomo ruta/urls backs para enviar a MercadoPago
-  var fullUrl = req.protocol + '://' + req.get('host');
-  console.log("FULL URL", fullUrl)
-  
+  var fullUrl = req.protocol + "://" + req.get("host");
+  console.log("FULL URL", fullUrl);
+
   // Crea un objeto de preferencia
   let preference = {
     items: items_ml,
@@ -51,8 +51,8 @@ router.post("/checkout", (req, res, next) => {
     },
     back_urls: {
       success: `${fullUrl}/mp/pagos`,
-      failure: `${fullUrl}/mp/pagos`,
-      pending: `${fullUrl}/mp/pagos`,
+      failure: `${fullUrl}/mp/error`,
+      pending: `${fullUrl}/mp/pending`,
     },
   };
 
@@ -80,48 +80,51 @@ router.get("/pagos", (req, res) => {
   const merchant_order_id = req.query.merchant_order_id;
   console.log("EXTERNAL REFERENCE ", external_reference);
 
+  console.log("PAYMENT STATUS",payment_status);
   //Aquí edito el status de mi orden
-  Order.findByPk(external_reference)
-    .then((order) => {
-      // EJEMPLO DE ORDER
-      order.payd_idml = payment_id;
-      order.payd_mlstatus = payment_status;
-      order.merchant_order_idml = merchant_order_id;
-      order.status = "pending"
-      order.payd = true;
-      console.info("Salvando order");
-      order
-        .save()
-        .then((_) => {
-          console.info("redirect success");
+
+    Order.findByPk(external_reference)
+      .then((order) => {
+        // EJEMPLO DE ORDER
+        order.payd_idml = payment_id;
+        order.payd_mlstatus = payment_status;
+        order.merchant_order_idml = merchant_order_id;
+        order.status = "pending";
+        order.payd = true;
+        console.info("Salvando order");
+        order
+          .save()
+          .then((_) => {
+            console.info("redirect success");
             return res.redirect(`${URL_CLIENT}/success`);
-        })
-        .catch((err) => {
-          console.error("error al salvar", err);
-               return res.redirect(
-            `${URL_CLIENT}/?error=${err}&where=al+salvar`
-          );
-        });
-    })
-    .catch((err) => {
-      console.error("error al buscar", err);
-      return res.redirect(
-        `${URL_CLIENT}/?error=${err}&where=al+buscar`
-      );
-    });
+          })
+          .catch((err) => {
+            console.error("error al salvar", err);
+            return res.redirect(`${URL_CLIENT}/?error=${err}&where=al+salvar`);
+          });
+      })
+      .catch((err) => {
+        console.error("error al buscar", err);
+        return res.redirect(`${URL_CLIENT}/?error=${err}&where=al+buscar`);
+      });
 
   //proceso los datos del pago
   //redirijo de nuevo a react con mensaje de exito, falla o pendiente
 });
+
+// En caso de volver sin pagar
+router.get("/error", (req, res) => {
+  return res.redirect(`${URL_CLIENT}/paso2`);
+})
 
 //Busco información de una orden de pago
 router.get("/pagos/:id", (req, res) => {
   const mp = new mercadopago(ACCESS_TOKEN);
   const id = req.params.id;
   console.info("Buscando el id", id);
-/*   mp.get(`/v1/payments/${id}` )  */// { "external_reference":id } {"status": "pending"})
-  
-mp.get(`/v1/payments/search`)
+  /*   mp.get(`/v1/payments/${id}` )  */ // { "external_reference":id } {"status": "pending"})
+
+  mp.get(`/v1/payments/search`)
     .then((resultado) => {
       console.info("resultado", resultado);
       res.json({ resultado: resultado });
