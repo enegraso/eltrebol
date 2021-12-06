@@ -49,6 +49,7 @@ const Category = categoryModel(sequelize);
 const Order = orderModel(sequelize);
 const OrderLine = orderLineModel(sequelize);
 const Configs = configsModel(sequelize);
+const Prod_Cat = (sequelize.models.prod_cat)
 
 // Será necesario definir las relaciones
 
@@ -61,6 +62,7 @@ OrderLine.belongsTo(Product);
 Order.hasMany(OrderLine);
 OrderLine.belongsTo(Order);
 
+// console.log()
 // Exports models
 
 module.exports = {
@@ -71,4 +73,5 @@ module.exports = {
   Order,
   OrderLine,
   Configs,
+  Prod_Cat: sequelize.models.prod_cat
 };
