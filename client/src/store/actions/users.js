@@ -11,6 +11,7 @@ export const getUser = (username, password) => async (dispatch) => {
     });
     dispatch({ type: "GET_USER_DETAIL", payload: data.login });
     localStorage.setItem("userInfo", JSON.stringify(data.login));
+    localStorage.setItem("allowLogin","si")
   } catch (err) {
     console.log(
       err.response && err.response.data.message
@@ -78,8 +79,10 @@ export const getConfig = (id) => async (dispatch) => {
 export function logOut(arg) {
   return function (dispatch) {
     dispatch({ type: "LOGOUT_USER", payload: arg });
+
     localStorage.removeItem("userInfo");
     localStorage.removeItem("userUpdated")
+    localStorage.removeItem("allowLogin")
     // Carteles de categoria admin
     localStorage.removeItem("categoryDeleted")
     localStorage.removeItem("categoryAdded")

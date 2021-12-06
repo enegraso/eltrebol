@@ -52,8 +52,8 @@ const Configs = configsModel(sequelize);
 
 // Será necesario definir las relaciones
 
-Product.belongsToMany(Category, { through: "prod_cat" });
-Category.belongsToMany(Product, { through: "prod_cat" });
+Product.belongsToMany(Category, { through: 'prod_cat' });
+Category.belongsToMany(Product, { through: 'prod_cat' });
 
 Product.hasMany(OrderLine);
 OrderLine.belongsTo(Product);

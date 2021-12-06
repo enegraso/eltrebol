@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import './navBar.css';
 import {GiShamrock} from 'react-icons/gi';
-import {FaHome} from 'react-icons/fa';
+import {FaHome, FaUserCircle } from 'react-icons/fa';
 import {BiCategory} from 'react-icons/bi';
 import {MdShoppingCart} from 'react-icons/md';
 import { useSelector } from 'react-redux'
@@ -57,6 +57,15 @@ export default function NavBar(){
                    <span class="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
                   </Link>
               </li>
+              { localStorage.getItem("allowLogin") == "si" ? 
+                            <li className='nav-item'>
+                            <Link to='/loginadmin' 
+                            className='nav-links btn-outline-success' 
+                            onClick={closeMobileMenu}>
+                             <FaUserCircle />
+                            </Link>
+                        </li> : ""
+               }
           </ul>
       </nav>
       </>

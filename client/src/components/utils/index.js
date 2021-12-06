@@ -20,7 +20,7 @@ export const orderline = function(array){
                 // Agrego a la orden 2 variables para aumentar y bajar segun pedido de cliente
                 stepunit: array[i].stepunit,
                 minunit: array[i].minunit,
-                quantity: !array[i].minunit // acuerdo a la db
+                quantity: array[i].minunit // acuerdo a la db
             }
             guestOrder.push(pushOrderLine)
         }

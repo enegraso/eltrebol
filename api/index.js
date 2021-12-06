@@ -24,7 +24,7 @@ const {
   Product,
   Order,
   Category,
-  prod_cat,
+/*   Prod_Cat, */
   OrderLine,
   Configs,
 } = require("./src/models/index.js");
@@ -57,9 +57,9 @@ conn
   })
   .then(() => {
     if (forzar === true) Product.bulkCreate(initialProducts);
-  })
-/*    .then(() => {
-    prod_cat.bulkCreate(categoryProducts);
+  })/* 
+    .then(() => {
+    if (forzar === true) Prod_Cat.bulkCreate(categoryProducts);
   })  */
   .then(() => {
     if (forzar === true) Order.bulkCreate(initialOrders);
