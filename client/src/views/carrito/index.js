@@ -56,14 +56,14 @@ export default function Cart(){
                 <td>
                     <div className='quantity' style={{'display':'flex', 'align-items':'row'}}>
                     <button className='buttonQuant' style={{}} 
-                    onClick={()=>i.quantity === 1 ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
+                    onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
                     <p className='pQuant'>{i.quantity}</p>
                     <button className='buttonQuant' style={{}}
-                    onClick={()=>dispatch(saveToGuestCart(i))}
+                    onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
                     >+</button>
                     </div>
                 </td>
-                <td>${i.quantity * i.price}</td>
+                <td>${(i.quantity * i.price)}</td>
             </tr>
             ))}
         </table>
