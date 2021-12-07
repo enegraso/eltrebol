@@ -98,7 +98,7 @@ router.post("/add", async (req, res) => {
       .status(400)
       .send({ message: "Por favor, ingrese nombre de producto" });
   }
-  if (!price || price < 0) {
+  if (!price || price <= 0) {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese precio de producto" });
