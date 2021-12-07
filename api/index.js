@@ -66,9 +66,9 @@ conn
   })
   .then(() => {
     if (forzar === true) OrderLine.bulkCreate(initialOrderlines);
-  })
+  }) */
   .then(() => {
     if (forzar === true) Configs.bulkCreate(initialConfigs);
-  }) */
+  }) 
   .catch((error) => console.log("Error al bulkcreate", error));
  
