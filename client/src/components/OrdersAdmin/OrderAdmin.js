@@ -9,6 +9,7 @@ const OrderAdmin = () => {
   const dispatch = useDispatch();
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
   const configsAdmin = useSelector((state) => state.User.configsAdmin)
+  const imageDelivery = "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638913622/motodelivery_r6mjqv.png"
 
 
   if (!localStorage.getItem("userInfo"))
@@ -131,7 +132,7 @@ const OrderAdmin = () => {
                   {line.quantity} - {!line.product ? "envio" : line.product.units}{" "}
                 </td>
                 <td className="orderLineProduct">
-                  <img className="imageProduct" src={!line.product ? "" : line.product.image} />
+                  <img className="imageProduct" src={!line.product ? imageDelivery : line.product.image} />
                   {!line.product ? "Envio a domicilio" : line.product.name}
                 </td>
                 <td>{Number(!line.product ? line.price : line.product.price).toFixed(2)}</td>
