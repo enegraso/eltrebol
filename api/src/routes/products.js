@@ -92,7 +92,7 @@ router.post("/add", async (req, res) => {
     minunit,
     stepunit,
   } = req.body;
-  console.log(req.body);
+  console.log(req.body.categories);
   if (!name || name === "") {
     return res
       .status(400)
@@ -103,7 +103,7 @@ router.post("/add", async (req, res) => {
       .status(400)
       .send({ message: "Por favor, ingrese precio de producto" });
   }
-  if (!categories) {
+  if (!categories || categories.length === 0) {
     return res
       .status(400)
       .send({ message: "Por favor, ingrese categoria/s del producto" });

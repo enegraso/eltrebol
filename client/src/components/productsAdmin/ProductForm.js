@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { prodAdd } from "../../store/actions/products";
 import { getAllCategories } from "../../store/actions/categories";
@@ -23,12 +23,15 @@ export function validateprod(input) {
   return errors;
 }
 
-const ProductForm = (props) => {
+const ProductForm = () => {
   const dispatch = useDispatch();
   const categoriasAdmin = useSelector((state) => state.Category.allCategories);
 
-  if (categoriasAdmin.length === 0) dispatch(getAllCategories());
-
+  useEffect(()=>{
+    if (categoriasAdmin.length === 0) dispatch(getAllCategories());
+  },[])
+  
+  
   const [input, setInput] = React.useState({
     name: "",
     description: "",
@@ -38,7 +41,7 @@ const ProductForm = (props) => {
     image: localStorage.getItem("urlImage").replaceAll('"', ""),
     units: "unidad",
     minunit: 1,
-    stepunit: 0.25,
+    stepunit: 1,
     categories: [],
   });
   const [errors, setErrors] = React.useState({});
