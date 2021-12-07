@@ -40,7 +40,7 @@ const {
   categoryProducts
 } = require("./src/seed.js");
 
-const forzar = true
+const forzar = false
 conn
   .sync({ force: forzar })
   .then(() => {
