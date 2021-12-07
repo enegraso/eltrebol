@@ -52,7 +52,7 @@ conn
   }) 
   .then(() => {
     if (forzar === true) User.bulkCreate(initialUsers);
-  })/*
+  })
   .then(() => {
     if (forzar === true) Category.bulkCreate(initialCategories);
   })
@@ -67,7 +67,7 @@ conn
   })
   .then(() => {
     if (forzar === true) OrderLine.bulkCreate(initialOrderlines);
-  }) */
+  }) 
   .then(() => {
     if (forzar === true) Configs.bulkCreate(initialConfigs);
   }) 
