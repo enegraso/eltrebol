@@ -48,10 +48,10 @@ conn
     app.listen(PORT, () => {
       console.log(`Listen on port ${PORT}`);
     });
-  })
+  }) 
   .then(() => {
     if (forzar === true) User.bulkCreate(initialUsers);
-  })
+  })/*
   .then(() => {
     if (forzar === true) Category.bulkCreate(initialCategories);
   })
@@ -69,5 +69,6 @@ conn
   })
   .then(() => {
     if (forzar === true) Configs.bulkCreate(initialConfigs);
-  })
+  }) */
   .catch((error) => console.log("Error al bulkcreate", error));
+ 
