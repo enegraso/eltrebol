@@ -7,7 +7,7 @@ export default function ProductGrid({items, loading}){
      return (
     loading ? (<Spinner/>)
     : <section class='container'>
-        <div className="row justify-content-center row-cols-md-4 row-cols-sm-1">
+        <div className="row justify-content-center"> {/* lo quito para que haga equitativa la distribución: row-cols-md-4 row-cols-sm-1 */}
         {items.map(e =>(
             (<ProductCard 
                 id={e.id} 

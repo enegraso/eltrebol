@@ -37,7 +37,6 @@ router.get("/grupocat", (req, res, next) => {
     }],
     group: Category ['category'],
     where: {exist: true},
-    order: [['name', 'ASC']]
   } )
     .then((products) => {
       res.send(products);

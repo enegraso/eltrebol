@@ -25,7 +25,7 @@ export default function ProductCard({
     <div className="col">
       <div className="card mt-3">
       <div className="product align-items-center p-2 text-center" /* style={{ width: "18rem" }} */>
-        <img src={img} className="rounded" width="160" alt={name} title={name} />
+        <img src={img} className="rounded anchoimg" alt={name} title={name} />
           <h5>
             {name}
           </h5>
