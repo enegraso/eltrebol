@@ -1,7 +1,7 @@
 const express = require("express");
 const { Op } = require("sequelize");
 // Defino el modelo user para utilizarlo en las rutas correspondientes
-const { Product, Category, OrderLine } = require("../models/index");
+const { Product, Category, OrderLine, Prod_Cat } = require("../models/index");
 
 const router = express.Router();
 
@@ -22,6 +22,23 @@ router.get("/admin", (req, res, next) => {
       required: true,
     }],
     order: [['exist' , 'DESC']] })
+    .then((products) => {
+      res.send(products);
+    })
+    .catch(next);
+});
+
+//todos los productos ordenados por nombre, si existen y agrupados por categoria
+router.get("/grupocat", (req, res, next) => {
+  Product.findAll({ 
+    include: [{
+      model: Category,
+      required: true,
+    }],
+    group: Category ['category'],
+    where: {exist: true},
+    order: [['name', 'ASC']]
+  } )
     .then((products) => {
       res.send(products);
     })

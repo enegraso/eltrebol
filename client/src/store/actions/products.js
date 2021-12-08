@@ -16,7 +16,16 @@ export const PDES = 'Weight-Z-A';
 export function getAllProducts() {
   console.log("hola estoy en products - " + `${productsEndpoint}`);
   return (dispatch) => {
-    return Axios(`${productsEndpoint}`).then((json) => {
+     return Axios(`${productsEndpoint}`).then((json) => {
+      dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
+    });
+  };
+}
+
+export function getAllProductsCat() {
+  console.log("hola estoy productos agrupados por categoria - " + `${productsEndpoint}`);
+  return (dispatch) => {
+    return Axios(`${productsEndpoint}/grupocat`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
     });
   };
