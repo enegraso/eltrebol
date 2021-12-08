@@ -25,7 +25,7 @@ export function getAllProducts() {
 export function getAllProductsCat() {
   console.log("hola estoy productos agrupados por categoria - " + `${productsEndpoint}`);
   return (dispatch) => {
-    return Axios(`${productsEndpoint}/grupocat`).then((json) => {
+    return Axios(`${productsEndpoint}grupocat`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
     });
   };

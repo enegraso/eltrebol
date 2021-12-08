@@ -16,12 +16,15 @@ router.get("/", (req, res, next) => {
 
 //todos los productos para admin
 router.get("/admin", (req, res, next) => {
-  Product.findAll({ 
-    include: [{
-      model: Category,
-      required: true,
-    }],
-    order: [['exist' , 'DESC']] })
+  Product.findAll({
+    include: [
+      {
+        model: Category,
+        required: true,
+      },
+    ],
+    order: [["exist", "DESC"]],
+  })
     .then((products) => {
       res.send(products);
     })
@@ -30,20 +33,22 @@ router.get("/admin", (req, res, next) => {
 
 //todos los productos ordenados por nombre, si existen y agrupados por categoria
 router.get("/grupocat", (req, res, next) => {
-  Product.findAll({ 
-    include: [{
-      model: Category,
-      required: true,
-    }],
-    group: Category ['category'],
-    where: {exist: true},
-  } )
+  Product.findAll({
+    include: [
+      {
+        model: Category,
+        required: true,
+      },
+    ],
+    group: Category["category"], 
+    order: Category["category","ASC"],
+    where: { exist: true }
+  })
     .then((products) => {
       res.send(products);
     })
     .catch(next);
 });
-
 
 //producto por id
 router.get("/:id", (req, res) => {
@@ -299,7 +304,7 @@ router.delete("/delete/:id", async (req, res) => {
 
 router.post("/stock", (req, res) => {
   const { id } = req.body;
-  console.log("BODY "+req.body);
+  console.log("BODY " + req.body);
   Product.findByPk(id)
     .then((product) => {
       (product.exist = !product.exist),
