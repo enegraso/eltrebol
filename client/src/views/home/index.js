@@ -23,10 +23,14 @@ export default function Home(){
     const verCarro = useSelector(state => state.Carrito.guestCartProd)
     console.log(productos," - ", verCarro)
 
+    const exist = productos.filter(function(productos){
+        return productos.exist === true
+    })
+
     return(
         <div className='container'>
         <SearchBar/>
-        { productos.length ? <><ProductGrid loading={loading} items={productos}/>{ verCarro.length ? <><Cart /> <Paso1 /></> : ""}</> : <p><Spinner /> </p>}
+        { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <><Cart /> <Paso1 /></> : ""}</> : <p><Spinner /> </p>}
         
         </div>
     )
