@@ -84,7 +84,7 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          <div className="filtros">
+          <div className="filtroscss">
             <SearchBarAdmin />
 
             {/* ordenar productos */}
@@ -127,7 +127,7 @@ const ProductsAdmin = (props) => {
                 <img src={product.image} width="auto" height="64px" />
               </div>
               <div class="form-control textlist">
-                {product.name} - AR$ {product.price} -
+                {product.name} <br/> $ {product.price} <br />
                 {product.exist === true ? " STOCK " : " SIN STOCK "}
               </div>
               <div class="form-label addback">
@@ -173,7 +173,7 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          <div className="filtros">
+          <div className="filtroscss">
             <SearchBarAdmin />
             <select onChange={handleDispatchOrder}>
               <option>Ordenar</option>

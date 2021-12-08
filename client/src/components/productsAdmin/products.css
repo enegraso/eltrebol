@@ -59,7 +59,7 @@ span {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.filtros {
+.filtroscss {
   display: flex;
   width: 100%;
   align-items: center;
@@ -78,7 +78,7 @@ span {
     align-items: center;
     justify-content: space-around;
   }
-  .filtros {
+  .filtroscss {
     width: 100%;
     flex-wrap: wrap;
     align-items: center;
