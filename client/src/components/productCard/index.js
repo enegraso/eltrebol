@@ -21,32 +21,32 @@ export default function ProductCard({
   };
 
   return (
+    <>
     <div className="col">
-      <div className="card text-center" /* style={{ width: "18rem" }} */>
-        <img src={img} className="card-img-top imageItem" alt={name} title={name} />
-        <div className="card-body">
-          <p className="card-title">
-            <strong>{name}</strong>
-          </p>
-          <p className="card-text">
-            Precio: $ {price}
-            {/*  <br/>
-                    Existe: {exists}
-                    <br/>
-                    Oferta: {oferta} */}
-          </p>
-          <button
-            className="btn btn-warning btn-lg"
-            style={{ width: "95%" }}
+      <div className="card mt-3">
+      <div className="product align-items-center p-2 text-center" /* style={{ width: "18rem" }} */>
+        <img src={img} className="rounded" width="160" alt={name} title={name} />
+          <h5>
+            {name}
+          </h5>
+          <div className="cost mt-3 text-dark">
+          <span>
+           $ {price}
+          </span>
+          </div>
+          <div
+            className="p-3 buttonprod text-center text-white mt-3 cursor"
             onClick={() => {
               setToLocalStorage(prod);
             }}
           >
-            Agregar <BsFillCartPlusFill />
-          <span className='cartItem'></span>
-          </button>
+            <span className="text-uppercase">
+             Agregar
+            </span>
+          </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
