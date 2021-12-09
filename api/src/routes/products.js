@@ -38,13 +38,12 @@ router.get("/grupocat", (req, res, next) => {
       {
         model: Category,
         required: true,
-      },
+      }      
     ],
-    group: Category["category"], 
-    order: Category["category","ASC"],
-    where: { exist: true }
+    
   })
     .then((products) => {
+      // console.log(products)
       res.send(products);
     })
     .catch(next);

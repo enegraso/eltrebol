@@ -16,7 +16,14 @@ export default function productReducer(state = initialState, action) {
         allProducts: action.payload.data,
       };
 
-    case "GET_ALL_PRODUCTS_ADMIN":
+      case "GET_ALL_PRODUCTS_CATE":
+        return {
+          ...state,
+          allProducts: action.payload,
+        };
+  
+
+      case "GET_ALL_PRODUCTS_ADMIN":
       return {
         ...state,
         productsAdmin: action.payload.data,

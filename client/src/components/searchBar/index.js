@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchProducts, getAllProducts } from "../../store/actions/products";
+import { searchProducts, getAllProductsCat } from "../../store/actions/products";
 import { BiSearchAlt } from "react-icons/bi";
 import './searchBar.css'
 
@@ -17,7 +17,7 @@ export default function SearchBar() {
   const handleClick = async (e) => {
     e.preventDefault();
     if (query.query === "") {
-        await dispatch(getAllProducts()); 
+        await dispatch(getAllProductsCat()); 
     } else {
       await dispatch(searchProducts(query.query));
       setQuery("");

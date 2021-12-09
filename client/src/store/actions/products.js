@@ -5,25 +5,27 @@ import {
   productByIdEndpoint,
   addProductEndpoint,
   modifyProductEndpoint,
-  stockProductEndpoint
+  stockProductEndpoint,
 } from "../consts/consts";
 
-export const ASC = 'Breeds-A-Z';
-export const DES = 'Breeds-Z-A';
-export const PASC = 'Weight-A-Z';
-export const PDES = 'Weight-Z-A';
+export const ASC = "Breeds-A-Z";
+export const DES = "Breeds-Z-A";
+export const PASC = "Weight-A-Z";
+export const PDES = "Weight-Z-A";
 
 export function getAllProducts() {
   console.log("hola estoy en products - " + `${productsEndpoint}`);
   return (dispatch) => {
-     return Axios(`${productsEndpoint}`).then((json) => {
+    return Axios(`${productsEndpoint}`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
     });
   };
 }
 
 export function getAllProductsCat() {
-  console.log("hola estoy productos agrupados por categoria - " + `${productsEndpoint}`);
+  console.log(
+    "hola estoy productos agrupados por categoria - " + `${productsEndpoint}`
+  );
   return (dispatch) => {
     return Axios(`${productsEndpoint}grupocat`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
@@ -101,7 +103,6 @@ export function deleteProduct(id) {
   };
 }
 
-
 export const prodAdd = (producto) => async (dispatch) => {
   console.log("agregando");
   try {
@@ -119,9 +120,9 @@ export const prodAdd = (producto) => async (dispatch) => {
 };
 
 export const prodStock = (id) => async (dispatch) => {
-  console.log("stock: "+id);
+  console.log("stock: " + id);
   try {
-    const { data } = await Axios.post(`${stockProductEndpoint}`, {id:id});
+    const { data } = await Axios.post(`${stockProductEndpoint}`, { id: id });
     dispatch({ type: "PROD_STOCK_MOD", payload: data.product });
     localStorage.setItem("stockModified", true);
   } catch (err) {
@@ -133,7 +134,6 @@ export const prodStock = (id) => async (dispatch) => {
     );
   }
 };
-
 
 export const prodMod = (producto) => async (dispatch) => {
   console.log("modificando");
@@ -174,19 +174,19 @@ export const urlPost = (url) => {
   };
 };
 
-
- export const searchProducts = (buscar) => async (dispatch) => {
+export const searchProducts = (buscar) => async (dispatch) => {
   console.log("buscando");
   try {
-    const { data } = await Axios.get(`${REACT_APP_API}products/search/${buscar}`
+    const { data } = await Axios.get(
+      `${REACT_APP_API}products/search/${buscar}`
     );
     dispatch({ type: "PRODS_FOUNDED", payload: data });
-    console.log(data)
+    console.log(data);
   } catch (err) {
     alert(
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message,
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
     );
   }
 };
@@ -194,99 +194,133 @@ export const urlPost = (url) => {
 export const searchProductsAdmin = (buscar) => async (dispatch) => {
   console.log("buscando");
   try {
-    const { data } = await Axios.get(`${REACT_APP_API}products/search/${buscar}`
+    const { data } = await Axios.get(
+      `${REACT_APP_API}products/search/${buscar}`
     );
     dispatch({ type: "PRODS_FOUNDED_ADMIN", payload: data });
-    console.log(data)
+    console.log(data);
   } catch (err) {
     alert(
-        err.response && err.response.data.message
-          ? err.response.data.message
-          : err.message,
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
     );
   }
 };
 
+// Ordeno por categorias de producto
+export function sortCat(order, breeds) {
+  console.log("PRODUCTOS", breeds);
+  let sortBreed = [...breeds];
+
+  sortBreed.sort(function (a, b) {
+    var nombreA = a.categories[0].category.toUpperCase();
+    var nombreB = b.categories[0].category.toUpperCase();
+
+    if (order === ASC) {
+      if (nombreA < nombreB) {
+        return -1;
+      }
+      if (nombreA > nombreB) {
+        return 1;
+      }
+      return 0;
+    }
+    if (order === DES) {
+      if (nombreA < nombreB) {
+        return 1;
+      }
+      if (nombreA > nombreB) {
+        return -1;
+      }
+      return 0;
+    }
+  });
+  console.log("PRODUCTOS ORDENADOS", sortBreed);
+  return function (dispatch) {
+    //      dispatch({type: "SORT_PROD_ADMIN", payload: sortBreed})
+    dispatch({ type: "GET_ALL_PRODUCTS_CATE", payload: sortBreed });
+  };
+}
+
 // Ordeno por nombre de producto
-export function sort(order, breeds){
-  console.log("PRODUCTOS",breeds)
-  let sortBreed = [...breeds]
+export function sort(order, breeds) {
+  console.log("PRODUCTOS", breeds);
+  let sortBreed = [...breeds];
 
-  sortBreed.sort(function(a,b){
-      var nombreA = a.name.toUpperCase();
-      var nombreB = b.name.toUpperCase();
+  sortBreed.sort(function (a, b) {
+    var nombreA = a.name.toUpperCase();
+    var nombreB = b.name.toUpperCase();
 
-      if(order === ASC){
-          if(nombreA < nombreB){
-              return -1;
-          }
-          if(nombreA > nombreB){
-              return 1
-          }
-          return 0
+    if (order === ASC) {
+      if (nombreA < nombreB) {
+        return -1;
       }
-      if(order === DES){
-          if(nombreA < nombreB){
-              return 1;
-          }
-          if(nombreA > nombreB){
-              return -1
-          }
-          return 0
+      if (nombreA > nombreB) {
+        return 1;
       }
-  })
-  console.log("PRODUCTOS ORDENADOS",sortBreed)
-  return function(dispatch){
-      dispatch({type: "SORT_PROD_ADMIN", payload: sortBreed})
-  }
+      return 0;
+    }
+    if (order === DES) {
+      if (nombreA < nombreB) {
+        return 1;
+      }
+      if (nombreA > nombreB) {
+        return -1;
+      }
+      return 0;
+    }
+  });
+  console.log("PRODUCTOS ORDENADOS", sortBreed);
+  return function (dispatch) {
+    dispatch({ type: "SORT_PROD_ADMIN", payload: sortBreed });
+  };
 }
 
 // Ordeno por precio
-export function sortweight(order, breeds){
-  let sortWeight = [...breeds]
+export function sortweight(order, breeds) {
+  let sortWeight = [...breeds];
 
-  sortWeight.sort(function(a,b){
-      var pesoA = a.price;
-      var pesoB = b.price;
+  sortWeight.sort(function (a, b) {
+    var pesoA = a.price;
+    var pesoB = b.price;
 
-      if(order === PASC){
-          if(pesoA < pesoB){
-              return -1;
-          }
-          if(pesoA > pesoB){
-              return 1
-          }
-          return 0
+    if (order === PASC) {
+      if (pesoA < pesoB) {
+        return -1;
       }
-      if(order === PDES){
-          if(pesoA < pesoB){
-              return 1;
-          }
-          if(pesoA > pesoB){
-              return -1
-          }
-          return 0
+      if (pesoA > pesoB) {
+        return 1;
       }
-  })
+      return 0;
+    }
+    if (order === PDES) {
+      if (pesoA < pesoB) {
+        return 1;
+      }
+      if (pesoA > pesoB) {
+        return -1;
+      }
+      return 0;
+    }
+  });
 
-  return function(dispatch){
-      dispatch({type: "SORT_PRICE_ADMIN", payload: sortWeight})
-  }
+  return function (dispatch) {
+    dispatch({ type: "SORT_PRICE_ADMIN", payload: sortWeight });
+  };
 }
 
 export const filtroCate = (actualBreed, temperament) => (dispatch) => {
   let filtro = [...actualBreed];
-  console.log("CATEGORIA a Filtrar",filtro,"Filtar",temperament)
-  filtro = filtro.filter(actual => { 
-  
-       if(actual.categories[0].id == temperament){
-          let prodTemp = actual
-          /* console.log("PRODS",prodTemp) */
-          return prodTemp;
-      }else{
-          return false
-      }
-  })
-  dispatch({type:"SORT_PROD_ADMIN", payload: filtro})
-}
-
+  console.log("CATEGORIA a Filtrar", filtro, "Filtar", temperament);
+  filtro = filtro.filter((actual) => {
+    if (actual.categories[0].id == temperament) {
+      let prodTemp = actual;
+      /* console.log("PRODS",prodTemp) */
+      return prodTemp;
+    } else {
+      return false;
+    }
+  });
+  dispatch({ type: "SORT_PROD_ADMIN", payload: filtro });
+};
