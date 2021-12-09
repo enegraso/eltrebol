@@ -40,7 +40,7 @@ router.get("/grupocat", (req, res, next) => {
         required: true,
       }      
     ],
-    
+    order: [['name','ASC']]
   })
     .then((products) => {
       // console.log(products)

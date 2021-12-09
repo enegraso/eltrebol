@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { searchProducts, getAllProductsCat } from "../../store/actions/products";
+import { useDispatch, useSelector } from "react-redux";
+import { searchProducts, getAllProductsCat, sortCat } from "../../store/actions/products";
 import { BiSearchAlt } from "react-icons/bi";
 import './searchBar.css'
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
+
 
   const handleChange = (e) => {
     setQuery({
