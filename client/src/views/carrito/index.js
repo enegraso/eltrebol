@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
-import './carrito.css';
+/* import './carrito.css'; */
 import {RiDeleteBin5Fill} from 'react-icons/ri'
 import {getGuestCart, DecreaseGuestLine, removeGuestLine} from '../../store/actions/carrito';
 import saveToGuestCart from '../../store/actions/carrito';
@@ -55,10 +55,10 @@ export default function Cart(){
                 </td>
                 <td>
                     <div className='quantity' style={{'display':'flex', 'align-items':'row'}}>
-                    <button className='buttonQuant' style={{}} 
+                    <button className='buttonQuant'
                     onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
                     <p className='pQuant'>{i.quantity}</p>
-                    <button className='buttonQuant' style={{}}
+                    <button className='buttonQuant'
                     onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
                     >+</button>
                     </div>

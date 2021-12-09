@@ -23,8 +23,8 @@ export default function ProductCard({
   return (
     <>
     <div className="col">
-      <div className="card mt-3">
-      <div className="product align-items-center p-2 text-center" /* style={{ width: "18rem" }} */>
+      <div className="card mt-3 shadow p-3 mb-5 bg-body rounded">
+      <div className="product align-items-center p-2 text-center">
         <img src={img} className="rounded" width="160" alt={name} title={name} />
           <h5>
             {name}

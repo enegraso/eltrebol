@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import './navBar.css';
+/* import './navBar.css'; */
+import './nav.css';
 import {GiShamrock} from 'react-icons/gi';
 import {FaHome, FaUserCircle } from 'react-icons/fa';
-import {BiCategory} from 'react-icons/bi';
 import {MdShoppingCart} from 'react-icons/md';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import shoppingBag from '../utils/img/shopping-bag.png';
+import Carrito from '../../views/carrito'
 
 
 export default function NavBar(){
@@ -18,55 +20,49 @@ export default function NavBar(){
   },[elementCart])
 
 
-  
-  const [click, setClick] = useState(false);
-
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = ()=>setClick(false);
-
   return(
       <>
-      <nav className='navbar'>
+      <nav className='navbar bg-fade fixed-top'>
+        <div className='container-fluid'>
+
           <Link to='/' className='navbar-logo'>
-          <GiShamrock style={{'color':'#4AA96C'}}/> El Trebol
+          <GiShamrock className='sham'/> El Trebol
           </Link>
-          <div className='menu-icon' onClick={handleClick}>
-              <i className={click? 'fas fa-times': 'fas fa-bars'}/>
+
+          <div className='userAdminLink' type='button'>
+          { localStorage.getItem("allowLogin") == "si" ? 
+             <Link 
+             to='/loginadmin' 
+             className='btn-outline-success' 
+              > <FaUserCircle /> </Link>
+              : ""
+          }
           </div>
-          <ul className={click ? 'nav-menu active': 'nav-menu'}>
-              <li className='nav-item'>
-                  <Link to='/' 
-                  className='nav-links btn-outline-success' 
-                  onClick={closeMobileMenu}>
-                    <FaHome/>
-                  </Link>
-              </li>
-              <li className='nav-item'>
-                <Link to='/category'
-                className='nav-links btn-outline-success'
-                onClick={closeMobileMenu}
-                >
-                <BiCategory/>
-                </Link>
-              </li>
-              <li className='nav-item'>
-                  <Link to='/carrito' 
-                  className='nav-links btn-outline-success' 
-                  onClick={closeMobileMenu}>
-                   <MdShoppingCart/>
-                   <span class="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
-                  </Link>
-              </li>
-              { localStorage.getItem("allowLogin") == "si" ? 
-                            <li className='nav-item'>
-                            <Link to='/loginadmin' 
-                            className='nav-links btn-outline-success' 
-                            onClick={closeMobileMenu}>
-                             <FaUserCircle />
-                            </Link>
-                        </li> : ""
-               }
-          </ul>
+
+          <div className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <MdShoppingCart/>
+          <span className="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
+          </div>
+          
+          <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          
+          <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasNavbarLabel">{ itemsCart > 0 ? itemsCart : "" } Items</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div className="offcanvas-body">
+        {
+        itemsCart == 0 ? 
+        <div>
+        <img className='shopBagImg' src={shoppingBag} alt='Continue Shopping'/>
+        <h5 style={{'color':'gray'}}>Tu bolsa de compras esta vacia</h5>
+        </div>
+        : <Carrito/>
+        }
+      </div>
+    </div>
+
+        </div>
       </nav>
       </>
   )

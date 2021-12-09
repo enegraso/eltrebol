@@ -28,7 +28,7 @@ export default function Home(){
     })
 
     return(
-        <div className='container'>
+        <div className='container' style={{'marginTop':'5em'}}>
         <SearchBar/>
         { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <><Cart /> <Paso1 /></> : ""}</> : <p><Spinner /> </p>}
         
