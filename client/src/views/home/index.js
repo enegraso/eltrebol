@@ -2,19 +2,16 @@ import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
-import {getAllProductsCat, sortCat, ASC} from '../../store/actions/products';
+import {getAllProductsCat} from '../../store/actions/products';
 import Cart from '../carrito';
 import Paso1 from '../../components/checkout/paso1'
 import Spinner from '../../components/spinner';
 import {getConfig} from '../../store/actions/users'
+import AboutUs from '../../components/AboutUs'
 
 export default function Home(){
 
     const dispatch = useDispatch();
-
-
-
-
 
     useEffect(async () => {
         console.log('entrando al home')
@@ -36,11 +33,13 @@ export default function Home(){
 
 
 
-    return(
+    return(<>
         <div className='container'>
         <SearchBar/>
       { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <><Cart /> <Paso1 /></> : ""}</> : <p><Spinner /> </p>} 
         
         </div>
+        <AboutUs />
+        </>
     )
 }

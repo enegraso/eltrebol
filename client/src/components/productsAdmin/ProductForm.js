@@ -248,8 +248,8 @@ const ProductForm = () => {
               name="minunit"
               onChange={handleInputChange}
               value={input.minunit}
-              step={0.25}
-              min={0.25}
+              step={0.250}
+              min={0.250}
               max={100}
             ></input>
           </div>
@@ -260,8 +260,8 @@ const ProductForm = () => {
               type="number"
               name="stepunit"
               max={1}
-              step={0.25}
-              min={0.25}
+              step={0.250}
+              min={0.250}
               onChange={handleInputChange}
               value={input.stepunit}
             ></input>

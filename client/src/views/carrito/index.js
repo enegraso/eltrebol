@@ -57,7 +57,7 @@ export default function Cart(){
                     <div className='quantity' style={{'display':'flex', 'align-items':'row'}}>
                     <button className='buttonQuant' style={{}} 
                     onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
-                    <p className='pQuant'>{i.quantity}</p>
+                    <p className='pQuant'>{!Number.isInteger(i.quantity) ? i.quantity.toFixed(3) : i.quantity}</p>
                     <button className='buttonQuant' style={{}}
                     onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
                     >+</button>

@@ -1,0 +1,15 @@
+.fondo {
+  background: linear-gradient(
+    0deg,
+    rgb(1, 180, 31) 0%,
+    rgb(185, 243, 178) 100%
+  );
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  justify-content: space-around;
+  margin: 1rem 0 0 0;
+}
