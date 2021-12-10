@@ -61,7 +61,6 @@ th:last-child{
 
 .buttonQuant {
     display: flex;
-    border-radius: 50%; 
-    background-color:grey;   
+    border-radius: 1em;    
 }
 

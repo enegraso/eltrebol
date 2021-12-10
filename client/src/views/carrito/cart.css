@@ -1,0 +1,11 @@
+.paper-cart{
+    color: #2B3445;
+    background-color: white;
+    display:flex;
+    justify-content:space-between;
+    overflow: hidden;   
+}
+
+.avatar{
+    margin: 10px;
+}
