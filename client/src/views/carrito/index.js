@@ -47,9 +47,9 @@ export default function Cart(){
         <>
             <Grid container spacing={2}>
                 {!orderlines? <p>Cargando orden...</p> : orderlines.map(i=>(
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} p={2}>
                     <Paper elevation={3} rounded className='paper-prod'>
-                        <Grid container spacing={2} style={{'display':'flex', 'justifyContent':'center'}}>
+                        <Grid container spacing={2}>
                         <Grid item>
                         <Avatar
                         className='avatar'
