@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchProducts, getAllProductsCat, sortCat } from "../../store/actions/products";
+import { searchProducts, getAllProductsCat, sortCat, ASC } from "../../store/actions/products";
 import { BiSearchAlt } from "react-icons/bi";
 import './searchBar.css'
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
+  const productos = useSelector(state => state.Product.auxProducts)
 
 
   const handleChange = (e) => {
@@ -19,6 +20,7 @@ export default function SearchBar() {
     e.preventDefault();
     if (query.query === "") {
         await dispatch(getAllProductsCat()); 
+        await dispatch(sortCat(ASC, productos))
     } else {
       await dispatch(searchProducts(query.query));
       setQuery("");
@@ -29,7 +31,7 @@ export default function SearchBar() {
     <section>
       <form className="d-flex barraBuscar" >
         <input
-          class="form-control me-2"
+          className="form-control me-2"
           placeholder="Buscar..."
           aria-label="Search"
           type="search"

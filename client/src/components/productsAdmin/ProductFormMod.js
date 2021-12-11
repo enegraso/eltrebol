@@ -8,7 +8,7 @@ import { prodMod } from "../../store/actions/products";
 import swal from "sweetalert2";
 
 export function validateprod(input) {
-  var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
+  /* var emailPattern = /\S+@\S+\.\S+/; */ // Expresion Regular para validar Emails.
 
   let errors = {};
   if (!input.name) {

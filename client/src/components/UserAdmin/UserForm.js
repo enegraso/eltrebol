@@ -116,7 +116,7 @@ const UserForm = () => {
             <label className="form-label">Nombre</label>
             <input
               className={errors.name && "danger"}
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="nombre"
               name="name"
@@ -129,7 +129,7 @@ const UserForm = () => {
             <label className="form-label">Email</label>
             <input
               className={errors.email && "danger"}
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="email (si desea)"
               name="email"
@@ -142,7 +142,7 @@ const UserForm = () => {
             <label className="form-label">Clave Actual</label>
             <input
               className={errors.oldpassw && "danger"}
-              class="form-control"
+              className="form-control"
               type="password"
               name="oldpassw"
               onChange={handleInputChange}
@@ -155,7 +155,7 @@ const UserForm = () => {
             <label className="form-label">Clave nueva</label>
             <input
               className={errors.password && "danger"}
-              class="form-control"
+              className="form-control"
               type="password"
               name="password"
               onChange={handleInputChange}
@@ -167,7 +167,7 @@ const UserForm = () => {
             <label className="form-label">Reingrese clave</label>
             <input
               className={errors.repasswo && "danger"}
-              class="form-control"
+              className="form-control"
               type="password"
               name="repasswo"
               onChange={handleInputChange}

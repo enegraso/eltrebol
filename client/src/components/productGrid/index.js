@@ -12,18 +12,18 @@ export default function ProductGrid({ items, loading }) {
   };
 
   useEffect(() => {
-    sortCategories(items);
+   sortCategories(items);
   }, []);
 
   return loading ? (
     <Spinner />
   ) : (
-    <section class="container">
+    <section className="container">
       <div className="row justify-content-center">
         {" "}
         {/* lo quito para que haga equitativa la distribución: row-cols-md-4 row-cols-sm-1 */}
         {items.map((e) => (
-          <ProductCard
+          <ProductCard key={e.id}
             id={e.id}
             name={e.name}
             img={e.image}

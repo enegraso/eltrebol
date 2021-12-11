@@ -8,7 +8,7 @@ import swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 export function validateprod(input) {
-  var emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
+  /* var emailPattern = /\S+@\S+\.\S+/; */ // Expresion Regular para validar Emails.
 
   let errors = {};
   if (!input.name) {
@@ -127,14 +127,14 @@ const ProductForm = () => {
           Agregar producto
         </div>
         <form onSubmit={handleSubmit} id="form">
-          <div class="mb-3">
+          <div className="mb-3">
             <h4>Paso 2</h4>
             Datos del producto
           </div>
-          <div class="mb-3">
-            <label class="form-label">Seleccione categoría/s</label>
+          <div classNames="mb-3">
+            <label className="form-label">Seleccione categoría/s</label>
             <select
-              class="form-select"
+              className="form-select"
               name="categories"
               value={input.categories}
               onChange={handleChangeSelect}
@@ -152,10 +152,10 @@ const ProductForm = () => {
                 ))}
             </select>
           </div>
-          <div class="mb-3">
-            <label class="mb-3">Categorías seleccionadas:</label>
+          <div className="mb-3">
+            <label className="mb-3">Categorías seleccionadas:</label>
             <textarea
-              class="form-control"
+              className="form-control"
               id="areatempe"
               readOnly
               rows="1"
@@ -163,9 +163,9 @@ const ProductForm = () => {
             />
           </div>
           <div className="mb-3">
-            <label class="form-label">Producto </label>
+            <label className="form-label">Producto </label>
             <input
-              class="form-control"
+              className="form-control"
               className={errors.name && "danger"}
               type="text"
               placeholder="producto"
@@ -176,9 +176,9 @@ const ProductForm = () => {
             {errors.name && <p className="danger">{errors.name}</p>}
           </div>
           <div className="mb-3">
-            <label class="form-label">Descripción </label>
+            <label className="form-label">Descripción </label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="Descripcion"
               name="description"
@@ -188,18 +188,18 @@ const ProductForm = () => {
           </div>
           <div className="mb-3">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="checkbox"
               name="exist"
               onChange={handleInputChange}
               value={input.exist}
             ></input>
-            <label class="form-check-label">Hay stock</label>
+            <label className="form-check-label">Hay stock</label>
           </div>
           <div className="mb-3">
-            <label class="form-label">Precio </label>
+            <label className="form-label">Precio </label>
             <input
-              class="form-control"
+              className="form-control"
               className={errors.price && "danger"}
               type="numbre"
               name="price"
@@ -210,19 +210,19 @@ const ProductForm = () => {
           </div>
           <div className="mb-3">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="checkbox"
               name="isofert"
               onChange={handleInputChange}
               value={input.isofert}
             ></input>
-            <label class="form-check-label">Es Oferta </label>{" "}
+            <label className="form-check-label">Es Oferta </label>{" "}
           </div>
           <div className="mb-3">
-            <label class="form-label">Imagen</label>
-            <img class="form-control" src={input.image} alt={input.name} />
+            <label className="form-label">Imagen</label>
+            <img className="form-control" src={input.image} alt={input.name} />
             {/*             <input
-              class="form-control"
+              className="form-control"
               type="text"
               name="image"
               onChange={handleInputChange}
@@ -231,9 +231,9 @@ const ProductForm = () => {
             ></input> */}
           </div>
           <div className="mb-3">
-            <label class="form-label">Tipo de unidad </label>
+            <label className="form-label">Tipo de unidad </label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               name="units"
               onChange={handleInputChange}
@@ -241,9 +241,9 @@ const ProductForm = () => {
             ></input>
           </div>
           <div>
-            <label class="form-label">Minimo de compra </label>
+            <label className="form-label">Minimo de compra </label>
             <input
-              class="form-control"
+              className="form-control"
               type="number"
               name="minunit"
               onChange={handleInputChange}
@@ -254,9 +254,9 @@ const ProductForm = () => {
             ></input>
           </div>
           <div>
-            <label class="form-label">Salto de compra</label>
+            <label className="form-label">Salto de compra</label>
             <input
-              class="form-control"
+              className="form-control"
               type="number"
               name="stepunit"
               max={1}

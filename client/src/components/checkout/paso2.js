@@ -22,8 +22,8 @@ export default function Paso2() {
   let carromeli = [];
 
   const prepararMeli = (c) => {
-    console.log("verificando");
-   c.map((prodmeli) => {
+  console.log("verificando");
+  c.map((prodmeli) => {
       console.log("Producto", prodmeli.name, "Cantidad", prodmeli.quantity);
       if (!Number.isInteger(prodmeli.quantity)) {
         console.log("float");

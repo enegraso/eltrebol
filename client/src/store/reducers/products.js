@@ -14,6 +14,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: action.payload.data,
+        auxProducts: action.payload.data
       };
 
       case "GET_ALL_PRODUCTS_CATE":

@@ -44,11 +44,11 @@ export default function NavBar(){
           <span className="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
           </div>
           
-          <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           
           <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasNavbarLabel">{ itemsCart > 0 ? itemsCart : "" } Items</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div className="offcanvas-body">
         {

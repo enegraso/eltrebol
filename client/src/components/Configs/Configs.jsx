@@ -105,7 +105,7 @@ const Configs = () => {
             <label className="form-label">Nombre negocio</label>
             <input
               className={errors.business && "danger"}
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="nombre"
               name="business"
@@ -117,7 +117,7 @@ const Configs = () => {
           <div className="mb-3">
             <label className="form-label">Slogan</label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="slogan de la empresa (si desea)"
               name="slogan"
@@ -128,7 +128,7 @@ const Configs = () => {
           <div className="mb-3">
             <label className="form-label">Mensaje de envio</label>
             <input
-              class="form-control"
+              className="form-control"
               placeholder="mensaje para avisar envio de pedido"
               type="text"
               name="messagewaenvio"
@@ -139,7 +139,7 @@ const Configs = () => {
           <div className="mb-3">
             <label className="form-label">Mensaje para retirar</label>
             <input
-              class="form-control"
+              className="form-control"
               placeholder="mensaje para avisar retiro de pedido"
               type="text"
               name="messagewaretira"
@@ -150,7 +150,7 @@ const Configs = () => {
           <div className="mb-3">
             <label className="form-label">Mensaje para rechazar</label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="mensaje para rechazar pedido"
               name="messagewareject"
@@ -161,7 +161,7 @@ const Configs = () => {
           <div className="mb-3">
             <label className="form-label">Horario</label>
             <input
-              class="form-control"
+              className="form-control"
               type="text"
               name="horario"
               onChange={handleInputChange}
@@ -171,7 +171,7 @@ const Configs = () => {
           <div className="mb-3">
             <label className="form-label">Precio envío</label>
             <input
-              class="form-control"
+              className="form-control"
               type="number"
               name="deliveryprice"
               onChange={handleInputChange}
