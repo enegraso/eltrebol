@@ -11,9 +11,9 @@ import {
   DES,
   PASC,
   PDES,
-  filtroCate 
+  filtroCate,
 } from "../../store/actions/products";
-import { getAllCategories} from '../../store/actions/categories'
+import { getAllCategories } from "../../store/actions/categories";
 import "./products.css";
 import { MdAddCircle, MdEdit, MdDelete, MdArrowBack } from "react-icons/md";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
@@ -21,25 +21,23 @@ import Spinner from "../spinner";
 import SearchBarAdmin from "../searchBarAdmin";
 
 const ProductsAdmin = (props) => {
-
-  const [input, setInput] = useState({})
+  const [input, setInput] = useState({});
 
   useEffect(() => {
     props.getAllProductsAdmin();
     props.getAllCategories();
   }, []);
 
-      /*  Handle para Ordenar las categorías */
-      function handleDispatchOrder(event) {
-        console.log(event, props.allProducts);
-        if (event.target.value === ASC || event.target.value === DES) {
-          props.sort(event.target.value, props.allProducts);
-        }
-        if (event.target.value === PASC || event.target.value === PDES) {
-          props.sortweight(event.target.value, props.allProducts);
-        }
-      }
-
+  /*  Handle para Ordenar las categorías */
+  function handleDispatchOrder(event) {
+    console.log(event, props.allProducts);
+    if (event.target.value === ASC || event.target.value === DES) {
+      props.sort(event.target.value, props.allProducts);
+    }
+    if (event.target.value === PASC || event.target.value === PDES) {
+      props.sortweight(event.target.value, props.allProducts);
+    }
+  }
 
   if (!localStorage.getItem("userInfo"))
     return (
@@ -58,27 +56,25 @@ const ProductsAdmin = (props) => {
       </>
     );
 
+  // producto visible o no
+  const handleClick = async (id) => {
+    await props.prodStock(id);
+    await props.getAllProductsAdmin();
+  };
 
-        // producto visible o no
-    const handleClick = async (id) => {
-      await props.prodStock(id);
-      await props.getAllProductsAdmin();
-    };
-
-
-      // Filtrar productos por categoría
-    const handleDispatchCate = (e) => {
-      // si hay valor en categoría hago el filtro
-      if (e.target.value) {
-         props.filtroCate(props.filtrada, e.target.value);
-      } 
-      // si no hay valor tomo todas los productos 
-      else {
-         props.getAllProductsAdmin();
-      }
+  // Filtrar productos por categoría
+  const handleDispatchCate = (e) => {
+    // si hay valor en categoría hago el filtro
+    if (e.target.value) {
+      props.filtroCate(props.filtrada, e.target.value);
     }
- 
-    return (
+    // si no hay valor tomo todas los productos
+    else {
+      props.getAllProductsAdmin();
+    }
+  };
+
+  return (
     <>
       <div className="listproducts">
         <div className="addbackhead">
@@ -88,33 +84,36 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          <SearchBarAdmin />       
+          <div className="filtroscss">
+            <SearchBarAdmin />
 
-        {/* ordenar productos */}
-          <select onChange={handleDispatchOrder}>
-          <option>Ordenar</option>
-          <option value={ASC}>Producto ASC</option>
-          <option value={DES}>Producto DESC</option>
-          <option value={PASC}>Precio ASC</option>
-          <option value={PDES}>Precio DESC</option>
-        </select>
-        {/*  Filtrar por categoría */}
-        <select
-          name="nameTempe"
-          value={input.nameTempe}
-          onChange={handleDispatchCate}
-        >
-          <option value="">Categorías</option>
+            {/* ordenar productos */}
+            <select onChange={handleDispatchOrder}>
+              <option>Ordenar</option>
+              <option value={ASC}>Producto ASC</option>
+              <option value={DES}>Producto DESC</option>
+              <option value={PASC}>Precio ASC</option>
+              <option value={PDES}>Precio DESC</option>
+            </select>
+            {/*  Filtrar por categoría */}
+            <select
+              name="nameTempe"
+              value={input.nameTempe}
+              onChange={handleDispatchCate}
+            >
+              <option value="">Categorías</option>
 
-          {
-          console.log(props.categories),
-          props.categories &&
-            props.categories.map((elem) => (
-              <option key={elem.id} value={elem.id}>
-                {elem.category}
-              </option>
-            ))}
-        </select>
+              {
+                (console.log(props.categories),
+                props.categories &&
+                  props.categories.map((elem) => (
+                    <option key={elem.id} value={elem.id}>
+                      {elem.category}
+                    </option>
+                  )))
+              }
+            </select>
+          </div>
           <Link to="/loginadmin">
             <button class="btn btn-dark">
               <MdArrowBack />
@@ -128,7 +127,7 @@ const ProductsAdmin = (props) => {
                 <img src={product.image} width="auto" height="64px" />
               </div>
               <div class="form-control textlist">
-                {product.name} - AR$ {product.price} - 
+                {product.name} <br/> $ {product.price} <br />
                 {product.exist === true ? " STOCK " : " SIN STOCK "}
               </div>
               <div class="form-label addback">
@@ -138,7 +137,9 @@ const ProductsAdmin = (props) => {
                       ? "btn btn-danger"
                       : "btn btn-success"
                   }
-                  onClick={() => {handleClick(product.id)}}
+                  onClick={() => {
+                    handleClick(product.id);
+                  }}
                 >
                   {product.exist === true ? (
                     <AiOutlineEyeInvisible />
@@ -172,32 +173,34 @@ const ProductsAdmin = (props) => {
               <MdAddCircle />{" "}
             </button>
           </Link>
-          <SearchBarAdmin />
-          <select onChange={handleDispatchOrder}>
-          <option>Ordenar</option>
-          <option value={ASC}>Producto ASC</option>
-          <option value={DES}>Producto DESC</option>
-          <option value={PASC}>Precio ASC</option>
-          <option value={PDES}>Precio DESC</option>
-        </select>
-                {/*  Filtrar por categoría */}
-                <select
-          name="nameTempe"
-          value={input.nameTempe}
-          onChange={handleDispatchCate}
-        >
-          <option value="">Categorías</option>
+          <div className="filtroscss">
+            <SearchBarAdmin />
+            <select onChange={handleDispatchOrder}>
+              <option>Ordenar</option>
+              <option value={ASC}>Producto ASC</option>
+              <option value={DES}>Producto DESC</option>
+              <option value={PASC}>Precio ASC</option>
+              <option value={PDES}>Precio DESC</option>
+            </select>
+            {/*  Filtrar por categoría */}
+            <select
+              name="nameTempe"
+              value={input.nameTempe}
+              onChange={handleDispatchCate}
+            >
+              <option value="">Categorías</option>
 
-          {
-          console.log(props.categories),
-          props.categories &&
-            props.categories.map((elem) => (
-              <option key={elem.id} value={elem.id}>
-                {elem.category}
-              </option>
-            ))}
-        </select>
-
+              {
+                (console.log(props.categories),
+                props.categories &&
+                  props.categories.map((elem) => (
+                    <option key={elem.id} value={elem.id}>
+                      {elem.category}
+                    </option>
+                  )))
+              }
+            </select>
+          </div>
           <Link to="/loginadmin">
             <button class="btn btn-dark">
               <MdArrowBack />
@@ -226,7 +229,6 @@ const mapDispatchToProps = (dispatch) => {
     sortweight: (elem1, elem2) => dispatch(sortweight(elem1, elem2)),
     getAllCategories: () => dispatch(getAllCategories()),
     filtroCate: (elem1, elem2) => dispatch(filtroCate(elem1, elem2)),
-
   };
 };
 

@@ -63,7 +63,7 @@ export default function Cart(){
                         <span className='prod-title'>{i.name}</span>
 
                         <div className='prod-detail'>
-                             <span>${i.price} x {i.quantity}</span>
+                             <span>${i.price} x {i.quantity} = </span>
                              <span>${(i.quantity * i.price)}</span>
                         </div>
                         
@@ -79,7 +79,7 @@ export default function Cart(){
                               size='small' 
                               onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>
                                   <RemoveIcon/></IconButton>
-                              <span>{i.quantity}</span>
+                              <span>{ !Number.isInteger(i.quantity) ? i.quantity.toFixed(3).replace(".",",") : i.quantity }</span>
                               <IconButton
                               size='small'
                               onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
@@ -125,17 +125,14 @@ export default function Cart(){
                     
                     <button className='buttonQuant'
                     onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
-                    <p className='pQuant'>{i.quantity}</p>
-                    
-                    <button className='buttonQuant'
+                    <p className='pQuant'>{ !Number.isInteger(i.quantity) ? i.quantity.toFixed(3).replace(".",",") : i.quantity }</p>
+                    <button className='buttonQuant' style={{}}
                     onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
                     >+</button>
                     
                     </div>
                 </td>
-
-                <td>${(i.quantity * i.price)}</td>
-            
+                <td>$ {(i.quantity * i.price)}</td>
             </tr>
             ))}
         </table>
@@ -143,15 +140,19 @@ export default function Cart(){
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>${total(guestOrderlines)}</td>
+                    <td>$ {total(guestOrderlines)}</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>${total(guestOrderlines)}</td>
-                </tr>
+                    <td>$ {total(guestOrderlines)}</td>
+                </tr>{/* 
+        <Link to='/paso1'>
+        <button className='btn btn-success'>Continuar</button>
+        </Link> */}
+        {/* <button className='btn btn-danger'><RiDeleteBin5Fill/></button>
             </table>
         </div>
-        </div>     */}
+        </div>  */}
         </>
     )
 }

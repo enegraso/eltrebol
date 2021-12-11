@@ -1,5 +1,5 @@
 .card{
-/*     border:none;
+/*  border:none;
     outline:none; */
     border-radius: 20px;
     transition: transform .3s;
@@ -26,7 +26,27 @@
 
 .cursor{
     cursor:pointer;
-/*     border-radius: 20px;*/   
- border-bottom-left-radius: 20px;
- border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.anchoimg {
+    width: 160px;
+}
+
+/* para resolución pequeña que entren 2 productos por fila */
+@media screen and (max-width: 440px) {
+
+    .anchoimg {
+        width: 110px;
+        height: 90px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    .anchoimg {
+        width: 90px;
+        height: 70px;
+    }
 }

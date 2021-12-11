@@ -40,7 +40,8 @@ const {
   categoryProducts
 } = require("./src/seed.js");
 
-const forzar = true 
+const forzar = false
+
 conn
   .sync({ force: forzar })
   .then(() => {
@@ -48,7 +49,7 @@ conn
     app.listen(PORT, () => {
       console.log(`Listen on port ${PORT}`);
     });
-  })
+  }) 
   .then(() => {
     if (forzar === true) User.bulkCreate(initialUsers);
   })
@@ -66,8 +67,9 @@ conn
   })
   .then(() => {
     if (forzar === true) OrderLine.bulkCreate(initialOrderlines);
-  })
+  }) 
   .then(() => {
     if (forzar === true) Configs.bulkCreate(initialConfigs);
-  })
+  }) 
   .catch((error) => console.log("Error al bulkcreate", error));
+ 

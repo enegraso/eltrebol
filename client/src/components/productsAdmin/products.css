@@ -1,75 +1,87 @@
 .listproducts {
-    display: flex;
-    flex-direction: column;
-    width: 75vw;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .addback {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .addbackhead {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
-
 span {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .imageup {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .renglon {
-    display: flex;
-    border: 1px solid green;
-    width: auto;
-    align-content: center;
-    justify-content: space-between;
+  display: flex;
+  border: 1px solid green;
+  width: auto;
+  align-content: center;
+  justify-content: space-between;
 }
 
 .renglonform {
-    display: flex;
-    width: auto;
-    align-content: center;
-    justify-content: space-around;
+  display: flex;
+  width: auto;
+  align-content: center;
+  justify-content: space-around;
 }
 
 .boxform {
-    display: flex;
-    flex-direction: column;
-    width: 75vw;
-    margin-left: auto;
-    margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .textlist {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.filtroscss {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 640px) {
-    .textlist {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: larger;
-    }
-    .addback {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-        justify-content: space-around;
-    }
+  .textlist {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+  }
+  .addback {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .filtroscss {
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
 }

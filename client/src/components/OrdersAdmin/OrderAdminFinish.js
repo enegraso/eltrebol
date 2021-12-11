@@ -10,6 +10,7 @@ const OrderAdminFinish
  = () => {
   const dispatch = useDispatch()
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
+  const imageDelivery = "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638913622/motodelivery_r6mjqv.png"
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -87,13 +88,13 @@ const OrderAdminFinish
             return (
               <tr bgcolor="lightgreen" key={line.id}>
                 <td>
-                  {line.quantity} - {line.product.units}{" "}
+                  {line.quantity} - {!line.product ? "envio" : line.product.units}{" "}
                 </td>
                 <td className="orderLineProduct">
-                  <img className="imageProduct" src={line.product.image} />
-                  {line.product.name}
+                  <img className="imageProduct" src={!line.product ? imageDelivery : line.product.image} />
+                  {!line.product ? "Envio a domicilio" : line.product.name}
                 </td>
-                <td>{Number(line.product.price).toFixed(2)}</td>
+                <td>{Number(!line.product ? line.price : line.product.price).toFixed(2)}</td>
                 <td>{Number(line.subtotal).toFixed(2)}</td>
               </tr>
             );

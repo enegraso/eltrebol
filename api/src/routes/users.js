@@ -196,10 +196,10 @@ router.put("/configs", (req, res) => {
 
 router.get("/configs/:id", (req, res) => {
   const { id } = req.params;
-  console.log(req.params);
+  // console.log(req.params);
   Configs.findByPk(id)
     .then((config) => {
-      console.log(config);
+      // console.log(config);
       return res.status(200).json({ message: "Get config", config });
     })
     .catch((err) => {

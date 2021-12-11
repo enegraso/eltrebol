@@ -17,7 +17,6 @@ import ImageProduct from "./components/productsAdmin/ImageProduct";
 import DeleteCategory from "./components/CategoriesAdmin/DeleteCategory";
 import UserForm from "./components/UserAdmin/UserForm";
 import CategoryFormMod from "./components/CategoriesAdmin/CategoryFormMod";
-import ProbarPago from "./components/pruebaCheckout";
 import Paso1 from "./components/checkout/paso1";
 import Paso2 from "./components/checkout/paso2";
 import OrderAdminProcess from "./components/OrdersAdmin/OrderAdminProcess";
@@ -52,9 +51,6 @@ function App() {
         <Route path="/admin/orderdelivered/:id" element={<OrderAdminFinish />} />
         <Route path="/loginadmin" element={<LoginAdmin />} />
         <Route path="/admin/user" element={<UserForm />} />
-        {/* Solo para aprender a implementar el checout con MP */}
-        <Route path="probarpago" element={<ProbarPago />} />
-        {/* Solo para aprender a implementar el checout con MP */}
         <Route path="/admin/configs" element={<Configs /> } />
       </Routes>
     </div>

@@ -82,7 +82,7 @@ export default function Paso1() {
             'client': data.client,
             'address': data.address,
             'cellphone': data.cellphone,
-            'subtotal': precioTotal,
+            'subtotal': delivery === 'delivery' ? precioTotal + config.deliveryprice : precioTotal,
             'products': delivery === 'delivery' ? conEnvio : guestOrder,
             'status': 'waiting',
             'delivery': delivery === 'delivery' ? true : false,

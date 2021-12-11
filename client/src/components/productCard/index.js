@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { BsFillCartPlusFill } from "react-icons/bs";
 import saveToGuesCart from "../../store/actions/carrito";
 import './productCard.css'
 
@@ -23,9 +22,9 @@ export default function ProductCard({
   return (
     <>
     <div className="col">
-      <div className="card mt-3 shadow p-3 mb-5 bg-body rounded">
-      <div className="product align-items-center p-2 text-center">
-        <img src={img} className="rounded" width="160" alt={name} title={name} />
+      <div className="card mt-3">
+      <div className="product align-items-center p-2 text-center" /* style={{ width: "18rem" }} */>
+        <img src={img} className="rounded anchoimg" alt={name} title={name} />
           <h5>
             {name}
           </h5>
