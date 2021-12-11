@@ -1,3 +1,4 @@
+import { BsFillGeoAltFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import Spinner from "../spinner";
 import "./index.css";
@@ -31,7 +32,7 @@ const AbouUs = () => {
                 )
               }
             >
-              Los Claveles 285 - Bragado
+              <BsFillGeoAltFill /> Los Claveles 285 - Bragado
             </button>
           </div>          <div>
             {!configs.horario

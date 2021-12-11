@@ -57,13 +57,13 @@ export default function Cart(){
                     <div className='quantity' style={{'display':'flex', 'align-items':'row'}}>
                     <button className='buttonQuant' style={{}} 
                     onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>-</button>
-                    <p className='pQuant'>{!Number.isInteger(i.quantity) ? i.quantity.toFixed(3) : i.quantity}</p>
+                    <p className='pQuant'>{ !Number.isInteger(i.quantity) ? i.quantity.toFixed(3).replace(".",",") : i.quantity }</p>
                     <button className='buttonQuant' style={{}}
                     onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
                     >+</button>
                     </div>
                 </td>
-                <td>${(i.quantity * i.price)}</td>
+                <td>$ {(i.quantity * i.price)}</td>
             </tr>
             ))}
         </table>
@@ -71,11 +71,11 @@ export default function Cart(){
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>${total(guestOrderlines)}</td>
+                    <td>$ {total(guestOrderlines)}</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>${total(guestOrderlines)}</td>
+                    <td>$ {total(guestOrderlines)}</td>
                 </tr>{/* 
         <Link to='/paso1'>
         <button className='btn btn-success'>Continuar</button>
