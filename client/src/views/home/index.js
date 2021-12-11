@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
 import {getAllProductsCat} from '../../store/actions/products';
-import Cart from '../carrito';
+import GridCart from '../carrito/gridCart';
 import Paso1 from '../../components/checkout/paso1'
 import Spinner from '../../components/spinner';
 import {getConfig} from '../../store/actions/users'
@@ -37,7 +37,7 @@ export default function Home(){
         <>
         <div className='container' style={{'marginTop':'5em'}}>
         <SearchBar/>
-      { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <><Cart /> <Paso1 /></> : ""}</> : <p><Spinner /> </p>}      
+      { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <GridCart /> : ""}</> : <p><Spinner /> </p>}      
         </div>
         <AboutUs />
         </>

@@ -1,11 +1,26 @@
 .paper-cart{
     color: #2B3445;
     background-color: white;
-    display:flex;
-    justify-content:space-between;
-    overflow: hidden;   
 }
 
 .avatar{
     margin: 10px;
+}
+
+.prod-title{
+    font-weight:200;
+    font-size:14px;
+    margin-bottom: 40px;  
+}
+
+.sum{
+    color:green;
+    font-weight:100;
+    font-size: 12px;
+}
+
+.result{
+    color:red;
+    font-weight:500;
+    font-size: 16px;
 }

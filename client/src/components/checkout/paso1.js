@@ -110,7 +110,6 @@ export default function Paso1() {
 
     return (
         <MainContainer>
-            <h1>Datos de Compra</h1>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Input
                     {...register('client', { required: true })}
