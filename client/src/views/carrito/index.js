@@ -42,7 +42,7 @@ export default function Cart(){
     return(
         <>
                 {!orderlines? <p>Cargando orden...</p> : orderlines.map(i=>(
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={12} p={1}>
                     <Paper elevation={3} rounded className='paper-prod' maxWidth='600'>
                         <Grid container direction='row' justifyContent='space-around' alignItems='center'>
                         <Grid item>
