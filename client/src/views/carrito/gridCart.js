@@ -15,15 +15,17 @@ export default function GridCart(){
 
     return(
         <>
-        <Grid container spacing={2} p={1}>
+        <section id='cart'>
+        <Grid container spacing={2} p={1.5}>
           <Grid item xs={12} md={8}>
              <Carrito/>
           </Grid>
-          <Grid item xs={12} md={4} alignContent='center' /* direction='column' */>
-           <span className='totalview'>Total $: {total(guestOrderlines).toFixed(2).replace(".",",")}</span>
+          <Grid item xs={12} md={4} alignContent='center'>
+           <h5>Total: {total(guestOrderlines).toFixed(2).replace('.',',')}</h5>
            <Paso1/>
            </Grid>
         </Grid>
+        </section>
         </>
     )
 }

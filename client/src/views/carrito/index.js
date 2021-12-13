@@ -8,16 +8,16 @@ import {
   removeGuestLine,
 } from "../../store/actions/carrito";
 import saveToGuestCart from "../../store/actions/carrito";
-import { orderline, totalcant } from "../../components/utils";
+import { orderline } from "../../components/utils";
 
 //MUI imports ------->
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import Button from "@mui/material/Button";
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton'
+import Button from '@mui/material/Button';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //------------------->
 
 export default function Cart() {
@@ -48,7 +48,7 @@ export default function Cart() {
       ) : (
         orderlines.map((i) => (
           <Grid item xs={12} md={12} p={1} key={i.id}>
-            <Paper elevation={3} rounded="true" className="paper-prod" /* maxWidth="600" */>
+            <Paper elevation={3} rounded="true" className="paper-prod">
               <Grid container direction="row"
                 justifyContent="space-around"
                 alignItems="center"
@@ -81,13 +81,12 @@ export default function Cart() {
                 <Grid item /* direction="column" */ alignItems="center">
                   <IconButton
                     size="small"
-                    onClick={() =>
-                      i.quantity === i.minunit
-                        ? dispatch(removeGuestLine(i))
-                        : dispatch(DecreaseGuestLine(i))
-                    }
+                    onClick={() => {
+                      // console.log("SUMO", i);
+                      dispatch(saveToGuestCart(i));
+                    }}
                   >
-                    <RemoveIcon />
+                    <ExpandLessIcon />
                   </IconButton>
                   <p>
                     {!Number.isInteger(i.quantity)
@@ -96,12 +95,13 @@ export default function Cart() {
                   </p>
                   <IconButton
                     size="small"
-                    onClick={() => {
-                      // console.log("SUMO", i);
-                      dispatch(saveToGuestCart(i));
-                    }}
+                    onClick={() =>
+                      i.quantity === i.minunit
+                        ? dispatch(removeGuestLine(i))
+                        : dispatch(DecreaseGuestLine(i))
+                    }
                   >
-                    <AddIcon />
+                    <ExpandMoreIcon />
                   </IconButton>
                 </Grid>
               </Grid>
