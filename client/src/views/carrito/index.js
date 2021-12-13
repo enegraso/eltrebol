@@ -14,6 +14,8 @@ import IconButton from '@mui/material/IconButton'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 //------------------->
 
 
@@ -70,15 +72,15 @@ export default function Cart(){
                         <Grid item direction='column' alignItems='center'>
                 
                               <IconButton
-                              size='small' 
-                              onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>
-                                  <RemoveIcon/></IconButton>
-                              <p>{ !Number.isInteger(i.quantity) ? i.quantity.toFixed(3).replace(".",",") : i.quantity }</p>
-                              <IconButton
                               size='small'
                               onClick={()=> { console.log("SUMO",i); dispatch(saveToGuestCart(i))} } 
                               >
-                                  <AddIcon/></IconButton>
+                                  <ExpandLessIcon/> </IconButton>
+                                  <p>{ !Number.isInteger(i.quantity) ? i.quantity.toFixed(3).replace(".",",") : i.quantity }</p>
+                              <IconButton
+                              size='small' 
+                              onClick={()=>i.quantity === i.minunit ? dispatch(removeGuestLine(i)) : dispatch(DecreaseGuestLine(i))}>
+                                  <ExpandMoreIcon/></IconButton>
 
                         </Grid>
                         </Grid>

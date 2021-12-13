@@ -32,7 +32,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category" element={<Category />} />
-        <Route path="/carrito" element={<Cart />} />
         <Route path="/paso1" element={<Paso1/>}/>
         <Route path="/paso2" element={<Paso2/>}/>
         <Route path="/checkout" element={<Efectivo/>}/>
