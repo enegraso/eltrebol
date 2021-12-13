@@ -23,9 +23,7 @@ export function getAllProducts() {
 }
 
 export function getAllProductsCat() {
-  console.log(
-    "hola estoy productos agrupados por categoria - " + `${productsEndpoint}`
-  );
+  // console.log("hola estoy productos agrupados por categoria - " + `${productsEndpoint}`);
   return (dispatch) => {
     return Axios(`${productsEndpoint}grupocat`).then((json) => {
       dispatch({ type: "GET_ALL_PRODUCTS", payload: json });
@@ -210,7 +208,7 @@ export const searchProductsAdmin = (buscar) => async (dispatch) => {
 
 // Ordeno por categorias de producto
 export function sortCat(order, breeds) {
-  console.log("PRODUCTOS", breeds);
+  // console.log("PRODUCTOS", breeds);
   let sortBreed = [...breeds];
 
   sortBreed.sort(function (a, b) {
@@ -236,7 +234,7 @@ export function sortCat(order, breeds) {
       return 0;
     }
   });
-  console.log("PRODUCTOS ORDENADOS", sortBreed);
+  // console.log("PRODUCTOS ORDENADOS", sortBreed);
   return function (dispatch) {
     //      dispatch({type: "SORT_PROD_ADMIN", payload: sortBreed})
     dispatch({ type: "GET_ALL_PRODUCTS_CATE", payload: sortBreed });

@@ -97,7 +97,7 @@ export default function Cart() {
                   <IconButton
                     size="small"
                     onClick={() => {
-                      console.log("SUMO", i);
+                      // console.log("SUMO", i);
                       dispatch(saveToGuestCart(i));
                     }}
                   >

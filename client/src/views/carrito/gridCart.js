@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 export default function GridCart(){
     const orden = useSelector(state => state.Carrito.guestCart)
 
-    console.log(orden)
+    // console.log(orden)
     const guestOrderlines = orderline(orden);
 
     return(

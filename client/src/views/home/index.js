@@ -12,18 +12,19 @@ import AboutUs from '../../components/AboutUs'
 export default function Home(){
 
     const dispatch = useDispatch();
+    const productos = useSelector(state => state.Product.allProducts);
 
     useEffect(async () => {
-        console.log('entrando al home')
+        // console.log('entrando al home')
         await dispatch(getAllProductsCat()) // Pido todos los productos
         await dispatch(getConfig(1)) // Pido los datos de configuración
         // sortCategories(productos)
      },[])
 
     const [loading] = useState(false);
-    const productos = useSelector(state => state.Product.allProducts);
+ /*    const productos = useSelector(state => state.Product.allProducts); */
     const verCarro = useSelector(state => state.Carrito.guestCartProd)
-    console.log(productos," - ", verCarro)
+//     console.log(productos," - ", verCarro)
 
 
    
