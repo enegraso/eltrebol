@@ -61,7 +61,7 @@ export const getConfig = (id) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
     // console.log(username,password)
-    console.log(`${configByIdEndpoint}${id}`)
+    // console.log(`${configByIdEndpoint}${id}`)
     const { data } = await axios.get(`${configByIdEndpoint}${id}`);
     dispatch({ type: "GET_CONFIG_DETAIL", payload: data.config });
     localStorage.setItem("appConfig", JSON.stringify(data.config));

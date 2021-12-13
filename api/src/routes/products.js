@@ -33,14 +33,18 @@ router.get("/admin", (req, res, next) => {
 
 //todos los productos ordenados por nombre, si existen y agrupados por categoria
 router.get("/grupocat", (req, res, next) => {
-  Product.findAll({
+  Product.findAll({ 
     include: [
       {
         model: Category,
         required: true,
       }      
     ],
-    order: [ ['name','ASC']]
+    order: [ ['name','ASC']],
+    where: {
+      exist: true
+    }
+
   })
     .then((products) => {
       // console.log(products)

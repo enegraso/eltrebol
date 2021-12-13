@@ -9,7 +9,8 @@ import Grid from '@mui/material/Grid';
 
 export default function GridCart(){
     const orden = useSelector(state => state.Carrito.guestCart)
-    console.log(orden)
+
+    // console.log(orden)
     const guestOrderlines = orderline(orden);
 
     return(
@@ -19,7 +20,7 @@ export default function GridCart(){
           <Grid item xs={12} md={8}>
              <Carrito/>
           </Grid>
-          <Grid item xs={12} md={4} alignContent='center' direction='column'>
+          <Grid item xs={12} md={4} alignContent='center'>
            <h5>Total: {total(guestOrderlines).toFixed(2).replace('.',',')}</h5>
            <Paso1/>
            </Grid>

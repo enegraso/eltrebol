@@ -44,8 +44,8 @@ const Success = () => {
     }
             </table>
             <div>Importe: {totalpedido} </div>
-            <div>Entrega: {pedido.delivery }</div>
-            <div>Pagado: { pedido.payd }</div>
+            <div>Entrega: {pedido.delivery === true ? "Delivery" : "Retiro en sucursal" }</div>
+            <div>Pagado: { pedido.payd === true ? "El pedido ha sido pagado" : "El pedido será abonado al recibirlo" }</div>
     <button className="btn btn-success" onClick={() => navigate('/')}> Inicio </button>
     <button className="btn btn-primary" onClick={() => window.print() }> Imprimir </button>
     </>
