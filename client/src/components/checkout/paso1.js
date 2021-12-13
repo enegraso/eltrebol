@@ -108,6 +108,7 @@ export default function Paso1() {
     return (
         <MainContainer>
             <Form onSubmit={handleSubmit(onSubmit)}>
+                <h6 style={{'textDecoration':'underline'}}>Ingrese sus datos de compra</h6>
                 <Input
                     {...register('client', { required: true })}
                     name='client'
@@ -138,29 +139,29 @@ export default function Paso1() {
                 /*     error = {!!errors.address}
                     helperText={errors?.address?.message} */
                 />
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">Elija su forma de envio</FormLabel>
+                <FormControl component="fieldset" style={{'marginTop':'10px'}}>
+                   <h6 style={{'textDecoration':'underline'}}>Elija su forma de envio</h6>
                     <RadioGroup
                         aria-label="delivery"
                         name="delivery"
                         value= {delivery}
                         onChange={handleDelivery}
                     >
-                        <FormControlLabel value='local' control={<Radio />} label="Retire de nuestro Local" />
-                        <FormControlLabel value='delivery' control={<Radio />} label="Envio a domicilio (delivery)" />
+                        <FormControlLabel value='local' control={<Radio size='small' color='success'/>} label="Retire de nuestro Local" />
+                        <FormControlLabel value='delivery' control={<Radio size='small' color='success'/>} label="Envio a domicilio (delivery)" />
                     </RadioGroup>
-                </FormControl>
+                </FormControl >
 
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">Elija su forma de pago</FormLabel>
+                <FormControl component="fieldset" style={{'marginTop':'10px'}}>
+                    <h6 style={{'textDecoration':'underline'}}>Elija su forma de pago</h6>
                     <RadioGroup
                         aria-label="pago"
                         name="pago"
                         value={pago}
                         onChange={handlePago}
                     >
-                        <FormControlLabel value="efectivo" control={<Radio />} label="Pago en efectivo" />
-                        <FormControlLabel value="meLi" control={<Radio />} label="Pago con Mercado Pago" />
+                        <FormControlLabel value="efectivo" control={<Radio size='small' color='success'/>} label="Pago en efectivo" />
+                        <FormControlLabel value="meLi" control={<Radio size='small' color='success'/>} label="Pago con Mercado Pago" />
                     </RadioGroup>
                 </FormControl>
 

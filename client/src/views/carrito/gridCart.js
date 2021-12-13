@@ -16,7 +16,7 @@ export default function GridCart(){
     return(
         <>
         <section id='cart'>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} p={1.5}>
           <Grid item xs={12} md={8}>
              <Carrito/>
           </Grid>
