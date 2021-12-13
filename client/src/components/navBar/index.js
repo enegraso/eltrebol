@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import shoppingBag from '../utils/img/shopping-bag.png';
 import Carrito from '../../views/carrito'
 
+import { totalcant } from '../../components/utils'
+
 
 export default function NavBar(){
   const elementCart = useSelector((state) => state.Carrito.guestCart)

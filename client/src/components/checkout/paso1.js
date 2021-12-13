@@ -40,7 +40,6 @@ export default function Paso1() {
     const orden = useSelector(state => state.Carrito.guestCart);
     const config = useSelector(state => state.User.configsAdmin);
 
-    console.log(config)
     const { register, handleSubmit, errors } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema)
@@ -58,8 +57,6 @@ export default function Paso1() {
     const handlePago = (event) =>{
         setPago(event.target.value)
     }
-    
-    console.log(pago)
     
     const onSubmit = async (data, e) => {
 

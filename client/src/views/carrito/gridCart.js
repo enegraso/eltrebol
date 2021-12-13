@@ -15,12 +15,12 @@ export default function GridCart(){
 
     return(
         <>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} p={1}>
           <Grid item xs={12} md={8}>
              <Carrito/>
           </Grid>
-          <Grid item xs={12} md={4} alignContent='center' direction='column'>
-           <h5>Total: {total(guestOrderlines)}</h5>
+          <Grid item xs={12} md={4} alignContent='center' /* direction='column' */>
+           <span className='totalview'>Total $: {total(guestOrderlines).toFixed(2).replace(".",",")}</span>
            <Paso1/>
            </Grid>
         </Grid>

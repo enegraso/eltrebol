@@ -7,7 +7,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MeLi from "./meli";
 import { deleteOrder } from "../../store/actions/orders";
-import { orderline } from "../utils";
+import { total } from "../utils";
+
 
 export default function Paso2() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function Paso2() {
   //const orderlines = orderline(order);
 
   let carromeli = [];
+  let importe = 0
 
   const prepararMeli = (c) => {
   console.log("verificando");
@@ -63,8 +65,14 @@ export default function Paso2() {
       <div>
         {!datos ? (
           <p>Aguarde un momento, Preparando MercadoPago...</p>
-        ) : (
+        ) : ( <>
           <MeLi productos={order} data={datos} />
+          <div style={{textAlign: "right"}}>{ 
+          order.forEach(element => {
+            importe += element.price * element.quantity
+          })}Importe: {importe.toFixed(2).replace(".",",") }</div>
+                Al pagar, su pedido quedará completado
+          </>
         )}
       </div>
       <ButtonOne onClick={handleBack}> Volver </ButtonOne>

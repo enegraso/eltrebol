@@ -16,7 +16,6 @@ export default function ProductCard({
 
   const setToLocalStorage = (p) => {
     dispatch(saveToGuesCart(p));
-    console.log("P",p)
   };
 
   return (

@@ -56,7 +56,6 @@ const MeLi = ({ productos, data }) => {
           </table>
         </div>
       </form>
-      Al pagar, su pedido quedará completado
     </div>
   );
 };
