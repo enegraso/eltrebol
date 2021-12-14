@@ -32,3 +32,14 @@ span {
     align-content: center;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 640px) {
+    .addback {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+  

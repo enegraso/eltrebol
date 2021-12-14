@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/navBar";
 import Home from "./views/home";
 import Category from "./views/category";
-import Cart from "./views/carrito";
 import ProductsAdmin from "./components/productsAdmin/productsAdmin";
 import CategoriesAdmin from "./components/CategoriesAdmin/CategoriesAdmin";
 import ProductForm from "./components/productsAdmin/ProductForm";

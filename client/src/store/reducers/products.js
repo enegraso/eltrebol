@@ -5,7 +5,7 @@ const initialState = {
   productsAdmin: [],
   productAdminGet: {},
   url: [],
-  auxProducts: []
+  auxProducts: [],
 };
 
 export default function productReducer(state = initialState, action) {
@@ -14,21 +14,26 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: action.payload.data,
-        auxProducts: action.payload.data
+        auxProducts: action.payload.data,
       };
 
-      case "GET_ALL_PRODUCTS_CATE":
-        return {
-          ...state,
-          allProducts: action.payload,
-        };
-  
+    case "GET_ALL_PRODUCTS_CATE":
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
 
-      case "GET_ALL_PRODUCTS_ADMIN":
+    case "GET_ALL_PRODUCTS_EXIST":
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
+
+    case "GET_ALL_PRODUCTS_ADMIN":
       return {
         ...state,
         productsAdmin: action.payload.data,
-        auxProducts: action.payload.data
+        auxProducts: action.payload.data,
       };
 
     /*    case "ADD_PRODUCTS":
@@ -57,11 +62,16 @@ export default function productReducer(state = initialState, action) {
 
     case "PROD_STOCK_MOD": //Modificar stock en boton ojo del admin
       return {
-        ...state,
-        allProducts: state.allProducts.filter(
-          (p) => p.id !== action.payload.id
-        ),
-      };
+      ...state,
+      productsAdmin: state.productsAdmin.map((p) => {
+        if(p.id === action.payload.id)
+         {
+          return { ...p,
+            exist: !p.exist };
+         } else
+         return p ;
+      })
+    }
     case "SEARCH_PRODUCTS":
       return {
         ...state,

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { MdAttachMoney, MdDeliveryDining, MdMoneyOff } from "react-icons/md";
 import { HiLocationMarker } from "react-icons/hi";
 import Spinner from "../spinner";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const OrdersAdmin = (props) => {
   useEffect(() => {
@@ -31,103 +33,183 @@ const OrdersAdmin = (props) => {
         if (order.status === props.status) {
           if (props.status === "pending")
             return (
-              <div key={order.id} className="form-control">
-                {order.client} | {order.cellphone} - {/* $ {order.subtotal} */}{" "}
-                {order.delivery === true ? (
-                  <MdDeliveryDining style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <HiLocationMarker style={{ width: "28px", height: "28px" }} />
-                )}
-                {order.payd === true ? (
-                  <MdAttachMoney style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <MdMoneyOff style={{ width: "28px", height: "28px" }} />
-                )}
-                <Link to={`/admin/order/${order.id}`}>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => props.getOrder(order.id)}
+              <Grid item xs={12} md={12} p={1} key={order.id}>
+                <Paper elevation={3} rounded="true" className="paper-prod">
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
                   >
-                    {" "}
-                    Preparar Pedido{" "}
-                  </button>{" "}
-                </Link>
-              </div>
+                    <Grid item>{order.client}</Grid>
+                    <Grid item>{order.cellphone}</Grid>
+                    <Grid item>
+                      {order.delivery === true ? (
+                        <MdDeliveryDining
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <HiLocationMarker
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      )}
+                      {order.payd === true ? (
+                        <MdAttachMoney
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <MdMoneyOff style={{ width: "28px", height: "28px" }} />
+                      )}
+                    </Grid>
+                    <Grid item>
+                      <Link to={`/admin/order/${order.id}`}>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => props.getOrder(order.id)}
+                        >
+                          {" "}
+                          Preparar{" "}
+                        </button>{" "}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
             );
           if (props.status === "preparing")
             return (
-              <div key={order.id} className="form-control">
-                {order.client} | {order.cellphone} - {/* $ {order.subtotal} */}{" "}
-                {order.delivery === true ? (
-                  <MdDeliveryDining style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <HiLocationMarker style={{ width: "28px", height: "28px" }} />
-                )}
-                {order.payd === true ? (
-                  <MdAttachMoney style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <MdMoneyOff style={{ width: "28px", height: "28px" }} />
-                )}
-                <Link to={`/admin/orderprocess/${order.id}`}>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => props.getOrder(order.id)}
+              <Grid item xs={12} md={12} p={1} key={order.id}>
+                <Paper elevation={3} rounded="true" className="paper-prod">
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
                   >
-                    {" "}
-                    Enviar/Retira Pedido{" "}
-                  </button>{" "}
-                </Link>
-              </div>
+                    <Grid item>{order.client}</Grid>{" "}
+                    <Grid item>{order.cellphone} </Grid>
+                    <Grid item>
+                      {order.delivery === true ? (
+                        <MdDeliveryDining
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <HiLocationMarker
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      )}
+                      {order.payd === true ? (
+                        <MdAttachMoney
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <MdMoneyOff style={{ width: "28px", height: "28px" }} />
+                      )}
+                    </Grid>
+                    <Grid item>
+                      <Link to={`/admin/orderprocess/${order.id}`}>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => props.getOrder(order.id)}
+                        >
+                          {" "}
+                          Enviar/Retira{" "}
+                        </button>{" "}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
             );
           if (props.status === "prepared")
             return (
-              <div key={order.id} className="form-control">
-                {order.client} | ({order.cellphone}) - {/* $ {order.subtotal} */}{" "}
-                {order.delivery === true ? (
-                  <MdDeliveryDining style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <HiLocationMarker style={{ width: "28px", height: "28px" }} />
-                )}
-                {order.payd === true ? (
-                  <MdAttachMoney style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <MdMoneyOff style={{ width: "28px", height: "28px" }} />
-                )}
-                <Link to={`/admin/orderdelivered/${order.id}`}>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => props.getOrder(order.id)}
+              <Grid item xs={12} md={12} p={1} key={order.id}>
+                <Paper elevation={3} rounded="true" className="paper-prod">
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
                   >
-                    {" "}
-                    Terminar Pedido{" "}
-                  </button>{" "}
-                </Link>
-              </div>
+                    <Grid item>{order.client} </Grid>
+                    <Grid item>{order.cellphone} </Grid>
+                    <Grid item>
+                      {order.delivery === true ? (
+                        <MdDeliveryDining
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <HiLocationMarker
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      )}
+                      {order.payd === true ? (
+                        <MdAttachMoney
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <MdMoneyOff style={{ width: "28px", height: "28px" }} />
+                      )}
+                    </Grid>
+                    <Grid item>
+                      <Link to={`/admin/orderdelivered/${order.id}`}>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => props.getOrder(order.id)}
+                        >
+                          {" "}
+                          Terminar{" "}
+                        </button>{" "}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
             );
           if (props.status === "done")
             return (
-              <div key={order.id} className="form-control">
-                {order.client} | {order.cellphone} - {/* $ {order.subtotal} */}{" "}
-                {order.delivery === true ? (
-                  <MdDeliveryDining style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <HiLocationMarker style={{ width: "28px", height: "28px" }} />
-                )}
-                {order.payd === true ? (
-                  <MdAttachMoney style={{ width: "28px", height: "28px" }} />
-                ) : (
-                  <MdMoneyOff style={{ width: "28px", height: "28px" }} />
-                )}
-                <Link to={`/admin/order/${order.id}`}>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => props.getOrder(order.id)}
+              <Grid item xs={12} md={12} p={1} key={order.id}>
+                <Paper elevation={3} rounded="true" className="paper-prod">
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="space-around"
+                    alignItems="center"
                   >
-                    {" "}
-                    Ver Pedido{" "}
-                  </button>{" "}
-                </Link>
-              </div>
+                    <Grid item>{order.client}</Grid>
+                    <Grid item>{order.cellphone} </Grid>
+                    <Grid item>
+                      {order.delivery === true ? (
+                        <MdDeliveryDining
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <HiLocationMarker
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      )}
+                      {order.payd === true ? (
+                        <MdAttachMoney
+                          style={{ width: "28px", height: "28px" }}
+                        />
+                      ) : (
+                        <MdMoneyOff style={{ width: "28px", height: "28px" }} />
+                      )}
+                    </Grid>
+                    <Grid item>
+                      <Link to={`/admin/order/${order.id}`}>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => props.getOrder(order.id)}
+                        >
+                          {" "}
+                          Ver{" "}
+                        </button>{" "}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Grid>
             );
         }
       })}

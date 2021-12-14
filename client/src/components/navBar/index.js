@@ -68,7 +68,7 @@ export default function NavBar(){
         : 
         <>
         <Carrito/>
-        <h5 style={{'margin':'10px'}}>${total(guestOrderlines).toFixed(2).replace('.',',')}</h5>
+        <h5 style={{'margin':'10px'}}>$ {total(guestOrderlines).toFixed(2).replace('.',',')}</h5>
         <button className='btn btn-outline-success'>
         <LinkS to='cart' smooth={true} duration={1500} data-bs-dismiss="offcanvas">
           VER CARRITO

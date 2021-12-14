@@ -84,4 +84,11 @@ span {
     align-items: center;
     justify-content: space-around;
   }
+  .listproducts {
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

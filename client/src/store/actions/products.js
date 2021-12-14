@@ -40,6 +40,43 @@ export function getAllProductsAdmin() {
   };
 }
 
+
+// Ordeno por Existencias Admin
+export function sortExist(order, breeds) {
+  // console.log("PRODUCTOS", breeds);
+  let sortBreed = [...breeds];
+console.log("A VER stock",breeds)
+  sortBreed.sort(function (a, b) {
+    var nombreA = a.exist;
+    var nombreB = b.exist;
+
+    if (order === ASC) {
+      if (nombreA < nombreB) {
+        return -1;
+      }
+      if (nombreA > nombreB) {
+        return 1;
+      }
+      return 0;
+    }
+    if (order === DES) {
+      if (nombreA < nombreB) {
+        return 1;
+      }
+      if (nombreA > nombreB) {
+        return -1;
+      }
+      return 0;
+    }
+  });
+  // console.log("PRODUCTOS ORDENADOS", sortBreed);
+  return function (dispatch) {
+    //      dispatch({type: "SORT_PROD_ADMIN", payload: sortBreed})
+    dispatch({ type: "GET_ALL_PRODUCTS_EXIST", payload: sortBreed });
+  };
+}
+
+
 export function addProduct(product) {
   return (dispatch) => {
     return (
@@ -118,10 +155,11 @@ export const prodAdd = (producto) => async (dispatch) => {
 };
 
 export const prodStock = (id) => async (dispatch) => {
-  console.log("stock: " + id);
+  console.log("stock: ", id, "ruta", stockProductEndpoint);
   try {
     const { data } = await Axios.post(`${stockProductEndpoint}`, { id: id });
     dispatch({ type: "PROD_STOCK_MOD", payload: data.product });
+    console.log(data.product)
     localStorage.setItem("stockModified", true);
   } catch (err) {
     localStorage.setItem("stockModified", err.response.data.message);

@@ -58,7 +58,7 @@ export default function Cart() {
                     className="avatar"
                     src={i.image}
                     alt="product"
-                    sx={{ width: 80, height: 80 }}
+                    sx={{ width: 48, height: 48 }}
                   />
                 </Grid>
                 <Grid item /* direction="column" */>
@@ -66,9 +66,11 @@ export default function Cart() {
 
                   <div className="prod-detail">
                     <span className="sum">
-                      ${i.price} x {i.quantity} ={" "}
+                      $ {i.price} x {!Number.isInteger(i.quantity)
+                      ? i.quantity.toFixed(3).replace(".", ",")
+                      : i.quantity} ={" "}
                     </span>
-                    <span className="result"> ${i.quantity * i.price}</span>
+                    <span className="result"> $ {(i.quantity * i.price).toFixed(2).replace(".", ",")}</span>
                   </div>
                   <Button
                     variant="text"

@@ -84,31 +84,34 @@ const OrderAdminProcess = () => {
             ? "Sin dirección"
             : "Dirección: " + pedidoAdmin[0].cellphone}
         </div>
-        <table border="1" width="84vw">
+        <table border="1">
           <tr>
-            <td className="titleLines">Cantidad</td>
-            <td className="titleLines">Producto</td>
-            <td className="titleLines">PU</td>
-            <td className="titleLines">Importe</td>
+            <td className="titleLines" width="15%">Cantidad</td>
+            <td className="titleLines" width="50%">Producto</td>
+            <td className="titleLines" width="15%">PU</td>
+            <td className="titleLines" width="20%">Importe</td>
           </tr>
           {pedidoAdmin[0].orderlines.map((line) => {
             return (
               <tr bgcolor="lightgreen" key={line.id}>
                 <td>
-                  {line.quantity} - {!line.product ? "envio" : line.product.units}{" "}
+                {!Number.isInteger(line.quantity)
+                      ? line.quantity.toFixed(3).replace(".", ",")
+                      : line.quantity} {/* - {!line.product ? "envio" : line.product.units} */}{" "}
                 </td>
                 <td className="orderLineProduct">
                   <img className="imageProduct" src={!line.product ? imageDelivery : line.product.image} />
                   {!line.product ? "Envio a domicilio" : line.product.name}
                 </td>
-                <td>{Number(!line.product ? line.price : line.product.price).toFixed(2)}</td>
-                <td>{Number(line.subtotal).toFixed(2)}</td>
+                <td>{Number(!line.product ? line.price : line.product.price).toFixed(2).replace(".",",")}</td>
+                <td>{Number(line.subtotal).toFixed(2).replace(".",",")}</td>
               </tr>
             );
           })}
         </table>
         <div className="importePedido">
-          {!pedidoAdmin[0].subtotal ? 0 : "Importe: " + pedidoAdmin[0].subtotal}
+          {!pedidoAdmin[0].subtotal
+            ? 0 : "Importe AR$: " + (pedidoAdmin[0].subtotal).toFixed(2).replace(".",",") }
         </div>
         <div>
           {pedidoAdmin[0].delivery === true

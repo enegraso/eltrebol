@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { prepOrder } from "../../store/actions/orders";
 import swal from "sweetalert2";
 
+
+
 const OrderAdmin = () => {
   const dispatch = useDispatch();
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
@@ -115,13 +117,13 @@ const OrderAdmin = () => {
             <td className="titleLines" width="15%">
               Cantidad
             </td>
-            <td className="titleLines" width="55%">
+            <td className="titleLines" width="50%">
               Producto
             </td>
             <td className="titleLines" width="15%">
               PU
             </td>
-            <td className="titleLines" width="25%">
+            <td className="titleLines" width="20%">
               Importe
             </td>
           </tr>
@@ -129,21 +131,23 @@ const OrderAdmin = () => {
             return (
               <tr bgcolor="lightgreen" key={line.id}>
                 <td>
-                  {line.quantity} - {!line.product ? "envio" : line.product.units}{" "}
+                  {!Number.isInteger(line.quantity)
+                      ? line.quantity.toFixed(3).replace(".", ",")
+                      : line.quantity} {/* - {!line.product ? "envio" : line.product.units}{" "} */}
                 </td>
                 <td className="orderLineProduct">
                   <img className="imageProduct" src={!line.product ? imageDelivery : line.product.image} />
                   {!line.product ? "Envio a domicilio" : line.product.name}
                 </td>
-                <td>{Number(!line.product ? line.price : line.product.price).toFixed(2)}</td>
-                <td>{Number(line.subtotal).toFixed(2)}</td>
+                <td>{Number(!line.product ? line.price : line.product.price).toFixed(2).replace(".",",")}</td>
+                <td>{Number(line.subtotal).toFixed(2).replace(".",",")}</td>
               </tr>
             );
           })}
         </table>
         <div className="importePedido">
           {!pedidoAdmin[0].subtotal
-            ? 0 : "Importe AR$: " + (pedidoAdmin[0].subtotal).toFixed(2) }
+            ? 0 : "Importe AR$: " + (pedidoAdmin[0].subtotal).toFixed(2).replace(".",",") }
         </div>
         <div>
           {pedidoAdmin[0].delivery === true

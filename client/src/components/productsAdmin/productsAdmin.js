@@ -12,6 +12,7 @@ import {
   PASC,
   PDES,
   filtroCate,
+  sortExist
 } from "../../store/actions/products";
 import { getAllCategories } from "../../store/actions/categories";
 import "./products.css";
@@ -20,12 +21,20 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Spinner from "../spinner";
 import SearchBarAdmin from "../searchBarAdmin";
 
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+/* import Avatar from '@mui/material/Avatar'; */
+
 const ProductsAdmin = (props) => {
   const [input, setInput] = useState({});
 
   useEffect(() => {
+    if (!props.allProducts.length) {
     props.getAllProductsAdmin();
-    props.getAllCategories();
+    props.getAllCategories(); 
+    } else {
+      props.sortExist(DES, props.allProducts)
+    }
   }, []);
 
   /*  Handle para Ordenar las categorías */
@@ -59,7 +68,6 @@ const ProductsAdmin = (props) => {
   // producto visible o no
   const handleClick = async (id) => {
     await props.prodStock(id);
-    await props.getAllProductsAdmin();
   };
 
   // Filtrar productos por categoría
@@ -70,6 +78,7 @@ const ProductsAdmin = (props) => {
     }
     // si no hay valor tomo todas los productos
     else {
+      
       props.getAllProductsAdmin();
     }
   };
@@ -79,7 +88,7 @@ const ProductsAdmin = (props) => {
       <div className="listproducts">
         <div className="addbackhead">
           <Link to="/admin/addimageprod">
-            <button class="btn btn-success">
+            <button className="btn btn-success">
               {" "}
               <MdAddCircle />{" "}
             </button>
@@ -104,72 +113,84 @@ const ProductsAdmin = (props) => {
               <option value="">Categorías</option>
 
               {
-                (console.log(props.categories),
+                /* console.log(props.categories), */
                 props.categories &&
                   props.categories.map((elem) => (
                     <option key={elem.id} value={elem.id}>
                       {elem.category}
                     </option>
-                  )))
+                  ))
               }
             </select>
           </div>
           <Link to="/loginadmin">
-            <button class="btn btn-dark">
+            <button className="btn btn-dark">
               <MdArrowBack />
             </button>
           </Link>
         </div>
         {props.allProducts.map((product) => {
           return (
-            <div key={product.id} className="mb-3 renglon">
-              <div class="form-control">
-                <img src={product.image} width="auto" height="64px" />
-              </div>
-              <div class="form-control textlist">
-                {product.name} <br/> $ {product.price} <br />
-                {product.exist === true ? " STOCK " : " SIN STOCK "}
-              </div>
-              <div class="form-label addback">
-                <button
-                  className={
-                    product.exist === true
-                      ? "btn btn-danger"
-                      : "btn btn-success"
-                  }
-                  onClick={() => {
-                    handleClick(product.id);
-                  }}
+            <Grid item xs={12} /* md={12}  */p={0.3} key={product.id}>
+              <Paper elevation={3} rounded="false" /* className="paper-prod" */>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-around"
+                  alignItems="center"
                 >
-                  {product.exist === true ? (
-                    <AiOutlineEyeInvisible />
-                  ) : (
-                    <AiOutlineEye />
-                  )}
-                </button>
-                <Link to={`/admin/modproduct`}>
-                  <button
-                    class="btn btn-success"
-                    onClick={() => props.getProdAdmin(product.id)}
-                  >
-                    <MdEdit />{" "}
-                  </button>
-                </Link>
-                <Link to="/admin/delproduct">
-                  <button
-                    class="btn btn-danger"
-                    onClick={() => props.getProdAdmin(product.id)}
-                  >
-                    <MdDelete />{" "}
-                  </button>
-                </Link>
-              </div>
-            </div>
+                  <Grid item xs={3}>
+                  <img src={product.image} alt={product.name} style={{ width: 48, height: 64 }}
+                  />
+                  </Grid>
+                  <Grid item xs={6}>
+                    {product.name} <br /> $ {product.price} <br />
+                    {product.exist === true ? " STOCK " : " SIN STOCK "}
+                  </Grid>
+                  <Grid item xs={3}>
+                    <div className="addback">
+                      <button
+                        className={
+                          product.exist === true
+                            ? "btn btn-danger"
+                            : "btn btn-success"
+                        }
+                        onClick={() => {
+                          handleClick(product.id);
+                        }}
+                      >
+                        {product.exist === true ? (
+                          <AiOutlineEyeInvisible />
+                        ) : (
+                          <AiOutlineEye />
+                        )}
+                      </button>
+                      <Link to={`/admin/modproduct`}>
+                        <button
+                          class="btn btn-success"
+                          onClick={() => props.getProdAdmin(product.id)}
+                        >
+                          <MdEdit />{" "}
+                        </button>
+                      </Link>
+                      <Link to="/admin/delproduct">
+                        <button
+                          class="btn btn-danger"
+                          onClick={() => props.getProdAdmin(product.id)}
+                        >
+                          <MdDelete />{" "}
+                        </button>
+                      </Link>
+                    </div>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
           );
         })}
         <div className="addbackhead">
           <Link to="/admin/addimageprod">
-            <button class="btn btn-success">
+            <button className="btn btn-success">
               <MdAddCircle />{" "}
             </button>
           </Link>
@@ -191,18 +212,18 @@ const ProductsAdmin = (props) => {
               <option value="">Categorías</option>
 
               {
-                (console.log(props.categories),
+                /* console.log(props.categories), */
                 props.categories &&
                   props.categories.map((elem) => (
                     <option key={elem.id} value={elem.id}>
                       {elem.category}
                     </option>
-                  )))
+                  ))
               }
             </select>
           </div>
           <Link to="/loginadmin">
-            <button class="btn btn-dark">
+            <button className="btn btn-dark">
               <MdArrowBack />
             </button>
           </Link>
@@ -229,6 +250,7 @@ const mapDispatchToProps = (dispatch) => {
     sortweight: (elem1, elem2) => dispatch(sortweight(elem1, elem2)),
     getAllCategories: () => dispatch(getAllCategories()),
     filtroCate: (elem1, elem2) => dispatch(filtroCate(elem1, elem2)),
+    sortExist: (elem1, elem2) => dispatch(sortExist(elem1, elem2)),
   };
 };
 
