@@ -17,28 +17,31 @@ const AbouUs = () => {
     <>
       <div className="fondo">
         <div>
-          <div>
+          <h5 style={{'fontWeight':'600'}}>
             {!configs.business ? "Chacinados El Trébol" : configs.business}
-          </div>
-          <div>
+          </h5>
+          <h6 style={{'fontWeight':'300'}}>
             {!configs.slogan ? "Minimercado en tu celu!" : configs.slogan}
-          </div>
+          </h6>
           <div>
             <button
               className="btn btn-link"
-              onClick={() =>
+              style={{'textDecoration':'none'}}
+              onClick={() =>{
                 window.open(
                   "https://www.google.com/maps?q=-35.1314718924284,-60.460068687284924"
                 )
               }
+              }
             >
               <BsFillGeoAltFill /> Los Claveles 285 - Bragado
             </button>
-          </div>          <div>
+          </div>          
+          <h6 style={{'fontWeight':'300'}}>
             {!configs.horario
               ? "Los pedidos están sujetos a horario"
               : configs.horario}
-          </div>
+          </h6>
         </div>
       </div>
     </>
