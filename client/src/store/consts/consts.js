@@ -23,3 +23,9 @@ export const usersEndpoint= REACT_APP_API + 'users/';
 
 export const configByIdEndpoint = usersEndpoint+ 'configs/';
 
+// webpush
+
+export const webpushEndpoint= REACT_APP_API + 'push/';
+export const suscribeEndpoint= REACT_APP_API + 'push/subscription';
+
+

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { logOut } from "../../store/actions/users";
 import { Link } from "react-router-dom";
@@ -6,8 +6,22 @@ import "./dashboard.css";
 import { BiLogOut } from "react-icons/bi";
 import OrdersAdmin from "../../components/OrdersAdmin/OrdersAdmin";
 import swal from 'sweetalert2'
+import OneSignal from 'react-onesignal'
 
 const Dashboard = (props) => {
+
+  const Notificar = () => {
+    OneSignal.sendTag('tech','tag').then(() =>{
+      console.log('Notificar')
+    }) 
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("allowLogin") == "si") {
+      OneSignal.init({ appId: "c1b1c16f-ff99-42ef-94b5-5eb43a2c3c4f" })
+      Notificar()
+    }
+  })
 
   const handleClick = (e) => {
       swal
