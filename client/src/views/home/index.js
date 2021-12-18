@@ -18,7 +18,7 @@ export default function Home(){
         await dispatch(getAllProductsCat()) // Pido todos los productos
         await dispatch(getConfig(1)) // Pido los datos de configuración
         // sortCategories(productos)
-     })
+     },[])
 
     const [loading] = useState(false);
  /*    const productos = useSelector(state => state.Product.allProducts); */
