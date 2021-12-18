@@ -62,7 +62,7 @@ export default function Cart() {
                   />
                 </Grid>
                 <Grid item /* direction="column" */>
-                  <span className="prod-title">{i.name}</span>
+                  <span className="prod-title"><p className='length'>{i.name}</p></span>
 
                   <div className="prod-detail">
                     <span className="sum">
