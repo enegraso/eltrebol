@@ -18,6 +18,7 @@ const Success = () => {
         dispatch(orderSuccess())
         localStorage.removeItem("orderid")
         localStorage.removeItem("order")
+        avisarxsms()
     },[orderid])
     
     let totalpedido = 0
@@ -31,8 +32,8 @@ const Success = () => {
         }
           
     
-        const respu = axios.post('https://api.infobip.com/sms/1/text/single', 
-        { "from": "EL TREBOL", "to":["542342568774"], "text": "Ha recibido un nuevo pedido N°" + orderid } , {
+        const respu = await axios.post('https://api.infobip.com/sms/1/text/single', 
+        { "from": "EL TREBOL", "to":["542342568774"], "text": "Ha recibido un nuevo pedido, N°: " + orderid + ", revise el siguiente link: https://bit.ly/3p5w4Fx " } , {
          headers: headers }) .then((response) => {
             console.log(response)
           })
@@ -40,7 +41,7 @@ const Success = () => {
           })
     }
 
-    avisarxsms()
+
 
     return <>
     <h1>Su pedido ha sido realizado exitosamente</h1>
