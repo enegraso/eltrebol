@@ -24,6 +24,7 @@ import Configs from "./components/Configs/Configs";
 import Efectivo from './components/checkout/efectivo';
 import Success from './components/checkout/success'
 import AboutUs from './components/AboutUs'
+import PruebaSMS from "./components/PruebaSMS/PruebaSMS";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="/loginadmin" element={<LoginAdmin />} />
         <Route path="/admin/user" element={<UserForm />} />
         <Route path="/admin/configs" element={<Configs /> } />
+        <Route path='/admin/sms' element={<PruebaSMS /> } />
       </Routes>
       <AboutUs/>
     </div>

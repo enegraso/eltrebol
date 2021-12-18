@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { orderSuccess } from '../../store/actions/carrito'
 import './meli.css'
+import axios from 'axios'
 
 const Success = () => {
 
@@ -21,9 +22,29 @@ const Success = () => {
     
     let totalpedido = 0
 
+    const avisarxsms = async () => {
+        
+        const headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': "Basic ZmVkZXJpY29ydGl6OjA1U3dvcmRmaXNoMzU="
+        }
+          
+    
+        const respu = axios.post('https://api.infobip.com/sms/1/text/single', 
+        { "from": "EL TREBOL", "to":["542342568774"], "text": "Ha recibido un nuevo pedido N°" + orderid } , {
+         headers: headers }) .then((response) => {
+            console.log(response)
+          })
+          .catch((error) => { console.log(error)
+          })
+    }
+
+    avisarxsms()
+
     return <>
     <h1>Su pedido ha sido realizado exitosamente</h1>
-    <table border="1" width="84vw">
+    <table border="1" width="85%">
           <tr>
             <td className="titleLines">Cantidad</td>
             <td className="titleLines">Producto</td>
