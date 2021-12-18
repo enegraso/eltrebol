@@ -7,7 +7,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MeLi from "./meli";
 import { deleteOrder } from "../../store/actions/orders";
-import { total } from "../utils";
+
+import Grid from '@mui/material/Grid'
 
 
 export default function Paso2() {
@@ -61,8 +62,11 @@ export default function Paso2() {
   };
 
   return (
-    <MainContainer>
-      <div>
+    <Grid container spacing={2} direction="column" alignItems="center" style={{'marginTop':'50px'}}>
+    <Grid item>
+      <h3>Mercado Pago</h3>
+    </Grid>
+    <Grid item>
         {!datos ? (
           <p>Aguarde un momento, Preparando MercadoPago...</p>
         ) : ( <>
@@ -70,12 +74,17 @@ export default function Paso2() {
           <div style={{textAlign: "right"}}>{ 
           order.forEach(element => {
             importe += element.price * element.quantity
-          })}Importe: {importe.toFixed(2).replace(".",",") }</div>
-                Al pagar, su pedido quedará completado
+          })}
+          </div>
           </>
         )}
-      </div>
-      <ButtonOne onClick={handleBack}> Volver </ButtonOne>
-    </MainContainer>
+      </Grid>
+      <Grid item>
+      <ButtonOne style={{'width':'100px'}} onClick={handleBack}> Volver </ButtonOne>
+      </Grid>
+      <Grid item>
+        <h6 style={{'color':'grey'}}><em>Su pedido quedara concluido al abonar</em></h6>
+      </Grid>
+    </Grid>
   );
 }

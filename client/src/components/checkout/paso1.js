@@ -23,13 +23,14 @@ import { useNavigate } from 'react-router-dom';
 const schema = yup.object().shape({
     client: yup
         .string()
-        .required('Ingrese su Nombre por favor'),
+        .required('Ingrese su nombre por favor'),
     address: yup
         .string()
         .required('Ingrese su direccion de envio'),
     cellphone: yup
         .string()
-        .required('No debe faltar su numero de celular')
+        .required('No debe faltar su numero de contacto')
+        .min(10, 'Minimo de 10 digitos')
 })
 
 export default function Paso1() {
@@ -40,7 +41,7 @@ export default function Paso1() {
     const orden = useSelector(state => state.Carrito.guestCart);
     const config = useSelector(state => state.User.configsAdmin);
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, formState:{ errors } } = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema)
     })
@@ -116,9 +117,8 @@ export default function Paso1() {
                     placeholder='Nombre'
                     label='Nombre'
                     required
-                /*    error = {!!errors.client}
-                   helperText={errors?.client?.message} */
                 />
+                <p style={{'color':'red'}}><em>{errors.client?.message}</em></p>
                 <Input
                     {...register('cellphone', { required: true })}
                     name='cellphone'
@@ -126,9 +126,8 @@ export default function Paso1() {
                     placeholder='Tu numero de celular'
                     label='Tu numero de celular'
                     required
-                /*     error = {!!errors.cellphone}
-                    helperText={errors?.cellphone?.message} */
                 />
+                <p style={{'color':'red'}}><em>{errors.cellphone?.message}</em></p>
                 <Input
                     {...register('address', { required: true })}
                     name='address'
@@ -136,9 +135,8 @@ export default function Paso1() {
                     placeholder='Domicilio'
                     label='Domicilio de entrega'
                     required
-                /*     error = {!!errors.address}
-                    helperText={errors?.address?.message} */
                 />
+                <p style={{'color':'red'}}><em>{errors.address?.message}</em></p>
                 <FormControl component="fieldset" style={{'marginTop':'10px'}}>
                    <h6 style={{'textDecoration':'underline'}}>Elija su forma de envio</h6>
                     <RadioGroup

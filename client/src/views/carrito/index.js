@@ -82,6 +82,7 @@ export default function Cart() {
                 </Grid>
                 <Grid item /* direction="column" */ alignItems="center">
                   <IconButton
+                    color='primary'
                     size="small"
                     onClick={() => {
                       // console.log("SUMO", i);
@@ -96,6 +97,7 @@ export default function Cart() {
                       : i.quantity}
                   </p>
                   <IconButton
+                    color='primary'
                     size="small"
                     onClick={() =>
                       i.quantity === i.minunit

@@ -1,7 +1,23 @@
 import { useEffect } from "react";
 import s from "./meli.css";
+import { total, orderline } from '../utils';
+
+//Material UI-------------------------->
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+//-------------------------------------->
 
 const MeLi = ({ productos, data }) => {
+
+  const orderlines = JSON.parse(localStorage.getItem("order"))
+
   useEffect(() => {
     const script = document.createElement("script"); //Crea un elemento html script
 
@@ -24,39 +40,43 @@ const MeLi = ({ productos, data }) => {
   }, [data]);
 
   return (
-    <div className={s.gridContainer}>
-      <form id="form1">
-        <h4>Pagar por MercadoPago</h4>
-        <div className={s.gridContainer}>
-          <table border="1">
-            <tr>
-              <td className="titleLines" width="15%">
-                Cantidad
-              </td>
-              <td className="titleLines" width="55%">
-                Producto
-              </td>
-              <td className="titleLines" width="15%">
-                PU
-              </td>
-              <td className="titleLines" width="25%">
-                Importe
-              </td>
-            </tr>
-            {productos.map((producto, i) => {
-              return (
-                <tr key={i}>
-                  <td className={s.ul}>{producto.quantity}</td>
-                  <td className={s.ul}>{producto.name}</td>
-                  <td className={s.ul}>{producto.price}</td>
-                  <td className={s.ul}>{producto.quantity * producto.price}</td>
-                </tr>
-              );
-            })}
-          </table>
-        </div>
+    <>
+    <form id='form1'>
+        <TableContainer component={Paper}>
+        <Table size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell><h6>Producto</h6></TableCell>
+              <TableCell align="right"><h6>Precio</h6></TableCell>
+              <TableCell align="right"><h6>Cantidad</h6></TableCell>
+              <TableCell align="right"><h6>Subtotal</h6></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {productos.map((row) => (
+              <TableRow
+              key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
+                >
+                <TableCell scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell align="right">${row.price}</TableCell>
+                <TableCell align="right">{row.quantity}</TableCell>
+                <TableCell align="right"><b>${row.price * row.quantity}</b></TableCell>
+              </TableRow>
+            ))}
+            <TableRow>
+                <TableCell scope='row' span=''><h5><b>Total</b></h5></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell align='right'><h5 style={{'color':'red'}}><b>${total(orderlines).toFixed(2).replace(".",",")}</b></h5></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
       </form>
-    </div>
+  </>
   );
 };
 
