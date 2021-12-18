@@ -2,9 +2,21 @@
   margin: 50px;
 }
 
-/* pensada en mi celu de 5" */
-@media screen and (max-width: 360px) {
+.searchbut{
+  margin-left:-8px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.searchinp{
+  border-radius: 5px 0px 0px 5px;
+}
+
+/* 
+
+@media screen and (max-width: 380px) {
   .barraBuscar {
     margin: 5px;
   }
 }
+
+ */

@@ -10,6 +10,7 @@ import shoppingBag from '../utils/img/shopping-bag.png';
 import Carrito from '../../views/carrito'
 import {orderline, total} from '../utils'
 import {animateScroll as scroll, Link as LinkS} from 'react-scroll'
+import SearchBar from '../searchBar';
 
 import { totalcant } from '../../components/utils'
 
@@ -31,9 +32,11 @@ export default function NavBar(){
       <nav className='navbar bg-fade fixed-top'>
         <div className='container-fluid'>
 
-          <Link to='/' className='navbar-logo'>
+       {/*    <Link to='/' className='navbar-logo'>
           <GiShamrock className='sham'/> El Trebol
-          </Link>
+          </Link> */}
+        
+          <SearchBar/>
 
           <div className='userAdminLink' type='button'>
           { localStorage.getItem("allowLogin") == "si" ? 

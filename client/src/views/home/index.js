@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
 import {getAllProductsCat} from '../../store/actions/products';
 import GridCart from '../carrito/gridCart';
@@ -12,6 +11,7 @@ export default function Home(){
 
     const dispatch = useDispatch();
     const productos = useSelector(state => state.Product.allProducts);
+    
 
     useEffect(async () => {
         // console.log('entrando al home')
@@ -36,7 +36,6 @@ export default function Home(){
     return(
         <>
         <div className='container' style={{'marginTop':'5em'}}>
-        <SearchBar/>
       { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <GridCart /> : ""}</> : <div><Spinner /> </div>}      
         </div>
         </>
