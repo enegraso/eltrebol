@@ -9,6 +9,4 @@ module.exports = {
     host: process.env.HOST || 3001,
     PORT: process.env.PORT,
     SALT: process.env.SALT,
-    PUBLIC_VAPID_KEY: process.env.PUBLIC_VAPID_KEY,
-    PRIVATE_VAPID_KEY: process.env.PRIVATE_VAPID_KEY
 }
