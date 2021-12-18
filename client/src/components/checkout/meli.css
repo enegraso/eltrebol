@@ -21,4 +21,5 @@
 button.mercadopago-button {
     display: flex;
     margin: 1em auto;
+    width: 100px
   }

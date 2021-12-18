@@ -1,9 +1,6 @@
 .fondo {
-  background: linear-gradient(
-    0deg,
-    rgb(1, 180, 31) 0%,
-    rgb(185, 243, 178) 100%
-  );
+  background:white;
+  ;
   height: auto;
   width: auto;
   display: flex;
@@ -11,5 +8,7 @@
   align-items: center;
   font-size: 1.2rem;
   justify-content: space-around;
-  margin: 1rem 0 0 0;
-}
+  margin-top: 2rem;
+  padding: 2rem;
+/*   border-top:1px dotted #F55C47;
+ */}

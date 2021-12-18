@@ -7,7 +7,6 @@ import GridCart from '../carrito/gridCart';
 // import Paso1 from '../../components/checkout/paso1'
 import Spinner from '../../components/spinner';
 import {getConfig} from '../../store/actions/users'
-import AboutUs from '../../components/AboutUs'
 
 export default function Home(){
 
@@ -40,7 +39,6 @@ export default function Home(){
         <SearchBar/>
       { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <GridCart /> : ""}</> : <div><Spinner /> </div>}      
         </div>
-        <AboutUs />
         </>
     )
 }

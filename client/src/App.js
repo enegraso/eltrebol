@@ -23,6 +23,7 @@ import OrderAdminFinish from "./components/OrdersAdmin/OrderAdminFinish";
 import Configs from "./components/Configs/Configs";
 import Efectivo from './components/checkout/efectivo';
 import Success from './components/checkout/success'
+import AboutUs from './components/AboutUs'
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="/admin/user" element={<UserForm />} />
         <Route path="/admin/configs" element={<Configs /> } />
       </Routes>
+      <AboutUs/>
     </div>
   );
 }

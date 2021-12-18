@@ -1,5 +1,11 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { total, orderline } from '../utils';
+import {prepOrder, deleteOrder} from '../../store/actions/orders';
+
+//Material UI-------------------------->
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,11 +13,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {ButtonOne} from '../reutilizables/Button';
-import { total, orderline } from '../utils';
-import {prepOrder, deleteOrder} from '../../store/actions/orders';
-import { useNavigate } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
+import {ButtonOne} from '../reutilizables/Button'
 
+//-------------------------------------->
 
 export default function Efectivo(){
     const dispatch = useDispatch();
@@ -44,41 +49,52 @@ export default function Efectivo(){
     }
 
     return(
+      <Grid container spacing={2} direction="column" alignItems="center" style={{'marginTop':'50px'}}>
+        <Grid item>
+          <h3>Pago en Efectivo</h3>
+        </Grid>
+        <Grid item>
         <TableContainer component={Paper}>
-        <Table aria-label="simple table">
+        <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>Producto</TableCell>
-              <TableCell align="right">Precio</TableCell>
-              <TableCell align="right">Cantidad</TableCell>
-              <TableCell align="right">Subtotal</TableCell>
+              <TableCell><h6>Producto</h6></TableCell>
+              <TableCell align="right"><h6>Precio</h6></TableCell>
+              <TableCell align="right"><h6>Cantidad</h6></TableCell>
+              <TableCell align="right"><h6>Subtotal</h6></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orderlines.map((row) => (
               <TableRow
-                key={row.name}
+              key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 1 } }}
-              >
+                >
                 <TableCell scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.price}</TableCell>
+                <TableCell align="right">${row.price}</TableCell>
                 <TableCell align="right">{row.quantity}</TableCell>
-                <TableCell align="right">{row.price * row.quantity}</TableCell>
+                <TableCell align="right"><b>${row.price * row.quantity}</b></TableCell>
               </TableRow>
             ))}
             <TableRow>
-                <TableCell scope='row' span=''>Total</TableCell>
+                <TableCell scope='row' span=''><h5><b>Total</b></h5></TableCell>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
-                <TableCell align='right'>${total(orderlines)}</TableCell>
+                <TableCell align='right'><h5 style={{'color':'red'}}><b>${total(orderlines).toFixed(2).replace(".",",")}</b></h5></TableCell>
             </TableRow>
           </TableBody>
-        <button className='btn btn-success' onClick={handleClick}>Comprar</button>
-        <button className='btn btn-primary' onClick={handleBack}>Volver</button>
         </Table>
       </TableContainer>
+      </Grid>
+      <Grid item>
+        <ButtonOne style={{'width':'100px'}} onClick={handleClick}>Comprar</ButtonOne>
+      </Grid>  
+      <Grid item>
+        <ButtonOne style={{'width':'100px'}} color='primary' onClick={handleBack}>Volver</ButtonOne>
+      </Grid>
+      </Grid>
     )
 
 }
