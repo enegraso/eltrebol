@@ -23,6 +23,7 @@ import SearchBarAdmin from "../searchBarAdmin";
 
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import { Avatar } from "@mui/material";
 /* import Avatar from '@mui/material/Avatar'; */
 
 const ProductsAdmin = (props) => {
@@ -139,12 +140,12 @@ const ProductsAdmin = (props) => {
                   justifyContent="space-around"
                   alignItems="center"
                 >
-                  <Grid item xs={3}>
-                  <img src={product.image} alt={product.name} style={{ width: 48, height: 64 }}
+                  <Grid item xs={3} alignItems="center">
+                  <Avatar src={product.image} alt={product.name} sx={{ width: 56, height: 56 }}
                   />
                   </Grid>
                   <Grid item xs={6}>
-                    {product.name} <br /> $ {product.price} <br />
+                    {product.name} <br /> $ { product.price.toFixed(2).replace(".",",") } <br />
                     {product.exist === true ? " STOCK " : " SIN STOCK "}
                   </Grid>
                   <Grid item xs={3}>

@@ -4,7 +4,7 @@ import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
 import {getAllProductsCat} from '../../store/actions/products';
 import GridCart from '../carrito/gridCart';
-import Paso1 from '../../components/checkout/paso1'
+// import Paso1 from '../../components/checkout/paso1'
 import Spinner from '../../components/spinner';
 import {getConfig} from '../../store/actions/users'
 
@@ -18,7 +18,7 @@ export default function Home(){
         await dispatch(getAllProductsCat()) // Pido todos los productos
         await dispatch(getConfig(1)) // Pido los datos de configuración
         // sortCategories(productos)
-     },[])
+     })
 
     const [loading] = useState(false);
  /*    const productos = useSelector(state => state.Product.allProducts); */
