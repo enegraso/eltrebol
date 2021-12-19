@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 /* import './navBar.css'; */
 import './nav.css';
 import {GiShamrock} from 'react-icons/gi';
@@ -10,6 +10,7 @@ import shoppingBag from '../utils/img/shopping-bag.png';
 import Carrito from '../../views/carrito'
 import {orderline, total} from '../utils'
 import {animateScroll as scroll, Link as LinkS} from 'react-scroll'
+import SearchBar from '../searchBar';
 
 import { totalcant } from '../../components/utils'
 
@@ -18,6 +19,8 @@ export default function NavBar(){
   const elementCart = useSelector((state) => state.Carrito.guestCart)
   const orden = useSelector(state => state.Carrito.guestCart)
   const [itemsCart, setItemsCart] = useState(0)
+
+  const location = useLocation() 
 
   const guestOrderlines = orderline(orden);
 
@@ -31,9 +34,14 @@ export default function NavBar(){
       <nav className='navbar bg-fade fixed-top'>
         <div className='container-fluid'>
 
-          <Link to='/' className='navbar-logo'>
-          <GiShamrock className='sham'/> El Trebol
-          </Link>
+           <Link to='/' className='navbar-logo'>
+          <GiShamrock className='sham' />
+          </Link> 
+
+         {
+         location.pathname === "/loginadmin" ? "" : <div style={{width:"70%", marginLeft: "auto", marginRight: "auto"}}><SearchBar/></div> 
+          } 
+           
 
           <div className='userAdminLink' type='button'>
           { localStorage.getItem("allowLogin") == "si" ? 
@@ -45,7 +53,7 @@ export default function NavBar(){
           }
           </div>
 
-          <div className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <div /* className="navbar-toggler"  */type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <MdShoppingCart/>
           <span className="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
           </div>

@@ -29,23 +29,23 @@ export default function SearchBar() {
 
   return (
     <section>
-      <form className="d-flex barraBuscar" >
+      <form className="d-flex barraBuscar">
         <input
-          className="form-control me-2"
+          className="form-control me-2 searchinp"
           placeholder="Buscar..."
           aria-label="Search"
           type="search"
           name="query"
           onChange={handleChange}
         />
-        <button
+        <div
           type="submit"
-          className="btn btn-outline-success"
-          style={{ paddingleft: "10px" }}
+          className="btn btn-outline-success searchbut"
+
           onClick={handleClick}
         >
           <BiSearchAlt />
-        </button>
+        </div>
       </form>
     </section>
   );

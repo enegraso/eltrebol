@@ -1,17 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import SearchBar from '../../components/searchBar';
 import ProductGrid from '../../components/productGrid';
 import {getAllProductsCat} from '../../store/actions/products';
 import GridCart from '../carrito/gridCart';
 // import Paso1 from '../../components/checkout/paso1'
 import Spinner from '../../components/spinner';
 import {getConfig} from '../../store/actions/users'
+import AbouUs from '../../components/AboutUs';
+import NavBar from '../../components/navBar';
 
 export default function Home(){
 
     const dispatch = useDispatch();
     const productos = useSelector(state => state.Product.allProducts);
+    
 
     useEffect(async () => {
         // console.log('entrando al home')
@@ -36,9 +38,9 @@ export default function Home(){
     return(
         <>
         <div className='container' style={{'marginTop':'5em'}}>
-        <SearchBar/>
       { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <GridCart /> : ""}</> : <div><Spinner /> </div>}      
         </div>
+        <AbouUs />
         </>
     )
 }
