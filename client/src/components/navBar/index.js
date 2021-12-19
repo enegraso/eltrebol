@@ -39,7 +39,7 @@ export default function NavBar(){
           </Link> 
 
          {
-         location.pathname === "/loginadmin" ? "" : <div style={{width:"70%", marginLeft: "auto", marginRight: "auto"}}><SearchBar/></div> 
+         location.pathname === "/" ? <div style={{width:"70%", marginLeft: "auto", marginRight: "auto"}}><SearchBar/></div> : ""
           } 
            
 
