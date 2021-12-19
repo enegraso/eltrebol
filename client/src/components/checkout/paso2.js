@@ -62,7 +62,7 @@ export default function Paso2() {
   };
 
   return (
-    <Grid container spacing={2} direction="column" alignItems="center" style={{'marginTop':'50px'}}>
+    <Grid container spacing={2} direction="column" alignItems="center" style={{'marginTop':'100px'}}>
     <Grid item>
       <h3>Mercado Pago</h3>
     </Grid>
