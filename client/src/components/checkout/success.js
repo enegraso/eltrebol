@@ -18,7 +18,7 @@ const Success = () => {
         dispatch(orderSuccess())
         localStorage.removeItem("orderid")
         localStorage.removeItem("order")
-        avisarxsms()
+        // avisarxsms()
     },[orderid])
     
     let totalpedido = 0
@@ -68,8 +68,8 @@ const Success = () => {
             <div>Importe: {totalpedido} </div>
             <div>Entrega: {pedido.delivery === true ? "Delivery" : "Retiro en sucursal" }</div>
             <div>Pagado: { pedido.payd === true ? "El pedido ha sido pagado" : "El pedido será abonado al recibirlo" }</div>
-    <button className="btn btn-success" onClick={() => navigate('/')}> Inicio </button>
-    <button className="btn btn-primary" onClick={() => window.print() }> Imprimir </button>
+            <button className="btn btn-success" onClick={() => navigate('/')}> Inicio </button>
+            <button className="btn btn-primary" onClick={() => window.print() }> Imprimir </button>
     </>
 }
 
