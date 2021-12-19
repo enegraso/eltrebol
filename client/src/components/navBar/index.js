@@ -35,7 +35,7 @@ export default function NavBar(){
         <div className='container-fluid'>
 
            <Link to='/' className='navbar-logo'>
-          <GiShamrock className='sham' />
+          <GiShamrock className='sham' style={{ width: "24px", height: "24px"}} />
           </Link> 
 
          {
@@ -48,13 +48,13 @@ export default function NavBar(){
              <Link 
              to='/loginadmin' 
              className='btn-outline-success' 
-              > <FaUserCircle /> </Link>
+              > <FaUserCircle style={{ width: "24px", height: "24px"}} /> </Link>
               : ""
           }
           </div>
 
-          <div /* className="navbar-toggler"  */type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-          <MdShoppingCart/>
+          <div className="navbar-toggler"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <MdShoppingCart style={{ width: "24px", height: "24px"}} />
           <span className="badge bg-danger">{ itemsCart > 0 ? itemsCart : "" }</span>
           </div>
           
