@@ -17,6 +17,7 @@ export default function SearchBar() {
     });
   };
 
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (query.query === "") {
@@ -24,9 +25,27 @@ export default function SearchBar() {
         await dispatch(sortCat(ASC, productos))
     } else {
       await dispatch(searchProducts(query.query));
-      setQuery("");
+      // setQuery("");
     }
   };
+
+  /* const handleEnter = async(e)=>{
+    e.preventDefault();
+
+    if (e.key==='Enter') {
+
+       if (query.query === "") {
+        await dispatch(getAllProductsCat()); 
+        await dispatch(sortCat(ASC, productos))
+    } else {
+      await dispatch(searchProducts(query.query));
+      // setQuery("");
+    }
+  }
+
+    } */
+
+
 
   return (
     <section>
@@ -38,6 +57,7 @@ export default function SearchBar() {
           type="search"
           name="query"
           onChange={handleChange}
+          //onKeyDown={handleEnter}
         />
         <div
           type="submit"

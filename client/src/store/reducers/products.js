@@ -101,12 +101,12 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: action.payload,
+        alertprod: "",
       };
 
       case "PRODS_NOTFOUNDED":
         return {
           ...state,
-          allProducts: [],
           alertprod: action.payload,
         }
 

@@ -29,20 +29,16 @@ export default function Home(){
  /*    const productos = useSelector(state => state.Product.allProducts); */
     const verCarro = useSelector(state => state.Carrito.guestCartProd)
 //     console.log(productos," - ", verCarro)
-
-
    
     const exist = productos.filter(function(productos){
         return productos.exist === true
     }) 
 
-
-
     return(
         <>
         <div className='container' style={{'marginTop':'5em'}}>
       { exist.length ? <><ProductGrid loading={loading} items={exist}/></> : <div>{ 
-      mensajeno.length ? <Alert severity="warning"><AlertTitle>No se encontró el producto</AlertTitle>Intente escribirlo de otra forma</Alert> : <Spinner />
+      /* productos.length &&  */mensajeno.length ? <Alert severity="warning"><AlertTitle>No se encontró el producto</AlertTitle>Intente escribirlo de otra forma</Alert> : <Spinner />
       } </div>}  { verCarro.length ? <GridCart /> : ""}    
         </div>
         <AbouUs />
