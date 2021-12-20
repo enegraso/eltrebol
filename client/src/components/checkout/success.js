@@ -31,7 +31,7 @@ const Success = () => {
     dispatch(orderSuccess());
     localStorage.removeItem("orderid");
     localStorage.removeItem("order");
-    // avisarxsms()
+    avisarxsms()
   }, [orderid]);
 
   let totalpedido = 0;
