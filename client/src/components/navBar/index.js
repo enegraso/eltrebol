@@ -35,13 +35,13 @@ export default function NavBar() {
           <Link to="/" className="navbar-logo">
             <GiShamrock
               className="sham"
-              style={{ width: "24px", height: "24px" }}
+              style={{ width: "20px", height: "20px" }}
             />
           </Link>
 
           {location.pathname === "/" ? (
             <div
-              style={{ width: "70%", marginLeft: "auto", marginRight: "auto" }}
+              style={{ width: "67%", marginLeft: "auto", marginRight: "auto" }}
             >
               <SearchBar />
             </div>
@@ -53,7 +53,7 @@ export default function NavBar() {
             {localStorage.getItem("allowLogin") == "si" ? (
               <Link to="/loginadmin" className="btn-outline-success">
                 {" "}
-                <FaUserCircle style={{ width: "24px", height: "24px" }} />{" "}
+                <FaUserCircle style={{ width: "20px", height: "20px" }} />{" "}
               </Link>
             ) : (
               ""
@@ -67,7 +67,7 @@ export default function NavBar() {
             data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar"
           >
-            <MdShoppingCart style={{ width: "24px", height: "24px" }} />
+            <MdShoppingCart style={{ width: "20px", height: "20px" }} />
             <span className="badge bg-danger">
               {itemsCart > 0 ? itemsCart : ""}
             </span>

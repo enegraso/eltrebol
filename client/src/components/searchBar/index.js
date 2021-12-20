@@ -18,7 +18,7 @@ export default function SearchBar() {
   };
 
 
-  const handleClick = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (query.query === "") {
         await dispatch(getAllProductsCat()); 
@@ -29,27 +29,10 @@ export default function SearchBar() {
     }
   };
 
-  /* const handleEnter = async(e)=>{
-    e.preventDefault();
-
-    if (e.key==='Enter') {
-
-       if (query.query === "") {
-        await dispatch(getAllProductsCat()); 
-        await dispatch(sortCat(ASC, productos))
-    } else {
-      await dispatch(searchProducts(query.query));
-      // setQuery("");
-    }
-  }
-
-    } */
-
-
 
   return (
     <section>
-      <form className="d-flex barraBuscar">
+      <form className="d-flex barraBuscar" onSubmit={handleSubmit}>
         <input
           className="form-control me-2 searchinp"
           placeholder="Buscar..."
@@ -59,14 +42,14 @@ export default function SearchBar() {
           onChange={handleChange}
           //onKeyDown={handleEnter}
         />
-        <div
+        <button
           type="submit"
           className="btn btn-outline-success searchbut"
 
-          onClick={handleClick}
-        >
+/*           onClick={handleClick}
+ */        >
           <BiSearchAlt />
-        </div>
+        </button>
       </form>
     </section>
   );
