@@ -34,7 +34,7 @@
 
 .length{
     overflow: hidden;
-    max-width: 20ch;
+    max-width: "80%";
     text-overflow: ellipsis;
     white-space: nowrap;   
 }

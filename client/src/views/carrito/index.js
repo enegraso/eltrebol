@@ -53,7 +53,7 @@ export default function Cart() {
                 justifyContent="space-around"
                 alignItems="center"
               >
-                <Grid item>
+                <Grid item xs={2.5}>
                   <Avatar
                     className="avatar"
                     src={i.image}
@@ -61,7 +61,7 @@ export default function Cart() {
                     sx={{ width: 48, height: 48 }}
                   />
                 </Grid>
-                <Grid item /* direction="column" */>
+                <Grid item xs={7}>
                   <span className="prod-title"><p className='length'>{i.name}</p></span>
 
                   <div className="prod-detail">
@@ -80,7 +80,7 @@ export default function Cart() {
                     quitar
                   </Button>
                 </Grid>
-                <Grid item /* direction="column" */ alignItems="center">
+                <Grid item xs={2.5} alignItems="center">
                   <IconButton
                     color='primary'
                     size="small"

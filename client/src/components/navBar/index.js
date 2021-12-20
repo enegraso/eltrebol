@@ -41,7 +41,7 @@ export default function NavBar() {
 
           {location.pathname === "/" ? (
             <div
-              style={{ width: "67%", marginLeft: "auto", marginRight: "auto" }}
+              style={{ width: "60%", marginLeft: "auto", marginRight: "auto" }}
             >
               <SearchBar />
             </div>
