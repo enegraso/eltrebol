@@ -98,6 +98,7 @@ router.get("/search/:search", async (req, res) => {
         name: {
           [Op.iLike]: "%" + [search] + "%",
         },
+        exist: true
       },
     });
     return res.send(getProdSearch);
