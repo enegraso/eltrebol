@@ -4,6 +4,7 @@ import { searchProducts, getAllProductsCat, sortCat, ASC } from "../../store/act
 import { BiSearchAlt } from "react-icons/bi";
 import './searchBar.css'
 
+
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();

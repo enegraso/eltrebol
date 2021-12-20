@@ -217,8 +217,9 @@ export const searchProducts = (buscar) => async (dispatch) => {
       `${REACT_APP_API}products/search/${buscar}`
     );
     dispatch({ type: "PRODS_FOUNDED", payload: data });
-    console.log(data);
-  } catch (err) {
+    if (data.length === 0) 
+    dispatch({ type: "PRODS_NOTFOUNDED", payload: "NO SE Encontro" });
+    } catch (err) {
     alert(
       err.response && err.response.data.message
         ? err.response.data.message

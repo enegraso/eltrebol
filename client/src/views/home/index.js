@@ -8,11 +8,14 @@ import Spinner from '../../components/spinner';
 import {getConfig} from '../../store/actions/users'
 import AbouUs from '../../components/AboutUs';
 import NavBar from '../../components/navBar';
+import Alert  from "@mui/material/Alert";
+import AlertTitle  from "@mui/material/AlertTitle";
 
 export default function Home(){
 
     const dispatch = useDispatch();
     const productos = useSelector(state => state.Product.allProducts);
+    const mensajeno = useSelector(state => state.Product.alertprod);
     
 
     useEffect(async () => {
@@ -38,7 +41,9 @@ export default function Home(){
     return(
         <>
         <div className='container' style={{'marginTop':'5em'}}>
-      { exist.length ? <><ProductGrid loading={loading} items={exist}/>{ verCarro.length ? <GridCart /> : ""}</> : <div><Spinner /> </div>}      
+      { exist.length ? <><ProductGrid loading={loading} items={exist}/></> : <div>{ 
+      mensajeno.length ? <Alert severity="warning"><AlertTitle>No se encontró el producto</AlertTitle>Intente escribirlo de otra forma</Alert> : <Spinner />
+      } </div>}  { verCarro.length ? <GridCart /> : ""}    
         </div>
         <AbouUs />
         </>

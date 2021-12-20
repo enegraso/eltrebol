@@ -6,6 +6,7 @@ const initialState = {
   productAdminGet: {},
   url: [],
   auxProducts: [],
+  alertprod: ""
 };
 
 export default function productReducer(state = initialState, action) {
@@ -101,6 +102,13 @@ export default function productReducer(state = initialState, action) {
         ...state,
         allProducts: action.payload,
       };
+
+      case "PRODS_NOTFOUNDED":
+        return {
+          ...state,
+          allProducts: [],
+          alertprod: action.payload,
+        }
 
     case "PRODS_FOUNDED_ADMIN":
       return {

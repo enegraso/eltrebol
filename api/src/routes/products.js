@@ -88,6 +88,12 @@ router.get("/search/:search", async (req, res) => {
   const { search } = req.params;
   try {
     const getProdSearch = await Product.findAll({
+      include: [
+        {
+          model: Category,
+          required: true,
+        }      
+      ],
       where: {
         name: {
           [Op.iLike]: "%" + [search] + "%",
