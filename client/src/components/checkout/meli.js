@@ -46,10 +46,10 @@ const MeLi = ({ productos, data }) => {
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell><h6>Producto</h6></TableCell>
-              <TableCell align="right"><h6>Precio</h6></TableCell>
-              <TableCell align="right"><h6>Cantidad</h6></TableCell>
-              <TableCell align="right"><h6>Subtotal</h6></TableCell>
+              <TableCell>Producto</TableCell>
+              <TableCell align="right">Precio</TableCell>
+              <TableCell align="right">Cantidad</TableCell>
+              <TableCell align="right">Subtotal</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
