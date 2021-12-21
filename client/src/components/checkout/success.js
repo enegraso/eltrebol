@@ -69,6 +69,7 @@ const Success = () => {
   return (
     <>
       <Grid
+        container
         spacing={2}
         direction="column"
         alignItems="center"
@@ -140,14 +141,18 @@ const Success = () => {
           </TableContainer>
         </Grid>
         <Grid item>
-          <ButtonOne style={{ width: "100px" }} onClick={() => navigate("/")}>
+          <ButtonOne 
+          style={{ width: "100px" }} 
+          onClick={() => navigate("/")}
+          color="warning"
+          >
             inicio
           </ButtonOne>
         </Grid>
         <Grid item>
           <ButtonOne
             style={{ width: "100px" }}
-            color="primary"
+            color="secondary"
             onClick={() => window.print()}
           >
             Imprimir

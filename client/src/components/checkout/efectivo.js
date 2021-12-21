@@ -49,7 +49,12 @@ export default function Efectivo(){
     }
 
     return(
-      <Grid container spacing={2} direction="column" alignItems="center" style={{'marginTop':'100px'}}>
+      <Grid
+      container
+      spacing={2} 
+      direction="column" 
+      alignItems="center" 
+      style={{'marginTop':'100px'}}>
         <Grid item>
           <h3>Pago en Efectivo</h3>
         </Grid>
