@@ -12,7 +12,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid';
 import {ButtonOne} from '../reutilizables/Button'
 
@@ -58,10 +58,10 @@ export default function Efectivo(){
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell><h6>Producto</h6></TableCell>
-              <TableCell align="right"><h6>Precio</h6></TableCell>
-              <TableCell align="right"><h6>Cantidad</h6></TableCell>
-              <TableCell align="right"><h6>Subtotal</h6></TableCell>
+              <TableCell><>Producto</></TableCell>
+              <TableCell align="right"><>Precio</></TableCell>
+              <TableCell align="right"><>Cantidad</></TableCell>
+              <TableCell align="right"><>Subtotal</></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -69,11 +69,12 @@ const Success = () => {
   return (
     <>
       <Grid
-        container
         spacing={2}
         direction="column"
         alignItems="center"
-        style={{ marginTop: "100px" }}
+        style={{ 
+          marginTop: "100px"
+        }}
       >
         <Grid item>
           <h3>Su pedido ha sido realizado exitosamente</h3>
@@ -84,16 +85,16 @@ const Success = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>
-                    <h6>Producto</h6>
+                   Producto
                   </TableCell>
                   <TableCell align="right">
-                    <h6>Precio</h6>
+                   Precio
                   </TableCell>
                   <TableCell align="right">
-                    <h6>Cantidad</h6>
+                   Cantidad
                   </TableCell>
                   <TableCell align="right">
-                    <h6>Subtotal</h6>
+                   Subtotal
                   </TableCell>
                 </TableRow>
               </TableHead>
