@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { orderSuccess } from "../../store/actions/carrito";
 import "./meli.css";
 import axios from "axios";
+import { REACT_APP_SMSKEY } from "../../store/consts/consts"
 
 //Material UI-------------------------->
 
@@ -40,7 +41,7 @@ const Success = () => {
     const headers = {
       accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Basic ZmVkZXJpY29ydGl6OjA1U3dvcmRmaXNoMzU=",
+      Authorization: REACT_APP_SMSKEY, // Clave de el trebol Base64
     };
 
     const respu = await axios
@@ -48,28 +49,26 @@ const Success = () => {
         "https://api.infobip.com/sms/1/text/single",
         {
           from: "EL TREBOL",
-          to: ["542342568774"],
+          /* to: ["542342568774"], Numero de julio */
+          to: [542342513085], /* Numero de federico */
           text:
-            "Ha recibido un nuevo pedido, N°: " +
-            orderid +
-            ", revise el siguiente link: https://bit.ly/3p5w4Fx ",
+            "Ha recibido un nuevo pedido, N°: " + orderid + ", revise el siguiente link: https://bit.ly/3p5w4Fx"
         },
         {
           headers: headers,
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log("Mensaje enviado", response, "KEY", REACT_APP_SMSKEY);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("ERROR", error, "KEY", REACT_APP_SMSKEY);
       });
   };
 
   return (
     <>
       <Grid
-        container
         spacing={2}
         direction="column"
         alignItems="center"
@@ -123,14 +122,13 @@ const Success = () => {
                   );
                 })}
                 <TableRow>
-                  <TableCell scope="row" span="">
+                  <TableCell colspan={2} scope="row" span="">
                     <h5>
                       <b>Total</b>
                     </h5>
                   </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell align="right">
+
+                  <TableCell colspan={2} align="right">
                     <h5 style={{ color: "red" }}>
                       <b>$ {totalpedido.toFixed(2).replace(".", ",")}</b>
                     </h5>

@@ -50,7 +50,6 @@ export default function Efectivo(){
 
     return(
       <Grid
-      container
       spacing={2} 
       direction="column" 
       alignItems="center" 
@@ -78,16 +77,14 @@ export default function Efectivo(){
                 <TableCell scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">${row.price}</TableCell>
+                <TableCell align="right">$ {row.price}</TableCell>
                 <TableCell align="right">{row.quantity}</TableCell>
-                <TableCell align="right"><b>${row.price * row.quantity}</b></TableCell>
+                <TableCell align="right"><b>$ {row.price * row.quantity}</b></TableCell>
               </TableRow>
             ))}
             <TableRow>
-                <TableCell scope='row' span=''><h5><b>Total</b></h5></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell align='right'><h5 style={{'color':'red'}}><b>${total(orderlines).toFixed(2).replace(".",",")}</b></h5></TableCell>
+                <TableCell colspan={2} scope='row' span=''><h5><b>Total</b></h5></TableCell>
+                <TableCell colspan={2} align='right'><h5 style={{'color':'red'}}><b>$ {total(orderlines).toFixed(2).replace(".",",")}</b></h5></TableCell>
             </TableRow>
           </TableBody>
         </Table>

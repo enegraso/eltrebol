@@ -1,5 +1,6 @@
 require('dotenv').config()
 export const REACT_APP_API = process.env.REACT_APP_API //endpoint
+export const REACT_APP_SMSKEY = process.env.REACT_APP_SMSKEY // keysms
 
 //productos
 export const productsEndpoint= REACT_APP_API + 'products/';

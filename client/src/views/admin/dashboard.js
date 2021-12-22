@@ -6,6 +6,7 @@ import "./dashboard.css";
 import { BiLogOut } from "react-icons/bi";
 import OrdersAdmin from "../../components/OrdersAdmin/OrdersAdmin";
 import swal from 'sweetalert2'
+import SMSCredits from "../../components/SMSCredits";
 
 const Dashboard = (props) => {
 
@@ -64,6 +65,7 @@ const Dashboard = (props) => {
           </div>
         </div>
       </div>
+      <SMSCredits />
     </>
   );
 };

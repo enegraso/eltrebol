@@ -63,7 +63,6 @@ export default function Paso2() {
 
   return (
     <Grid
-    container 
     spacing={2} 
     direction="column" 
     alignItems="center" 
