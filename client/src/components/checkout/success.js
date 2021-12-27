@@ -49,10 +49,10 @@ const Success = () => {
         "https://api.infobip.com/sms/1/text/single",
         {
           from: "EL TREBOL",
-          /* to: ["542342568774"], Numero de julio */
-          to: [542342513085], /* Numero de federico */
+          to: ["542342568774"], /* Numero de julio */
+          /* to: [542342513085],  Numero de federico */
           text:
-            "Ha recibido un nuevo pedido, N°: " + orderid + ", revise el siguiente link: https://bit.ly/3p5w4Fx"
+            "Ha recibido un nuevo pedido, revise el siguiente link https://bit.ly/3p5w4Fx"
         },
         {
           headers: headers,
