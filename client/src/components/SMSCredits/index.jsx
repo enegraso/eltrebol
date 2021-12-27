@@ -2,11 +2,14 @@ import axios from 'axios'
 import { REACT_APP_SMSKEY } from "../../store/consts/consts";
 import { Grid, Paper }  from '@mui/material'
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 let creditsSms = 0
 let monedaSms = ""
 
 const SMSCredits = () => {
+
+  const [loadSMS, setLoadSMS] = useState(false)
 
   useEffect(() => {
     miroSaldo()
@@ -29,6 +32,7 @@ const SMSCredits = () => {
           .then((response) => {
               creditsSms = response.data.balance
               monedaSms = response.data.currency
+              setLoadSMS(true)
 /*              
              console.log("Respuesta", response, "KEY", REACT_APP_SMSKEY);
              console.log("Creditos",creditsSms)
@@ -40,8 +44,8 @@ const SMSCredits = () => {
           });
       };
 
-      // miroSaldo()
-
+    if (loadSMS === false) return <>Cargando Saldo SMS...</>
+    
     return <>
     <Grid p={2}>    
       <Paper elevation={3} rounded="true" className="paper-prod"> 
