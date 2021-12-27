@@ -1,11 +1,17 @@
 import axios from 'axios'
 import { REACT_APP_SMSKEY } from "../../store/consts/consts";
 import { Grid, Paper }  from '@mui/material'
+import { useEffect } from 'react';
+
+let creditsSms = 0
+let monedaSms = ""
 
 const SMSCredits = () => {
 
-    let creditsSms = 0
-    let monedaSms = ""
+  useEffect(() => {
+    miroSaldo()
+  },[])
+
     const miroSaldo = async () => {
         const headers = {
           accept: "application/json",
@@ -23,14 +29,18 @@ const SMSCredits = () => {
           .then((response) => {
               creditsSms = response.data.balance
               monedaSms = response.data.currency
-            // console.log("Mensaje enviado", response, "KEY", REACT_APP_SMSKEY);
+/*              
+             console.log("Respuesta", response, "KEY", REACT_APP_SMSKEY);
+             console.log("Creditos",creditsSms)
+             console.log("Tipo",monedaSms) 
+*/
           })
           .catch((error) => {
             console.log("ERROR", error);
           });
       };
 
-      miroSaldo()
+      // miroSaldo()
 
     return <>
     <Grid p={2}>    

@@ -59,10 +59,10 @@ const Success = () => {
         }
       )
       .then((response) => {
-        console.log("Mensaje enviado", response, "KEY", REACT_APP_SMSKEY);
+        console.log("Mensaje enviado", response);
       })
       .catch((error) => {
-        console.log("ERROR", error, "KEY", REACT_APP_SMSKEY);
+        console.log("ERROR", error);
       });
   };
 
