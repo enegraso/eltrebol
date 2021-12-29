@@ -25,7 +25,7 @@ const AbouUs = () => {
           </h6>
           <div>
             <button
-              className="btn btn-link"
+              className="btn btn-link letra"
               style={{'textDecoration':'none'}}
               onClick={() =>{
                 window.open(
@@ -37,11 +37,11 @@ const AbouUs = () => {
               <BsFillGeoAltFill /> Los Claveles 285 - Bragado
             </button>
           </div>          
-          <h6 style={{'fontWeight':'300'}}>
+{/*           <h6 style={{'fontWeight':'300'}}>
             {!configs.horario
               ? "Los pedidos están sujetos a horario"
               : configs.horario}
-          </h6>
+          </h6> */}
         </div>
       </div>
     </>

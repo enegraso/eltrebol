@@ -63,7 +63,6 @@ export default function productReducer(state = initialState, action) {
 
     case "PROD_STOCK_MOD": //Modificar stock en boton ojo del admin
       return {
-        ...state,
         productsAdmin: state.productsAdmin.map((p) => {
           if (p.id === action.payload.id) {
             return { ...p, exist: !p.exist };
@@ -76,7 +75,8 @@ export default function productReducer(state = initialState, action) {
         ...state,
         productsAdmin: state.productsAdmin.map((p) => {
           if (p.id === action.payload.id) {
-            return { ...p, 
+            return {
+              ...p,
               name: action.payload.name,
               price: Number(action.payload.price),
               exist: action.payload.exist,
@@ -87,7 +87,7 @@ export default function productReducer(state = initialState, action) {
               minunit: action.payload.minunit,
               stepunit: action.payload.stepunit,
               categories: action.payload.categories,
-             };
+            };
           } else return p;
         }),
       };
@@ -151,3 +151,10 @@ export default function productReducer(state = initialState, action) {
       return state;
   }
 }
+
+/*         ...state,
+        productsAdmin: state.productsAdmin.map((p) => {
+          if (p.id === action.payload.id) {
+            return { ...p, exist: !p.exist };
+          } else return p;
+        }), */

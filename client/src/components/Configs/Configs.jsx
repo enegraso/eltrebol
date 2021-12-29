@@ -159,7 +159,7 @@ const Configs = () => {
             ></input>
           </div>{" "}
           <div className="mb-3">
-            <label className="form-label">Horario</label>
+            <label className="form-label">Mensaje fuera de horario</label>
             <input
               className="form-control"
               type="text"
