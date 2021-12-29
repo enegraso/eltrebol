@@ -172,7 +172,7 @@ export const prodStock = (id) => async (dispatch) => {
 };
 
 export const prodMod = (producto) => async (dispatch) => {
-  console.log("modificando");
+  console.log("modificando", modifyProductEndpoint);
   try {
     const { data } = await Axios.put(`${modifyProductEndpoint}`, producto);
     dispatch({ type: "PROD_ADMIN_MOD", payload: data });
@@ -191,7 +191,7 @@ export const getProdAdmin = (id) => async (dispatch) => {
   /* dispatch({ type: USER_SIGNIN_REQUEST, payload: { username, password } }) */
   try {
     /*     console.log(`${REACT_APP_API}/products/` + id); */
-    const { data } = await Axios.get(`${REACT_APP_API}products/` + id);
+    const { data } = await Axios.get(`${REACT_APP_API}products/admin/` + id);
     console.log(data);
     dispatch({ type: "PROD_ADMIN_GET", payload: data });
   } catch (err) {

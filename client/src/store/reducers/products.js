@@ -59,6 +59,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: [...state.allProducts, action.payload],
+        productsAdmin: [...state.productsAdmin, action.payload],
       };
 
     case "PROD_STOCK_MOD": //Modificar stock en boton ojo del admin

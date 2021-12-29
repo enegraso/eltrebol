@@ -31,39 +31,48 @@ router.get("/admin", (req, res, next) => {
     .catch(next);
 });
 
-//todos los productos ordenados por nombre, si existen y agrupados por categoria
-router.get("/grupocat", (req, res, next) => {
-  Product.findAll({ 
+//producto por id para admin
+router.get("/admin/:id", (req, res) => {
+  let { id } = req.params;
+  if (!id) return res.status(400).send("Este producto no existe");
+  Product.findOne({
+    where: {
+      id,
+    },
     include: [
       {
         model: Category,
         required: true,
-      }      
+      },
     ],
-    order: [ ['name','ASC']],
-    where: {
-      exist: true
-    }
-
-  })
-    .then((products) => {
-      // console.log(products)
-      res.send(products);
-    })
-    .catch(next);
-});
-
-//producto por id
-router.get("/:id", (req, res) => {
-  let { id } = req.params;
-  if (!id) return res.status(400).send("Este producto no existe");
-  Product.findByPk(id).then((product) => {
+  }).then((product) => {
     if (!product)
       return res
         .status(400)
         .json({ message: "No se encontró producto con id: " + id });
     return res.status(200).json(product);
   });
+});
+
+//todos los productos ordenados por nombre, si existen y agrupados por categoria
+router.get("/grupocat", (req, res, next) => {
+  Product.findAll({
+    include: [
+      {
+        model: Category,
+        required: true,
+      },
+    ],
+    order: [["name", "ASC"]],
+    where: {
+      exist: true,
+    },
+  })
+    .then((products) => {
+      // console.log(products)
+      res.send(products);
+    })
+    .catch(next);
 });
 
 //producto por categoria
@@ -92,13 +101,13 @@ router.get("/search/:search", async (req, res) => {
         {
           model: Category,
           required: true,
-        }      
+        },
       ],
       where: {
         name: {
           [Op.iLike]: "%" + [search] + "%",
         },
-        exist: true
+        exist: true,
       },
     });
     return res.send(getProdSearch);
@@ -219,6 +228,11 @@ router.put("/update", async (req, res) => {
       .status(400)
       .send({ message: "Por favor, ingrese precio de producto" });
   }
+  if (!categories || categories.length === 0) {
+    return res
+      .status(400)
+      .send({ message: "Por favor, ingrese categoria/s del producto" });
+  }
   if (!units || units === "") {
     return res
       .status(400)
@@ -237,32 +251,43 @@ router.put("/update", async (req, res) => {
     units,
     minunit,
     stepunit,
+    categories,
   };
-  const existProd = await Product.findOne({
-    where: {
-      id,
-    },
-  });
-  if (existProd) {
-    try {
-      // envio los datos al modelo sequelize para que los guarde en la database
-      let updProd = await Product.update(objProdUpd, {
+  try {
+    // envio los datos al modelo sequelize para que los guarde en la database
+    let updProd = await Product.update(objProdUpd, {
+      where: {
+        id,
+      },
+    });
+ 
+    categories.map(async (cates) => {
+      await Prod_Cat.destroy({
         where: {
-          id,
+          productId: id,
         },
       });
-      // si todo sale bien devuelvo el objeto agregado
-      console.log("Producto modificado");
-      return res.send(objProdUpd);
-    } catch (err) {
-      // en caso de error lo devuelvo al frontend
-      console.log(err);
-      return res.status(500).json({ error: err });
-    }
-  } else {
-    return res
-      .status(400)
-      .json({ message: "No existe el producto a modificar" });
+    });
+
+    categories.map(async (cates) => {
+      const relacion = {
+        productId: id,
+        categoryId: cates
+      } 
+      await Prod_Cat.create(relacion);
+    });
+
+
+
+    // seteo la relacion
+    // await Product.setCategories(categories)
+    // si todo sale bien devuelvo el objeto agregado
+    console.log("Producto modificado");
+    return res.status(200).json(updProd);
+  } catch (err) {
+    // en caso de error lo devuelvo al frontend
+    console.log(err);
+    return res.status(400).json({ error: err });
   }
 });
 
@@ -334,6 +359,21 @@ router.post("/stock", (req, res) => {
       console.error("error al buscar", err, req.body);
       return res.status(400).json({ message: "No se encontró producto" });
     });
+});
+
+//producto por id
+router.get("/:id", (req, res) => {
+  let { id } = req.params;
+  console.log(id);
+  if (!id || !Number(id))
+    return res.status(400).send("Este producto no existe");
+  Product.findByPk(id).then((product) => {
+    if (!product)
+      return res
+        .status(400)
+        .json({ message: "No se encontró producto con id: " + id });
+    return res.status(200).json(product);
+  });
 });
 
 module.exports = router;
