@@ -23,6 +23,8 @@ export function validateprod(input) {
   return errors;
 }
 
+let data = []
+
 const ProductForm = () => {
   const dispatch = useDispatch();
   const categoriasAdmin = useSelector((state) => state.Category.allCategories);
@@ -97,7 +99,7 @@ const ProductForm = () => {
     var tempera = input.categories.find((temp) => temp === e.target.value);
     console.log(tempera);
     if (!tempera && e.target.value !== "0") {
-      let data = [...input.categories];
+      data = [...input.categories];
       data.push(e.target.value);
       setInput({ ...input, categories: data });
       var seltempe = document.getElementById("seleccategory");
@@ -107,6 +109,21 @@ const ProductForm = () => {
       artempes.value += artempes.value.length > 0 ? ", " + strtempe : strtempe;
       console.log("estas seleccionando:" + data);
     } else alert("La categoría ya fue agregada");
+  }
+
+  const handleClick = () => {
+    console.log("DATA",data)
+    let eliminado = data.pop()
+    console.log("Elimine",eliminado)
+    var artempes = document.getElementById("areatempe");
+    // artempes.value -= artempes.value.length > 0 ? ", " - strtempe : strtempe;
+    var textoenarea = artempes.value.split(",");
+    textoenarea.pop()
+    console.log("Text area",textoenarea)
+     artempes.value = textoenarea
+/*      console.log(input.categories)
+     console.log("Quito data",data)
+     console.log("Quito quito categories",input.categories) */
   }
 
   if (!localStorage.getItem("userInfo"))
@@ -160,7 +177,7 @@ const ProductForm = () => {
               readOnly
               rows="1"
               cols="35"
-            />
+            /><div className="btn btn-outline-success searchbut" onClick={handleClick}> borrar </div>
           </div>
           <div className="mb-3">
             <label className="form-label">Producto </label>

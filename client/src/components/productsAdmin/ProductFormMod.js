@@ -136,7 +136,7 @@ const ProductFormMod = () => {
   }
 
   function handleChangeSelect(e) {
-    var tempera = input.categories.find((temp) => temp === e.target.value);
+    var tempera = input.categories.find((temp) => temp == e.target.value);
     console.log(tempera);
     if (!tempera && e.target.value !== "0") {
       // data = [...input.categories];
@@ -147,9 +147,9 @@ const ProductFormMod = () => {
       var strtempe = seltempe.options[seltempe.selectedIndex].text;
       var artempes = document.getElementById("areatempe");
       artempes.value += artempes.value.length > 0 ? ", " + strtempe : strtempe;
-      console.log("estas seleccionando:" + data);
+/*       console.log("estas seleccionando:" + data);
       console.log("Agrego data",data)
-      console.log("Agrego input categories",input.categories)
+      console.log("Agrego input categories",input.categories) */
     } else alert("La categoría ya fue agregada");
   }
 
@@ -163,9 +163,9 @@ const ProductFormMod = () => {
     textoenarea.pop()
     console.log("Text area",textoenarea)
      artempes.value = textoenarea
-     console.log(input.categories)
+/*      console.log(input.categories)
      console.log("Quito data",data)
-     console.log("Quito quito categories",input.categories)
+     console.log("Quito quito categories",input.categories) */
   }
 
   if (!localStorage.getItem("userInfo"))
