@@ -241,7 +241,7 @@ router.put("/update", async (req, res) => {
 
   const existencia = exist === "false" || exist === true ? true : false;
   const esoferta = isOfert === "false" || isOfert === true ? true : false;
-  const objProdUpd = {
+  let objProdUpd = {
     name,
     description,
     exist: existencia,
@@ -276,18 +276,19 @@ router.put("/update", async (req, res) => {
       } 
       await Prod_Cat.create(relacion);
     });
-
+    objProdUpd = { ...objProdUpd, id: id}
 
 
     // seteo la relacion
     // await Product.setCategories(categories)
     // si todo sale bien devuelvo el objeto agregado
     console.log("Producto modificado");
-    return res.status(200).json(updProd);
+    console.log("Devuelto", objProdUpd)
+     res.status(200).json(objProdUpd);
   } catch (err) {
     // en caso de error lo devuelvo al frontend
     console.log(err);
-    return res.status(400).json({ error: err });
+    res.status(400).json({ error: err });
   }
 });
 

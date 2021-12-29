@@ -6,7 +6,7 @@ const initialState = {
   productAdminGet: {},
   url: [],
   auxProducts: [],
-  alertprod: ""
+  alertprod: "",
 };
 
 export default function productReducer(state = initialState, action) {
@@ -59,21 +59,39 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: [...state.allProducts, action.payload],
-        productsAdmin: [...state.productsAdmin, action.payload],
       };
 
     case "PROD_STOCK_MOD": //Modificar stock en boton ojo del admin
       return {
-      ...state,
-      productsAdmin: state.productsAdmin.map((p) => {
-        if(p.id === action.payload.id)
-         {
-          return { ...p,
-            exist: !p.exist };
-         } else
-         return p ;
-      })
-    }
+        ...state,
+        productsAdmin: state.productsAdmin.map((p) => {
+          if (p.id === action.payload.id) {
+            return { ...p, exist: !p.exist };
+          } else return p;
+        }),
+      };
+
+    case "PROD_ADMIN_MOD": //Modificar stock en boton ojo del admin
+      return {
+        ...state,
+        productsAdmin: state.productsAdmin.map((p) => {
+          if (p.id === action.payload.id) {
+            return { ...p, 
+              name: action.payload.name,
+              price: Number(action.payload.price),
+              exist: action.payload.exist,
+              description: action.payload.description,
+              isOfert: action.payload.isOfert,
+              image: action.payload.image,
+              units: action.payload.units,
+              minunit: action.payload.minunit,
+              stepunit: action.payload.stepunit,
+              categories: action.payload.categories,
+             };
+          } else return p;
+        }),
+      };
+
     case "SEARCH_PRODUCTS":
       return {
         ...state,
@@ -105,11 +123,11 @@ export default function productReducer(state = initialState, action) {
         alertprod: "",
       };
 
-      case "PRODS_NOTFOUNDED":
-        return {
-          ...state,
-          alertprod: action.payload,
-        }
+    case "PRODS_NOTFOUNDED":
+      return {
+        ...state,
+        alertprod: action.payload,
+      };
 
     case "PRODS_FOUNDED_ADMIN":
       return {
