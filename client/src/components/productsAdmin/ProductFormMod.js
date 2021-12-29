@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import "./login.css";
 // import Dashboard from '../../views/admin/dashboard'
 import { getAllCategories } from "../../store/actions/categories";
@@ -27,6 +27,7 @@ export function validateprod(input) {
 let data = []
 
 const ProductFormMod = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const productoAdmin = useSelector((state) => state.Product.productAdminGet);
   const categoriasAdmin = useSelector((state) => state.Category.allCategories);
@@ -120,7 +121,7 @@ const ProductFormMod = () => {
         .then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-            window.history.go(-1);
+            navigate('/admin/products');
           }
         });
     } else {
