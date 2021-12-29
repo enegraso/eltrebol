@@ -206,7 +206,9 @@ export const getProdAdmin = (id) => async (dispatch) => {
 export const urlPost = (url) => {
   return function (dispatch) {
     dispatch({ type: "URL_INFO", payload: url });
-    localStorage.setItem("urlImage", JSON.stringify(url));
+    const urlsegura = url.replace("http://","https://")
+    // console.log("URL de imagen",urlsegura)
+    localStorage.setItem("urlImage", urlsegura);
   };
 };
 
