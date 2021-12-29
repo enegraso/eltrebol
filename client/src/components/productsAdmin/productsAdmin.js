@@ -58,11 +58,12 @@ const ProductsAdmin = (props) => {
       </>
     );
 
-  if (!props.allProducts)
+  if (!props.allProducts.length)
     return (
       <>
-        {" "}
-        <Spinner />{" "}
+        <div style={{ marginTop: "200px" }}>
+        <Spinner />
+        </div>
       </>
     );
 
