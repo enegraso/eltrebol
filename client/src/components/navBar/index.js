@@ -15,7 +15,6 @@ import SearchBar from "../searchBar";
 import { totalcant } from "../../components/utils";
 
 export default function NavBar() {
-  const elementCart = useSelector((state) => state.Carrito.guestCart);
   const orden = useSelector((state) => state.Carrito.guestCart);
   const [itemsCart, setItemsCart] = useState(0);
 
@@ -24,9 +23,9 @@ export default function NavBar() {
   const guestOrderlines = orderline(orden);
 
   useEffect(() => {
-    setItemsCart(elementCart.length);
+    setItemsCart(guestOrderlines.length);
     // Preparo items
-  }, [elementCart]);
+  }, [guestOrderlines]);
 
   return (
     <>
