@@ -6,14 +6,15 @@
 }
 
 .card:hover{
-    transform: translateY(-15px);
+    transform: translateY(-10px);
     transition: transform .3s;
+    box-shadow: 3px 3px red
 }
 
 .cost span{
     color:#F55C47;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 .buttonprod{
@@ -39,7 +40,7 @@
 
     .anchoimg {
         width: 110px;
-        height: 90px;
+        height: auto;
     }
 }
 
@@ -47,6 +48,6 @@
 
     .anchoimg {
         width: 90px;
-        height: 70px;
+        height: auto;
     }
 }

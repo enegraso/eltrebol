@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllCategories } from "../../store/actions/categories";
 import { FaUserCircle } from "react-icons/fa";
 import { prodMod } from "../../store/actions/products";
+import ChangeImage from './ChangeImage'
 import swal from "sweetalert2";
 
 export function validateprod(input) {
@@ -95,6 +96,8 @@ const ProductFormMod = () => {
   async function handleSubmit(e) {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
+    let newImage = ""
+    !localStorage.getItem("urlImage").length ? newImage = input.image : newImage = localStorage.getItem("urlImage")
     const updProd = {
       id: productoAdmin.id,
       name: input.name,
@@ -102,13 +105,14 @@ const ProductFormMod = () => {
       exist: input.exist,
       price: input.price,
       isOfert: input.isofert,
-      image: input.image,
+      image: newImage,
       units: input.units,
       minunit: input.minunit,
       stepunit: input.stepunit,      
       categories: input.categories,
     };
     console.log(updProd);
+    localStorage.setItem("urlImage", "");
     await dispatch(prodMod(updProd));
     if (localStorage.getItem("productUpdated") === "true") {
       swal
@@ -287,6 +291,7 @@ const ProductFormMod = () => {
               src={productoAdmin.image}
               alt={productoAdmin.name}
             />
+            <ChangeImage />
             {/*             <input
               class="form-control"
               type="text"

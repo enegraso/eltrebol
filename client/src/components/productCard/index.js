@@ -27,7 +27,7 @@ export default function ProductCard({
           <h6>
             {name}
           </h6>
-          <div className="cost mt-1 text-dark">
+          <div className="cost text-dark">
           <span>
            $ {price}
           </span>

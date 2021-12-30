@@ -32,6 +32,15 @@ span {
   margin-right: auto;
 }
 
+.imageupch {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 1px red;
+  border-radius: 1rem;
+}
+
 .renglon {
   display: flex;
   border: 1px solid green;
