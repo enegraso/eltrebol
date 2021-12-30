@@ -10,11 +10,13 @@ import AbouUs from "../../components/AboutUs";
 import NavBar from "../../components/navBar";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import { MdShoppingCart } from "react-icons/md";
 
 export default function Home() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.Product.allProducts);
   const mensajeno = useSelector((state) => state.Product.alertprod);
+  const [viewAlert, setViewAlert] = useState(true);
 
   useEffect(async () => {
     // console.log('entrando al home')
@@ -35,17 +37,33 @@ export default function Home() {
   return (
     <>
       <div className="container" style={{ marginTop: "5em" }}>
-        {!configs.horario
-          ? ""
-          : 
-          <Alert severity="warning">
-          <AlertTitle>ATENCION</AlertTitle>{ configs.horario }
-        </Alert>
-          }
-    
-
+        <div style={{ width: "100%" }}>
+          {!configs.horario ? (
+            ""
+          ) : (
+            <Alert variant="filled" severity="warning">
+              <AlertTitle>ATENCION</AlertTitle>
+              {configs.horario}
+            </Alert>
+          )}
+        </div>
         {exist.length ? (
           <>
+            {viewAlert === true ? (
+              <Alert
+                onClose={() => {
+                  setViewAlert(false);
+                }}
+                variant="filled"
+                severity="info"
+              >
+                <AlertTitle>ATENCION</AlertTitle>
+                Luego de AGREGAR producto/s, puede modificar las cantidades en{" "}
+                <MdShoppingCart />
+              </Alert>
+            ) : (
+              ""
+            )}
             <ProductGrid loading={loading} items={exist} />
           </>
         ) : (
