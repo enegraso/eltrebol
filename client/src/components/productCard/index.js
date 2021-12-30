@@ -24,10 +24,10 @@ export default function ProductCard({
       <div className="card mt-3">
       <div className="product align-items-center p-2 text-center" /* style={{ width: "18rem" }} */>
         <img src={img} className="rounded anchoimg" alt={name} title={name} />
-          <h5>
+          <h6>
             {name}
-          </h5>
-          <div className="cost mt-3 text-dark">
+          </h6>
+          <div className="cost mt-1 text-dark">
           <span>
            $ {price}
           </span>
