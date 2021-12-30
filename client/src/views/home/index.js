@@ -35,11 +35,14 @@ export default function Home() {
   return (
     <>
       <div className="container" style={{ marginTop: "5em" }}>
-      <h6 style={{ fontWeight: "300" }}>
         {!configs.horario
           ? ""
-          : configs.horario}
-      </h6>
+          : 
+          <Alert severity="warning">
+          <AlertTitle>ATENCION</AlertTitle>{ configs.horario }
+        </Alert>
+          }
+    
 
         {exist.length ? (
           <>
