@@ -22,7 +22,7 @@ export default function ProductCard({
     <>
     <div className="col">
       <div className="card mt-3">
-      <div className="product align-items-center text-center" /* style={{ width: "18rem" }} */>
+      <div className="product align-items-center p-1 text-center" /* style={{ width: "18rem" }} */>
         <img src={img} className="rounded anchoimg" alt={name} title={name} />
           <h6>
             {name}
