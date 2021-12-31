@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   getAllProductsAdmin,
@@ -24,10 +24,13 @@ import SearchBarAdmin from "../searchBarAdmin";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Avatar } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 /* import Avatar from '@mui/material/Avatar'; */
 
 const ProductsAdmin = (props) => {
   const [input, setInput] = useState({});
+  const mensajenoAdmin = useSelector((state) => state.Product.alertprodAdmin);
 
   useEffect(() => {
     if (!props.allProducts.length) {
@@ -58,14 +61,14 @@ const ProductsAdmin = (props) => {
       </>
     );
 
-  if (!props.allProducts.length)
+/*   if (!props.allProducts.length)
     return (
       <>
         <div style={{ marginTop: "200px" }}>
         <Spinner />
         </div>
       </>
-    );
+    ); */
 
   // producto visible o no
   const handleClick = async (id) => {
@@ -131,7 +134,17 @@ const ProductsAdmin = (props) => {
             </button>
           </Link>
         </div>
-        {props.allProducts.map((product) => {
+        {!props.allProducts.length ?
+            
+              /* productos.length &&  */ mensajenoAdmin.length ? (
+                <Alert severity="warning">
+                  <AlertTitle>No se encontró el producto</AlertTitle>Intente
+                  escribirlo de otra forma
+                </Alert>
+              ) : (
+                <Spinner />
+              )
+             : props.allProducts.map((product) => {
           return (
             <Grid item xs={12} /* md={12}  */p={0.3} key={product.id}>
               <Paper elevation={3} rounded="false" /* className="paper-prod" */>

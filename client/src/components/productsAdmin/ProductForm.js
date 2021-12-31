@@ -66,6 +66,7 @@ const ProductForm = () => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     console.log(input);
+    localStorage.setItem("urlImage", "");
     await dispatch(prodAdd(input));
     if (localStorage.getItem("productAdded") === "true") {
       swal

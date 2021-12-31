@@ -239,6 +239,8 @@ export const searchProductsAdmin = (buscar) => async (dispatch) => {
     );
     dispatch({ type: "PRODS_FOUNDED_ADMIN", payload: data });
     console.log(data);
+    if (data.length === 0) 
+    dispatch({ type: "PRODS_ADMIN_NOTFOUNDED", payload: "NO SE Encontro" }); 
   } catch (err) {
     alert(
       err.response && err.response.data.message

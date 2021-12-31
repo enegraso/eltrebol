@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="container" style={{ marginTop: "5em" }}>
+      <div className="container" style={{ marginTop: "5.25em" }}>
         <div style={{ width: "100%" }}>
           {!configs.horario ? (
             ""

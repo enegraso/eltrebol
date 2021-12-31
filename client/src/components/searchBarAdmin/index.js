@@ -14,19 +14,19 @@ export default function SearchBarAdmin() {
     });
   };
 
-  const handleClick = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (query.query === "") {
         await dispatch(getAllProductsAdmin()); 
     } else {
       await dispatch(searchProductsAdmin(query.query));
-      setQuery("");
+/*       setQuery(""); */
     }
   };
 
   return (
     <section>
-      <form className="d-flex barraBuscar" >
+      <form className="d-flex barraBuscar" onSubmit={handleSubmit}>
         <input
           class="form-control me-2"
           placeholder="Buscar..."
@@ -38,8 +38,7 @@ export default function SearchBarAdmin() {
         <button
           type="submit"
           className="btn btn-outline-success"
-          style={{ paddingleft: "10px" }}
-          onClick={handleClick}
+/*           onClick={handleClick} */
         >
           <BiSearchAlt />
         </button>
