@@ -97,7 +97,7 @@ const ProductFormMod = () => {
     // funcion que debe solicitar usuario logueado
     e.preventDefault();
     let newImage = ""
-    !localStorage.getItem("urlImage").length ? newImage = input.image : newImage = localStorage.getItem("urlImage")
+    !localStorage.getItem("urlImage") ? newImage = input.image : newImage = localStorage.getItem("urlImage")
     const updProd = {
       id: productoAdmin.id,
       name: input.name,
@@ -112,7 +112,7 @@ const ProductFormMod = () => {
       categories: input.categories,
     };
     console.log(updProd);
-    localStorage.setItem("urlImage", "");
+    localStorage.removeItem("urlImage");
     await dispatch(prodMod(updProd));
     if (localStorage.getItem("productUpdated") === "true") {
       swal
