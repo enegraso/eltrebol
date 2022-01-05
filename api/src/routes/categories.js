@@ -65,7 +65,9 @@ router.put("/update", async (req, res) => {
 //Obtener todas las categorías
 router.get("/", async (req, res) => {
   try {
-    let getAllCategories = await Category.findAll();
+    let getAllCategories = await Category.findAll({
+          order: [["category", "ASC"]],
+    });
     return res.send(getAllCategories);
   } catch (err) {
     return res.send({
