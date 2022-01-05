@@ -57,9 +57,9 @@ export default function Home() {
                 variant="filled"
                 severity="info"
               >
-                <AlertTitle>ATENCION</AlertTitle>
+                <AlertTitle>INFO</AlertTitle>
                 Luego de AGREGAR producto/s, puede modificar las cantidades en{" "}
-                <MdShoppingCart />
+                <MdShoppingCart style={{ width: "20px", height: "20px" }} />
               </Alert>
             ) : (
               ""
