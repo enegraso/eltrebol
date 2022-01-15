@@ -35,6 +35,12 @@ export default function orderReducer(state = initialState, action) {
         orderGuest: state.orderGuest.filter((o) => o.id !== action.payload),
       };
 
+      case "SORT_ORDER_ADMIN":
+        return {
+          ...state,
+          allOrders: action.payload,
+        };
+
     default:
       return state;
   }

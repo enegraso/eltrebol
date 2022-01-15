@@ -49,7 +49,7 @@ router.post("/checkout", (req, res, next) => {
       ],
       installments: 3, //Cantidad máximo de cuotas
     },
-    back_urls: {
+    redirects_urls: {
       success: `${fullUrl}/mp/pagos`,
       failure: `${fullUrl}/mp/error`,
       pending: `${fullUrl}/mp/pending`,
@@ -63,7 +63,7 @@ router.post("/checkout", (req, res, next) => {
       console.info("respondio");
       //Este valor reemplazará el string"<%= global.id %>" en tu HTML
       global.id = response.body.id;
-      console.log(response.body);
+      console.log("RESPONSE  obtenido BODY", response.body);
       res.json({ id: global.id });
     })
     .catch(function (error) {

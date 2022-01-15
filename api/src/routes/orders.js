@@ -11,7 +11,62 @@ router.get("/", async (req, res, next) => {
     let getAllOrders = await Order.findAll()
     return res.status(200).json(getAllOrders)
   } catch (err) {
-    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
+    return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
+  }
+});
+
+//listar ordenes/pedidos pendientes
+router.get("/pending", async (req, res, next) => {
+  try {
+    let getAllOrders = await Order.findAll({
+      where: {
+        status: 'pending',
+      }
+    })
+    return res.status(200).json(getAllOrders)
+  } catch (err) {
+    return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
+  }
+});
+
+//listar ordenes/pedidos preparandose
+router.get("/preparing", async (req, res, next) => {
+  try {
+    let getAllOrders = await Order.findAll({
+      where: {
+        status: 'preparing',
+      }
+    })
+    return res.status(200).json(getAllOrders)
+  } catch (err) {
+    return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
+  }
+});
+
+//listar ordenes/pedidos preparados
+router.get("/prepared", async (req, res, next) => {
+  try {
+    let getAllOrders = await Order.findAll({
+      where: {
+        status: 'prepared',
+      }
+    })
+    return res.status(200).json(getAllOrders)
+  } catch (err) {
+    return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
+  }
+});
+//listar ordenes/pedidos listos
+router.get("/done", async (req, res, next) => {
+  try {
+    let getAllOrders = await Order.findAll({
+      where: {
+        status: 'done',
+      }
+    })
+    return res.status(200).json(getAllOrders)
+  } catch (err) {
+    return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
   }
 });
 
@@ -25,7 +80,7 @@ router.get("/:id", async (req, res, next) => {
     })
     return res.status(200).json(getAllOrdersbyId)
   } catch (err) {
-    return res.status(500).json({ message: "No se pudo obtener listado de pedidos"+err})
+    return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
   }
 });
 
@@ -104,7 +159,7 @@ router.post("/add", async (req, res) => {
 
   } catch (err) {
     return res
-      .status(500)
+      .status(400)
       .json({ message: "No se pudo guardar el pedido " + err });
   }
 

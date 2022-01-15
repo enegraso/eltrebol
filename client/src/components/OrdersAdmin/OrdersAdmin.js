@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getAllOrders, getOrder } from "../../store/actions/orders";
+import { getAllOrders, getOrder, sortUpdated, ASC, DES } from "../../store/actions/orders";
 import { Link } from "react-router-dom";
 import { MdAttachMoney, MdDeliveryDining, MdMoneyOff } from "react-icons/md";
 import { HiLocationMarker } from "react-icons/hi";
@@ -13,6 +13,8 @@ const OrdersAdmin = (props) => {
     props.getAllOrders();
   }, []);
 
+ 
+ 
   if (!localStorage.getItem("userInfo"))
     return (
       <Link to="/loginadmin">
@@ -25,7 +27,7 @@ const OrdersAdmin = (props) => {
       <>
         <Spinner />{" "}
       </>
-    );
+    )
 
   return (
     <>
@@ -225,6 +227,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    sortUpdated: (order, array) => dispatch(sortUpdated(order, array)),
     getAllOrders: () => dispatch(getAllOrders()),
     getOrder: (id) => dispatch(getOrder(id)),
   };
