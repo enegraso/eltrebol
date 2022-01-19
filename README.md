@@ -12,3 +12,9 @@ Actualmente, el front se encuentra desplegado en vercel y se accede desde https:
 
 # Video
 [![Alt text](https://img.youtube.com/vi/8UjP-OYXSik/0.jpg)](https://www.youtube.com/watch?v=8UjP-OYXSik)
+
+# Desarrolladores
+Eve: 
+[![Alt text](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eve-real/)
+Federico: 
+[![Alt text](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/federico-ortiz-full-stack/)
