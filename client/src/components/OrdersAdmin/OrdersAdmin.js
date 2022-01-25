@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getAllOrders, getOrder, sortUpdated, ASC, DES } from "../../store/actions/orders";
+import {
+  getAllOrders,
+  getOrder,
+  sortUpdated,
+  ASC,
+  DES,
+} from "../../store/actions/orders";
 import { Link } from "react-router-dom";
 import { MdAttachMoney, MdDeliveryDining, MdMoneyOff } from "react-icons/md";
 import { HiLocationMarker } from "react-icons/hi";
@@ -13,8 +19,6 @@ const OrdersAdmin = (props) => {
     props.getAllOrders();
   }, []);
 
- 
- 
   if (!localStorage.getItem("userInfo"))
     return (
       <Link to="/loginadmin">
@@ -27,13 +31,16 @@ const OrdersAdmin = (props) => {
       <>
         <Spinner />{" "}
       </>
-    )
+    );
+
+  var fecha = "";
 
   return (
     <>
       {props.allOrders.map((order) => {
         if (order.status === props.status) {
-          if (props.status === "pending")
+          if (props.status === "pending") {
+            fecha = new Date(order.updatedAt);
             return (
               <Grid item xs={12} md={12} p={1} key={order.id}>
                 <Paper elevation={3} rounded="true" className="paper-prod">
@@ -43,8 +50,8 @@ const OrdersAdmin = (props) => {
                     justifyContent="space-around"
                     alignItems="center"
                   >
+                    <Grid item>{fecha.toLocaleString()}</Grid>
                     <Grid item>{order.client}</Grid>
-                    <Grid item>{order.cellphone}</Grid>
                     <Grid item>
                       {order.delivery === true ? (
                         <MdDeliveryDining
@@ -78,7 +85,9 @@ const OrdersAdmin = (props) => {
                 </Paper>
               </Grid>
             );
-          if (props.status === "preparing")
+          }
+          if (props.status === "preparing") {
+            fecha = new Date(order.updatedAt);
             return (
               <Grid item xs={12} md={12} p={1} key={order.id}>
                 <Paper elevation={3} rounded="true" className="paper-prod">
@@ -88,8 +97,8 @@ const OrdersAdmin = (props) => {
                     justifyContent="space-around"
                     alignItems="center"
                   >
+                    <Grid item>{fecha.toLocaleString()} </Grid>
                     <Grid item>{order.client}</Grid>{" "}
-                    <Grid item>{order.cellphone} </Grid>
                     <Grid item>
                       {order.delivery === true ? (
                         <MdDeliveryDining
@@ -123,7 +132,9 @@ const OrdersAdmin = (props) => {
                 </Paper>
               </Grid>
             );
-          if (props.status === "prepared")
+          }
+          if (props.status === "prepared") {
+            fecha = new Date(order.updatedAt);
             return (
               <Grid item xs={12} md={12} p={1} key={order.id}>
                 <Paper elevation={3} rounded="true" className="paper-prod">
@@ -133,8 +144,8 @@ const OrdersAdmin = (props) => {
                     justifyContent="space-around"
                     alignItems="center"
                   >
+                    <Grid item>{fecha.toLocaleString()} </Grid>
                     <Grid item>{order.client} </Grid>
-                    <Grid item>{order.cellphone} </Grid>
                     <Grid item>
                       {order.delivery === true ? (
                         <MdDeliveryDining
@@ -168,7 +179,9 @@ const OrdersAdmin = (props) => {
                 </Paper>
               </Grid>
             );
-          if (props.status === "done")
+          }
+          if (props.status === "done") {
+            fecha = new Date(order.updatedAt);
             return (
               <Grid item xs={12} md={12} p={1} key={order.id}>
                 <Paper elevation={3} rounded="true" className="paper-prod">
@@ -178,8 +191,8 @@ const OrdersAdmin = (props) => {
                     justifyContent="space-around"
                     alignItems="center"
                   >
+                    <Grid item>{fecha.toLocaleString()} </Grid>
                     <Grid item>{order.client}</Grid>
-                    <Grid item>{order.cellphone} </Grid>
                     <Grid item>
                       {order.delivery === true ? (
                         <MdDeliveryDining
@@ -213,6 +226,7 @@ const OrdersAdmin = (props) => {
                 </Paper>
               </Grid>
             );
+          }
         }
       })}
     </>

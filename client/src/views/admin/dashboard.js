@@ -54,25 +54,25 @@ const Dashboard = (props) => {
         <Grid className="contentOrders">
           <div className="boxOrder" style={{ border: "1px solid forestgreen" }}>
             <div className="boxTitleOrder">
-              <h5>Pedidos pendientes</h5>
+              <h5>Pendientes</h5>
             </div>
             <OrdersAdmin status="pending" />
           </div>
           <div className="boxOrder" style={{ border: "1px solid green" }}>
             <div className="boxTitleOrder">
-              <h5>Pedidos en proceso</h5>
+              <h5>En proceso</h5>
             </div>
             <OrdersAdmin status="preparing" />
           </div>
           <div className="boxOrder" style={{ border: "1px solid blue" }}>
             <div className="boxTitleOrder">
-              <h5>Pedidos armados</h5>
+              <h5>Listos para entrega</h5>
             </div>
             <OrdersAdmin status="prepared" />
           </div>
           <div className="boxOrder" style={{ border: "1px solid greenyellow" }}>
             <div className="boxTitleOrder">
-              <h5>Pedidos entregados</h5>
+              <h5>Completos y entregados</h5>
             </div>
             <OrdersAdmin status="done" />
           </div>
