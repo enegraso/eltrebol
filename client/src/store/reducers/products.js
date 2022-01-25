@@ -109,6 +109,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         allProducts: state.allProducts.filter((p) => p.id !== action.payload),
+        productsAdmin: state.productsAdmin.filter((p) => p.id !== action.payload),
       };
 
     case "URL_INFO":

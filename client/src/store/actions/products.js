@@ -125,17 +125,18 @@ export function getProductId(id) {
   };
 }
 
-export function deleteProduct(id) {
-  return (dispatch) => {
-    return Axios.delete(`${productsEndpoint}delete/${id}`)
-      .then((json) => {
+export const deleteProduct = (id) => async (dispatch) => {
+
+    try {
+    const { data } = await Axios.delete(`${productsEndpoint}delete/${id}`)
+      
         dispatch({ type: "DELETE_PRODUCT", payload: id });
         localStorage.setItem("productDeleted", true);
-      })
-      .catch((err) => {
+    }
+      catch(err) {
         localStorage.setItem("productDeleted", err.response.data.message);
-      });
-  };
+      };
+  
 }
 
 export const prodAdd = (producto) => async (dispatch) => {

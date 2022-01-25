@@ -50,9 +50,6 @@ const ProductFormMod = () => {
   });
 
   useEffect(() => {
-    document.getElementById("exist").checked = productoAdmin.exist;
-    document.getElementById("isofert").checked = productoAdmin.isOfert;
-    console.log("PRODUCTOADMIN", productoAdmin.isOfert);
     if (categoriasAdmin.length === 0) dispatch(getAllCategories());
     const categs = []
     const nomcategs = []
@@ -62,7 +59,9 @@ const ProductFormMod = () => {
     })
     data = categs
     document.getElementById("areatempe").value = nomcategs;
-    setInput({
+    document.getElementById("exist").checked = productoAdmin.exist;
+    document.getElementById("isofert").checked = productoAdmin.isOfert;
+    console.log("PRODUCTOADMIN", productoAdmin.isOfert);    setInput({
       name: productoAdmin.name,
       description: productoAdmin.description,
       exist: productoAdmin.exist,
