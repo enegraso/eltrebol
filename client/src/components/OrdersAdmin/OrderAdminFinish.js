@@ -51,6 +51,9 @@ const OrderAdminFinish
   
   if (!pedidoAdmin[0]) return <> Cargando... </>;
 
+  var today = new Date(pedidoAdmin[0].updatedAt);
+  var d = today
+
   return (
     <>
       <div className="contenOrder">
@@ -59,7 +62,8 @@ const OrderAdminFinish
           Pedido{" "}
           {!pedidoAdmin[0].id
             ? "Tomando pedido..."
-            : pedidoAdmin[0].id}{" - Entregado"}
+            : pedidoAdmin[0].id}{" - Entregando..."}
+          <br /> Procesado { d.toLocaleString() }
         </h2>
         </div>
         <div>
@@ -117,8 +121,8 @@ const OrderAdminFinish
             : "Paga al recibir pedido"}
         </div>{" "}
         <div>
-          <button className="btn btn-primary"  onClick={handleClick}> Pedido completado </button>
-          <button className="btn btn-primary" onClick={() => window.print() }>
+          <button className="btn btn-primary"  onClick={handleClick}> Pedido entregado </button>
+          <button className="btn btn-secondary" onClick={() => window.print() }>
               {" "}
               Imprimir{" "}
             </button>

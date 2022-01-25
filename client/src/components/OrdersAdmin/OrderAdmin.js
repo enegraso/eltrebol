@@ -5,14 +5,12 @@ import { Link } from "react-router-dom";
 import { prepOrder } from "../../store/actions/orders";
 import swal from "sweetalert2";
 
-
-
 const OrderAdmin = () => {
   const dispatch = useDispatch();
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
-  const configsAdmin = useSelector((state) => state.User.configsAdmin)
-  const imageDelivery = "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638913622/motodelivery_r6mjqv.png"
-
+  const configsAdmin = useSelector((state) => state.User.configsAdmin);
+  const imageDelivery =
+    "https://res.cloudinary.com/dyejl1qrj/image/upload/v1638913622/motodelivery_r6mjqv.png";
 
   if (!localStorage.getItem("userInfo"))
     return (
@@ -64,7 +62,12 @@ const OrderAdmin = () => {
               })
               .then((respu) => {
                 if (respu.isConfirmed) {
-                  window.open('https://api.whatsapp.com/send?phone=54'+ pedidoAdmin[0].cellphone +'&text='+configsAdmin.messagewareject)
+                  window.open(
+                    "https://api.whatsapp.com/send?phone=54" +
+                      pedidoAdmin[0].cellphone +
+                      "&text=" +
+                      configsAdmin.messagewareject
+                  );
                   window.history.go(-1);
                 }
               });
@@ -84,17 +87,27 @@ const OrderAdmin = () => {
 
   if (!pedidoAdmin[0]) return <> Cargando... </>;
 
+  if (pedidoAdmin[0].status === "pending")
+    var today = new Date(pedidoAdmin[0].createdAt);
+  else var today = new Date(pedidoAdmin[0].updatedAt);
+
+  var d = today;
+
   return (
     <>
       <div className="contenOrder">
         <div className="titleOrder">
           <h2>
             Pedido{" "}
-            {!pedidoAdmin[0].id
-              ? "Tomando pedido..."
-              : pedidoAdmin[0].id }
+            {!pedidoAdmin[0].id ? "Tomando pedido..." : pedidoAdmin[0].id}
             {" - "}
-            {pedidoAdmin[0].status === "pending" ? "Pendiente" : "Completado"}
+            {pedidoAdmin[0].status === "pending"
+              ? "Pendiente"
+              : "Completo y entregado"}
+            <br />
+            {pedidoAdmin[0].status === "pending"
+              ? "Ingreso " + d.toLocaleString()
+              : "Entregado " + d.toLocaleString()}
           </h2>
         </div>
         <div>
@@ -109,8 +122,8 @@ const OrderAdmin = () => {
         </div>
         <div>
           {!pedidoAdmin[0].cellphone
-            ? "Sin dirección"
-            : "Dirección: " + pedidoAdmin[0].cellphone}
+            ? "Sin teléfono"
+            : "Teléfono: " + pedidoAdmin[0].cellphone}
         </div>
         <table border="1">
           <tr>
@@ -132,33 +145,49 @@ const OrderAdmin = () => {
               <tr bgcolor="lightgreen" key={line.id}>
                 <td>
                   {!Number.isInteger(line.quantity)
-                      ? line.quantity.toFixed(3).replace(".", ",")
-                      : line.quantity} {/* - {!line.product ? "envio" : line.product.units}{" "} */}
+                    ? line.quantity.toFixed(3).replace(".", ",")
+                    : line.quantity}{" "}
+                  {/* - {!line.product ? "envio" : line.product.units}{" "} */}
                 </td>
                 <td className="orderLineProduct">
-                  <img className="imageProduct" src={!line.product ? imageDelivery : line.product.image} />
+                  <img
+                    className="imageProduct"
+                    src={!line.product ? imageDelivery : line.product.image}
+                  />
                   {!line.product ? "Envio a domicilio" : line.product.name}
                 </td>
-                <td>{Number(!line.product ? line.price : line.product.price).toFixed(2).replace(".",",")}</td>
-                <td>{Number(line.subtotal).toFixed(2).replace(".",",")}</td>
+                <td>
+                  {Number(!line.product ? line.price : line.product.price)
+                    .toFixed(2)
+                    .replace(".", ",")}
+                </td>
+                <td>{Number(line.subtotal).toFixed(2).replace(".", ",")}</td>
               </tr>
             );
           })}
         </table>
         <div className="importePedido">
           {!pedidoAdmin[0].subtotal
-            ? 0 : "Importe AR$: " + (pedidoAdmin[0].subtotal).toFixed(2).replace(".",",") }
+            ? 0
+            : "Importe AR$: " +
+              pedidoAdmin[0].subtotal.toFixed(2).replace(".", ",")}
         </div>
-        <div>
-          {pedidoAdmin[0].delivery === true
-            ? "Enviar a domicilio"
-            : "Retira en comercio"}
-        </div>
-        <div>
-          {pedidoAdmin[0].payd === true
-            ? "Pedido pagado" + pedidoAdmin[0].payd_idml
-            : "Paga al recibir pedido"}
-        </div>{" "}
+        {pedidoAdmin[0].status === "pending" ? (
+          <>
+            <div>
+              {pedidoAdmin[0].delivery === true
+                ? "Enviar a domicilio"
+                : "Retira en comercio"}
+            </div>
+            <div>
+              {pedidoAdmin[0].payd === true
+                ? "Pedido pagado" + pedidoAdmin[0].payd_idml
+                : "Paga al recibir pedido"}
+            </div>
+          </>
+        ) : (
+          <> </>
+        )}
         <div>
           {pedidoAdmin[0].status === "pending" ? (
             <button className="btn btn-primary" onClick={handleClick}>
@@ -168,12 +197,12 @@ const OrderAdmin = () => {
           ) : (
             ""
           )}
-              <button className="btn btn-primary" onClick={() => window.print() }>
-              {" "}
-              Imprimir{" "}
-            </button>
+          <button className="btn btn-secondary" onClick={() => window.print()}>
+            {" "}
+            Imprimir{" "}
+          </button>
           {pedidoAdmin[0].status === "pending" ? (
-            <button className="btn btn-secondary" onClick={handleClickRej}>
+            <button className="btn btn-info" onClick={handleClickRej}>
               {" "}
               Rechazar{" "}
             </button>

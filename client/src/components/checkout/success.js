@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { orderSuccess } from "../../store/actions/carrito";
 import "./meli.css";
 import axios from "axios";
-import { REACT_APP_SMSKEY } from "../../store/consts/consts"
+import { REACT_APP_SMSKEY, REACT_APP_API } from "../../store/consts/consts"
 
 //Material UI-------------------------->
 
@@ -32,7 +32,7 @@ const Success = () => {
     dispatch(orderSuccess());
     localStorage.removeItem("orderid");
     localStorage.removeItem("order");
-    avisarxsms()
+    if (REACT_APP_API !== "http://localhost:3001/") avisarxsms()
   }, [orderid]);
 
   let totalpedido = 0;

@@ -57,6 +57,9 @@ const OrderAdminProcess = () => {
 
   if (!pedidoAdmin[0]) return <> Cargando... </>;
 
+  var today = new Date(pedidoAdmin[0].updatedAt);
+  var d = today
+
   return (
     <>
       <div className="contenOrder">
@@ -66,7 +69,8 @@ const OrderAdminProcess = () => {
             {!pedidoAdmin[0].id
               ? "Tomando pedido..."
               : pedidoAdmin[0].id }
-            {" - Enviar/Retira"}
+            {" - Procesando"}
+            <br /> Inicio proceso { d.toLocaleString() }
           </h2>
         </div>
         <div>
@@ -125,9 +129,9 @@ const OrderAdminProcess = () => {
         </div>{" "}
         <div>
           <button className="btn btn-primary" onClick={handleClickPrep}>
-            { pedidoAdmin[0].delivery === true ? "Enviar" : "Retira" }
+            { pedidoAdmin[0].delivery === true ? "Procesado - Enviar" : "Procesado - Avisar" }
           </button>
-          <button className="btn btn-primary" onClick={() => window.print() }>
+          <button className="btn btn-secondary" onClick={() => window.print() }>
               {" "}
               Imprimir{" "}
             </button>
