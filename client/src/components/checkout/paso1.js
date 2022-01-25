@@ -31,6 +31,7 @@ const schema = yup.object().shape({
         .string()
         .required('No debe faltar su numero de contacto')
         .min(10, 'Minimo de 10 digitos')
+        .max(10, 'Maximo de 10 digitos')
 })
 
 export default function Paso1() {
@@ -123,7 +124,7 @@ export default function Paso1() {
                     {...register('cellphone', { required: true })}
                     name='cellphone'
                     type='text'
-                    placeholder='Tu numero de celular'
+                    placeholder='Escribilo sin 0 y sin 15'
                     label='Tu numero de celular'
                     required
                 />

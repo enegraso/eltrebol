@@ -39,7 +39,7 @@
 @media screen and (max-width: 440px) {
 
     .anchoimg {
-        width: 110px;
+         width: 110px;
         height: auto;
     }
 }
@@ -47,7 +47,7 @@
 @media screen and (max-width: 360px) {
 
     .anchoimg {
-        width: 90px;
+        width: 90%;
         height: auto;
     }
 }

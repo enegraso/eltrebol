@@ -15,6 +15,6 @@ Actualmente, el front se encuentra desplegado en vercel y se accede desde https:
 
 # Desarrolladores
 Eve: 
-[![Alt text](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eve-real/)<br/>
+<a href='https://www.linkedin.com/in/eve-real' target='_blank'><img='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' /></a><br/>
 Federico: 
-[![Alt text](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/federico-ortiz-full-stack/)
+<a href=https://www.linkedin.com/in/federico-ortiz-full-stack' target='_blank'><img='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' /></a>

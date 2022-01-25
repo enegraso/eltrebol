@@ -73,5 +73,6 @@ module.exports = {
   Order,
   OrderLine,
   Configs,
-  Prod_Cat: sequelize.models.prod_cat
+  Prod_Cat: sequelize.models.prod_cat,
+  Sequelize: sequelize
 };

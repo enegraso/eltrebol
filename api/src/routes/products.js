@@ -1,7 +1,7 @@
 const express = require("express");
 const { Op } = require("sequelize");
 // Defino el modelo user para utilizarlo en las rutas correspondientes
-const { Product, Category, OrderLine, Prod_Cat } = require("../models/index");
+const { Product, Category, OrderLine, Prod_Cat, Conn } = require("../models/index");
 
 const router = express.Router();
 
@@ -103,7 +103,11 @@ router.get("/search/:search", async (req, res) => {
           required: true,
         },
       ],
-      where: {
+/*       where: Conn.where(
+        Conn.fn('unaccent', Conn.col('name')), {
+            [Op.iLike]:`%${search}%`
+      }), */
+       where: {
         name: {
           [Op.iLike]: "%" + [search] + "%",
         },
