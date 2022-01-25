@@ -8,7 +8,9 @@ var router = express.Router();
 //listar todas las ordenes/pedidos
 router.get("/", async (req, res, next) => {
   try {
-    let getAllOrders = await Order.findAll()
+    let getAllOrders = await Order.findAll({
+      order: [["updatedAt", "DESC"]],
+    })
     return res.status(200).json(getAllOrders)
   } catch (err) {
     return res.status(400).json({ message: "No se pudo obtener listado de pedidos"+err})
