@@ -40,12 +40,11 @@ export function getAllProductsAdmin() {
   };
 }
 
-
 // Ordeno por Existencias Admin
 export function sortExist(order, breeds) {
   // console.log("PRODUCTOS", breeds);
   let sortBreed = [...breeds];
-console.log("A VER stock",breeds)
+  console.log("A VER stock", breeds);
   sortBreed.sort(function (a, b) {
     var nombreA = a.exist;
     var nombreB = b.exist;
@@ -75,7 +74,6 @@ console.log("A VER stock",breeds)
     dispatch({ type: "GET_ALL_PRODUCTS_EXIST", payload: sortBreed });
   };
 }
-
 
 export function addProduct(product) {
   return (dispatch) => {
@@ -126,18 +124,19 @@ export function getProductId(id) {
 }
 
 export const deleteProduct = (id) => async (dispatch) => {
-
-    try {
-    const { data } = await Axios.delete(`${productsEndpoint}delete/${id}`)
-      
-        dispatch({ type: "DELETE_PRODUCT", payload: id });
-        localStorage.setItem("productDeleted", true);
-    }
-      catch(err) {
-        localStorage.setItem("productDeleted", err.response.data.message);
-      };
-  
-}
+  try {
+    const { data } = await Axios.delete(`${productsEndpoint}delete/${id}`);
+    dispatch({ type: "DELETE_PRODUCT", payload: id });
+    localStorage.setItem("productDeleted", true);
+  } catch (err) {
+    localStorage.setItem("productDeleted", err.response.data.message);
+    console.log(
+      err.response && err.response.data.message
+        ? err.response.data.message
+        : err.message
+    );
+  }
+};
 
 export const prodAdd = (producto) => async (dispatch) => {
   console.log("agregando");
@@ -160,7 +159,7 @@ export const prodStock = (id) => async (dispatch) => {
   try {
     const { data } = await Axios.post(`${stockProductEndpoint}`, { id: id });
     dispatch({ type: "PROD_STOCK_MOD", payload: data.product });
-    console.log(data.product)
+    console.log(data.product);
     localStorage.setItem("stockModified", true);
   } catch (err) {
     localStorage.setItem("stockModified", err.response.data.message);
@@ -207,7 +206,7 @@ export const getProdAdmin = (id) => async (dispatch) => {
 export const urlPost = (url) => {
   return function (dispatch) {
     dispatch({ type: "URL_INFO", payload: url });
-    const urlsegura = url.replace("http://","https://")
+    const urlsegura = url.replace("http://", "https://");
     // console.log("URL de imagen",urlsegura)
     localStorage.setItem("urlImage", urlsegura);
   };
@@ -220,10 +219,10 @@ export const searchProducts = (buscar) => async (dispatch) => {
       `${REACT_APP_API}products/search/${buscar}`
     );
     dispatch({ type: "PRODS_FOUNDED", payload: data });
-    console.log(data)
-    if (data.length === 0) 
-    dispatch({ type: "PRODS_NOTFOUNDED", payload: "NO SE Encontro" });
-    } catch (err) {
+    console.log(data);
+    if (data.length === 0)
+      dispatch({ type: "PRODS_NOTFOUNDED", payload: "NO SE Encontro" });
+  } catch (err) {
     alert(
       err.response && err.response.data.message
         ? err.response.data.message
@@ -240,8 +239,8 @@ export const searchProductsAdmin = (buscar) => async (dispatch) => {
     );
     dispatch({ type: "PRODS_FOUNDED_ADMIN", payload: data });
     console.log(data);
-    if (data.length === 0) 
-    dispatch({ type: "PRODS_ADMIN_NOTFOUNDED", payload: "NO SE Encontro" }); 
+    if (data.length === 0)
+      dispatch({ type: "PRODS_ADMIN_NOTFOUNDED", payload: "NO SE Encontro" });
   } catch (err) {
     alert(
       err.response && err.response.data.message

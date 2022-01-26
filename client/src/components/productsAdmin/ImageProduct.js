@@ -94,8 +94,8 @@ const ImageProduct = () => {
               sin magen{" "}
             </button>
           </Link>{" "}
-          <Link to="/admin/addproduct">
-            <button className="btn btn-link" onClick={() => window.history.go(-1)}>
+          <Link to="/admin/products">
+            <button className="btn btn-link" /* onClick={() => window.history.go(-1)} */>
               {" "}
               Volver{" "}
             </button>

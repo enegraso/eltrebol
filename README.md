@@ -22,7 +22,15 @@ Actualmente, el front se encuentra desplegado en vercel y se accede desde https:
 
 # FRONT - Video CRUD (abm) categorías de producto
 
+El crud de categorías es simple, ya que el cliente solo solicitó un nombre y una descripción.
+
 [![Alt text](https://img.youtube.com/vi/du1Kir_u4f8/0.jpg)](https://www.youtube.com/watch?v=du1Kir_u4f8)
+
+# FRONT - Video CRUD (abm) productos
+
+El crud de productos es simple, ya que el cliente solo solicitó algunas características del producto, y no requiere contro de stock. Solo saber si tiene o no, para que pueda verse en catálogo segun tenga o no, stock.
+
+[![Alt text](https://img.youtube.com/vi/jDBGZMFOf5o/0.jpg)](https://www.youtube.com/watch?v=jDBGZMFOf5o)
 
 # Desarrolladores
 Eve: 

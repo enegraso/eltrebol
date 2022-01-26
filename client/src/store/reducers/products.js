@@ -64,6 +64,7 @@ export default function productReducer(state = initialState, action) {
 
     case "PROD_STOCK_MOD": //Modificar stock en boton ojo del admin
       return {
+        ...state,
         productsAdmin: state.productsAdmin.map((p) => {
           if (p.id === action.payload.id) {
             return { ...p, exist: !p.exist };
