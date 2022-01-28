@@ -162,6 +162,7 @@ const OrderAdmin = () => {
             <TableCell>
               Cantidad
             </TableCell>
+            <TableCell></TableCell>
             <TableCell align="right">
               Producto
             </TableCell>
@@ -191,6 +192,8 @@ const OrderAdmin = () => {
                     className="imageProduct"
                     src={!line.product ? imageDelivery : line.product.image}
                     />
+                </TableCell>
+                <TableCell align="right">
                   {!line.product ? "Envio a domicilio" : line.product.name}
                 </TableCell>
                 <TableCell align="right">
