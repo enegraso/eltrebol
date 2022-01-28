@@ -47,7 +47,7 @@
     color: red;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 361px) {
 
     .imageProduct {
         display: none;

@@ -114,12 +114,12 @@ const OrderAdmin = () => {
     spacing={2}
     direction="column"
     alignItems="center"
-    style={{
+/*     style={{
       'marginTop':'100px',
       'marginBottom':'100px'
-    }}
+    }} */
     >
-      <Grid item>
+      <Grid item bgcolor="lightgreen">
           <h5>
             Pedido{" "}
             {!pedidoAdmin[0].id ? "Tomando pedido..." : pedidoAdmin[0].id}
@@ -155,21 +155,24 @@ const OrderAdmin = () => {
         </Grid>
         <Grid item>
 
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper}     style={{
+      'marginTop':'20px',
+      'marginBottom':'20px'
+    }}>
         <Table size="small" aria-label="a dense table">
-          <TableHead>
+          <TableHead bgcolor="lightgreen">
             <TableRow>
-            <TableCell>
+            <TableCell padding="none" align="center" width={1}>
               Cantidad
             </TableCell>
-            <TableCell></TableCell>
-            <TableCell align="right">
+            <div className="imageProduct"><TableCell></TableCell></div>
+            <TableCell padding="checkbox" align="center">
               Producto
             </TableCell>
-            <TableCell align="right">
+            <TableCell padding="checkbox" align="center" width={1}>
               PU
             </TableCell>
-            <TableCell align="right">
+            <TableCell padding="checkbox" align="center" width={1}>
               Importe
             </TableCell>
             </TableRow>
@@ -181,27 +184,27 @@ const OrderAdmin = () => {
               <TableRow 
               key={line.id}
               >
-                <TableCell scope="row">
+                <TableCell scope="row"  padding="none" align="center" width={1}>
                   {!Number.isInteger(line.quantity)
                     ? line.quantity.toFixed(3).replace(".", ",")
                     : line.quantity}{" "}
                   {/* - {!line.product ? "envio" : line.product.units}{" "} */}
                 </TableCell>
-                <TableCell align="right">
+                <div  className="imageProduct"><TableCell padding="none" align="right" width={1}>
                   <img
                     className="imageProduct"
                     src={!line.product ? imageDelivery : line.product.image}
                     />
-                </TableCell>
-                <TableCell align="right">
+                </TableCell></div>
+                <TableCell padding="none" /* align="right" */>
                   {!line.product ? "Envio a domicilio" : line.product.name}
                 </TableCell>
-                <TableCell align="right">
+                <TableCell padding="none" align="right" width={1}>
                   {Number(!line.product ? line.price : line.product.price)
                     .toFixed(2)
                     .replace(".", ",")}
                 </TableCell>
-                <TableCell align="right"><b>{Number(line.subtotal).toFixed(2).replace(".", ",")}</b></TableCell>
+                <TableCell padding="none" align="right" width={1}><b>{Number(line.subtotal).toFixed(2).replace(".", ",")}</b></TableCell>
               </TableRow>
             );
           })}
