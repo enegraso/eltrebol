@@ -5,6 +5,22 @@ import { Link } from "react-router-dom";
 import { prepOrder } from "../../store/actions/orders";
 import swal from "sweetalert2";
 
+
+//Material UI-------------------------->
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid';
+import {ButtonOne} from '../reutilizables/Button'
+
+//-------------------------------------->
+
+
 const OrderAdmin = () => {
   const dispatch = useDispatch();
   const pedidoAdmin = useSelector((state) => state.Order.orderAdmin);
@@ -94,10 +110,17 @@ const OrderAdmin = () => {
   var d = today;
 
   return (
-    <>
-      <div className="contenOrder">
-        <div className="titleOrder">
-          <h2>
+    <Grid
+    spacing={2}
+    direction="column"
+    alignItems="center"
+    style={{
+      'marginTop':'100px',
+      'marginBottom':'100px'
+    }}
+    >
+      <Grid item>
+          <h5>
             Pedido{" "}
             {!pedidoAdmin[0].id ? "Tomando pedido..." : pedidoAdmin[0].id}
             {" - "}
@@ -108,9 +131,12 @@ const OrderAdmin = () => {
             {pedidoAdmin[0].status === "pending"
               ? "Ingreso " + d.toLocaleString()
               : "Entregado " + d.toLocaleString()}
-          </h2>
-        </div>
-        <div>
+          </h5>
+     
+        </Grid>
+        <Grid item>
+
+          <div>
           {!pedidoAdmin[0].client
             ? "No hay pedido"
             : "Cliente: " + pedidoAdmin[0].client}
@@ -125,52 +151,70 @@ const OrderAdmin = () => {
             ? "Sin teléfono"
             : "Teléfono: " + pedidoAdmin[0].cellphone}
         </div>
-        <table border="1">
-          <tr>
-            <td className="titleLines" width="15%">
+        
+        </Grid>
+        <Grid item>
+
+        <TableContainer component={Paper}>
+        <Table size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+            <TableCell>
               Cantidad
-            </td>
-            <td className="titleLines" width="50%">
+            </TableCell>
+            <TableCell align="right">
               Producto
-            </td>
-            <td className="titleLines" width="15%">
+            </TableCell>
+            <TableCell align="right">
               PU
-            </td>
-            <td className="titleLines" width="20%">
+            </TableCell>
+            <TableCell align="right">
               Importe
-            </td>
-          </tr>
+            </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+
           {pedidoAdmin[0].orderlines.map((line) => {
             return (
-              <tr bgcolor="lightgreen" key={line.id}>
-                <td>
+              <TableRow 
+              key={line.id}
+              >
+                <TableCell scope="row">
                   {!Number.isInteger(line.quantity)
                     ? line.quantity.toFixed(3).replace(".", ",")
                     : line.quantity}{" "}
                   {/* - {!line.product ? "envio" : line.product.units}{" "} */}
-                </td>
-                <td className="orderLineProduct">
+                </TableCell>
+                <TableCell align="right">
                   <img
                     className="imageProduct"
                     src={!line.product ? imageDelivery : line.product.image}
-                  />
+                    />
                   {!line.product ? "Envio a domicilio" : line.product.name}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell align="right">
                   {Number(!line.product ? line.price : line.product.price)
                     .toFixed(2)
                     .replace(".", ",")}
-                </td>
-                <td>{Number(line.subtotal).toFixed(2).replace(".", ",")}</td>
-              </tr>
+                </TableCell>
+                <TableCell align="right"><b>{Number(line.subtotal).toFixed(2).replace(".", ",")}</b></TableCell>
+              </TableRow>
             );
           })}
-        </table>
+
+          </TableBody>
+        </Table>
+        </TableContainer>
+        
+        </Grid>
+        <Grid item>
+          
         <div className="importePedido">
           {!pedidoAdmin[0].subtotal
             ? 0
             : "Importe AR$: " +
-              pedidoAdmin[0].subtotal.toFixed(2).replace(".", ",")}
+            pedidoAdmin[0].subtotal.toFixed(2).replace(".", ",")}
         </div>
         {pedidoAdmin[0].status === "pending" ? (
           <>
@@ -187,8 +231,10 @@ const OrderAdmin = () => {
           </>
         ) : (
           <> </>
-        )}
-        <div>
+          )}
+
+        </Grid>
+        <Grid item>
           {pedidoAdmin[0].status === "pending" ? (
             <button className="btn btn-primary" onClick={handleClick}>
               {" "}
@@ -218,9 +264,8 @@ const OrderAdmin = () => {
             {" "}
             Volver{" "}
           </button>
-        </div>
-      </div>
-    </>
+        </Grid>
+    </Grid>
   );
 };
 
