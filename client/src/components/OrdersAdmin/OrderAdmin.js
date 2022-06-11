@@ -155,23 +155,21 @@ const OrderAdmin = () => {
             marginBottom: "20px",
           }}
         >
-          <Table size="small" aria-label="a dense table">
+          <Table /* size="small"  aria-label="a dense table" */>
             <TableHead bgcolor="lightgreen">
               <TableRow>
                 <TableCell padding="none" align="center" width={1}>
-                  Cantidad
+                  Cant.
                 </TableCell>
-                {/* <div className="imageProduct"> */}
                   <TableCell padding="none" align="center" width={1}></TableCell>
-                {/* </div> */}
-                <TableCell padding="checkbox" align="center" width={3}>
+                <TableCell padding="checkbox" align="center" width={5}>
                   Producto
                 </TableCell>
-                <TableCell padding="checkbox" align="center" width={1}>
+                <TableCell padding="checkbox" align="center" width={0.5}>
                   PU
                 </TableCell>
-                <TableCell padding="checkbox" align="center" width={1}>
-                  Importe
+                <TableCell padding="checkbox" align="center" width={0.5}>
+                  $
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -190,7 +188,6 @@ const OrderAdmin = () => {
                         : line.quantity}{" "}
                       {/* - {!line.product ? "envio" : line.product.units}{" "} */}
                     </TableCell>
-                    {/* <div className="imageProduct"> */}
                       <TableCell padding="none" /* align="right" */  width={1}>
                          <img
                           className="imageProduct"
@@ -199,16 +196,15 @@ const OrderAdmin = () => {
                           }
                         /> 
                       </TableCell>
-                    {/* </div> */}
                     <TableCell padding="none" /* align="right" */ width={5}>
                       {!line.product ? "Envio a domicilio" : line.product.name}
                     </TableCell>
-                    <TableCell padding="none" align="right" width={1}>
+                    <TableCell padding="none" align="right" width={0.5}>
                       {Number(!line.product ? line.price : line.product.price)
                         .toFixed(2)
                         .replace(".", ",")}
                     </TableCell>
-                    <TableCell padding="none" align="right" width={1}>
+                    <TableCell padding="none" align="right" width={0.5}>
                       <b>
                         {Number(line.subtotal).toFixed(2).replace(".", ",")}
                       </b>
